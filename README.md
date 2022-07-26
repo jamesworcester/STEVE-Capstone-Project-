@@ -1,2 +1,0 @@
-# STEVE
-CSE3PRA &amp; CSE3PRB STEVE Group Project
