@@ -3,13 +3,14 @@ import { View, Text, StyleSheet, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
 
 const NewPasswordScreen = () => {
     const navigation = useNavigation();
-    const [code, setCode] = useState('');
-    const [NewPassword, setNewPassword] = useState('');
 
-    const onSubmitPressed = () => {
+    const {control, handleSubmit} = useForm();
+
+    const onSubmitPressed = (data) => {
         navigation.navigate('Home');
     }
 
@@ -25,20 +26,36 @@ const NewPasswordScreen = () => {
                 </Text>
 
                 <CustomInput
+                    name="code"
+                    control={control}
                     placeholder="Code"
-                    value={code}
-                    setValue={setCode}
+                    rules={{
+                        required: 'Code is required'
+                    }}
                 />
 
                 <CustomInput
+                    name="password"
+                    control={control}
                     placeholder="Enter your new password"
-                    value={NewPassword}
-                    setValue={setNewPassword}
+                    secureTextEntry={true}
+                    rules={{
+                        required: 'Password is required',
+                        minLength: {
+                            value: 12,
+                            message: "Password should be at least 12 characters long"
+                        },
+                        maxLength: {
+                            value: 40,
+                            message: "Username should be less than 40 characters long"
+                        }
+                    }}
+                    
                 />
 
                 <CustomButton 
                     text="Submit"
-                    onPress={onSubmitPressed}
+                    onPress={handleSubmit(onSubmitPressed)}
                 />
 
                 <CustomButton 

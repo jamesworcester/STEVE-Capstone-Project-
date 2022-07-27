@@ -5,13 +5,20 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
+import { TextInput } from 'react-native-gesture-handler';
+import {useForm, Controller} from 'react-hook-form';
 
 const SignInScreen = () => {
-    const [username, setUsername] = useState('');
 
-    const [password, setPassword] = useState('');
+    const navigation = useNavigation();
+    const {height} = useWindowDimensions();
 
-    const onSignInPressed = () => {
+    const {control, handleSubmit, formState: {errors}} = useForm();
+
+    console.log(errors);
+
+    const onSignInPressed = (data) => {
+        console.log(data);
         // validate user
         navigation.navigate('Home');
     }
@@ -24,8 +31,7 @@ const SignInScreen = () => {
         navigation.navigate('SignUp');
     }
 
-    const {height} = useWindowDimensions();
-    const navigation = useNavigation();
+
 
     return (
         <ScrollView>
@@ -37,20 +43,28 @@ const SignInScreen = () => {
                 />
 
                 <CustomInput
+                name="username"
                 placeholder="Username"
-                value={username}
-                setValue={setUsername}
+                control={control}
+                rules={{required: 'Username is required'}}
                 />
+
                 <CustomInput
+                name="password"
                 placeholder="Password"
-                value={password}
-                setValue={setPassword}
+                control={control}
                 secureTextEntry={true}
-                />
+                rules={{
+                    required: 'Password is required',
+                    minLength: {value: 12,
+                    message: 'Password should be a minimum of 12 characters long',
+                },
+            }}   
+        />
 
                 <CustomButton 
                 text="Sign In"
-                onPress={onSignInPressed}
+                onPress={handleSubmit(onSignInPressed)}
                 />
 
                 <CustomButton 
