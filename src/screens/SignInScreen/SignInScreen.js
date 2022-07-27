@@ -3,6 +3,7 @@ import { View, Text , Image , StyleSheet, useWindowDimensions, ScrollView} from 
 import Logo from '../../../assets/images/Logo_1.png';
 import CustomInput from '../../CustomInput';
 import CustomButton from '../../components/CustomButton';
+import SocialSignInButtons from '../../components/CustomButton/SocialSignInButtons';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
@@ -10,27 +11,11 @@ const SignInScreen = () => {
     const [password, setPassword] = useState('');
 
     const onSignInPressed = () => {
-        console.warn("Sign in");
+        console.warn("onSignInPressed");
     }
 
     const onForgotPasswordPressed = () => {
         console.warn("onForgotPasswordPressed");
-    }
-
-    const onSignInFacebook = () => {
-        console.warn('onSignInFacebook')
-    };
-
-    const onSignInGoogle = () => {
-        console.warn('onSignInGoogle')
-    };
-
-    const onSignInApple = () => {
-        console.warn('onSignInApple')
-    };
-
-    const onSignUpPressed = () => {
-        console.warn('onSignUpPress');
     }
 
     const {height} = useWindowDimensions();
@@ -66,30 +51,11 @@ const SignInScreen = () => {
                 type="TERTIARY"
                 />
 
-                <CustomButton 
-                text="Sign In with Facebook"
-                onPress={onSignInFacebook}
-                bgColor="#E7EAF4"
-                fgColor="#4765A9"
-                />
-                
-                <CustomButton 
-                text="Sign In with Google"
-                onPress={onSignInGoogle}
-                bgColor="#FAE9EA"
-                fgColor="#DD4D44"
-                />
-            
-                <CustomButton 
-                text="Sign In with Apple"
-                onPress={onSignInApple}
-                bgColor="#e3e3e3"
-                fgColor="#363636"
-                />
+                <SocialSignInButtons />
 
                 <CustomButton 
-                text="Don't have an account? Create one"
-                onPress={onSignUpPressed}
+                text="Have an account? Sign in"
+                onPress={onSignInPressed}
                 type="TERTIARY"
                 />
                 
