@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ScrollView} from 'react-native';
-import CustomInput from '../../CustomInput';
+import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
-import SocialSignInButtons from '../../components/CustomButton/SocialSignInButtons';
+import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
     const [username, setUsername] = useState('');
@@ -10,16 +11,10 @@ const SignUpScreen = () => {
     const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
 
+    const navigation = useNavigation();
+
     const onRegisterPressed = () => {
-        console.warn("onRegisterPressed");
-    }
-
-    const onForgotPasswordPressed = () => {
-        console.warn("onForgotPasswordPressed");
-    }
-
-    const onSignUpPressed = () => {
-        console.warn('onSignUpPress');
+        navigation.navigate('ConfirmEmail');
     }
 
     const onTermsOfUsePressed = () => {
@@ -30,7 +25,9 @@ const SignUpScreen = () => {
         console.warn('onTermsofUsePressed');
     }
 
-
+    const onSignInPressed = () => {
+        navigation.navigate('SignIn');
+    }
 
     return (
         <ScrollView>
@@ -65,7 +62,6 @@ const SignUpScreen = () => {
                     secureTextEntry={true}
                 />
 
-
                 <CustomButton 
                     text="Register"
                     onPress={onRegisterPressed}
@@ -80,8 +76,8 @@ const SignUpScreen = () => {
                 <SocialSignInButtons />
 
                 <CustomButton 
-                    text="Don't have an account? Create one"
-                    onPress={onSignUpPressed}
+                    text="Have an account? Sign in"
+                    onPress={onSignInPressed}
                     type="TERTIARY"
                 />
                 

@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { View, Text , Image , StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import Logo from '../../../assets/images/Logo_1.png';
-import CustomInput from '../../CustomInput';
+import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
-import SocialSignInButtons from '../../components/CustomButton/SocialSignInButtons';
+import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
@@ -11,14 +12,21 @@ const SignInScreen = () => {
     const [password, setPassword] = useState('');
 
     const onSignInPressed = () => {
-        console.warn("onSignInPressed");
+        // validate user
+        navigation.navigate('Home');
     }
 
     const onForgotPasswordPressed = () => {
-        console.warn("onForgotPasswordPressed");
+        navigation.navigate('ForgotPassword');
+    }
+
+    const onSignUpPressed = () => {
+        navigation.navigate('SignUp');
     }
 
     const {height} = useWindowDimensions();
+    const navigation = useNavigation();
+
     return (
         <ScrollView>
             <View style={styles.root}>
@@ -54,8 +62,8 @@ const SignInScreen = () => {
                 <SocialSignInButtons />
 
                 <CustomButton 
-                text="Have an account? Sign in"
-                onPress={onSignInPressed}
+                text="Don't have an account? Sign up"
+                onPress={onSignUpPressed}
                 type="TERTIARY"
                 />
                 

@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ScrollView} from 'react-native';
-import CustomInput from '../../CustomInput';
+import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
+
+
 
 const ConfirmEmailScreen = () => {
+    const navigation = useNavigation();
     const [code, setCode] = useState('');
-
+    
     const onConfirmPressed = () => {
-        console.warn("onConfirmPressed");
+        navigation.navigate('Home');
     }
 
     const onResendPressed = () => {
@@ -15,7 +19,7 @@ const ConfirmEmailScreen = () => {
     }
 
     const onSignInPressed = () => {
-        console.warn('onSignInPress');
+        navigation.navigate('SignIn');
     }
 
     const onTermsOfUsePressed = () => {
@@ -25,8 +29,6 @@ const ConfirmEmailScreen = () => {
     const onPrivacyPolicyPressed = () => {
         console.warn('onTermsofUsePressed');
     }
-
-
 
     return (
         <ScrollView>
