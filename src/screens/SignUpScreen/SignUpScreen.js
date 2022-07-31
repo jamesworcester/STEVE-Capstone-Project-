@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ScrollView} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
+import { Auth } from 'aws-amplify';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -15,8 +16,24 @@ const SignUpScreen = () => {
 
     const navigation = useNavigation();
 
-    const onRegisterPressed = () => {
-        navigation.navigate('ConfirmEmail');
+    const onRegisterPressed = async (data) => {
+        const {email, password} = data;
+        try
+        {
+                await Auth.signUp({
+                username: email,
+                password,
+                //attributes: {name, fullname}
+                //additional attributes
+            });
+            navigation.navigate('ConfirmEmail', {email})
+        }
+        catch (e)
+        {
+            Alert.alert('Oops', e.message);
+        }
+
+        // navigation.navigate('ConfirmEmail');
     }
 
     const onTermsOfUsePressed = () => {
@@ -38,7 +55,7 @@ const SignUpScreen = () => {
                     Create an account
                 </Text>
 
-                <CustomInput
+                {/* <CustomInput
                     name="username"
                     control={control}
                     placeholder="Username"
@@ -53,7 +70,7 @@ const SignUpScreen = () => {
                             message: "Username should be less than 24 characters long"
                         }
                     }}
-                />
+                /> */}
 
                 <CustomInput
                     name="email"
@@ -110,7 +127,7 @@ const SignUpScreen = () => {
                     <Text style={styles.link} onPress={onPrivacyPolicyPressed}>Privacy Policy</Text>
                 </Text>
 
-                <SocialSignInButtons />
+                {/* <SocialSignInButtons /> */}
 
                 <CustomButton 
                     text="Have an account? Sign in"

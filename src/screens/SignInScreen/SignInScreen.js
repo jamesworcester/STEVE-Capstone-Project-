@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text , Image , StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
+import { View, Text , Image , StyleSheet, useWindowDimensions, ScrollView, Alert} from 'react-native';
 import Logo from '../../../assets/images/Logo_1.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -7,20 +7,37 @@ import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSign
 import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-gesture-handler';
 import {useForm, Controller} from 'react-hook-form';
+import { Auth } from 'aws-amplify';
 
 const SignInScreen = () => {
 
     const navigation = useNavigation();
     const {height} = useWindowDimensions();
+    const [loading, setLoading] = useState(false);
 
     const {control, handleSubmit, formState: {errors}} = useForm();
 
     console.log(errors);
 
-    const onSignInPressed = (data) => {
-        console.log(data);
-        // validate user
-        navigation.navigate('Home');
+    const onSignInPressed = async (data) => {
+        // console.log(data);
+        // // validate user
+        // navigation.navigate('Home');
+
+        if (loading) {
+            return;
+        }
+
+        setLoading(true);
+
+        try{
+            await Auth.signIn(data.email, data.password);
+            navigation.navigate('Home');
+        } catch(e) {
+            Alert.alert('Oops', e.message);
+        }
+        setLoading(false);
+        
     }
 
     const onForgotPasswordPressed = () => {
@@ -42,13 +59,20 @@ const SignInScreen = () => {
                 resizeMode="contain"
                 />
 
-                <CustomInput
+                {/* <CustomInput
                 name="username"
                 placeholder="Username"
                 control={control}
                 rules={{required: 'Username is required'}}
-                />
+                /> */}
 
+                <CustomInput
+                name="email"
+                placeholder="Email"
+                control={control}
+                rules={{required: 'Email is required'}}
+                />
+                
                 <CustomInput
                 name="password"
                 placeholder="Password"
@@ -63,7 +87,7 @@ const SignInScreen = () => {
         />
 
                 <CustomButton 
-                text="Sign In"
+                text={loading ? "Loading..." : "Sign In"}
                 onPress={handleSubmit(onSignInPressed)}
                 />
 
