@@ -5,9 +5,9 @@ Instructions to run the program on your local machine (mac may be screwy because
 4. In Android Studio, click on 'More Actions' -> 'Virtual Device Manager' -> 'Create device', then create a new android device
 5. Run the android emulator for the device you just created
 6. Clone the main git repo https://github.com/jamesworcester/STEVE onto your system (eg. using GitHub Desktop)
-7. In a terminal, cd into the root directory of the program
+7. In a terminal, cd into the root directory of STEVE
 8. In the root directory in your terminal, run: npm install --legacy-peer-deps
 9. If using a mac, run: npx pod-install
 10. Run: npm start
-11. Open a new terminal (don't close the first one) and cd into the root directory of the program
+11. Open a new terminal (don't close the first one) and cd into the root directory of STEVE
 12. In that new terminal, run: npx react-native run-android
