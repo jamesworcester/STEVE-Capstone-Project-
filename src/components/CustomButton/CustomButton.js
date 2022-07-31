@@ -1,16 +1,19 @@
+//CustomButton component class. Used to create custom button components that call custom functions on press with a variety of custom CSS styling
+//react-native imports
 import React from 'react';
 import { View, Text, StyleSheet, Pressable} from 'react-native';
 
+//define a constant lambda function called CustomButton that can have various parameters passed to it for customisable functionality and CSS styling
 const CustomButton = ({ onPress, text, type = "PRIMARY", bgColor, fgColor}) => {
     return (
-        <Pressable
-            onPress={onPress}
-            style={[
+        <Pressable //when pressed
+            onPress={onPress} //carry out the passed 'onPress' parameter command
+            style={[ //style the button
                 styles.container,
                 styles[`container_${type}`],
                 bgColor ? {backgroundColor: bgColor} : {}
             ]}>
-            <Text style={[
+            <Text style={[ //style the button's text and create the button with the passed 'text' parameter as its text
                 styles.text,
                 styles[`text_${type}`],
                 fgColor ? {color: fgColor} : {},
@@ -21,6 +24,7 @@ const CustomButton = ({ onPress, text, type = "PRIMARY", bgColor, fgColor}) => {
     )
 };
 
+//define a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     container: {
         
@@ -41,7 +45,6 @@ const styles = StyleSheet.create({
     },
 
     container_TERTIARY: {
-
     },
 
     text: {
@@ -59,4 +62,5 @@ const styles = StyleSheet.create({
 
 });
 
+//export the CustomButton component
 export default CustomButton;

@@ -1,37 +1,34 @@
+//SignInScreen users are navigated to from App.js as well as being able to return to from many different screens. Allows users to sign in or navigate to Sign Up or reset their password
+//react-native imports
 import React, {useState} from 'react';
 import { View, Text , Image , StyleSheet, useWindowDimensions, ScrollView, Alert} from 'react-native';
-import Logo from '../../../assets/images/Logo_1.png';
+//@react-navigation/native import
+import { useNavigation } from '@react-navigation/native';
+//react-hook-form import for easy form validation https://react-hook-form.com/
+import {useForm, Controller} from 'react-hook-form';
+//AWS Amplify import
+import { Auth } from 'aws-amplify';
+//user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
-import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
-import { useNavigation } from '@react-navigation/native';
-import { TextInput } from 'react-native-gesture-handler';
-import {useForm, Controller} from 'react-hook-form';
-import { Auth } from 'aws-amplify';
+//user defined logo import
+import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
+//define a constant lambda function called SignInScreen that creates a logo, two CustomInputs and three CustomIButtons and allows the user to sign in or navigate to sign up or reset their password
 const SignInScreen = () => {
 
-    const navigation = useNavigation();
-    const {height} = useWindowDimensions();
-    const [loading, setLoading] = useState(false);
+    const navigation = useNavigation(); //use navigation from @react-navigation/native
+    const {height} = useWindowDimensions(); //sets the height of the window
+    const [loading, setLoading] = useState(false); //sets loading
+    const {control, handleSubmit, formState: {errors}} = useForm(); //use form from react-hook-form
 
-    const {control, handleSubmit, formState: {errors}} = useForm();
-
-    console.log(errors);
-
-    const onSignInPressed = async (data) => {
-        // console.log(data);
-        // // validate user
-        // navigation.navigate('Home');
-
+    const onSignInPressed = async (data) => { //asynchronous lambda function that checks if there is a request that is still loading, then attempts to sign in
         if (loading) {
             return;
         }
-
         setLoading(true);
-
         try{
-            await Auth.signIn(data.email, data.password);
+            await Auth.signIn(data.email, data.password); //uses AWS Amplify to attempt to sign in using the entered email and password
             navigation.navigate('Home');
         } catch(e) {
             Alert.alert('Oops', e.message);
@@ -40,40 +37,32 @@ const SignInScreen = () => {
         
     }
 
-    const onForgotPasswordPressed = () => {
+    const onForgotPasswordPressed = () => { //if the 'Forgot password?' button is clicked
         navigation.navigate('ForgotPassword');
     }
 
-    const onSignUpPressed = () => {
+    const onSignUpPressed = () => { //if the 'Don't have an account? Sign up' button is clicked
         navigation.navigate('SignUp');
     }
 
-
-
+    //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
             <View style={styles.root}>
-                <Image
+                <Image //Logo image
                 source={Logo}
                 style={[styles.logo, {height: height * 0.3}]}
                 resizeMode="contain"
                 />
 
-                {/* <CustomInput
-                name="username"
-                placeholder="Username"
-                control={control}
-                rules={{required: 'Username is required'}}
-                /> */}
-
-                <CustomInput
+                <CustomInput //Custom TextInput
                 name="email"
                 placeholder="Email"
                 control={control}
                 rules={{required: 'Email is required'}}
                 />
                 
-                <CustomInput
+                <CustomInput //Custom TextInput
                 name="password"
                 placeholder="Password"
                 control={control}
@@ -81,25 +70,27 @@ const SignInScreen = () => {
                 rules={{
                     required: 'Password is required',
                     minLength: {value: 12,
-                    message: 'Password should be a minimum of 12 characters long',
+                    message: 'Password should be a minimum of 12 characters long', //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
                 },
+                    maxLength: {
+                    value: 40,
+                    message: "Username should be less than 40 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
+                }
             }}   
         />
 
-                <CustomButton 
+                <CustomButton //Sign In Button
                 text={loading ? "Loading..." : "Sign In"}
                 onPress={handleSubmit(onSignInPressed)}
                 />
 
-                <CustomButton 
+                <CustomButton //Forgot Password Button
                 text="Forgot password?"
                 onPress={onForgotPasswordPressed}
                 type="TERTIARY"
                 />
 
-                <SocialSignInButtons />
-
-                <CustomButton 
+                <CustomButton //Sign Up Button
                 text="Don't have an account? Sign up"
                 onPress={onSignUpPressed}
                 type="TERTIARY"
@@ -110,6 +101,7 @@ const SignInScreen = () => {
     );
 };
 
+//create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
@@ -121,5 +113,5 @@ const styles = StyleSheet.create({
         maxHeight: 200,
     }
 })
-
+//export the SignInScreen lambda function
 export default SignInScreen
