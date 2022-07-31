@@ -1,3 +1,7 @@
+/*
+Programmer: James Worcester
+Edited by: James Worcester on 31/07/2022
+*/
 //Navigation class that uses @react-navigation/native library for navigation between different screens of the app https://reactnavigation.org/docs/getting-started/
 //react-native imports
 import React from 'react';

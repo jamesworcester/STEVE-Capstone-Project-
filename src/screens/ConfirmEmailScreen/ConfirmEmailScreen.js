@@ -1,3 +1,7 @@
+/*
+Programmer: James Worcester
+Edited by: James Worcester on 31/07/2022
+*/
 //ConfirmEmailScreen a user is navigated to from the SignUpScreen after they successfully create an account in the app so that they can confirm their email using a code that is emailed to them
 //react-native imports
 import React, {useState} from 'react';

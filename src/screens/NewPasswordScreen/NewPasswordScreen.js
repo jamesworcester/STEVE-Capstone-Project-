@@ -1,3 +1,7 @@
+/*
+Programmer: James Worcester
+Edited by: James Worcester on 31/07/2022
+*/
 //NewPasswordScreen users are navigated to from the ForgotPasswordScreen after they have entered their password reset code and it has been validated by AWS Amplify
 //react-native imports
 import React, {useState} from 'react';

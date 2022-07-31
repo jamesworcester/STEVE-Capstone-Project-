@@ -1,3 +1,7 @@
+/*
+Programmer: James Worcester
+Edited by: James Worcester on 31/07/2022
+*/
 //CustomButton component class. Used to create custom button components that call custom functions on press with a variety of custom CSS styling
 //react-native imports
 import React from 'react';

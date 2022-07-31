@@ -1,3 +1,7 @@
+/*
+Programmer: James Worcester
+Edited by: James Worcester on 31/07/2022
+*/
 //CustomInput component class. Used to create custom TextInput components with a variety of CSS styling
 //react-native imports
 import React from "react";

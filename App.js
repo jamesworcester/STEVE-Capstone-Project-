@@ -1,3 +1,7 @@
+/*
+Programmer: James Worcester
+Edited by: James Worcester on 31/07/2022
+*/
 //main App.js javascript file, from which every other screen is run
 //react-native imports
 import 'react-native-gesture-handler';
