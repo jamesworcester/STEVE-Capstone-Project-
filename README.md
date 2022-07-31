@@ -1,4 +1,4 @@
-Instructions to run the program on your local machines (mac may be screwy because it's screwy
+Instructions to run the program on your local machine (mac may be screwy because it's screwy
 1. Install and properly configure react-native expo: https://reactnative.dev/docs/environment-setup
 2. . Install Node.js 16.16.0 LTS https://nodejs.org/en/
 3. Install Android Studio https://developer.android.com/studio
