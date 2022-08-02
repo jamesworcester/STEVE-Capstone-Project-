@@ -9,6 +9,7 @@ Amplify CLI once off steps per machine:
 6. user name: amplify-user (it will open a browser, just quit out of the browser without doing anything)
 7. Press 'Enter'
 8. Enter the access key of the newly created user:
+9. 
 accessKeyId: (James can send you the accessKeyId for amplify user)
 secretAccessKey: (James can send you the secretAccessKey for amplify user)
 9. Profile Name: default
