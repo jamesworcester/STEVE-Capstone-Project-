@@ -1,0 +1,11 @@
+{
+  "auth": {
+    "steve7fd255c6": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
