@@ -9,9 +9,12 @@ Amplify CLI once off steps per machine:
 6. user name: amplify-user (it will open a browser, just quit out of the browser without doing anything)
 7. Press 'Enter'
 8. Enter the access key of the newly created user:
-9. accessKeyId: (James can send you the accessKeyId for amplify user)
-10. secretAccessKey: (James can send you the secretAccessKey for amplify user)
-11. Profile Name: default
+
+accessKeyId: (James can send you the accessKeyId for amplify user)
+
+secretAccessKey: (James can send you the secretAccessKey for amplify user)
+
+9. Profile Name: default
 
 Other once off steps per machine:
 1. Install and properly configure react-native expo: https://reactnative.dev/docs/environment-setup
