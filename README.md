@@ -10,9 +10,9 @@ Amplify CLI once off steps per machine:
 7. Press 'Enter'
 8. Enter the access key of the newly created user:
 
-accessKeyId: (James can send you the accessKeyId for amplify user)
+    accessKeyId: (James can send you the accessKeyId for amplify user)
 
-secretAccessKey: (James can send you the secretAccessKey for amplify user)
+    secretAccessKey: (James can send you the secretAccessKey for amplify user)
 
 9. Profile Name: default
 
@@ -27,11 +27,17 @@ Steps to get and run the code from github
 1. Clone the main git repo https://github.com/jamesworcester/STEVE onto your system (eg. using GitHub Desktop)
 2. In a terminal, cd into the root directory of STEVE
 3. Run: amplify init
-Do you want to use an existing environment? Yes
-Choose the environment you would like to use: dev
-Choose your default editor: Visual Studio Code
-Select the authentication method you want to use: AWS profile
-Please choose the profile you want to use: default
+
+    Do you want to use an existing environment? Yes
+    
+    Choose the environment you would like to use: dev
+    
+    Choose your default editor: Visual Studio Code
+    
+    Select the authentication method you want to use: AWS profile
+    
+    Please choose the profile you want to use: default
+    
 4. Run expo start
 
 Github standard practice:
