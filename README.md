@@ -26,7 +26,8 @@ Other once off steps per machine:
 Steps to get and run the code from github
 1. Clone the main git repo https://github.com/jamesworcester/STEVE onto your system (eg. using GitHub Desktop)
 2. In a terminal, cd into the root directory of STEVE
-3. Run: amplify init
+3. Run: npm install
+4. Run: amplify init
 
     Do you want to use an existing environment? Yes
     
@@ -38,7 +39,7 @@ Steps to get and run the code from github
     
     Please choose the profile you want to use: default
     
-4. Run expo start
+5. Run: expo start
 
 Github standard practice:
 - Once you get the main branch working, please create a New Branch to continue working on so we don't end up with a bunch of stuff in main that is in development
