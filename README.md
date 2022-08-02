@@ -1,4 +1,5 @@
 # STEVE
+## Instructions to set up and use the current main-branch STEVE Program
 Amplify CLI once off steps per machine:
 1. Install the Amplify CLI using the 'cURL (Mac and Linux)' or 'cURL (Windows)' link from here: https://docs.amplify.aws/cli/start/install/
 2. Run: amplify configure
