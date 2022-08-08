@@ -1,6 +1,6 @@
 {
   "auth": {
-    "steve7fd255c6": {
+    "steve5a100ea6": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
