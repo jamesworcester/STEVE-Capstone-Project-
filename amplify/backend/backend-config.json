@@ -1,6 +1,6 @@
 {
   "auth": {
-    "steve5a100ea6": {
+    "steveamplify": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
