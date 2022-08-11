@@ -18,13 +18,13 @@ const Tab = createMaterialBottomTabNavigator();
 
 const Dashboard = () => {
     return (
-        <NavigationContainer independent = {true}>
     <Tab.Navigator shifting={true} 
-                barStyle={{ backgroundColor: 'purple' }} 
-                activeColor="white" >
-      <Tab.Screen name="Home" component={FirstScreen}        
-      options={{
-        tabBarIcon: ({ color }) => (
+        barStyle={{ backgroundColor: 'purple' }} 
+        activeColor="white" 
+        >
+        <Tab.Screen name="Home" component={FirstScreen}        
+            options={{
+            tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home-outline" color={color} size={26}/>
         ),
     }}/>
@@ -47,7 +47,7 @@ const Dashboard = () => {
         ),
     }}/>
     </Tab.Navigator>
-    </NavigationContainer>
+    
     )
 };
 

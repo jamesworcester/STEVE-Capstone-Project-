@@ -4,10 +4,12 @@ import { Header } from "@rneui/themed";
 import { SearchBar } from "@rneui/themed";
 
 import 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack'
 
+//import ChatListItem from '../components/ChatListItem/Index';
+import chatRooms from '../../assets/data/ChatRooms';
 
-const Stack = createStackNavigator();
+import NestedList from '../components/ChatListItem/Nestedlist';
+
 
 function Chatchannel() {
     return (
@@ -18,12 +20,8 @@ function Chatchannel() {
             leftComponent={{ icon: 'local-parking', color: '#fff' }}
             centerComponent={{text:'ProjectB', style: {color: 'white'}, 
             }}/>
-            <SearchBar 
-                placeholder="Jump to..."
-                round = {true}
-                showCancel = {true}
-                showLoading = {false}
-                lightTheme = {true} 
+
+            <NestedList 
             />
     
         </View>
