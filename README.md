@@ -31,7 +31,7 @@ Steps to get and run the code from github
 
     Do you want to use an existing environment? Yes
     
-    Choose the environment you would like to use: dev
+    Choose the environment you would like to use: staging
     
     Choose your default editor: Visual Studio Code
     
