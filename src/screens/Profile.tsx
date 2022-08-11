@@ -1,13 +1,20 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { Header } from "@rneui/themed";
+import { useNavigation } from '@react-navigation/native';
+import { Octicons } from '@expo/vector-icons'; 
 
 function Profile() {
+
+    const navigation = useNavigation(); 
     return (
         <View >
             <Header 
             backgroundColor='purple'
-            centerComponent={{text:'PROFILE', style: {color: 'white'}}}/>
+            centerComponent={{text:'PROFILE', style: {color: 'white'}}}
+            rightComponent={<Octicons name="sign-out" size={24} color="white" 
+            onPress={() => {navigation.navigate('SignIn')}}/> }
+            />
         </View>
     )
 }

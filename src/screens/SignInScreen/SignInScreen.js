@@ -33,7 +33,7 @@ const SignInScreen = () => {
         setLoading(true);
         try{
             await Auth.signIn(data.email, data.password); //uses AWS Amplify to attempt to sign in using the entered email and password
-            navigation.navigate('Home');
+            navigation.navigate('Dashboard');
         } catch(e) {
             Alert.alert('Oops', e.message);
         }

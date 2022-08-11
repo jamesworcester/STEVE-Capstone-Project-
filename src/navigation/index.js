@@ -18,6 +18,13 @@ import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
+import {
+  Octicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+  FontAwesome5,
+} from '@expo/vector-icons';
 //create the navigation stack
 const Stack = createStackNavigator();
 
@@ -26,13 +33,23 @@ const Stack = createStackNavigator();
 const Navigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Navigator >
+             <Stack.Group screenOptions={{headerShown: false}}>
                 <Stack.Screen name="SignIn" component={SignInScreen} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-                <Stack.Screen name="Home" component={Dashboard} />
+             </Stack.Group>   
+             <Stack.Group screenOptions={{headerShown: false}}
+             >
+                <Stack.Screen name="Dashboard" component={Dashboard} />
+                <Stack.Screen
+                    name="Chatroom"
+                    component={ChatRoomScreen}
+                   
+      />
+             </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
     )
