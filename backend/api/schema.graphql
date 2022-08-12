@@ -1,0 +1,59 @@
+type Country {
+	id: ID!
+	name: String!
+}
+
+input CreateCountryInput {
+	name: String!
+}
+
+input CreateMetricInput {
+	metric_type: String!
+	text: String!
+}
+
+input DeleteCountryInput {
+	id: ID!
+}
+
+input DeleteMetricInput {
+	id: ID!
+}
+
+type Metric {
+	id: ID!
+	metric_type: String!
+	text: String!
+}
+
+type Mutation {
+	createMetric(input: CreateMetricInput!): Metric
+	updateMetric(input: UpdateMetricInput!): Metric
+	deleteMetric(input: DeleteMetricInput!): Metric
+	createCountry(input: CreateCountryInput!): Country
+	updateCountry(input: UpdateCountryInput!): Country
+	deleteCountry(input: DeleteCountryInput!): Country
+}
+
+type Query {
+	getMetric(id: ID!): Metric
+	listMetrics: [Metric]
+	getCountry(id: ID!): Country
+	listCountry: [Country]
+}
+
+input UpdateCountryInput {
+	id: ID!
+	name: String!
+}
+
+input UpdateMetricInput {
+	id: ID!
+	metric_type: String!
+	text: String!
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+}
