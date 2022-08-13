@@ -1,0 +1,73 @@
+type Query {
+    getMetric(id: ID!): Metric
+    getProject_Metrics(id: ID!): Project_Metric
+    getProject(id: ID!): Project
+    getTeam_Project(id: ID!): Team_Project
+    getTeam(id: ID!): Team
+    getTeam_Survey(id: ID!): Team_Survey
+    getAssigned_Survey(id: ID!): Assigned_Survey
+    getSurvey(id: ID!): Survey
+    getSurvey_Question(id: ID!): Survey_Question
+    getQuestion(id: ID!): Question
+    getQuestion_Answer(id: ID!): Question_Answer
+    getTeam_Membership(id: ID!): Team_Membership
+    getClient(id: ID!): Client
+    getAddress(id: ID!): Address
+    getPostcode(id: ID!): Postcode
+    getRegion(id: ID!): Region
+    getCountry(id: ID!): Country
+    getUser(id: ID!): User
+    getUser_Role(id: ID!): User_Role
+    getRole(id: ID!): Role
+    getUser_Department(id: ID!): User_Department
+    getDepartment(id: ID!): Department
+    getAssigned_TaskAchievement(id: ID!): Assigned_TaskAchievement
+    getTaskAchievement(id: ID!): TaskAchievement
+    getTaskAchievement_Reward(id: ID!): TaskAchievement_Reward
+    getReward(id: ID!): Reward
+    getUser_Setting(id: ID!): User_Setting
+    getSetting(id: ID!): Setting
+    getUser_Notification(id: ID!): User_Notification
+    getNotification(id: ID!): Notification
+    getModerator(id: ID!): Moderator
+    getSubscription(id: ID!): Subscription
+    getChannel(id: ID!): Channel
+    getPost(id: ID!): Post
+    getComment(id: ID!): Comment
+
+    listMetrics: [Metric]
+    listProject_Metrics: [Project_Metrics]
+    listProjects: [Project]
+    listTeam_Projects: [Team_Project]
+    listTeams: [Team]
+    listTeam_Surveys: [Team_Survey]
+    listAssigned_Surveys: [Assigned_Survey]
+    listSurveys: [Survey]
+    listSurvey_Questions: [Survey_Question]
+    listQuestions: [Question]
+    listQuestion_Answers: [Question_Answer]
+    listTeam_Memberships: [Team_Membership]
+    listClients: [Client]
+    listAddresses: [Address]
+    listPostcodes: [Postcode]
+    listRegions: [Region]
+    listCountries: [Country]
+    listUsers: [User]
+    listUser_Roles: [User_Role]
+    listRoles: [Role]
+    listUser_Departments: [User_Department]
+    listDepartments: [Department]
+    listAssigned_TaskAchievements: [Assigned_TaskAchievement]
+    listTaskAchievements: [TaskAchievement]
+    listTaskAchievement_Rewards: [TaskAchievement_Reward]
+    listRewards: [Reward]
+    listUser_Settings: [User_Setting]
+    listSettings: [Setting]
+    listUser_Notifications: [User_Notification]
+    listNotifications: [Notification]
+    listModerators: [Moderator]
+    listSubscriptions: [Subscription]
+    listChannels: [Channel]
+    listPosts: [Post]
+    listComments: [Comment]
+}
