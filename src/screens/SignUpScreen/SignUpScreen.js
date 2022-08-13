@@ -42,7 +42,7 @@ const SignUpScreen = () => {
         }
         catch (e)
         {
-            Alert.alert('Oops', e.message); //if there is an error, display an alert with that erro
+            Alert.alert('Oops', e.message); //if there is an error, display an alert with that error
         }
     }
 
