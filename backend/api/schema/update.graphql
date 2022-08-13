@@ -22,9 +22,9 @@ input UpdateProjectInput {
 }
 
 input UpdateTeam_ProjectInput {
-    id: ID!
-    team_id: String!
-    project_id: String!
+  id: ID!
+  team_id: String!
+  project_id: String!
 }
 
 input UpdateTeamInput {
@@ -91,7 +91,7 @@ input UpdateQuestion_AnswerInput {
 }
 
 input UpdateTeam_MembershipInput {
-id: ID!
+  id: ID!
   user_id: String!
   team_id: String!
 }

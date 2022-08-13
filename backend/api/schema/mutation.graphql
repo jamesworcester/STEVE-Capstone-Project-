@@ -70,5 +70,41 @@ type Mutation {
     updateChannel(input: CreateChannelInput!): Channel
     updatePost(input: CreatePostInput!): Post
     updateComment(input: CreateCommentInput!): Comment
+
+    deleteMetric(input: DeleteMetricInput!): Metric
+    deleteProject_Metric(input: DeleteProject_MetricInput!): Project_Metric
+    deleteProject(input: DeleteProjectInput!): Project
+    deleteTeam_Project(input: DeleteTeam_ProjectInput!): Team_Project
+    deleteTeam(input: DeleteTeamInput!): Team
+    deleteTeam_Survey(input: DeleteTeam_SurveyInput!): Team_Survey
+    deleteAssigned_Survey(input: DeleteAssigned_SurveyInput!): Assigned_Survey
+    deleteSurvey(input: DeleteSurveyInput!): Survey
+    deleteSurvey_Question(input: DeleteSurvey_QuestionInput!): Survey_Question
+    deleteQuestion(input: DeleteQuestionInput!): Question
+    deleteQuestion_Answer(input: DeleteQuestion_AnswerInput!): Question_Answer
+    deleteTeam_Membership(input: DeleteTeam_MembershipInput!): Team_Membership
+    deleteClient(input: DeleteClientInput!): Client
+    deleteAddress(input: DeleteAddressInput!): Address
+    deletePostcode(input: DeletePostcodeInput!): Postcode
+    deleteRegion(input: DeleteRegionInput!): Region
+    deleteCountry(input: DeleteCountryInput!): Country
+    deleteUser(input: DeleteUserInput!): User
+    deleteUser_Role(input: DeleteUser_RoleInput!): User_Role
+    deleteRole(input: DeleteRoleInput!): Role
+    deleteUser_Department(input: DeleteUser_DepartmentInput!): User_Department
+    deleteDepartment(input: DeleteDepartmentInput!): Department
+    deleteAssigned_TaskAchievement(input: DeleteAssigned_TaskAchievementInput!): Assigned_TaskAchievement
+    deleteTaskAchievement(input: DeleteTaskAchievementInput!): TaskAchievement
+    deleteTaskAchievement_Reward(input: DeleteTaskAchievement_RewardInput!): TaskAchievement_Reward
+    deleteReward(input: DeleteRewardInput!): Reward
+    deleteUser_Setting(input: DeleteUser_SettingInput!): User_Setting
+    deleteSetting(input: DeleteSettingInput!): Setting
+    deleteUser_Notification(input: DeleteUser_NotificationInput!): User_Notification
+    deleteNotification(input: DeleteNotificationInput!): Notification
+    deleteModerator(input: DeleteModeratorInput!): Moderator
+    deleteSubscription(input: DeleteSubscriptionInput!): Subscription
+    deleteChannel(input: DeleteChannelInput!): Channel
+    deletePost(input: DeletePostInput!): Post
+    deleteComment(input: DeleteCommentInput!): Comment
 }
 
