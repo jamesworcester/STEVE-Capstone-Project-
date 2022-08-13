@@ -1,0 +1,288 @@
+input UpdateMetricInput {
+  id: ID!
+  metric_type: String!
+  text: String!
+  formula: String!
+  is_archived: Int!
+  answer_number: Int!
+  answer_string: String!
+}
+
+input UpdateProject_MetricInput {
+  id: ID!
+  project_id: String!
+  metric_id: String!
+}
+
+input UpdateProjectInput {
+  id: ID!
+  client_id: String!
+  name: String!
+  description: String!
+}
+
+input UpdateTeam_ProjectInput {
+    id: ID!
+    team_id: String!
+    project_id: String!
+}
+
+input UpdateTeamInput {
+  id: ID!
+  team_manager: String!
+  name: String!
+  photo_filename: String!
+  photo_data: String!
+  description: String!
+  is_archived: Int!
+}
+
+input UpdateTeam_SurveyInput {
+  id: ID!
+  team_id: String!
+  assigned_survey_id: String!
+}
+
+input UpdateAssigned_SurveyInput {
+  id: ID!
+  survey_id: String!
+  assigned_to: String!
+  assigned_by: String!
+  assigned_date_time: AWSTimestamp!
+  end_assignment: AWSTimestamp!
+  frequency_of_survey_days: Int!
+  answered_date_time: AWSTimestamp!
+}
+
+input UpdateSurveyInput {
+  id: ID!
+  created_by: String!
+  text: String!
+  is_archived: Int!
+  created_date_time: AWSTimestamp
+  archived_date_time:AWSTimestamp
+}
+
+input UpdateSurvey_QuestionInput {
+  id: ID!
+  survey_id: String!
+  question_id: String!
+}
+
+input UpdateQuestionInput {
+  id: ID!
+  created_by: String!
+  question_type: String!
+  question_text: String!
+  is_archived: Int!
+  created_date_time: AWSTimestamp
+  archived_date_time: AWSTimestamp
+}
+
+input UpdateQuestion_AnswerInput {
+  id: ID!
+  question_id: String!
+  assigned_survey_id: String!
+  user_id: String!
+  is_anonymous: Int!
+  answer_number: Int!
+  answer_string: String!
+  answered_date_time: AWSTimestamp!
+}
+
+input UpdateTeam_MembershipInput {
+id: ID!
+  user_id: String!
+  team_id: String!
+}
+
+input UpdateClientInput {
+  id: ID!
+  address_id: String
+  name: String!
+  photo_filename: String!
+  photo_data: String!
+  industry: String!
+  contact_first_name: String!
+  contact_last_name: String!
+  contact_email: String!
+  contact_phone: String!
+}
+
+input UpdateAddressInput {
+  id: ID!
+  client_id: String
+  postcode_id: String!
+  street_number: String!
+  street_name: String!
+  apartment_number: String!
+  level: String!
+  photo_filename: String!
+  photo_data: String!
+}
+
+input UpdatePostcodeInput {
+  id: ID!
+  region_id: String!
+  postcode: String!
+}
+
+input UpdateRegionInput {
+  id: ID!
+  country_id: String!
+  name: String!
+}
+
+input UpdateCountryInput {
+  id: ID!
+  name: String!
+}
+
+input UpdateUserInput {
+  id: ID!
+  address_id: String
+  user_role_id: String
+  user_department_id: String
+  email: String!
+  phone: String!
+  password: String!
+  first_name: String!
+  last_name: String!
+  photo_filename: String!
+  photo_data: String!
+  birthday: AWSDate
+  gender: String!
+  is_archived: Int!
+  description: String!
+  speciality: String!
+  working_from: String!
+  points: Int!
+}
+
+input UpdateUser_RoleInput {
+  id: ID!
+  user_id: String!
+  role_id: String!
+}
+
+input UpdateRoleInput {
+  id: ID!
+  access_level: String!
+  name: String!
+  description: String!
+}
+
+input UpdateUser_DepartmentInput {
+  id: ID!
+  user_id: String!
+  department_id: String!
+}
+
+input UpdateDepartmentInput {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+input UpdateAssigned_TaskAchievementInput {
+  id: ID!
+  user_id: String!
+  taskachievement_id: String!
+  assigned_date_time: AWSTimestamp!
+  end_on: AWSTimestamp!
+  is_completed: Int!
+}
+
+input UpdateTaskAchievementInput {
+  id: ID!
+  created_by: String!
+  text: String!
+  is_archived: Int!
+  created_date_time: AWSTimestamp!
+  archived_date_time: AWSTimestamp!
+}
+
+input UpdateTaskAchievement_RewardInput {
+  id: ID!
+  taskachievement_id: String!
+  reward_id: String!
+}
+
+input UpdateRewardInput {
+  id: ID!
+  created_by: String!
+  name: String!
+  text: String!
+  points: Int!
+}
+
+input UpdateUser_SettingInput {
+  id: ID!
+  user_id: String!
+  setting_id: String!
+}
+
+input UpdateSettingInput {
+  id: ID!
+  name: String!
+  setting_type: String!
+  status: String!
+  description: String!
+}
+
+input UpdateUser_NotificationInput {
+  id: ID!
+  user_id: String!
+  notification_id: String!
+  sent_date_time: AWSTimestamp!
+  is_dismissed: Int!
+}
+
+input UpdateNotificationInput {
+  id: ID!
+  name: String!
+  notification_type: String!
+  text: String!
+}
+
+input UpdateModeratorInput {
+  id: ID!
+  channel_id: String!
+  user_id: String!
+}
+
+input UpdateSubscriptionInput {
+  id: ID!
+  user_id: String!
+  channel_id: String!
+  notifications: String!
+}
+
+input UpdateChannelInput {
+  id: ID!
+  channel_type: String!
+  channel_text: String!
+  description: String!
+  picture_filename: String!
+  picture_data: String!
+}
+
+input UpdatePostInput {
+  id: ID!
+  channel_id: String!
+  user_id: String!
+  content: String!
+  created_date_time: AWSTimestamp!
+  edited_date_time: AWSTimestamp!
+  archived_date_time: AWSTimestamp!
+}
+
+input UpdateCommentInput {
+  id: ID!
+  post_id: String!
+  user_id: String!
+  content: String!
+  created_date_time: AWSTimestamp!
+  edited_date_time: AWSTimestamp!
+  archived_date_time: AWSTimestamp
+}
