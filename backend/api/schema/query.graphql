@@ -36,7 +36,7 @@ type Query {
     getComment(id: ID!): Comment
 
     listMetrics: [Metric]
-    listProject_Metrics: [Project_Metrics]
+    listProject_Metrics: [Project_Metric]
     listProjects: [Project]
     listTeam_Projects: [Team_Project]
     listTeams: [Team]
