@@ -35,41 +35,41 @@ type Mutation {
     createPost(input: CreatePostInput!): Post
     createComment(input: CreateCommentInput!): Comment
 
-    updateMetric(input: CreateMetricInput!): Metric
-    updateProject_Metric(input: CreateProject_MetricInput!): Project_Metric
-    updateProject(input: CreateProjectInput!): Project
-    updateTeam_Project(input: CreateTeam_ProjectInput!): Team_Project
-    updateTeam(input: CreateTeamInput!): Team
-    updateTeam_Survey(input: CreateTeam_SurveyInput!): Team_Survey
-    updateAssigned_Survey(input: CreateAssigned_SurveyInput!): Assigned_Survey
-    updateSurvey(input: CreateSurveyInput!): Survey
-    updateSurvey_Question(input: CreateSurvey_QuestionInput!): Survey_Question
-    updateQuestion(input: CreateQuestionInput!): Question
-    updateQuestion_Answer(input: CreateQuestion_AnswerInput!): Question_Answer
-    updateTeam_Membership(input: CreateTeam_MembershipInput!): Team_Membership
-    updateClient(input: CreateClientInput!): Client
-    updateAddress(input: CreateAddressInput!): Address
-    updatePostcode(input: CreatePostcodeInput!): Postcode
-    updateRegion(input: CreateRegionInput!): Region
-    updateCountry(input: CreateCountryInput!): Country
-    updateUser(input: CreateUserInput!): User
-    updateUser_Role(input: CreateUser_RoleInput!): User_Role
-    updateRole(input: CreateRoleInput!): Role
-    updateUser_Department(input: CreateUser_DepartmentInput!): User_Department
-    updateDepartment(input: CreateDepartmentInput!): Department
-    updateAssigned_TaskAchievement(input: CreateAssigned_TaskAchievementInput!): Assigned_TaskAchievement
-    updateTaskAchievement(input: CreateTaskAchievementInput!): TaskAchievement
-    updateTaskAchievement_Reward(input: CreateTaskAchievement_RewardInput!): TaskAchievement_Reward
-    updateReward(input: CreateRewardInput!): Reward
-    updateUser_Setting(input: CreateUser_SettingInput!): User_Setting
-    updateSetting(input: CreateSettingInput!): Setting
-    updateUser_Notification(input: CreateUser_NotificationInput!): User_Notification
-    updateNotification(input: CreateNotificationInput!): Notification
-    updateModerator(input: CreateModeratorInput!): Moderator
-    updateSubscription(input: CreateSubscriptionInput!): Subscription
-    updateChannel(input: CreateChannelInput!): Channel
-    updatePost(input: CreatePostInput!): Post
-    updateComment(input: CreateCommentInput!): Comment
+    updateMetric(input: UpdateMetricInput!): Metric
+    updateProject_Metric(input: UpdateProject_MetricInput!): Project_Metric
+    updateProject(input: UpdateProjectInput!): Project
+    updateTeam_Project(input: UpdateTeam_ProjectInput!): Team_Project
+    updateTeam(input: UpdateTeamInput!): Team
+    updateTeam_Survey(input: UpdateTeam_SurveyInput!): Team_Survey
+    updateAssigned_Survey(input: UpdateAssigned_SurveyInput!): Assigned_Survey
+    updateSurvey(input: UpdateSurveyInput!): Survey
+    updateSurvey_Question(input: UpdateSurvey_QuestionInput!): Survey_Question
+    updateQuestion(input: UpdateQuestionInput!): Question
+    updateQuestion_Answer(input: UpdateQuestion_AnswerInput!): Question_Answer
+    updateTeam_Membership(input: UpdateTeam_MembershipInput!): Team_Membership
+    updateClient(input: UpdateClientInput!): Client
+    updateAddress(input: UpdateAddressInput!): Address
+    updatePostcode(input: UpdatePostcodeInput!): Postcode
+    updateRegion(input: UpdateRegionInput!): Region
+    updateCountry(input: UpdateCountryInput!): Country
+    updateUser(input: UpdateUserInput!): User
+    updateUser_Role(input: UpdateUser_RoleInput!): User_Role
+    updateRole(input: UpdateRoleInput!): Role
+    updateUser_Department(input: UpdateUser_DepartmentInput!): User_Department
+    updateDepartment(input: UpdateDepartmentInput!): Department
+    updateAssigned_TaskAchievement(input: UpdateAssigned_TaskAchievementInput!): Assigned_TaskAchievement
+    updateTaskAchievement(input: UpdateTaskAchievementInput!): TaskAchievement
+    updateTaskAchievement_Reward(input: UpdateTaskAchievement_RewardInput!): TaskAchievement_Reward
+    updateReward(input: UpdateRewardInput!): Reward
+    updateUser_Setting(input: UpdateUser_SettingInput!): User_Setting
+    updateSetting(input: UpdateSettingInput!): Setting
+    updateUser_Notification(input: UpdateUser_NotificationInput!): User_Notification
+    updateNotification(input: UpdateNotificationInput!): Notification
+    updateModerator(input: UpdateModeratorInput!): Moderator
+    updateSubscription(input: UpdateSubscriptionInput!): Subscription
+    updateChannel(input: UpdateChannelInput!): Channel
+    updatePost(input: UpdatePostInput!): Post
+    updateComment(input: UpdateCommentInput!): Comment
 
     deleteMetric(input: DeleteMetricInput!): Metric
     deleteProject_Metric(input: DeleteProject_MetricInput!): Project_Metric

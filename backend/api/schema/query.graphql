@@ -1,6 +1,6 @@
 type Query {
     getMetric(id: ID!): Metric
-    getProject_Metrics(id: ID!): Project_Metric
+    getProject_Metric(id: ID!): Project_Metric
     getProject(id: ID!): Project
     getTeam_Project(id: ID!): Team_Project
     getTeam(id: ID!): Team
