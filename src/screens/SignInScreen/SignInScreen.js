@@ -11,7 +11,8 @@ import { useNavigation } from '@react-navigation/native';
 //react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm, Controller} from 'react-hook-form';
 //AWS Amplify import
-import { Auth } from 'aws-amplify';
+import { Auth, API, graphqlOperation } from 'aws-amplify';
+import { listMetrics } from '../../graphql/queries';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -48,6 +49,13 @@ const SignInScreen = () => {
     const onSignUpPressed = () => { //if the 'Don't have an account? Sign up' button is clicked
         navigation.navigate('SignUp');
     }
+
+    async function allMetrics() {
+        const metrics = await API.graphql(graphqlOperation(listMetrics)); //gets all metrics from the graphql query
+        console.log(metrics);
+    }
+    allMetrics();
+
 
     //return the user defined components from CustomInput and CustomButton
     return (
