@@ -1,17 +1,20 @@
 import React from "react";
-import { Text,View } from "react-native";
+import { Text,View, FlatList, ImageBackground} from "react-native";
 import { Header } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons'; 
-
-
+import chatRoomData from "../../assets/data/Chats";
 import { useNavigation } from "@react-navigation/native";
+import ChatMessage from "../components/ChatMessage";
+
+const bg = {uri: "https://raw.githubusercontent.com/Savinvadim1312/WhatsappClone/main/assets/images/BG.png"}
+
 const ChatRoomScreen =() => {
 
     const route = useRoute();
     const navigation = useNavigation();
     return (
-        <View >
+        <View>
             <Header 
             backgroundColor='purple'
             leftComponent={<AntDesign name="back" color="white" size={24} 
@@ -28,7 +31,16 @@ const ChatRoomScreen =() => {
                 <Entypo name="dots-three-vertical" size={24} color="white" />
               </View>}
             />
-            
+
+        <ImageBackground  source={bg}
+        >
+          <FlatList 
+            data={chatRoomData.messages}  
+             renderItem={({item}) => <ChatMessage message={item}/> } //to display content from message dummy data
+             inverted
+          />
+          </ImageBackground>
+
         </View>
     )
 };
