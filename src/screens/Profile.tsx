@@ -11,7 +11,7 @@ function Profile() {
         <View >
             <Header 
             backgroundColor='purple'
-            centerComponent={{text:'PROFILE', style: {color: 'white'}}}
+            centerComponent={{text:'PROFILE', style: {color: 'white',fontSize:16}}}
             rightComponent={<Octicons name="sign-out" size={24} color="white" 
             onPress={() => {navigation.navigate('SignIn')}}/> }
             />

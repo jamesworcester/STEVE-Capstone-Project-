@@ -6,11 +6,12 @@ import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import chatRoomData from "../../assets/data/Chats";
 import { useNavigation } from "@react-navigation/native";
 import ChatMessage from "../components/ChatMessage";
+import InputBox from "../components/InputBox";
 
 const bg = {uri: "https://raw.githubusercontent.com/Savinvadim1312/WhatsappClone/main/assets/images/BG.png"}
 
 const ChatRoomScreen =() => {
-
+  
     const route = useRoute();
     const navigation = useNavigation();
     return (
@@ -32,17 +33,16 @@ const ChatRoomScreen =() => {
               </View>}
             />
 
-        <ImageBackground  source={bg}
-        >
+        <ImageBackground  source={bg} >
           <FlatList 
             data={chatRoomData.messages}  
              renderItem={({item}) => <ChatMessage message={item}/> } //to display content from message dummy data
              inverted
           />
-          </ImageBackground>
+        </ImageBackground>
+          <InputBox/>
 
         </View>
     )
 };
-
 export default ChatRoomScreen

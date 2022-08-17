@@ -5,10 +5,10 @@ import { SearchBar } from "@rneui/themed";
 
 import 'react-native-gesture-handler';
 
-//import ChatListItem from '../components/ChatListItem/Index';
 import chatRooms from '../../assets/data/ChatRooms';
 
 import NestedList from '../components/ChatListItem/Nestedlist';
+import NewMessageButton from '../components/NewMessageButton';
 
 
 function Chatchannel() {
@@ -17,13 +17,13 @@ function Chatchannel() {
         <View >
             <Header 
             backgroundColor='purple'
-            leftComponent={{ icon: 'local-parking', color: '#fff' }}
-            centerComponent={{text:'ProjectB', style: {color: 'white'}, 
+            leftComponent={{ color: '#fff' }}
+            centerComponent={{text:'CHAT CHANNELS', style: {color: 'white', fontSize : 16}, 
             }}/>
 
             <NestedList 
             />
-    
+            <NewMessageButton/>
         </View>
         
     )

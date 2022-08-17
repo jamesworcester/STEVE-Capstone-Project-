@@ -8,7 +8,7 @@ function Survey() {
         <View >
             <Header 
             backgroundColor='purple'
-            centerComponent={{text:'SURVEYS', style: {color: 'white'}}}/>
+            centerComponent={{text:'SURVEYS', style: {color: 'white', fontSize:16}}}/>
         </View>
     )
 }
