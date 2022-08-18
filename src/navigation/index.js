@@ -18,7 +18,7 @@ import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
-import ChatRoomScreen from '../screens/ChatRoomScreen';
+import ChatRoomScreen from '../screens/ChatChannel/ChatRoomScreen';
 import {
   Octicons,
   MaterialCommunityIcons,

@@ -3,10 +3,10 @@ import { Text,View, FlatList, ImageBackground} from "react-native";
 import { Header } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons'; 
-import chatRoomData from "../../assets/data/Chats";
+import chatRoomData from "../../../assets/data/Chats";
 import { useNavigation } from "@react-navigation/native";
-import ChatMessage from "../components/ChatMessage";
-import InputBox from "../components/InputBox";
+import ChatMessage from "../../components/ChatMessage";
+import InputBox from "../../components/InputBox";
 
 const bg = {uri: "https://raw.githubusercontent.com/Savinvadim1312/WhatsappClone/main/assets/images/BG.png"}
 
@@ -37,7 +37,7 @@ const ChatRoomScreen =() => {
           <FlatList 
             data={chatRoomData.messages}  
              renderItem={({item}) => <ChatMessage message={item}/> } //to display content from message dummy data
-             inverted
+            // inverted
           />
         </ImageBackground>
           <InputBox/>
