@@ -9,7 +9,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View} from 'react-native'; //import various react-native components
 //user defined imports
 import Navigation from './src/navigation'; //import navigation from ./src/navigation that uses @react-navigation/native library for navigation between different screens of the app https://reactnavigation.org/docs/getting-started/
-import Amplify, {Auth} from 'aws-amplify'; //import Amplify & Auth from AWS Amplify library https://docs.amplify.aws/start/getting-started/installation/q/integration/react-native/
+import Amplify, {Auth, API, graphqlOperation} from 'aws-amplify'; //import Amplify & Auth from AWS Amplify library https://docs.amplify.aws/start/getting-started/installation/q/integration/react-native/
 import config from './src/aws-exports'; //import auto-generated AWS application settings for Cognito https://aws.amazon.com/cognito/ authentication
 
 Amplify.configure(config); //set up Amplify using aws-exports config
