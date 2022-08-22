@@ -58,7 +58,6 @@ CREATE TABLE Assigned_Survey (
 
 CREATE TABLE Survey (
   id VARCHAR(255) PRIMARY KEY,
-  assigned_survey_id VARCHAR(255),
   created_by VARCHAR(255),
   text VARCHAR(255),
   is_archived TINYINT,
@@ -317,7 +316,6 @@ ALTER TABLE Assigned_Survey
   ADD FOREIGN KEY (assigned_by) REFERENCES User(id);
 
 ALTER TABLE Survey
-  ADD FOREIGN KEY (assigned_survey_id) REFERENCES Assigned_Survey(id),
   ADD FOREIGN KEY (created_by) REFERENCES User(id);
 
 ALTER TABLE Survey_Question
