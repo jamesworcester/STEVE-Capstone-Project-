@@ -6,12 +6,12 @@ export default {
 		imageUri: 'https://www.w3schools.com/howto/img_avatar.png',
 	}, {
 		id: 'u2',
-		name: 'Lukas',
+		name: 'Hung',
 		imageUri: 'https://www.w3schools.com/howto/img_avatar.png',
 		}],
 	messages: [{
 		id: 'm1',
-		content: 'How are you, Lukas!',
+		content: 'Hey,How are you, Hung?',
 		createdAt: '2022-08-10T12:48:00.000Z',
 		user: {
 			id: 'u1',
@@ -19,11 +19,11 @@ export default {
 		},
 	}, {
 		id: 'm2',
-		content: 'I am good, good',
+		content: 'Hey, I am doing well',
 		createdAt: '2022-08-10T14:49:00.000Z',
 		user: {
 			id: 'u2',
-			name: 'Lukas',
+			name: 'Hung',
 		},
 	}, {
 		id: 'm3',
@@ -31,11 +31,11 @@ export default {
 		createdAt: '2022-08-10T14:49:40.000Z',
 		user: {
 			id: 'u2',
-			name: 'Lukas',
+			name: 'Hung',
 		},
 	}, {
 		id: 'm4',
-		content: 'Good as well, preparing for the stream now.',
+		content: 'Good as well, preparing for the presentation now.',
 		createdAt: '2022-08-10T14:50:00.000Z',
 		user: {
 			id: 'u1',
@@ -55,7 +55,7 @@ export default {
 		createdAt: '2022-08-10T14:49:00.000Z',
 		user: {
 			id: 'u2',
-			name: 'Lukas',
+			name: 'Hung',
 		},
 	}, {
 		id: 'm7',
