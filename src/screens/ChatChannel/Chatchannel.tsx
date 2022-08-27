@@ -1,15 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { Header } from "@rneui/themed";
-import { SearchBar } from "@rneui/themed";
 
+import { FlatList } from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
-
-import chatRooms from '../../../assets/data/ChatRooms';
-
-import NestedList from '../../components/ChatListItem/Nestedlist';
+import ChatRooms from '../../../assets/data/ChatRooms';
 import NewMessageButton from '../../components/NewMessageButton';
-
+import ChatListItem from '../../components/ChatListItem/Index';
 
 function Chatchannel() {
     return (
@@ -21,9 +18,14 @@ function Chatchannel() {
             centerComponent={{text:'CHAT CHANNELS', style: {color: '#E6E6FA', fontSize : 16}, 
             }}/>
 
-            <NestedList 
-            />
-            <NewMessageButton/>
+        <FlatList 
+            data={ChatRooms}
+            renderItem = {({item}) => <ChatListItem chatRoom={item}/>}
+            keyExtractor = {(item) => item.id}
+        />
+
+        <NewMessageButton/> 
+
         </View>
         
     )

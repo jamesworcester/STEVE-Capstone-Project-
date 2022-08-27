@@ -50,7 +50,8 @@ const Navigation = () => {
                     name="Chatroom"
                     component={ChatRoomScreen}
                     />
-                <Stack.Screen name="NewMessage" component={NewMessage} />    
+                <Stack.Screen name="NewMessage" component={NewMessage} /> 
+                   
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
