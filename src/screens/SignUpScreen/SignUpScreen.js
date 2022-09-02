@@ -17,6 +17,10 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
+//user defined API import
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
+import * as queries from '../../graphql/queries';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regex (regular expression) constant to check if the email is in the correct format. WILL NEED TO BE CHANGED/UPDATED
 
@@ -32,13 +36,43 @@ const SignUpScreen = () => {
         const {email, password} = data;
         try
         {
-                await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
-                username: email,
-                password,
-                //attributes: {name, fullname}
-                //additional attributes
-            });
-            navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
+            //very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to cognito and duplicating their userSub and email to the SQL database. Current workflow requires
+            // Cognito signup then duplication with Cognito's auto-genereated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
+            // Cognito but not in the database, which is a critical error
+            async function testDBConnection() { 
+            const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions))
+            }
+
+            try{
+                testDBConnection() //calls above function
+                const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
+                    username: email,
+                    password,
+                });
+
+                const userDetails = { //stores userDetails for duplicateUser() function
+                    id: userSub,
+                    email: email
+                }
+                async function duplicateUser() { //duplicates user id and email from Cognito into SQL database
+                    const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); // equivalent to above example
+                }
+                try {
+                    duplicateUser(); //calls above function\
+                    console.log("hello")
+                    navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
+                }
+                catch(e)
+                {
+                    Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+                }
+
+            }
+            catch(e)
+            {
+                Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+            }  
+
         }
         catch (e)
         {

@@ -1,6 +1,43 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const testProjectMetric = /* GraphQL */ `
+  query TestProjectMetric {
+    testProjectMetric {
+      id
+      client_id
+      name
+      description
+    }
+  }
+`;
+export const testQuery = /* GraphQL */ `
+  query TestQuery($id: ID!) {
+    testQuery(id: $id) {
+      Project {
+        id
+        client_id
+        name
+        description
+      }
+      Project_Metric {
+        id
+        project_id
+        metric_id
+      }
+    }
+  }
+`;
+export const listProjectsAndMetrics = /* GraphQL */ `
+  query ListProjectsAndMetrics($id: ID!) {
+    listProjectsAndMetrics(id: $id) {
+      id
+      client_id
+      name
+      description
+    }
+  }
+`;
 export const getMetric = /* GraphQL */ `
   query GetMetric($id: ID!) {
     getMetric(id: $id) {
@@ -610,6 +647,16 @@ export const listUsers = /* GraphQL */ `
     }
   }
 `;
+export const listUsers_Demo = /* GraphQL */ `
+  query ListUsers_Demo {
+    listUsers_Demo {
+      id
+      email
+      first_name
+      last_name
+    }
+  }
+`;
 export const listUser_Roles = /* GraphQL */ `
   query ListUser_Roles {
     listUser_Roles {
@@ -766,6 +813,19 @@ export const listChannels = /* GraphQL */ `
 export const listPosts = /* GraphQL */ `
   query ListPosts {
     listPosts {
+      id
+      channel_id
+      user_id
+      content
+      created_date_time
+      edited_date_time
+      archived_date_time
+    }
+  }
+`;
+export const listPostsByChannel = /* GraphQL */ `
+  query ListPostsByChannel($channel_id: String!) {
+    listPostsByChannel(channel_id: $channel_id) {
       id
       channel_id
       user_id

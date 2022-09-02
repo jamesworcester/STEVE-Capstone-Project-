@@ -216,6 +216,30 @@ export const createUser = /* GraphQL */ `
     }
   }
 `;
+export const createUserDuplicateIdEmail = /* GraphQL */ `
+  mutation CreateUserDuplicateIdEmail($input: CreateUserInput!) {
+    createUserDuplicateIdEmail(input: $input) {
+      id
+      address_id
+      user_role_id
+      user_department_id
+      email
+      phone
+      password
+      first_name
+      last_name
+      photo_filename
+      photo_data
+      birthday
+      gender
+      is_archived
+      description
+      speciality
+      working_from
+      points
+    }
+  }
+`;
 export const createUser_Role = /* GraphQL */ `
   mutation CreateUser_Role($input: CreateUser_RoleInput!) {
     createUser_Role(input: $input) {
@@ -400,7 +424,7 @@ export const createComment = /* GraphQL */ `
   }
 `;
 export const updateMetric = /* GraphQL */ `
-  mutation UpdateMetric($input: CreateMetricInput!) {
+  mutation UpdateMetric($input: UpdateMetricInput!) {
     updateMetric(input: $input) {
       id
       metric_type
@@ -413,7 +437,7 @@ export const updateMetric = /* GraphQL */ `
   }
 `;
 export const updateProject_Metric = /* GraphQL */ `
-  mutation UpdateProject_Metric($input: CreateProject_MetricInput!) {
+  mutation UpdateProject_Metric($input: UpdateProject_MetricInput!) {
     updateProject_Metric(input: $input) {
       id
       project_id
@@ -422,7 +446,7 @@ export const updateProject_Metric = /* GraphQL */ `
   }
 `;
 export const updateProject = /* GraphQL */ `
-  mutation UpdateProject($input: CreateProjectInput!) {
+  mutation UpdateProject($input: UpdateProjectInput!) {
     updateProject(input: $input) {
       id
       client_id
@@ -432,7 +456,7 @@ export const updateProject = /* GraphQL */ `
   }
 `;
 export const updateTeam_Project = /* GraphQL */ `
-  mutation UpdateTeam_Project($input: CreateTeam_ProjectInput!) {
+  mutation UpdateTeam_Project($input: UpdateTeam_ProjectInput!) {
     updateTeam_Project(input: $input) {
       id
       team_id
@@ -441,7 +465,7 @@ export const updateTeam_Project = /* GraphQL */ `
   }
 `;
 export const updateTeam = /* GraphQL */ `
-  mutation UpdateTeam($input: CreateTeamInput!) {
+  mutation UpdateTeam($input: UpdateTeamInput!) {
     updateTeam(input: $input) {
       id
       team_manager
@@ -454,7 +478,7 @@ export const updateTeam = /* GraphQL */ `
   }
 `;
 export const updateTeam_Survey = /* GraphQL */ `
-  mutation UpdateTeam_Survey($input: CreateTeam_SurveyInput!) {
+  mutation UpdateTeam_Survey($input: UpdateTeam_SurveyInput!) {
     updateTeam_Survey(input: $input) {
       id
       team_id
@@ -463,7 +487,7 @@ export const updateTeam_Survey = /* GraphQL */ `
   }
 `;
 export const updateAssigned_Survey = /* GraphQL */ `
-  mutation UpdateAssigned_Survey($input: CreateAssigned_SurveyInput!) {
+  mutation UpdateAssigned_Survey($input: UpdateAssigned_SurveyInput!) {
     updateAssigned_Survey(input: $input) {
       id
       survey_id
@@ -477,7 +501,7 @@ export const updateAssigned_Survey = /* GraphQL */ `
   }
 `;
 export const updateSurvey = /* GraphQL */ `
-  mutation UpdateSurvey($input: CreateSurveyInput!) {
+  mutation UpdateSurvey($input: UpdateSurveyInput!) {
     updateSurvey(input: $input) {
       id
       created_by
@@ -489,7 +513,7 @@ export const updateSurvey = /* GraphQL */ `
   }
 `;
 export const updateSurvey_Question = /* GraphQL */ `
-  mutation UpdateSurvey_Question($input: CreateSurvey_QuestionInput!) {
+  mutation UpdateSurvey_Question($input: UpdateSurvey_QuestionInput!) {
     updateSurvey_Question(input: $input) {
       id
       survey_id
@@ -498,7 +522,7 @@ export const updateSurvey_Question = /* GraphQL */ `
   }
 `;
 export const updateQuestion = /* GraphQL */ `
-  mutation UpdateQuestion($input: CreateQuestionInput!) {
+  mutation UpdateQuestion($input: UpdateQuestionInput!) {
     updateQuestion(input: $input) {
       id
       created_by
@@ -511,7 +535,7 @@ export const updateQuestion = /* GraphQL */ `
   }
 `;
 export const updateQuestion_Answer = /* GraphQL */ `
-  mutation UpdateQuestion_Answer($input: CreateQuestion_AnswerInput!) {
+  mutation UpdateQuestion_Answer($input: UpdateQuestion_AnswerInput!) {
     updateQuestion_Answer(input: $input) {
       id
       question_id
@@ -525,7 +549,7 @@ export const updateQuestion_Answer = /* GraphQL */ `
   }
 `;
 export const updateTeam_Membership = /* GraphQL */ `
-  mutation UpdateTeam_Membership($input: CreateTeam_MembershipInput!) {
+  mutation UpdateTeam_Membership($input: UpdateTeam_MembershipInput!) {
     updateTeam_Membership(input: $input) {
       id
       user_id
@@ -534,7 +558,7 @@ export const updateTeam_Membership = /* GraphQL */ `
   }
 `;
 export const updateClient = /* GraphQL */ `
-  mutation UpdateClient($input: CreateClientInput!) {
+  mutation UpdateClient($input: UpdateClientInput!) {
     updateClient(input: $input) {
       id
       address_id
@@ -550,7 +574,7 @@ export const updateClient = /* GraphQL */ `
   }
 `;
 export const updateAddress = /* GraphQL */ `
-  mutation UpdateAddress($input: CreateAddressInput!) {
+  mutation UpdateAddress($input: UpdateAddressInput!) {
     updateAddress(input: $input) {
       id
       client_id
@@ -565,7 +589,7 @@ export const updateAddress = /* GraphQL */ `
   }
 `;
 export const updatePostcode = /* GraphQL */ `
-  mutation UpdatePostcode($input: CreatePostcodeInput!) {
+  mutation UpdatePostcode($input: UpdatePostcodeInput!) {
     updatePostcode(input: $input) {
       id
       region_id
@@ -574,7 +598,7 @@ export const updatePostcode = /* GraphQL */ `
   }
 `;
 export const updateRegion = /* GraphQL */ `
-  mutation UpdateRegion($input: CreateRegionInput!) {
+  mutation UpdateRegion($input: UpdateRegionInput!) {
     updateRegion(input: $input) {
       id
       country_id
@@ -583,7 +607,7 @@ export const updateRegion = /* GraphQL */ `
   }
 `;
 export const updateCountry = /* GraphQL */ `
-  mutation UpdateCountry($input: CreateCountryInput!) {
+  mutation UpdateCountry($input: UpdateCountryInput!) {
     updateCountry(input: $input) {
       id
       name
@@ -591,7 +615,7 @@ export const updateCountry = /* GraphQL */ `
   }
 `;
 export const updateUser = /* GraphQL */ `
-  mutation UpdateUser($input: CreateUserInput!) {
+  mutation UpdateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
       id
       address_id
@@ -615,7 +639,7 @@ export const updateUser = /* GraphQL */ `
   }
 `;
 export const updateUser_Role = /* GraphQL */ `
-  mutation UpdateUser_Role($input: CreateUser_RoleInput!) {
+  mutation UpdateUser_Role($input: UpdateUser_RoleInput!) {
     updateUser_Role(input: $input) {
       id
       user_id
@@ -624,7 +648,7 @@ export const updateUser_Role = /* GraphQL */ `
   }
 `;
 export const updateRole = /* GraphQL */ `
-  mutation UpdateRole($input: CreateRoleInput!) {
+  mutation UpdateRole($input: UpdateRoleInput!) {
     updateRole(input: $input) {
       id
       access_level
@@ -634,7 +658,7 @@ export const updateRole = /* GraphQL */ `
   }
 `;
 export const updateUser_Department = /* GraphQL */ `
-  mutation UpdateUser_Department($input: CreateUser_DepartmentInput!) {
+  mutation UpdateUser_Department($input: UpdateUser_DepartmentInput!) {
     updateUser_Department(input: $input) {
       id
       user_id
@@ -643,7 +667,7 @@ export const updateUser_Department = /* GraphQL */ `
   }
 `;
 export const updateDepartment = /* GraphQL */ `
-  mutation UpdateDepartment($input: CreateDepartmentInput!) {
+  mutation UpdateDepartment($input: UpdateDepartmentInput!) {
     updateDepartment(input: $input) {
       id
       name
@@ -653,7 +677,7 @@ export const updateDepartment = /* GraphQL */ `
 `;
 export const updateAssigned_TaskAchievement = /* GraphQL */ `
   mutation UpdateAssigned_TaskAchievement(
-    $input: CreateAssigned_TaskAchievementInput!
+    $input: UpdateAssigned_TaskAchievementInput!
   ) {
     updateAssigned_TaskAchievement(input: $input) {
       id
@@ -666,7 +690,7 @@ export const updateAssigned_TaskAchievement = /* GraphQL */ `
   }
 `;
 export const updateTaskAchievement = /* GraphQL */ `
-  mutation UpdateTaskAchievement($input: CreateTaskAchievementInput!) {
+  mutation UpdateTaskAchievement($input: UpdateTaskAchievementInput!) {
     updateTaskAchievement(input: $input) {
       id
       created_by
@@ -679,7 +703,7 @@ export const updateTaskAchievement = /* GraphQL */ `
 `;
 export const updateTaskAchievement_Reward = /* GraphQL */ `
   mutation UpdateTaskAchievement_Reward(
-    $input: CreateTaskAchievement_RewardInput!
+    $input: UpdateTaskAchievement_RewardInput!
   ) {
     updateTaskAchievement_Reward(input: $input) {
       id
@@ -689,7 +713,7 @@ export const updateTaskAchievement_Reward = /* GraphQL */ `
   }
 `;
 export const updateReward = /* GraphQL */ `
-  mutation UpdateReward($input: CreateRewardInput!) {
+  mutation UpdateReward($input: UpdateRewardInput!) {
     updateReward(input: $input) {
       id
       created_by
@@ -700,7 +724,7 @@ export const updateReward = /* GraphQL */ `
   }
 `;
 export const updateUser_Setting = /* GraphQL */ `
-  mutation UpdateUser_Setting($input: CreateUser_SettingInput!) {
+  mutation UpdateUser_Setting($input: UpdateUser_SettingInput!) {
     updateUser_Setting(input: $input) {
       id
       user_id
@@ -709,7 +733,7 @@ export const updateUser_Setting = /* GraphQL */ `
   }
 `;
 export const updateSetting = /* GraphQL */ `
-  mutation UpdateSetting($input: CreateSettingInput!) {
+  mutation UpdateSetting($input: UpdateSettingInput!) {
     updateSetting(input: $input) {
       id
       name
@@ -720,7 +744,7 @@ export const updateSetting = /* GraphQL */ `
   }
 `;
 export const updateUser_Notification = /* GraphQL */ `
-  mutation UpdateUser_Notification($input: CreateUser_NotificationInput!) {
+  mutation UpdateUser_Notification($input: UpdateUser_NotificationInput!) {
     updateUser_Notification(input: $input) {
       id
       user_id
@@ -731,7 +755,7 @@ export const updateUser_Notification = /* GraphQL */ `
   }
 `;
 export const updateNotification = /* GraphQL */ `
-  mutation UpdateNotification($input: CreateNotificationInput!) {
+  mutation UpdateNotification($input: UpdateNotificationInput!) {
     updateNotification(input: $input) {
       id
       name
@@ -741,7 +765,7 @@ export const updateNotification = /* GraphQL */ `
   }
 `;
 export const updateModerator = /* GraphQL */ `
-  mutation UpdateModerator($input: CreateModeratorInput!) {
+  mutation UpdateModerator($input: UpdateModeratorInput!) {
     updateModerator(input: $input) {
       id
       channel_id
@@ -750,7 +774,7 @@ export const updateModerator = /* GraphQL */ `
   }
 `;
 export const updateSubscription = /* GraphQL */ `
-  mutation UpdateSubscription($input: CreateSubscriptionInput!) {
+  mutation UpdateSubscription($input: UpdateSubscriptionInput!) {
     updateSubscription(input: $input) {
       id
       user_id
@@ -760,7 +784,7 @@ export const updateSubscription = /* GraphQL */ `
   }
 `;
 export const updateChannel = /* GraphQL */ `
-  mutation UpdateChannel($input: CreateChannelInput!) {
+  mutation UpdateChannel($input: UpdateChannelInput!) {
     updateChannel(input: $input) {
       id
       channel_type
@@ -772,7 +796,7 @@ export const updateChannel = /* GraphQL */ `
   }
 `;
 export const updatePost = /* GraphQL */ `
-  mutation UpdatePost($input: CreatePostInput!) {
+  mutation UpdatePost($input: UpdatePostInput!) {
     updatePost(input: $input) {
       id
       channel_id
@@ -785,7 +809,7 @@ export const updatePost = /* GraphQL */ `
   }
 `;
 export const updateComment = /* GraphQL */ `
-  mutation UpdateComment($input: CreateCommentInput!) {
+  mutation UpdateComment($input: UpdateCommentInput!) {
     updateComment(input: $input) {
       id
       post_id
