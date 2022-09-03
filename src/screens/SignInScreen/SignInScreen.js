@@ -33,7 +33,6 @@ const SignInScreen = () => {
         if (loading) {
             return;
         }
-        setLoading(true);
         try{
             await Auth.signIn(data.email, data.password); //uses AWS Amplify to attempt to sign in using the entered email and password
             async function authenticate() {
@@ -41,7 +40,23 @@ const SignInScreen = () => {
                 const { username } = user;
                 //const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
                 //const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
-                const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
+                try
+                {
+                    const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
+                    const first_login = navigationDecision.data.getUser.first_login;
+                    if(first_login != 0)
+                    {
+                        navigation.navigate('UpdateUserSplash');
+                    }
+                    else
+                    {
+                        navigation.navigate('AdminDash');
+                    }
+                }
+                catch(e)
+                {
+                    Alert.alert(e, e.message)
+                }
                 //const navigationDecision = await API.graphql(graphqlOperation(queries.listUsers()))
                 // Query using a parameter
                 // console.log(username)
@@ -49,19 +64,15 @@ const SignInScreen = () => {
                 //     query: queries.getUser,
                 //     variables: { id: username }
                 // });
-                const test123 = navigationDecision.data.getUser.first_login;
-                //const test123 = navigationDecision.data.getUser.id;
-                console.log(test123)
-                //console.log(navigationDecision)
+
             }
             authenticate()
-
-            navigation.navigate('AdminDash');
-        } catch(e) {
-            Alert.alert('Oops', e.message);
         }
-        setLoading(false);
-        
+        catch(e)
+        {
+            setLoading(false)
+            Alert.alert('Oops', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+        }
     }
 
     const onForgotPasswordPressed = () => { //if the 'Forgot password?' button is clicked

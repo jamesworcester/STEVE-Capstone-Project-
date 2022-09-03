@@ -47,7 +47,8 @@ const SignUpScreen = () => {
         
                     const userDetails = { //stores userDetails for duplicateUser() function
                         id: userSub,
-                        email: email
+                        email: email,
+                        first_login: 1
                     }
                     const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); // equivalent to above example
                     navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter

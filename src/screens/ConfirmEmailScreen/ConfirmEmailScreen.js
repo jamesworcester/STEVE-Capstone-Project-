@@ -36,7 +36,7 @@ const ConfirmEmailScreen = () => {
                 await Auth.confirmSignUp( //uses AWS Amplify Auth to confirm signing up
                     username, 
                     data.code,
-                );
+                )
                 navigation.navigate('SignIn') //navigates to the SignIn screen
         }
         catch(e)

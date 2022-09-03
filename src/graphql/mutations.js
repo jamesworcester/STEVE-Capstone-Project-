@@ -641,6 +641,31 @@ export const updateUser = /* GraphQL */ `
     }
   }
 `;
+export const updateUserScreen = /* GraphQL */ `
+  mutation UpdateUserScreen($input: UpdateUserInput!) {
+    updateUserScreen(input: $input) {
+      id
+      address_id
+      user_role_id
+      user_department_id
+      email
+      phone
+      password
+      first_name
+      last_name
+      photo_filename
+      photo_data
+      birthday
+      gender
+      is_archived
+      description
+      speciality
+      working_from
+      points
+      first_login
+    }
+  }
+`;
 export const updateUser_Role = /* GraphQL */ `
   mutation UpdateUser_Role($input: UpdateUser_RoleInput!) {
     updateUser_Role(input: $input) {

@@ -20,7 +20,8 @@ import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import AdminDashScreen from '../screens/AdminDashScreen';
-import FirstLoginScreen from '../screens/FirstLoginScreen';
+import UpdateUserScreen from '../screens/UpdateUserScreen';
+import UpdateUserSplashScreen from '../screens/UpdateUserSplashScreen';
 
 import {
   Octicons,
@@ -28,6 +29,7 @@ import {
   MaterialIcons,
   FontAwesome5,
 } from '@expo/vector-icons';
+
 //create the navigation stack
 const Stack = createStackNavigator();
 
@@ -44,7 +46,8 @@ const Navigation = () => {
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
                 <Stack.Screen name="AdminDash" component={AdminDashScreen} />
-                <Stack.Screen name="FirstLogin" component={AdminDashScreen} />
+                <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
+                <Stack.Screen name="UpdateUserSplash" component={UpdateUserSplashScreen} />
              </Stack.Group>   
              <Stack.Group screenOptions={{headerShown: false}}
              >
