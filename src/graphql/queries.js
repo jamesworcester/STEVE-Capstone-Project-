@@ -250,6 +250,7 @@ export const getUser = /* GraphQL */ `
       speciality
       working_from
       points
+      first_login
     }
   }
 `;
@@ -644,6 +645,7 @@ export const listUsers = /* GraphQL */ `
       speciality
       working_from
       points
+      first_login
     }
   }
 `;

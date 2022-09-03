@@ -11,12 +11,15 @@ import { useNavigation } from '@react-navigation/native';
 //react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm, Controller} from 'react-hook-form';
 //AWS Amplify import
-import { Auth } from 'aws-amplify';
+import { API, Auth, AWSPinpointProvider, graphqlOperation } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
+//user defined API import
+import * as mutations from '../../graphql/mutations';
+import * as queries from '../../graphql/queries';
 
 //define a constant lambda function called SignInScreen that creates a logo, two CustomInputs and three CustomIButtons and allows the user to sign in or navigate to sign up or reset their password
 const SignInScreen = () => {
@@ -33,7 +36,27 @@ const SignInScreen = () => {
         setLoading(true);
         try{
             await Auth.signIn(data.email, data.password); //uses AWS Amplify to attempt to sign in using the entered email and password
-            navigation.navigate('Dashboard');
+            async function authenticate() {
+                let user = await Auth.currentAuthenticatedUser();
+                const { username } = user;
+                //const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
+                //const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
+                const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
+                //const navigationDecision = await API.graphql(graphqlOperation(queries.listUsers()))
+                // Query using a parameter
+                // console.log(username)
+                // const navigationDecision = await API.graphql({
+                //     query: queries.getUser,
+                //     variables: { id: username }
+                // });
+                const test123 = navigationDecision.data.getUser.first_login;
+                //const test123 = navigationDecision.data.getUser.id;
+                console.log(test123)
+                //console.log(navigationDecision)
+            }
+            authenticate()
+
+            navigation.navigate('AdminDash');
         } catch(e) {
             Alert.alert('Oops', e.message);
         }

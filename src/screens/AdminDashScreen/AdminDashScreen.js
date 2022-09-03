@@ -25,7 +25,16 @@ import * as queries from '../../graphql/queries';
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regex (regular expression) constant to check if the email is in the correct format. WILL NEED TO BE CHANGED/UPDATED
 
 //define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
-const SignUpScreen = () => {
+const AdminDashScreen = () => {
+
+    async function authenticate() {
+        let user = await Auth.currentAuthenticatedUser();
+        const { username } = user;
+    }
+    authenticate()
+
+
+
 
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
     const pwd = watch('password'); //watch the password being entered in the 'password' CustomInput
@@ -33,35 +42,11 @@ const SignUpScreen = () => {
     const {height} = useWindowDimensions(); //sets the height of the window
 
     const onRegisterPressed = async (data) => { //asynchronous lambda function that attempts to create an account using the entered email, password and repeat password
-        const {email, password} = data;
-            //very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to cognito and duplicating their userSub and email to the SQL database. Current workflow requires
-            // Cognito signup then duplication with Cognito's auto-genereated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
-            // Cognito but not in the database, which is a critical error
-            async function testDBConnection() { 
-                try {
-                    const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions))
-                    const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
-                        username: email,
-                        password,
-                    });
         
-                    const userDetails = { //stores userDetails for duplicateUser() function
-                        id: userSub,
-                        email: email
-                    }
-                    const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); // equivalent to above example
-                    navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
-                }
-                catch(e)
-                {
-                    Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
-                }
-            }
-        testDBConnection() //call function
     }
 
     const onSignInPressed = () => { //if the 'Have an account? Sign in' button is clicked
-        navigation.navigate('SignIn');
+        
     }
 
     return (
@@ -158,4 +143,4 @@ const styles = StyleSheet.create({
 })
 
 //export the SignUpScreen lambda function
-export default SignUpScreen
+export default AdminDashScreen

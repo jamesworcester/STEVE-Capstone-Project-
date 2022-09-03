@@ -213,6 +213,7 @@ export const createUser = /* GraphQL */ `
       speciality
       working_from
       points
+      first_login
     }
   }
 `;
@@ -237,6 +238,7 @@ export const createUserDuplicateIdEmail = /* GraphQL */ `
       speciality
       working_from
       points
+      first_login
     }
   }
 `;
@@ -635,6 +637,7 @@ export const updateUser = /* GraphQL */ `
       speciality
       working_from
       points
+      first_login
     }
   }
 `;
@@ -1033,6 +1036,7 @@ export const deleteUser = /* GraphQL */ `
       speciality
       working_from
       points
+      first_login
     }
   }
 `;

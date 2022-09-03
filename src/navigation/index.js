@@ -19,6 +19,9 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
+import AdminDashScreen from '../screens/AdminDashScreen';
+import FirstLoginScreen from '../screens/FirstLoginScreen';
+
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -40,6 +43,8 @@ const Navigation = () => {
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+                <Stack.Screen name="AdminDash" component={AdminDashScreen} />
+                <Stack.Screen name="FirstLogin" component={AdminDashScreen} />
              </Stack.Group>   
              <Stack.Group screenOptions={{headerShown: false}}
              >
