@@ -15,9 +15,9 @@ region: ap-southeast-2
 user name: amplify-user (it will open a browser, just quit out of the browser without doing anything)
 Press 'Enter'
 Enter the access key of the newly created user:
-    `accessKeyId:` (James can send you the accessKeyId for amplify user)
-    `secretAccessKey:` (James can send you the secretAccessKey for amplify user)
-Profile Name: `default`
+    accessKeyId: (James can send you the accessKeyId for amplify user)
+    secretAccessKey: (James can send you the secretAccessKey for amplify user)
+Profile Name: default
 ```
 ### STEP 2: Run the code below whenever you create a new clone from Github
 1. Clone the main git repo https://github.com/jamesworcester/STEVE onto your system (eg. using GitHub Desktop)
@@ -32,7 +32,3 @@ Profile Name: `default`
     Please choose the profile you want to use: default
 ```
 5. Run: `expo start`
-
-Github standard practice:
-- Once you get the main branch working, please create a New Branch to continue working on so we don't end up with a bunch of stuff in main that is in development
-- Once you want to merge back to main once you've confirmed nothing is broken, initiate a pull request to the main branch
