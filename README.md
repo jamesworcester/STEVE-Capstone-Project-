@@ -1,6 +1,6 @@
 # STEVE
 ## Instructions to set up and use the current main-branch STEVE Program
-### STEP 1: Run the code below ONCE per computer:
+### STEP 1: Run the code below ONLY ONCE per computer:
 1. Install and properly configure react-native expo: https://reactnative.dev/docs/environment-setup
 2. Install Node.js 16.16.0 LTS https://nodejs.org/en/
 3. Install Android Studio https://developer.android.com/studio
