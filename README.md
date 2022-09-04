@@ -9,16 +9,16 @@
 6. Install the Amplify CLI using the 'cURL (Mac and Linux)' or 'cURL (Windows)' link from here: https://docs.amplify.aws/cli/start/install/
 7. In a terminal run: `amplify configure`
 8. Sign in to your AWS administrator account when the CLI opens a browser window
-    
-9.  Press 'Enter'
-10. region: `ap-southeast-2`
-11. user name: `amplify-user` (it will open a browser, just quit out of the browser without doing anything)
-12. Press 'Enter'
-13. Enter the access key of the newly created user:
+9.  Press 'Enter' in the terminal window
+```
+region: ap-southeast-2
+user name: amplify-user (it will open a browser, just quit out of the browser without doing anything)
+Press 'Enter'
+Enter the access key of the newly created user:
     `accessKeyId:` (James can send you the accessKeyId for amplify user)
     `secretAccessKey:` (James can send you the secretAccessKey for amplify user)
-14. Profile Name: `default`
-
+Profile Name: `default`
+```
 ### STEP 2: Run the code below whenever you create a new clone from Github
 1. Clone the main git repo https://github.com/jamesworcester/STEVE onto your system (eg. using GitHub Desktop)
 2. In a terminal, cd into the root directory of STEVE
