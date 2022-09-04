@@ -1,8 +1,8 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 04/09/2022 (Sprint 8)
 */
-//SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
+//SignInScreen users are navigated to after signing in for the first time. Allows users to enter their user details into the database
 //react-native imports
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
@@ -25,40 +25,33 @@ import * as queries from '../../graphql/queries';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regex (regular expression) constant to check if the email is in the correct format. WILL NEED TO BE CHANGED/UPDATED
 
-//define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
 const UpdateUserScreen = () => {
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const route = useRoute(); //route passed parameters from the previous screen (SignUp)
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
     const {height} = useWindowDimensions(); //sets the height of the window
-    current_info = route.params.current_info
-    //console.log(current_info)
+    current_info = route.params.current_info //get the current user info from the previous screen and store the data in a variable called current_info
 
-
-    
-    const onUpdatePressed = async (data) => {
+    const onUpdatePressed = async (data) => { //asynchronous lambda function to update a user's details in the database
             let user = await Auth.currentAuthenticatedUser();
-            const { username } = user;
-            console.log(username)
-            const {email, phone, first_name, last_name, gender } = data;
-            async function updateUser() {
+            const { username } = user; //get the id (username in this case) of the current user
+            const {email, phone, first_name, last_name, gender } = data; //get the data from the form
+            async function updateUser() { 
             try 
             {
                 const userDetails = {
-                    id: username, email: email, phone: phone, first_name: first_name, last_name: last_name, gender: gender
+                    id: username, email: email, phone: phone, first_name: first_name, last_name: last_name, gender: gender //create a userDetails object with the data from the form
                 }
 
-                await API.graphql(graphqlOperation(mutations.updateUserScreen, {input: userDetails}));
+                await API.graphql(graphqlOperation(mutations.updateUserScreen, {input: userDetails})); //update the user's details in the database
                 navigation.navigate('AdminDash');
             }
             catch(e)
             {
-                //Alert.alert('Oops', e.message);
-                console.log(e)
                 Alert.alert('Oops', e.message);
             }
         }
-        updateUser()
+        updateUser() //call the updateUser function
     }
 
     const onBackPressed = () => { //if the 'Have an account? Sign in' button is clicked

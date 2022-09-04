@@ -1,7 +1,8 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 04/09/2022 (Sprint 8)
 */
+
 //SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
 //react-native imports
 import React, {useState} from 'react';

@@ -1,8 +1,8 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 04/09/2022 (Sprint 8)
 */
-//SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
+//SignInScreen users are navigated to this screen after signing in. Acts as a loading page for the user to be redirected to the correct screen (UpdateUserScreen)
 //react-native imports
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
@@ -35,25 +35,23 @@ const UpdateUserSplashScreen = () => {
     async function authenticatedWrapper() {
         try
         {
-            let user = await Auth.currentAuthenticatedUser();
-            const { username } = user;
-            const current_info = await API.graphql(graphqlOperation(queries.getUser, {id: username}));
+            let user = await Auth.currentAuthenticatedUser(); //gets the current authenticated user
+            const { username } = user; //gets the id (username in this case) of the current authenticated user
+            const current_info = await API.graphql(graphqlOperation(queries.getUser, {id: username})); //gets the current user info from the database and stores it in the current_info variable
             navigation.navigate('UpdateUser', {current_info: current_info})
-            //navigation.navigate('SignUp')
         }
         catch(e)
         {
-            //Alert.alert('Oops', e.message);
-            //Alert.alert('Oops', 'Test');
+            Alert.alert('Oops', e.message);
         }
     }
-    authenticatedWrapper()
+    authenticatedWrapper() //calls the authenticatedWrapper function
 
     return (
         <ScrollView>
             <View style={styles.root}>
                 <Text style={styles.title}>
-                    Update User
+                    
                 </Text>
             </View>
         </ScrollView>

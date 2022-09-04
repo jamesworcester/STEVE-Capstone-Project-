@@ -1,6 +1,7 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 31/07/2022 (Sprint 6)
+Edited by: James Worcester on 04/09/2022 (Sprint 8)
 */
 //SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
 //react-native imports
@@ -34,12 +35,12 @@ const SignUpScreen = () => {
 
     const onRegisterPressed = async (data) => { //asynchronous lambda function that attempts to create an account using the entered email, password and repeat password
         const {email, password} = data;
-            //very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to cognito and duplicating their userSub and email to the SQL database. Current workflow requires
+            // below: very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to cognito and duplicating their userSub and email to the SQL database. Current workflow requires
             // Cognito signup then duplication with Cognito's auto-genereated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
             // Cognito but not in the database, which is a critical error
             async function testDBConnection() { 
                 try {
-                    const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions))
+                    const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions)) //test the database connection by attempting to query the database
                     const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
                         username: email,
                         password,
@@ -50,7 +51,7 @@ const SignUpScreen = () => {
                         email: email,
                         first_login: 1
                     }
-                    const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); // equivalent to above example
+                    const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); //duplicates the userSub and email to the database
                     navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
                 }
                 catch(e)

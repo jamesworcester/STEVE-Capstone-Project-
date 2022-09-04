@@ -1,6 +1,7 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 31/07/2022 (Sprint 6)
+Edited by: James Worcester on 04/09/2022 (Sprint 8)
 */
 //SignInScreen users are navigated to from App.js as well as being able to return to from many different screens. Allows users to sign in or navigate to Sign Up or reset their password
 //react-native imports
@@ -35,38 +36,28 @@ const SignInScreen = () => {
         }
         try{
             await Auth.signIn(data.email, data.password); //uses AWS Amplify to attempt to sign in using the entered email and password
-            async function authenticate() {
-                let user = await Auth.currentAuthenticatedUser();
-                const { username } = user;
-                //const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
-                //const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
+            async function authenticate() { //async function to authenticate the current user
+                let user = await Auth.currentAuthenticatedUser(); //authenticate using Amazon Auth and store the details about the user in the user variable
+                const { username } = user; //retrieve and store the user's id (username in this case) in the username variable
                 try
                 {
-                    const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username}))
-                    const first_login = navigationDecision.data.getUser.first_login;
-                    if(first_login != 0)
+                    const navigationDecision = await API.graphql(graphqlOperation(queries.getUser, {id: username})) //use the API to retrieve the user's details from the database
+                    const first_login = navigationDecision.data.getUser.first_login; //store the user's first_login value in the first_login variable
+                    if(first_login != 0) //if the user has not logged in before
                     {
-                        navigation.navigate('UpdateUserSplash');
+                        navigation.navigate('UpdateUserSplash'); //navigate to the UpdateUserSplash screen
                     }
-                    else
+                    else //if the user has logged in before
                     {
-                        navigation.navigate('AdminDash');
+                        navigation.navigate('AdminDash'); //navigate to the AdminDash screen
                     }
                 }
                 catch(e)
                 {
                     Alert.alert(e, e.message)
                 }
-                //const navigationDecision = await API.graphql(graphqlOperation(queries.listUsers()))
-                // Query using a parameter
-                // console.log(username)
-                // const navigationDecision = await API.graphql({
-                //     query: queries.getUser,
-                //     variables: { id: username }
-                // });
-
             }
-            authenticate()
+            authenticate()  //call the authenticate function
         }
         catch(e)
         {

@@ -1,6 +1,6 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 31/07/2022 (Sprint 6)
 */
 //ForgotPasswordScreen users are navigated to from the SignInScreen if they click on 'Forgot password?'
 //react-native imports
