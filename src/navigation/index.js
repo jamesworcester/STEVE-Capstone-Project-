@@ -22,6 +22,8 @@ import SurveyScreen from '../screens/SurveyScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 
 import SurveyTest from '../screens/SurveyTest'
+import CreateSurveyScreen from '../screens/CreateSurveyScreen';
+import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
 
 
 import {
@@ -47,18 +49,13 @@ const Navigation = () => {
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
                 <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
                 <Stack.Screen name="SurveyTest" component={SurveyTest} />
-             </Stack.Group>   
+                <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
+                <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
+             {/* </Stack.Group>   
              <Stack.Group screenOptions={{headerShown: false}}
-             >
-                <Stack.Screen name="Dashboard" component={Dashboard}
-                options={{
-                    title: "Yes",
-                }} />
-                <Stack.Screen
-                    name="Chatroom"
-                    component={ChatRoomScreen}
-                   
-      />
+             > */}
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
+                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
