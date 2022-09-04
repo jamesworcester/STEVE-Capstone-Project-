@@ -32,3 +32,6 @@ Profile Name: default
     Please choose the profile you want to use: default
 ```
 5. Run: `expo start`
+
+### STEP 3: Amplify codegen
+1. Run `amplify codegen` every time you need a new query/mutation from the database after James has created it
