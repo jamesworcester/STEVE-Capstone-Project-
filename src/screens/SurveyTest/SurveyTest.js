@@ -14,6 +14,10 @@ import { Octicons } from '@expo/vector-icons';
 
 
 /*
+
+hello 
+
+
 function SurveyTest(route) {
 
     const navigation = useNavigation();
