@@ -18,7 +18,12 @@ import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
+import SurveyScreen from '../screens/SurveyScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
+
+import SurveyTest from '../screens/SurveyTest'
+
+
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -40,10 +45,15 @@ const Navigation = () => {
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+                <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
+                <Stack.Screen name="SurveyTest" component={SurveyTest} />
              </Stack.Group>   
              <Stack.Group screenOptions={{headerShown: false}}
              >
-                <Stack.Screen name="Dashboard" component={Dashboard} />
+                <Stack.Screen name="Dashboard" component={Dashboard}
+                options={{
+                    title: "Yes",
+                }} />
                 <Stack.Screen
                     name="Chatroom"
                     component={ChatRoomScreen}
