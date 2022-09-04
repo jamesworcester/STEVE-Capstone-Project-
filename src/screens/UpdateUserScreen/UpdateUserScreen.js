@@ -32,22 +32,20 @@ const UpdateUserScreen = () => {
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
     const {height} = useWindowDimensions(); //sets the height of the window
     current_info = route.params.current_info
-    console.log(current_info)
+    //console.log(current_info)
 
-    async function authenticatedWrapper() {
-        let user = await Auth.currentAuthenticatedUser();
-        return user
-    };
-    const {id} = authenticatedWrapper()
 
+    
     const onUpdatePressed = async (data) => {
-        const {email, phone, first_name, last_name, gender } = data;
-        console.log(id)
-        async function updateUser() {
+            let user = await Auth.currentAuthenticatedUser();
+            const { username } = user;
+            console.log(username)
+            const {email, phone, first_name, last_name, gender } = data;
+            async function updateUser() {
             try 
             {
                 const userDetails = {
-                    id: id, email: email, phone: phone, first_name: first_name, last_name: last_name, gender: gender
+                    id: username, email: email, phone: phone, first_name: first_name, last_name: last_name, gender: gender
                 }
 
                 await API.graphql(graphqlOperation(mutations.updateUserScreen, {input: userDetails}));
@@ -78,8 +76,11 @@ const UpdateUserScreen = () => {
                 <CustomInput //Custom TextInput
                 name="email"
                 control={control}
-                placeholder= {current_info.data.getUser.email}
+                value={current_info.data.getUser.email}
+                defaultValue={current_info.data.getUser.email}
+
                 rules={{
+                    required: 'Email is required', //sets the TextInput as required
                     pattern: //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
                     {
                         value: EMAIL_REGEX,
@@ -91,29 +92,45 @@ const UpdateUserScreen = () => {
                 <Text style={styles.text}>Phone Number:</Text>
                 <CustomInput //Custom TextInput
                 name="phone"
-                placeholder= {current_info.data.getUser.phone}
                 control={control}
+                defaultValue={current_info.data.getUser.phone}
+                value={current_info.data.getUser.phone}
+                rules={{
+                    required: 'Phone Number is required', //sets the TextInput as required
+                }}
                 />
 
                 <Text style={styles.text}>First Name:</Text>
                 <CustomInput //Custom TextInput
                 name="first_name"
-                placeholder={current_info.data.getUser.first_name}
                 control={control}
+                defaultValue={current_info.data.getUser.first_name}
+                value={current_info.data.getUser.first_name}
+                rules={{
+                    required: 'First Name is required', //sets the TextInput as required
+                }}
                 />
 
                 <Text style={styles.text}>Last Name:</Text>
                 <CustomInput //Custom TextInput
                 name="last_name"
-                placeholder={current_info.data.getUser.last_name}
                 control={control}
+                defaultValue={current_info.data.getUser.last_name}
+                value={current_info.data.getUser.last_name}
+                rules={{
+                    required: 'Last Name is required', //sets the TextInput as required
+                }}
                 />
 
                 <Text style={styles.text}>Gender:</Text>
                 <CustomInput //Custom TextInput
                 name="gender"
-                placeholder={current_info.data.getUser.gender}
                 control={control}
+                defaultValue={current_info.data.getUser.gender}
+                value={current_info.data.getUser.gender}
+                rules={{
+                    required: 'Gender is required', //sets the TextInput as required
+                }}
                 />
 
                 <CustomButton //Register Button
@@ -134,7 +151,7 @@ const UpdateUserScreen = () => {
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     root: {
-        alignItems: 'center',
+        //alignItems: 'center',
         padding: 20,
     },
     title: {
@@ -142,6 +159,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#051C60',
         margin: 10,
+        marginTop: 50,
+        alignSelf: 'center',
     },
     text: {
         color: 'gray',

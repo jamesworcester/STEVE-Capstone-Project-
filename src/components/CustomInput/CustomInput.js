@@ -10,7 +10,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import {Controller} from 'react-hook-form';
 
 //define a constant lambda function called CustomInput that can have a various parameters passed to it for customisable functionality and styling
-const CustomInput = ({control, name, rules = {}, placeholder, secureTextEntry}) => {
+const CustomInput = ({control, name, rules = {}, placeholder, defaultValue, value, secureTextEntry}) => {
     return (
             <Controller //Controller using passed parameter values
                 control={control}
@@ -25,6 +25,8 @@ const CustomInput = ({control, name, rules = {}, placeholder, secureTextEntry}) 
                     placeholder={placeholder} 
                     style={styles.input} 
                     secureTextEntry={secureTextEntry}
+                    defaultValue={defaultValue}
+                    value={value}
                 />
                 </View>
                 {error && ( //if there is an error (e.g. if not enough characters were entered for a user's password)
