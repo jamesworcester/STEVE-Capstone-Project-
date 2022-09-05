@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         alignItems : 'center'
     },
     buttonContainer : {
-        backgroundColor : 'purple',
+        backgroundColor : '#0096FF',
         width : 50,
         height: 50,
         borderRadius:50,

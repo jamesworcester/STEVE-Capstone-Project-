@@ -11,7 +11,7 @@ function FirstScreen() {
             >
                 <Header 
                 centerComponent={{text:'HOME', style: {color: '#E6E6FA',fontSize:16}}}
-                backgroundColor = 'purple'
+                backgroundColor = '#0096FF'
                 />
             <Text style = {styles.mainText}> WELCOME BACK! </Text>
             </ImageBackground>
