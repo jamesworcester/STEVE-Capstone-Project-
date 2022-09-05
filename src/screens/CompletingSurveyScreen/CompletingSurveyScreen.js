@@ -19,43 +19,76 @@ import CustomButton from '../../components/CustomButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
+//user defined API import
+
 //define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
-const CreatedSurveyScreen = () => {
+const CompletingSurveyScreen = () => {
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const route = useRoute(); //route passed parameters from the previous screen (SignUp)
-    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
+    const {control, handleSubmit, watch, reset} = useForm(); //use form from react-hook-form
     const {height} = useWindowDimensions(); //sets the height of the window
 
-    const NavigateSurvey = () => { // Opens Survey Completion Screen
-        navigation.navigate('CompletingSurveyScreen');
+    const onCreatePressed = async (data) => {
+            try 
+            {
+                reset();
+                navigation.navigate('CreatedSurvey', {data});
+            }
+            catch(e)
+            {
+                Alert.alert('Oops', e.message);
+            }
     }
+
 
 
     return (
         <ScrollView>
             <View style={styles.root}>
                 <Text style={styles.title}>
-                    Create Survey
+                    Survey 1
                 </Text>
+
                 <Text style={styles.text_bold}>Question 1:</Text>
-                <Text style={styles.text}>{route.params.data.question1}</Text>
+                <CustomInput //Custom TextInput
+                name="question1"
+                placeholder= {'Question 1'}
+                control={control}
+                />
 
                 <Text style={styles.text_bold}>Question 2:</Text>
-                <Text style={styles.text}>{route.params.data.question2}</Text>
+                <CustomInput //Custom TextInput
+                name="question2"
+                placeholder={'Question 2'}
+                control={control}
+                />
 
                 <Text style={styles.text_bold}>Question 3:</Text>
-                <Text style={styles.text}>{route.params.data.question3}</Text>
+                <CustomInput //Custom TextInput
+                name="question3"
+                placeholder={'Question 3'}
+                control={control}
+                />
 
                 <Text style={styles.text_bold}>Question 4:</Text>
-                <Text style={styles.text}>{route.params.data.question4}</Text>
+                <CustomInput //Custom TextInput
+                name="question4"
+                placeholder={'Question 4'}
+                control={control}
+                />
 
                 <Text style={styles.text_bold}>Question 5:</Text>
-                <Text style={styles.text}>{route.params.data.question5}</Text>
+                <CustomInput //Custom TextInput
+                name="question5"
+                placeholder={'Question 5'}
+                control={control}
+                />
 
                 <CustomButton //Register Button
-                    text="Navigate to Survey"
-                    onPress={NavigateSurvey}
+                    text="Complete Survey"
+                    onPress={handleSubmit(onCreatePressed)}
                 />
+                
 
             </View>
         </ScrollView>
@@ -93,4 +126,4 @@ const styles = StyleSheet.create({
 })
 
 //export the SignUpScreen lambda function
-export default CreatedSurveyScreen
+export default CompletingSurveyScreen

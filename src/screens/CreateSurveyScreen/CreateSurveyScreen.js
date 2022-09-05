@@ -27,6 +27,8 @@ const CreateSurveyScreen = () => {
     const {control, handleSubmit, watch, reset} = useForm(); //use form from react-hook-form
     const {height} = useWindowDimensions(); //sets the height of the window
 
+
+
     const onCreatePressed = async (data) => {
             try 
             {
@@ -38,6 +40,8 @@ const CreateSurveyScreen = () => {
                 Alert.alert('Oops', e.message);
             }
     }
+
+
 
     return (
         <ScrollView>
@@ -85,6 +89,9 @@ const CreateSurveyScreen = () => {
                     text="Create Survey"
                     onPress={handleSubmit(onCreatePressed)}
                 />
+                
+
+
             </View>
         </ScrollView>
     );
