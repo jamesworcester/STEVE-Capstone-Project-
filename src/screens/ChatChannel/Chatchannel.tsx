@@ -13,7 +13,7 @@ function Chatchannel() {
         
         <View >
             <Header 
-            backgroundColor='purple'
+            backgroundColor='#0096FF'
             leftComponent={{ color: '#fff' }}
             centerComponent={{text:'CHAT CHANNELS', style: {color: '#E6E6FA', fontSize : 16}, 
             }}/>

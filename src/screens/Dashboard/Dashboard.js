@@ -19,7 +19,7 @@ const Tab = createMaterialBottomTabNavigator();
 const Dashboard = () => {
     return (
     <Tab.Navigator shifting={true} 
-        barStyle={{ backgroundColor: 'purple' }} 
+        barStyle={{ backgroundColor: '#0096FF' }} 
         activeColor="white" 
         >
         <Tab.Screen name="Home" component={FirstScreen}        
