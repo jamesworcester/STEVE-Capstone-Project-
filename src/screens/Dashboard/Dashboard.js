@@ -6,10 +6,10 @@ Edited by: James Worcester on 31/07/2022
 import React, { Component } from 'react'
 
 import 'react-native-gesture-handler';
-import FirstScreen from '../FirstScreen';
-import Survey from '../Survey';
-import Chatchannel from '../Chatchannel';
-import Profile from '../Profile';
+import FirstScreen from '../FirstScreen/FirstScreen';
+import Survey from '../Survey/Survey';
+import Chatchannel from '../ChatChannel/Chatchannel';
+import Profile from '../Profile/Profile';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';

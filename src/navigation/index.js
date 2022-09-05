@@ -25,16 +25,14 @@ import SurveyTest from '../screens/SurveyTest'
 import CreateSurveyScreen from '../screens/CreateSurveyScreen';
 import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
 import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
-
-
-
-
+import NewMessage from '../screens/NewMessage';
 import {
   Octicons,
   MaterialCommunityIcons,
   MaterialIcons,
   FontAwesome5,
 } from '@expo/vector-icons';
+
 //create the navigation stack
 const Stack = createStackNavigator();
 
@@ -55,11 +53,9 @@ const Navigation = () => {
                 <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
                 <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
                 <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
-             {/* </Stack.Group>   
-             <Stack.Group screenOptions={{headerShown: false}}
-             > */}
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
+                <Stack.Screen name="NewMessage" component={NewMessage} />  
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

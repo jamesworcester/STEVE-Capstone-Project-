@@ -82,10 +82,11 @@ const SignInScreen = () => {
                 }
             }}   
         />
-
+            
                 <CustomButton //Sign In Button
                 text={loading ? "Loading..." : "Sign In"}
                 onPress={handleSubmit(onSignInPressed)}
+                style = {styles.signInButton}
                 />
 
                 <CustomButton //Forgot Password Button
@@ -99,7 +100,7 @@ const SignInScreen = () => {
                 onPress={onSignUpPressed}
                 type="TERTIARY"
                 />
-                
+              
             </View>
         </ScrollView>
     );
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
         width: '70%',
         maxWidth: 300,
         maxHeight: 200,
-    }
+    },
 })
 //export the SignInScreen lambda function
 export default SignInScreen
