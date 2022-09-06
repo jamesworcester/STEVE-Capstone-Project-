@@ -1,6 +1,7 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 31/07/2022 (Sprint 6)
+Edited by: James Worcester on 04/09/2022 (Sprint 8)
 */
 //ConfirmEmailScreen a user is navigated to from the SignUpScreen after they successfully create an account in the app so that they can confirm their email using a code that is emailed to them
 //react-native imports
@@ -36,12 +37,12 @@ const ConfirmEmailScreen = () => {
                 await Auth.confirmSignUp( //uses AWS Amplify Auth to confirm signing up
                     username, 
                     data.code,
-                );
+                )
                 navigation.navigate('SignIn') //navigates to the SignIn screen
         }
         catch(e)
         {
-            Alert.alert('Oops', e.message); //if there is an error, print the error
+            Alert.alert('Error', e.message); //if there is an error, print the error
         }
     }
 
@@ -54,7 +55,7 @@ const ConfirmEmailScreen = () => {
         }
         catch(e)
         {
-            Alert.alert('Oops', e.message);
+            Alert.alert('Error', e.message);
         }
     }
 
@@ -65,7 +66,7 @@ const ConfirmEmailScreen = () => {
     //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
-            <View style={styles.root}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
                 <Image //Logo image
                     source={Logo}
                     style={[styles.logo, {height: height * 0.3}]}
@@ -108,6 +109,12 @@ const ConfirmEmailScreen = () => {
 
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+        marginBottom: 10,
+    },
     root: {
         alignItems: 'center',
         padding: 20,
@@ -117,6 +124,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#051C60',
         margin: 10,
+        marginBottom: 40,
     },
     text: {
         color: 'gray',

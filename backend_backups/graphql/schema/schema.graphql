@@ -1,0 +1,1212 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Address {
+  apartment_number: String
+  client_id: String
+  id: ID!
+  level: String
+  photo_data: String
+  photo_filename: String
+  postcode_id: String
+  street_name: String
+  street_number: String
+}
+
+type Assigned_Survey {
+  answered_date_time: AWSTimestamp
+  assigned_by: String!
+  assigned_date_time: AWSTimestamp!
+  assigned_to: String!
+  end_assignment: AWSTimestamp
+  frequency_of_survey_days: Int
+  id: ID!
+  survey_id: String!
+}
+
+type Assigned_TaskAchievement {
+  assigned_date_time: AWSTimestamp!
+  end_on: AWSTimestamp
+  id: ID!
+  is_completed: Int
+  taskachievement_id: String!
+  user_id: String!
+}
+
+type Channel {
+  channel_text: String
+  channel_type: String
+  description: String
+  id: ID!
+  picture_data: String
+  picture_filename: String
+}
+
+type Client {
+  address_id: String
+  contact_email: String
+  contact_first_name: String
+  contact_last_name: String
+  contact_phone: String
+  id: ID!
+  industry: String
+  name: String
+  photo_data: String
+  photo_filename: String
+}
+
+type Comment {
+  archived_date_time: AWSTimestamp
+  content: String
+  created_date_time: AWSTimestamp
+  edited_date_time: AWSTimestamp
+  id: ID!
+  post_id: String!
+  user_id: String!
+}
+
+type Country {
+  id: ID!
+  name: String!
+}
+
+type Department {
+  description: String
+  id: ID!
+  name: String!
+}
+
+type Metric {
+  answer_number: Int
+  answer_string: String
+  formula: String
+  id: ID!
+  is_archived: Int
+  metric_type: String
+  text: String
+}
+
+type Moderator {
+  channel_id: String!
+  id: ID!
+  user_id: String!
+}
+
+type Mutation {
+  createAddress(input: CreateAddressInput!): Address
+  createAssigned_Survey(input: CreateAssigned_SurveyInput!): Assigned_Survey
+  createAssigned_TaskAchievement(input: CreateAssigned_TaskAchievementInput!): Assigned_TaskAchievement
+  createChannel(input: CreateChannelInput!): Channel
+  createClient(input: CreateClientInput!): Client
+  createComment(input: CreateCommentInput!): Comment
+  createCountry(input: CreateCountryInput!): Country
+  createDepartment(input: CreateDepartmentInput!): Department
+  createMetric(input: CreateMetricInput!): Metric
+  createModerator(input: CreateModeratorInput!): Moderator
+  createNotification(input: CreateNotificationInput!): Notification
+  createPost(input: CreatePostInput!): Post
+  createPostcode(input: CreatePostcodeInput!): Postcode
+  createProject(input: CreateProjectInput!): Project
+  createProject_Metric(input: CreateProject_MetricInput!): Project_Metric
+  createQuestion(input: CreateQuestionInput!): Question
+  createQuestion_Answer(input: CreateQuestion_AnswerInput!): Question_Answer
+  createRegion(input: CreateRegionInput!): Region
+  createReward(input: CreateRewardInput!): Reward
+  createRole(input: CreateRoleInput!): Role
+  createSetting(input: CreateSettingInput!): Setting
+  createSubscription(input: CreateSubscriptionInput!): Subscription
+  createSurvey(input: CreateSurveyInput!): Survey
+  createSurvey_Question(input: CreateSurvey_QuestionInput!): Survey_Question
+  createTaskAchievement(input: CreateTaskAchievementInput!): TaskAchievement
+  createTaskAchievement_Reward(input: CreateTaskAchievement_RewardInput!): TaskAchievement_Reward
+  createTeam(input: CreateTeamInput!): Team
+  createTeam_Membership(input: CreateTeam_MembershipInput!): Team_Membership
+  createTeam_Project(input: CreateTeam_ProjectInput!): Team_Project
+  createTeam_Survey(input: CreateTeam_SurveyInput!): Team_Survey
+  createUser(input: CreateUserInput!): User
+  createUserDuplicateIdEmail(input: CreateUserInput!): User
+  createUser_Department(input: CreateUser_DepartmentInput!): User_Department
+  createUser_Notification(input: CreateUser_NotificationInput!): User_Notification
+  createUser_Role(input: CreateUser_RoleInput!): User_Role
+  createUser_Setting(input: CreateUser_SettingInput!): User_Setting
+  deleteAddress(input: DeleteAddressInput!): Address
+  deleteAssigned_Survey(input: DeleteAssigned_SurveyInput!): Assigned_Survey
+  deleteAssigned_TaskAchievement(input: DeleteAssigned_TaskAchievementInput!): Assigned_TaskAchievement
+  deleteChannel(input: DeleteChannelInput!): Channel
+  deleteClient(input: DeleteClientInput!): Client
+  deleteComment(input: DeleteCommentInput!): Comment
+  deleteCountry(input: DeleteCountryInput!): Country
+  deleteDepartment(input: DeleteDepartmentInput!): Department
+  deleteMetric(input: DeleteMetricInput!): Metric
+  deleteModerator(input: DeleteModeratorInput!): Moderator
+  deleteNotification(input: DeleteNotificationInput!): Notification
+  deletePost(input: DeletePostInput!): Post
+  deletePostcode(input: DeletePostcodeInput!): Postcode
+  deleteProject(input: DeleteProjectInput!): Project
+  deleteProject_Metric(input: DeleteProject_MetricInput!): Project_Metric
+  deleteQuestion(input: DeleteQuestionInput!): Question
+  deleteQuestion_Answer(input: DeleteQuestion_AnswerInput!): Question_Answer
+  deleteRegion(input: DeleteRegionInput!): Region
+  deleteReward(input: DeleteRewardInput!): Reward
+  deleteRole(input: DeleteRoleInput!): Role
+  deleteSetting(input: DeleteSettingInput!): Setting
+  deleteSubscription(input: DeleteSubscriptionInput!): Subscription
+  deleteSurvey(input: DeleteSurveyInput!): Survey
+  deleteSurvey_Question(input: DeleteSurvey_QuestionInput!): Survey_Question
+  deleteTaskAchievement(input: DeleteTaskAchievementInput!): TaskAchievement
+  deleteTaskAchievement_Reward(input: DeleteTaskAchievement_RewardInput!): TaskAchievement_Reward
+  deleteTeam(input: DeleteTeamInput!): Team
+  deleteTeam_Membership(input: DeleteTeam_MembershipInput!): Team_Membership
+  deleteTeam_Project(input: DeleteTeam_ProjectInput!): Team_Project
+  deleteTeam_Survey(input: DeleteTeam_SurveyInput!): Team_Survey
+  deleteUser(input: DeleteUserInput!): User
+  deleteUser_Department(input: DeleteUser_DepartmentInput!): User_Department
+  deleteUser_Notification(input: DeleteUser_NotificationInput!): User_Notification
+  deleteUser_Role(input: DeleteUser_RoleInput!): User_Role
+  deleteUser_Setting(input: DeleteUser_SettingInput!): User_Setting
+  updateAddress(input: UpdateAddressInput!): Address
+  updateAssigned_Survey(input: UpdateAssigned_SurveyInput!): Assigned_Survey
+  updateAssigned_TaskAchievement(input: UpdateAssigned_TaskAchievementInput!): Assigned_TaskAchievement
+  updateChannel(input: UpdateChannelInput!): Channel
+  updateClient(input: UpdateClientInput!): Client
+  updateComment(input: UpdateCommentInput!): Comment
+  updateCountry(input: UpdateCountryInput!): Country
+  updateDepartment(input: UpdateDepartmentInput!): Department
+  updateMetric(input: UpdateMetricInput!): Metric
+  updateModerator(input: UpdateModeratorInput!): Moderator
+  updateNotification(input: UpdateNotificationInput!): Notification
+  updatePost(input: UpdatePostInput!): Post
+  updatePostcode(input: UpdatePostcodeInput!): Postcode
+  updateProject(input: UpdateProjectInput!): Project
+  updateProject_Metric(input: UpdateProject_MetricInput!): Project_Metric
+  updateQuestion(input: UpdateQuestionInput!): Question
+  updateQuestion_Answer(input: UpdateQuestion_AnswerInput!): Question_Answer
+  updateRegion(input: UpdateRegionInput!): Region
+  updateReward(input: UpdateRewardInput!): Reward
+  updateRole(input: UpdateRoleInput!): Role
+  updateSetting(input: UpdateSettingInput!): Setting
+  updateSubscription(input: UpdateSubscriptionInput!): Subscription
+  updateSurvey(input: UpdateSurveyInput!): Survey
+  updateSurvey_Question(input: UpdateSurvey_QuestionInput!): Survey_Question
+  updateTaskAchievement(input: UpdateTaskAchievementInput!): TaskAchievement
+  updateTaskAchievement_Reward(input: UpdateTaskAchievement_RewardInput!): TaskAchievement_Reward
+  updateTeam(input: UpdateTeamInput!): Team
+  updateTeam_Membership(input: UpdateTeam_MembershipInput!): Team_Membership
+  updateTeam_Project(input: UpdateTeam_ProjectInput!): Team_Project
+  updateTeam_Survey(input: UpdateTeam_SurveyInput!): Team_Survey
+  updateUser(input: UpdateUserInput!): User
+  updateUserScreen(input: UpdateUserInput!): User
+  updateUser_Department(input: UpdateUser_DepartmentInput!): User_Department
+  updateUser_Notification(input: UpdateUser_NotificationInput!): User_Notification
+  updateUser_Role(input: UpdateUser_RoleInput!): User_Role
+  updateUser_Setting(input: UpdateUser_SettingInput!): User_Setting
+}
+
+type Notification {
+  id: ID!
+  name: String!
+  notification_type: String
+  text: String
+}
+
+type Post {
+  archived_date_time: AWSTimestamp
+  channel_id: String
+  content: String
+  created_date_time: AWSTimestamp
+  edited_date_time: AWSTimestamp
+  id: ID
+  user_id: String
+}
+
+type Postcode {
+  id: ID!
+  postcode: String!
+  region_id: String!
+}
+
+type Project {
+  client_id: String!
+  description: String
+  id: ID!
+  name: String!
+}
+
+type Project_Metric {
+  id: ID!
+  metric_id: String!
+  project_id: String!
+}
+
+type Query {
+  getAddress(id: ID!): Address
+  getAssigned_Survey(id: ID!): Assigned_Survey
+  getAssigned_TaskAchievement(id: ID!): Assigned_TaskAchievement
+  getChannel(id: ID!): Channel
+  getClient(id: ID!): Client
+  getComment(id: ID!): Comment
+  getCountry(id: ID!): Country
+  getDepartment(id: ID!): Department
+  getMetric(id: ID!): Metric
+  getModerator(id: ID!): Moderator
+  getNotification(id: ID!): Notification
+  getPost(id: ID!): Post
+  getPostcode(id: ID!): Postcode
+  getProject(id: ID!): Project
+  getProject_Metric(id: ID!): Project_Metric
+  getQuestion(id: ID!): Question
+  getQuestion_Answer(id: ID!): Question_Answer
+  getRegion(id: ID!): Region
+  getReward(id: ID!): Reward
+  getRole(id: ID!): Role
+  getSetting(id: ID!): Setting
+  getSubscription(id: ID!): Subscription
+  getSurvey(id: ID!): Survey
+  getSurvey_Question(id: ID!): Survey_Question
+  getTaskAchievement(id: ID!): TaskAchievement
+  getTaskAchievement_Reward(id: ID!): TaskAchievement_Reward
+  getTeam(id: ID!): Team
+  getTeam_Membership(id: ID!): Team_Membership
+  getTeam_Project(id: ID!): Team_Project
+  getTeam_Survey(id: ID!): Team_Survey
+  getUser(id: ID!): User
+  getUser_Department(id: ID!): User_Department
+  getUser_Notification(id: ID!): User_Notification
+  getUser_Role(id: ID!): User_Role
+  getUser_Setting(id: ID!): User_Setting
+  listAddresses: [Address]
+  listAssigned_Surveys: [Assigned_Survey]
+  listAssigned_TaskAchievements: [Assigned_TaskAchievement]
+  listChannels: [Channel]
+  listClients: [Client]
+  listComments: [Comment]
+  listCountries: [Country]
+  listDepartments: [Department]
+  listMetrics: [Metric]
+  listModerators: [Moderator]
+  listNotifications: [Notification]
+  listPostcodes: [Postcode]
+  listPosts: [Post]
+  listPostsByChannel(channel_id: String!): [Post]
+  listProject_Metrics: [Project_Metric]
+  listProjects: [Project]
+  listProjectsAndMetrics(id: ID!): Project
+  listQuestion_Answers: [Question_Answer]
+  listQuestions: [Question]
+  listRegions: [Region]
+  listRewards: [Reward]
+  listRoles: [Role]
+  listSettings: [Setting]
+  listSubscriptions: [Subscription]
+  listSurvey_Questions: [Survey_Question]
+  listSurveys: [Survey]
+  listTaskAchievement_Rewards: [TaskAchievement_Reward]
+  listTaskAchievements: [TaskAchievement]
+  listTeam_Memberships: [Team_Membership]
+  listTeam_Projects: [Team_Project]
+  listTeam_Surveys: [Team_Survey]
+  listTeams: [Team]
+  listUser_Departments: [User_Department]
+  listUser_Notifications: [User_Notification]
+  listUser_Roles: [User_Role]
+  listUser_Settings: [User_Setting]
+  listUsers: [User]
+  listUsers_Demo: [User_Demo]
+  testProjectMetric: [Project]
+  testQuery(id: ID!): typeTest
+}
+
+type Question {
+  archived_date_time: AWSTimestamp
+  created_by: String!
+  created_date_time: AWSTimestamp!
+  id: ID!
+  is_archived: Int
+  question_text: String
+  question_type: String!
+}
+
+type Question_Answer {
+  answer_number: Int
+  answer_string: String
+  answered_date_time: AWSTimestamp
+  assigned_survey_id: String!
+  id: ID!
+  is_anonymous: Int!
+  question_id: String!
+  user_id: String!
+}
+
+type Region {
+  country_id: String!
+  id: ID!
+  name: String!
+}
+
+type Reward {
+  created_by: String!
+  id: ID!
+  name: String!
+  points: Int!
+  text: String
+}
+
+type Role {
+  access_level: String!
+  description: String
+  id: ID!
+  name: String!
+}
+
+type Setting {
+  description: String
+  id: ID!
+  name: String!
+  setting_type: String
+  status: String
+}
+
+type Subscription {
+  channel_id: String!
+  id: ID!
+  notifications: String!
+  user_id: String!
+}
+
+type Survey {
+  archived_date_time: AWSTimestamp
+  created_by: String!
+  created_date_time: AWSTimestamp
+  id: ID!
+  is_archived: Int
+  text: String!
+}
+
+type Survey_Question {
+  id: ID!
+  question_id: String!
+  survey_id: String!
+}
+
+type TaskAchievement {
+  archived_date_time: AWSTimestamp
+  created_by: String!
+  created_date_time: AWSTimestamp!
+  id: ID!
+  is_archived: Int
+  text: String!
+}
+
+type TaskAchievement_Reward {
+  id: ID!
+  reward_id: String!
+  taskachievement_id: String!
+}
+
+type Team {
+  description: String
+  id: ID!
+  is_archived: Int
+  name: String!
+  photo_data: String
+  photo_filename: String
+  team_manager: String
+}
+
+type Team_Membership {
+  id: ID!
+  team_id: String!
+  user_id: String!
+}
+
+type Team_Project {
+  id: ID!
+  project_id: String!
+  team_id: String!
+}
+
+type Team_Survey {
+  assigned_survey_id: String!
+  id: ID!
+  team_id: String!
+}
+
+type User {
+  address_id: String
+  birthday: AWSDate
+  description: String
+  email: String
+  first_login: Int
+  first_name: String
+  gender: String
+  id: String
+  is_archived: Int
+  last_name: String
+  password: String
+  phone: String
+  photo_data: String
+  photo_filename: String
+  points: Int
+  speciality: String
+  user_department_id: String
+  user_role_id: String
+  working_from: String
+}
+
+type User_Demo {
+  email: String!
+  first_name: String
+  id: ID!
+  last_name: String
+}
+
+type User_Department {
+  department_id: String!
+  id: ID!
+  user_id: String!
+}
+
+type User_Notification {
+  id: ID!
+  is_dismissed: Int
+  notification_id: String!
+  sent_date_time: AWSTimestamp
+  user_id: String!
+}
+
+type User_Role {
+  id: ID!
+  role_id: String!
+  user_id: String!
+}
+
+type User_Setting {
+  id: ID!
+  setting_id: String!
+  user_id: String!
+}
+
+type typeTest {
+  Project: Project
+  Project_Metric: Project_Metric
+}
+
+input CreateAddressInput {
+  apartment_number: String
+  client_id: String
+  level: String
+  photo_data: String
+  photo_filename: String
+  postcode_id: String
+  street_name: String
+  street_number: String
+}
+
+input CreateAssigned_SurveyInput {
+  answered_date_time: AWSTimestamp
+  assigned_by: String!
+  assigned_date_time: AWSTimestamp!
+  assigned_to: String!
+  end_assignment: AWSTimestamp
+  frequency_of_survey_days: Int
+  survey_id: String!
+}
+
+input CreateAssigned_TaskAchievementInput {
+  assigned_date_time: AWSTimestamp!
+  end_on: AWSTimestamp
+  is_completed: Int
+  taskachievement_id: String!
+  user_id: String!
+}
+
+input CreateChannelInput {
+  channel_text: String
+  channel_type: String
+  description: String
+  picture_data: String
+  picture_filename: String
+}
+
+input CreateChannelInput_channel_type_channel_text {
+  channel_text: String
+  channel_type: String
+}
+
+input CreateClientInput {
+  address_id: String
+  contact_email: String
+  contact_first_name: String
+  contact_last_name: String
+  contact_phone: String
+  industry: String
+  name: String
+  photo_data: String
+  photo_filename: String
+}
+
+input CreateCommentInput {
+  archived_date_time: AWSTimestamp
+  content: String
+  created_date_time: AWSTimestamp
+  edited_date_time: AWSTimestamp
+  post_id: String!
+  user_id: String!
+}
+
+input CreateCommentInput_post_id_user_id_content {
+  content: String!
+  post_id: String!
+  user_id: String!
+}
+
+input CreateCountryInput {
+  name: String!
+}
+
+input CreateDepartmentInput {
+  description: String
+  name: String!
+}
+
+input CreateMetricInput {
+  answer_number: Int
+  answer_string: String
+  formula: String
+  is_archived: Int
+  metric_type: String
+  text: String
+}
+
+input CreateModeratorInput {
+  channel_id: String!
+  user_id: String!
+}
+
+input CreateNotificationInput {
+  name: String!
+  notification_type: String
+  text: String
+}
+
+input CreatePostInput {
+  archived_date_time: AWSTimestamp
+  channel_id: String!
+  content: String
+  created_date_time: AWSTimestamp!
+  edited_date_time: AWSTimestamp
+  user_id: String!
+}
+
+input CreatePostInput_channel_id_user_id_content_created_date_time {
+  channel_id: String!
+  content: String
+  user_id: String!
+}
+
+input CreatePostcodeInput {
+  postcode: String!
+  region_id: String!
+}
+
+input CreateProjectInput {
+  client_id: String!
+  description: String
+  name: String!
+}
+
+input CreateProject_MetricInput {
+  metric_id: String!
+  project_id: String!
+}
+
+input CreateQuestionInput {
+  archived_date_time: AWSTimestamp
+  created_by: String!
+  created_date_time: AWSTimestamp!
+  is_archived: Int
+  question_text: String
+  question_type: String!
+}
+
+input CreateQuestion_AnswerInput {
+  answer_number: Int
+  answer_string: String
+  answered_date_time: AWSTimestamp
+  assigned_survey_id: String!
+  is_anonymous: Int!
+  question_id: String!
+  user_id: String!
+}
+
+input CreateRegionInput {
+  country_id: String!
+  name: String!
+}
+
+input CreateRewardInput {
+  created_by: String!
+  name: String!
+  points: Int!
+  text: String
+}
+
+input CreateRoleInput {
+  access_level: String!
+  description: String
+  name: String!
+}
+
+input CreateSettingInput {
+  description: String
+  name: String!
+  setting_type: String
+  status: String
+}
+
+input CreateSubscriptionInput {
+  channel_id: String!
+  notifications: String!
+  user_id: String!
+}
+
+input CreateSurveyInput {
+  archived_date_time: AWSTimestamp
+  created_by: String!
+  created_date_time: AWSTimestamp!
+  is_archived: Int
+  text: String!
+}
+
+input CreateSurvey_QuestionInput {
+  question_id: String!
+  survey_id: String!
+}
+
+input CreateTaskAchievementInput {
+  archived_date_time: AWSTimestamp
+  created_by: String!
+  created_date_time: AWSTimestamp!
+  is_archived: Int
+  text: String!
+}
+
+input CreateTaskAchievement_RewardInput {
+  reward_id: String!
+  taskachievement_id: String!
+}
+
+input CreateTeamInput {
+  description: String
+  is_archived: Int
+  name: String!
+  photo_data: String
+  photo_filename: String
+  team_manager: String
+}
+
+input CreateTeam_MembershipInput {
+  team_id: String!
+  user_id: String!
+}
+
+input CreateTeam_ProjectInput {
+  project_id: String!
+  team_id: String!
+}
+
+input CreateTeam_SurveyInput {
+  assigned_survey_id: String!
+  team_id: String!
+}
+
+input CreateUserDuplicateIdEmail {
+  email: String!
+  id: String!
+}
+
+input CreateUserInput {
+  address_id: String
+  birthday: AWSDate
+  description: String
+  email: String
+  first_login: Int
+  first_name: String
+  gender: String
+  id: String
+  is_archived: Int
+  last_name: String
+  password: String
+  phone: String
+  photo_data: String
+  photo_filename: String
+  points: Int
+  speciality: String
+  user_department_id: String
+  user_role_id: String
+  working_from: String
+}
+
+input CreateUserInput_email {
+  email: String
+}
+
+input CreateUserInput_email_first_name_last_name {
+  email: String
+  first_name: String
+  last_name: String
+}
+
+input CreateUser_DepartmentInput {
+  department_id: String!
+  user_id: String!
+}
+
+input CreateUser_NotificationInput {
+  is_dismissed: Int
+  notification_id: String!
+  sent_date_time: AWSTimestamp
+  user_id: String!
+}
+
+input CreateUser_RoleInput {
+  role_id: String!
+  user_id: String!
+}
+
+input CreateUser_SettingInput {
+  setting_id: String!
+  user_id: String!
+}
+
+input DeleteAddressInput {
+  id: ID!
+}
+
+input DeleteAssigned_SurveyInput {
+  id: ID!
+}
+
+input DeleteAssigned_TaskAchievementInput {
+  id: ID!
+}
+
+input DeleteChannelInput {
+  id: ID!
+}
+
+input DeleteClientInput {
+  id: ID!
+}
+
+input DeleteCommentInput {
+  id: ID!
+}
+
+input DeleteCountryInput {
+  id: ID!
+}
+
+input DeleteDepartmentInput {
+  id: ID!
+}
+
+input DeleteMetricInput {
+  id: ID!
+}
+
+input DeleteModeratorInput {
+  id: ID!
+}
+
+input DeleteNotificationInput {
+  id: ID!
+}
+
+input DeletePostInput {
+  id: ID!
+}
+
+input DeletePostcodeInput {
+  id: ID!
+}
+
+input DeleteProjectInput {
+  id: ID!
+}
+
+input DeleteProject_MetricInput {
+  id: ID!
+}
+
+input DeleteQuestionInput {
+  id: ID!
+}
+
+input DeleteQuestion_AnswerInput {
+  id: ID!
+}
+
+input DeleteRegionInput {
+  id: ID!
+}
+
+input DeleteRewardInput {
+  id: ID!
+}
+
+input DeleteRoleInput {
+  id: ID!
+}
+
+input DeleteSettingInput {
+  id: ID!
+}
+
+input DeleteSubscriptionInput {
+  id: ID!
+}
+
+input DeleteSurveyInput {
+  id: ID!
+}
+
+input DeleteSurvey_QuestionInput {
+  id: ID!
+}
+
+input DeleteTaskAchievementInput {
+  id: ID!
+}
+
+input DeleteTaskAchievement_RewardInput {
+  id: ID!
+}
+
+input DeleteTeamInput {
+  id: ID!
+}
+
+input DeleteTeam_MembershipInput {
+  id: ID!
+}
+
+input DeleteTeam_ProjectInput {
+  id: ID!
+}
+
+input DeleteTeam_SurveyInput {
+  id: ID!
+}
+
+input DeleteUserInput {
+  id: ID!
+}
+
+input DeleteUser_DepartmentInput {
+  id: ID!
+}
+
+input DeleteUser_NotificationInput {
+  id: ID!
+}
+
+input DeleteUser_RoleInput {
+  id: ID!
+}
+
+input DeleteUser_SettingInput {
+  id: ID!
+}
+
+input UpdateAddressInput {
+  apartment_number: String
+  client_id: String
+  id: ID!
+  level: String
+  photo_data: String
+  photo_filename: String
+  postcode_id: String
+  street_name: String
+  street_number: String
+}
+
+input UpdateAssigned_SurveyInput {
+  answered_date_time: AWSTimestamp
+  assigned_by: String
+  assigned_date_time: AWSTimestamp
+  assigned_to: String
+  end_assignment: AWSTimestamp
+  frequency_of_survey_days: Int
+  id: ID!
+  survey_id: String
+}
+
+input UpdateAssigned_TaskAchievementInput {
+  assigned_date_time: AWSTimestamp
+  end_on: AWSTimestamp
+  id: ID!
+  is_completed: Int
+  taskachievement_id: String
+  user_id: String
+}
+
+input UpdateChannelInput {
+  channel_text: String
+  channel_type: String
+  description: String
+  id: ID!
+  picture_data: String
+  picture_filename: String
+}
+
+input UpdateClientInput {
+  address_id: String
+  contact_email: String
+  contact_first_name: String
+  contact_last_name: String
+  contact_phone: String
+  id: ID!
+  industry: String
+  name: String
+  photo_data: String
+  photo_filename: String
+}
+
+input UpdateCommentInput {
+  archived_date_time: AWSTimestamp
+  content: String
+  created_date_time: AWSTimestamp
+  edited_date_time: AWSTimestamp
+  id: ID!
+  post_id: String
+  user_id: String
+}
+
+input UpdateCountryInput {
+  id: ID!
+  name: String
+}
+
+input UpdateDepartmentInput {
+  description: String
+  id: ID!
+  name: String
+}
+
+input UpdateMetricInput {
+  answer_number: Int
+  answer_string: String
+  formula: String
+  id: ID!
+  is_archived: Int
+  metric_type: String
+  text: String
+}
+
+input UpdateModeratorInput {
+  channel_id: String
+  id: ID!
+  user_id: String
+}
+
+input UpdateNotificationInput {
+  id: ID!
+  name: String
+  notification_type: String
+  text: String
+}
+
+input UpdatePostInput {
+  archived_date_time: AWSTimestamp
+  channel_id: String
+  content: String
+  created_date_time: AWSTimestamp
+  edited_date_time: AWSTimestamp
+  id: ID!
+  user_id: String
+}
+
+input UpdatePostcodeInput {
+  id: ID!
+  postcode: String
+  region_id: String
+}
+
+input UpdateProjectInput {
+  client_id: String
+  description: String
+  id: ID!
+  name: String
+}
+
+input UpdateProject_MetricInput {
+  id: ID!
+  metric_id: String
+  project_id: String
+}
+
+input UpdateQuestionInput {
+  archived_date_time: AWSTimestamp
+  created_by: String
+  created_date_time: AWSTimestamp
+  id: ID!
+  is_archived: Int
+  question_text: String
+  question_type: String
+}
+
+input UpdateQuestion_AnswerInput {
+  answer_number: Int
+  answer_string: String
+  answered_date_time: AWSTimestamp
+  assigned_survey_id: String
+  id: ID!
+  is_anonymous: Int
+  question_id: String
+  user_id: String
+}
+
+input UpdateRegionInput {
+  country_id: String
+  id: ID!
+  name: String
+}
+
+input UpdateRewardInput {
+  created_by: String
+  id: ID!
+  name: String
+  points: Int
+  text: String
+}
+
+input UpdateRoleInput {
+  access_level: String
+  description: String
+  id: ID!
+  name: String
+}
+
+input UpdateSettingInput {
+  description: String
+  id: ID
+  name: String
+  setting_type: String
+  status: String
+}
+
+input UpdateSubscriptionInput {
+  channel_id: String
+  id: ID!
+  notifications: String
+  user_id: String
+}
+
+input UpdateSurveyInput {
+  archived_date_time: AWSTimestamp
+  created_by: String
+  created_date_time: AWSTimestamp
+  id: ID!
+  is_archived: Int
+  text: String
+}
+
+input UpdateSurvey_QuestionInput {
+  id: ID!
+  question_id: String
+  survey_id: String
+}
+
+input UpdateTaskAchievementInput {
+  archived_date_time: AWSTimestamp
+  created_by: String
+  created_date_time: AWSTimestamp
+  id: ID!
+  is_archived: Int
+  text: String
+}
+
+input UpdateTaskAchievement_RewardInput {
+  id: ID!
+  reward_id: String
+  taskachievement_id: String
+}
+
+input UpdateTeamInput {
+  description: String
+  id: ID!
+  is_archived: Int
+  name: String
+  photo_data: String
+  photo_filename: String
+  team_manager: String
+}
+
+input UpdateTeam_MembershipInput {
+  id: ID!
+  team_id: String
+  user_id: String
+}
+
+input UpdateTeam_ProjectInput {
+  id: ID!
+  project_id: String
+  team_id: String
+}
+
+input UpdateTeam_SurveyInput {
+  assigned_survey_id: String
+  id: ID!
+  team_id: String
+}
+
+input UpdateUserInput {
+  address_id: String
+  birthday: AWSDate
+  description: String
+  email: String
+  first_login: Int
+  first_name: String
+  gender: String
+  id: ID!
+  is_archived: Int
+  last_name: String
+  password: String
+  phone: String
+  photo_data: String
+  photo_filename: String
+  points: Int
+  speciality: String
+  user_department_id: String
+  user_role_id: String
+  working_from: String
+}
+
+input UpdateUser_DepartmentInput {
+  department_id: String
+  id: ID!
+  user_id: String
+}
+
+input UpdateUser_NotificationInput {
+  id: ID!
+  is_dismissed: Int
+  notification_id: String
+  sent_date_time: AWSTimestamp
+  user_id: String
+}
+
+input UpdateUser_RoleInput {
+  id: ID!
+  role_id: String
+  user_id: String
+}
+
+input UpdateUser_SettingInput {
+  id: ID!
+  setting_id: String
+  user_id: String
+}

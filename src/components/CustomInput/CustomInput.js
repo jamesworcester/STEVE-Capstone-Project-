@@ -1,6 +1,7 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 31/07/2022 (Sprint 6)
+Edited by: James Worcester on 04/09/2022 (Sprint 8)
 */
 //CustomInput component class. Used to create custom TextInput components with a variety of CSS styling
 //react-native imports
@@ -10,7 +11,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import {Controller} from 'react-hook-form';
 
 //define a constant lambda function called CustomInput that can have a various parameters passed to it for customisable functionality and styling
-const CustomInput = ({control, name, rules = {}, placeholder, secureTextEntry}) => {
+const CustomInput = ({control, name, rules = {}, placeholder, defaultValue, value, secureTextEntry}) => {
     return (
             <Controller //Controller using passed parameter values
                 control={control}
@@ -25,6 +26,8 @@ const CustomInput = ({control, name, rules = {}, placeholder, secureTextEntry}) 
                     placeholder={placeholder} 
                     style={styles.input} 
                     secureTextEntry={secureTextEntry}
+                    defaultValue={defaultValue}
+                    value={value}
                 />
                 </View>
                 {error && ( //if there is an error (e.g. if not enough characters were entered for a user's password)
@@ -41,6 +44,9 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
         width: '100%',
+        height: 40,
+        justifyContent: 'center',
+
         
         borderColor: '#e8e8e8',
         borderWidth: 1,

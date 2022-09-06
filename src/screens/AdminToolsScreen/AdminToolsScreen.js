@@ -49,7 +49,7 @@ const SignInScreen = () => {
                     }
                     else //if the user has logged in before
                     {
-                        navigation.navigate('AdminTools'); //navigate to the AdminDash screen
+                        navigation.navigate('AdminDash'); //navigate to the AdminDash screen
                     }
                 }
                 catch(e)
@@ -112,11 +112,10 @@ const SignInScreen = () => {
                 }
             }}   
         />
-            
+
                 <CustomButton //Sign In Button
                 text={loading ? "Loading..." : "Sign In"}
                 onPress={handleSubmit(onSignInPressed)}
-                style = {styles.signInButton}
                 />
 
                 <CustomButton //Forgot Password Button
@@ -130,7 +129,7 @@ const SignInScreen = () => {
                 onPress={onSignUpPressed}
                 type="TERTIARY"
                 />
-              
+                
             </View>
         </ScrollView>
     );
