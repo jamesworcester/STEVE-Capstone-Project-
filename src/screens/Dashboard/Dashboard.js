@@ -27,7 +27,7 @@ const Dashboard = () => {
         
         
     <Tab.Navigator shifting={true} 
-        barStyle={{ backgroundColor: '#0096FF' }} 
+        barStyle={{ backgroundColor: '#051C60' }} 
         activeColor="white" 
         >
         <Tab.Screen name="Home" component={FirstScreen}        

@@ -59,6 +59,8 @@ const Navigation = () => {
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
                 <Stack.Screen name="NewMessage" component={NewMessage} />  
+                <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
+                <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

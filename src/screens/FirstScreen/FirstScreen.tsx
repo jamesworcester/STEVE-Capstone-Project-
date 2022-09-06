@@ -5,17 +5,15 @@ import styles from './styles';
 const bg = {uri: "https://wallpaperaccess.com/full/7158588.jpg"}
 
 function FirstScreen() {
+    //<ImageBackground source={bg} style = {styles.ImageBackground}>
+    //</ImageBackground>
     return (
         <View>
-            <ImageBackground source={bg} style = {styles.ImageBackground}
-            >
                 <Header 
                 centerComponent={{text:'HOME', style: {color: '#E6E6FA',fontSize:16}}}
-                backgroundColor = '#0096FF'
+                backgroundColor = '#051C60'
                 />
-            <Text style = {styles.mainText}> WELCOME BACK! </Text>
-            </ImageBackground>
-            
+            <Text style = {styles.mainTextBlack}> WELCOME BACK!</Text>
         </View>
     )
 }
