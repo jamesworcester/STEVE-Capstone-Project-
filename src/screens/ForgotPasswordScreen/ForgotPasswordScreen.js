@@ -27,14 +27,13 @@ const ForgotPasswordScreen = () => {
     const onSendPressed = async (data) => { //asynchronous lambda function that collects data (the email address) from the email CustomInptu
         const username = data.username;
         try{
-
             const user = await Auth.forgotPassword(data.username); //uses AWS Amplify to send a forgotPassword password reset request
             console.log(user);
             navigation.navigate('NewPassword', {username}); //if the reset request is successful, navigate the user to the NewPasswordScreen and pass their email (username) as a parameter
         }
         catch(e)
         {
-            Alert.alert('Oops', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+            Alert.alert('Password Reset Failed', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
         }
     }
 

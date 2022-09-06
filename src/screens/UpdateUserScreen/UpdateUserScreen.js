@@ -4,7 +4,7 @@ Created by: James Worcester on 04/09/2022 (Sprint 8)
 */
 //SignInScreen users are navigated to after signing in for the first time. Allows users to enter their user details into the database
 //react-native imports
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
 //@react-native/native import
 import { useNavigation } from '@react-navigation/native';
@@ -28,9 +28,12 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 const UpdateUserScreen = () => {
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const route = useRoute(); //route passed parameters from the previous screen (SignUp)
-    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
+
+    current_user = route.params.current_user //get the current user info from the previous screen and store the data in a variable called current_info
+
+    const {register, control, handleSubmit, watch, setValue} = useForm();
+    console.log(current_user.data.getUser.email)
     const {height} = useWindowDimensions(); //sets the height of the window
-    current_info = route.params.current_info //get the current user info from the previous screen and store the data in a variable called current_info
 
     const onUpdatePressed = async (data) => { //asynchronous lambda function to update a user's details in the database
             let user = await Auth.currentAuthenticatedUser();
@@ -44,7 +47,7 @@ const UpdateUserScreen = () => {
                 }
 
                 await API.graphql(graphqlOperation(mutations.updateUserScreen, {input: userDetails})); //update the user's details in the database
-                navigation.navigate('AdminDash');
+                navigation.navigate('Dashboard');
             }
             catch(e)
             {
@@ -69,11 +72,10 @@ const UpdateUserScreen = () => {
                 <CustomInput //Custom TextInput
                 name="email"
                 control={control}
-                value={current_info.data.getUser.email}
-                defaultValue={current_info.data.getUser.email}
-
+                //value={current_user.data.getUser.email}
+                defaultValue={current_user.data.getUser.email}
                 rules={{
-                    required: 'Email is required', //sets the TextInput as required
+                    //required: 'Email is required', //sets the TextInput as required
                     pattern: //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
                     {
                         value: EMAIL_REGEX,
@@ -86,10 +88,11 @@ const UpdateUserScreen = () => {
                 <CustomInput //Custom TextInput
                 name="phone"
                 control={control}
-                defaultValue={current_info.data.getUser.phone}
-                value={current_info.data.getUser.phone}
+                defaultValue={current_user.data.getUser.phone}
+                //value={current_user.data.getUser.phone}
                 rules={{
-                    required: 'Phone Number is required', //sets the TextInput as required
+                    //required: 'Phone Number is required', //sets the TextInput as required
+
                 }}
                 />
 
@@ -97,10 +100,10 @@ const UpdateUserScreen = () => {
                 <CustomInput //Custom TextInput
                 name="first_name"
                 control={control}
-                defaultValue={current_info.data.getUser.first_name}
-                value={current_info.data.getUser.first_name}
+                defaultValue={current_user.data.getUser.first_name}
+                //value={current_user.data.getUser.first_name}
                 rules={{
-                    required: 'First Name is required', //sets the TextInput as required
+                    //required: 'First Name is required', //sets the TextInput as required
                 }}
                 />
 
@@ -108,10 +111,10 @@ const UpdateUserScreen = () => {
                 <CustomInput //Custom TextInput
                 name="last_name"
                 control={control}
-                defaultValue={current_info.data.getUser.last_name}
-                value={current_info.data.getUser.last_name}
+                defaultValue={current_user.data.getUser.last_name}
+                //value={current_user.data.getUser.last_name}
                 rules={{
-                    required: 'Last Name is required', //sets the TextInput as required
+                    //required: 'Last Name is required', //sets the TextInput as required
                 }}
                 />
 
@@ -119,10 +122,10 @@ const UpdateUserScreen = () => {
                 <CustomInput //Custom TextInput
                 name="gender"
                 control={control}
-                defaultValue={current_info.data.getUser.gender}
-                value={current_info.data.getUser.gender}
+                defaultValue={current_user.data.getUser.gender}
+                //value={current_user.data.getUser.gender}
                 rules={{
-                    required: 'Gender is required', //sets the TextInput as required
+                    //required: 'Gender is required', //sets the TextInput as required
                 }}
                 />
 

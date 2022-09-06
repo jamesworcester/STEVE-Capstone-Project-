@@ -49,7 +49,7 @@ const SignInScreen = () => {
                     }
                     else //if the user has logged in before
                     {
-                        navigation.navigate('AdminTools'); //navigate to the AdminDash screen
+                        navigation.navigate('AdminDash'); //navigate to the AdminDash screen
                     }
                 }
                 catch(e)

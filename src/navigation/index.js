@@ -20,10 +20,9 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
-import AdminDashScreen from '../screens/AdminDashScreen';
+import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import UpdateUserSplashScreen from '../screens/UpdateUserSplashScreen';
-import Temp123Screen from '../screens/Temp123Screen';
 
 import {
   Octicons,
@@ -47,12 +46,11 @@ const Navigation = () => {
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-                <Stack.Screen name="AdminDash" component={AdminDashScreen} />
+                <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="UpdateUserSplash" component={UpdateUserSplashScreen} />
                 <Stack.Screen name="Dashboard" component={Dashboard} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
-                <Stack.Screen name="Temp123" component={Temp123Screen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

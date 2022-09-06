@@ -22,13 +22,14 @@ import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //define a constant lambda function called NewPasswordScreen that creates two CustomInputs and two CustomButtons and allows the user to enter the forgotPassword password reset code that was
 //emailed to them along with their new password
 const NewPasswordScreen = () => {
+
+    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
+    const pwd = watch('password'); //watch the password being entered in the 'password' CustomInput
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const route = useRoute(); //route passed parameters from the previous screen (forgotPasswordScreen)
     const {height} = useWindowDimensions(); //sets the height of the window
 
     const username = route.params.username; //set the username to be the same as the email that was passed from the forgotPassword screen
-
-    const {control, handleSubmit} = useForm(); //use form from react-hook-form
 
     const onSubmitPressed = async (data) => { //asynchronous lambda function that collects data from the code and password CustomInputs
         try{
@@ -38,11 +39,11 @@ const NewPasswordScreen = () => {
                 data.password,
             );
             navigation.navigate('SignIn')
-    }
-    catch(e)
-    {
-        Alert.alert('Oops', e.message); //if there is an error, print an alert with the error
-    }
+            }
+        catch(e)
+        {
+            Alert.alert('Error', e.message); //if there is an error, print an alert with the error
+        }
     }
 
     const onSignInPressed = () => { //if 'Back to Sign in' is clicked
@@ -64,7 +65,7 @@ const NewPasswordScreen = () => {
                 </Text>
 
                 <Text style={styles.info}>
-                    A password reset code has been emailed to you. Enter it below along with your new password
+                    A password reset code has been emailed to you. Please enter it below along with your new password
                 </Text>
 
                 <CustomInput //Custom TextInput
@@ -82,15 +83,14 @@ const NewPasswordScreen = () => {
                     placeholder="New Password"
                     secureTextEntry={true}
                     rules={{
-                        required: 'Password is required', //makes this field required
-                        minLength: {
-                            value: 12,
-                            message: "Password should be at least 12 characters long" //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
-                        },
+                        required: 'Password is required',
+                        minLength: {value: 8,
+                        message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
+                    },
                         maxLength: {
-                            value: 40,
-                            message: "Username should be less than 40 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
-                        }
+                        value: 30,
+                        message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
+                    }
                     }}
                     
                 />
@@ -102,7 +102,7 @@ const NewPasswordScreen = () => {
                     placeholder="Repeat Password"
                     rules={{
                         required: 'Repeat Password is required', //sets the Repeat Password as required
-                        validate: value => value === pwd || 'Password do not match', //validates if password-repeat matches password
+                        validate: value => value === pwd || 'Passwords do not match', //validates if password-repeat matches password
                       }}
 
                 />

@@ -42,7 +42,7 @@ const ConfirmEmailScreen = () => {
         }
         catch(e)
         {
-            Alert.alert('Oops', e.message); //if there is an error, print the error
+            Alert.alert('Error', e.message); //if there is an error, print the error
         }
     }
 
@@ -55,7 +55,7 @@ const ConfirmEmailScreen = () => {
         }
         catch(e)
         {
-            Alert.alert('Oops', e.message);
+            Alert.alert('Error', e.message);
         }
     }
 
@@ -66,7 +66,7 @@ const ConfirmEmailScreen = () => {
     //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
-            <View style={styles.root}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
                 <Image //Logo image
                     source={Logo}
                     style={[styles.logo, {height: height * 0.3}]}
@@ -109,6 +109,12 @@ const ConfirmEmailScreen = () => {
 
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+        marginBottom: 10,
+    },
     root: {
         alignItems: 'center',
         padding: 20,
@@ -118,6 +124,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#051C60',
         margin: 10,
+        marginBottom: 40,
     },
     text: {
         color: 'gray',

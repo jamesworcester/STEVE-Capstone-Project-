@@ -39,15 +39,15 @@ const SignUpScreen = () => {
             // Cognito signup then duplication with Cognito's auto-genereated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
             // Cognito but not in the database, which is a critical error
             async function testDBConnection() { 
-                try {
-                    try
-                    {
-                        const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions)) //test the database connection by attempting to query the database
+                try
+                {
+                    const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions)) //test the database connection by attempting to query the database
+                    try {
                         const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
                             username: email,
                             password,
                         });
-            
+
                         const userDetails = { //stores userDetails for duplicateUser() function
                             id: userSub,
                             email: email,
@@ -58,7 +58,7 @@ const SignUpScreen = () => {
                     }
                     catch(e)
                     {
-                        Alert.alert('Oops', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+                        Alert.alert('Error', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
                     }
                 }
                 catch(e)
@@ -75,7 +75,7 @@ const SignUpScreen = () => {
 
     return (
         <ScrollView>
-            <View style={styles.root}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
                 <Image //Logo image
                     source={Logo}
                     style={[styles.logo, {height: height * 0.3}]}
@@ -106,14 +106,13 @@ const SignUpScreen = () => {
                     placeholder="Password"
                     rules={{
                         required: 'Password is required',
-                        minLength: {
-                            value: 12,
-                            message: "Password should be at least 12 characters long" //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
-                        },
+                        minLength: {value: 8,
+                        message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
+                    },
                         maxLength: {
-                            value: 40,
-                            message: "Username should be less than 40 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
-                        }
+                        value: 30,
+                        message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
+                    }
                     }}
                 />
 
@@ -124,7 +123,7 @@ const SignUpScreen = () => {
                     placeholder="Repeat Password"
                     rules={{
                         required: 'Repeat Password is required', //sets the Repeat Password as required
-                        validate: value => value === pwd || 'Password do not match', //validates if password-repeat matches password
+                        validate: value => value === pwd || 'Passwords do not match', //validates if password-repeat matches password
                       }}
 
                 />
@@ -146,6 +145,12 @@ const SignUpScreen = () => {
 
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+        marginBottom: 10,
+    },
     root: {
         alignItems: 'center',
         padding: 20,
