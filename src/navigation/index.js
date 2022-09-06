@@ -23,6 +23,7 @@ import ChatRoomScreen from '../screens/ChatRoomScreen';
 import AdminDashScreen from '../screens/AdminDashScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import UpdateUserSplashScreen from '../screens/UpdateUserSplashScreen';
+import Temp123Screen from '../screens/Temp123Screen';
 
 import {
   Octicons,
@@ -49,15 +50,9 @@ const Navigation = () => {
                 <Stack.Screen name="AdminDash" component={AdminDashScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="UpdateUserSplash" component={UpdateUserSplashScreen} />
-             </Stack.Group>   
-             <Stack.Group screenOptions={{headerShown: false}}
-             >
                 <Stack.Screen name="Dashboard" component={Dashboard} />
-                <Stack.Screen
-                    name="Chatroom"
-                    component={ChatRoomScreen}
-                   
-      />
+                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
+                <Stack.Screen name="Temp123" component={Temp123Screen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

@@ -54,7 +54,7 @@ const SignInScreen = () => {
                 }
                 catch(e)
                 {
-                    Alert.alert(e, e.message)
+                    Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
                 }
             }
             authenticate()  //call the authenticate function
@@ -62,7 +62,7 @@ const SignInScreen = () => {
         catch(e)
         {
             setLoading(false)
-            Alert.alert('Oops', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+            Alert.alert('Login Failed', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
         }
     }
 
@@ -77,12 +77,16 @@ const SignInScreen = () => {
     //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
-            <View style={styles.root}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
                 <Image //Logo image
                 source={Logo}
                 style={[styles.logo, {height: height * 0.3}]}
                 resizeMode="contain"
                 />
+
+                <Text style={styles.title}>
+                    Sign In
+                </Text>
 
                 <CustomInput //Custom TextInput
                 name="email"
@@ -98,12 +102,12 @@ const SignInScreen = () => {
                 secureTextEntry={true}
                 rules={{
                     required: 'Password is required',
-                    minLength: {value: 12,
-                    message: 'Password should be a minimum of 12 characters long', //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
+                    minLength: {value: 8,
+                    message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
                 },
                     maxLength: {
-                    value: 40,
-                    message: "Username should be less than 40 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
+                    value: 30,
+                    message: "Password must be 30 characters long or less" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
                 }
             }}   
         />
@@ -132,15 +136,19 @@ const SignInScreen = () => {
 
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
-    root: {
-        alignItems: 'center',
-        padding: 20,
-    },
     logo: {
         width: '70%',
         maxWidth: 300,
         maxHeight: 200,
-    }
+        marginBottom: 10,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#051C60',
+        margin: 10,
+        marginBottom: 10
+    },
 })
 //export the SignInScreen lambda function
 export default SignInScreen

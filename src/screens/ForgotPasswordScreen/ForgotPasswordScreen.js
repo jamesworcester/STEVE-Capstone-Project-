@@ -27,7 +27,9 @@ const ForgotPasswordScreen = () => {
     const onSendPressed = async (data) => { //asynchronous lambda function that collects data (the email address) from the email CustomInptu
         const username = data.username;
         try{
-            await Auth.forgotPassword(data.username); //uses AWS Amplify to send a forgotPassword password reset request
+
+            const user = await Auth.forgotPassword(data.username); //uses AWS Amplify to send a forgotPassword password reset request
+            console.log(user);
             navigation.navigate('NewPassword', {username}); //if the reset request is successful, navigate the user to the NewPasswordScreen and pass their email (username) as a parameter
         }
         catch(e)
@@ -43,7 +45,7 @@ const ForgotPasswordScreen = () => {
     //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
-            <View style={styles.root}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
                 <Image //Logo image
                     source={Logo}
                     style={[styles.logo, {height: height * 0.3}]}
@@ -52,6 +54,10 @@ const ForgotPasswordScreen = () => {
 
                 <Text style={styles.title}>
                     Reset your password
+                </Text>
+
+                <Text style={styles.info}>
+                    Enter your Planit email address below
                 </Text>
 
                 <CustomInput //Email TextInput
@@ -80,6 +86,12 @@ const ForgotPasswordScreen = () => {
 
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+        marginBottom: 10,
+    },
     root: {
         alignItems: 'center',
         padding: 20,
@@ -89,6 +101,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#051C60',
         margin: 10,
+        marginBottom: 10
     },
     text: {
         color: 'gray',
@@ -97,6 +110,13 @@ const styles = StyleSheet.create({
     link: {
         color: '#FDB075',
     },
+    info: {
+        //align text left
+        //alignItems: 'flex-start',
+        color: 'gray',
+        color: '#051C60',
+        marginBottom: 10,
+    }
 
 })
 

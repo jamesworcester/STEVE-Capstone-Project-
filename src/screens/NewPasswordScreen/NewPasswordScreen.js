@@ -52,7 +52,7 @@ const NewPasswordScreen = () => {
     //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
-            <View style={styles.root}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
                 <Image //Logo image
                     source={Logo}
                     style={[styles.logo, {height: height * 0.3}]}
@@ -61,6 +61,10 @@ const NewPasswordScreen = () => {
 
                 <Text style={styles.title}>
                     Reset your password
+                </Text>
+
+                <Text style={styles.info}>
+                    A password reset code has been emailed to you. Enter it below along with your new password
                 </Text>
 
                 <CustomInput //Custom TextInput
@@ -75,7 +79,7 @@ const NewPasswordScreen = () => {
                 <CustomInput //Custom TextInput
                     name="password"
                     control={control}
-                    placeholder="Enter your new password"
+                    placeholder="New Password"
                     secureTextEntry={true}
                     rules={{
                         required: 'Password is required', //makes this field required
@@ -89,6 +93,18 @@ const NewPasswordScreen = () => {
                         }
                     }}
                     
+                />
+
+                <CustomInput //Custom TextInput
+                    name="password-repeat"
+                    control={control}
+                    secureTextEntry={true}      
+                    placeholder="Repeat Password"
+                    rules={{
+                        required: 'Repeat Password is required', //sets the Repeat Password as required
+                        validate: value => value === pwd || 'Password do not match', //validates if password-repeat matches password
+                      }}
+
                 />
 
                 <CustomButton //Submit Button
@@ -108,6 +124,12 @@ const NewPasswordScreen = () => {
 
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+        marginBottom: 20,
+    },
     root: {
         alignItems: 'center',
         padding: 20,
@@ -117,6 +139,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#051C60',
         margin: 10,
+        marginBottom: 10,
     },
     text: {
         color: 'gray',
@@ -125,6 +148,12 @@ const styles = StyleSheet.create({
     link: {
         color: '#FDB075',
     },
+    info: {
+        alignItems: 'center',
+        color: 'gray',
+        color: '#051C60',
+        marginBottom: 10,
+    }
 
 })
 //export the NewPasswordScreen lambda function

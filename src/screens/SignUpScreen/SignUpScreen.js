@@ -40,19 +40,26 @@ const SignUpScreen = () => {
             // Cognito but not in the database, which is a critical error
             async function testDBConnection() { 
                 try {
-                    const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions)) //test the database connection by attempting to query the database
-                    const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
-                        username: email,
-                        password,
-                    });
-        
-                    const userDetails = { //stores userDetails for duplicateUser() function
-                        id: userSub,
-                        email: email,
-                        first_login: 1
+                    try
+                    {
+                        const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions)) //test the database connection by attempting to query the database
+                        const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
+                            username: email,
+                            password,
+                        });
+            
+                        const userDetails = { //stores userDetails for duplicateUser() function
+                            id: userSub,
+                            email: email,
+                            first_login: 1
+                        }
+                        const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); //duplicates the userSub and email to the database
+                        navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
                     }
-                    const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); //duplicates the userSub and email to the database
-                    navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
+                    catch(e)
+                    {
+                        Alert.alert('Oops', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+                    }
                 }
                 catch(e)
                 {
