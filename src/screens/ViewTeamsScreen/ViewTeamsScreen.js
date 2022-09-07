@@ -1,7 +1,6 @@
 /*
 Programmer: James Worcester
-Created by: James Worcester on 31/07/2022 (Sprint 6)
-Edited by: James Worcester on 04/09/2022 (Sprint 8)
+Created by: James Worcester on 07/09/2022 (Sprint 9)
 */
 //SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
 //react-native imports
@@ -28,13 +27,8 @@ import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import chatRoomData from "../../../assets/data/Chats";
 import ChatMessage from "../../components/ChatMessage";
 import InputBox from "../../components/InputBox";
-import ChatRooms from '../../../assets/data/ChatRooms';
 import NewMessageButton from '../../components/NewMessageButton';
-import ChatListItem from '../../components/ChatListItem/Index';
-
-const bg = {uri: "https://raw.githubusercontent.com/Savinvadim1312/WhatsappClone/main/assets/images/BG.png"}
-
-
+import TeamListItem from '../../components/TeamListItem/Index';
 //define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
 const ViewTeamsScreen = () => {
 
@@ -46,19 +40,15 @@ const ViewTeamsScreen = () => {
 
     //const teams = route.params.teams; 
     const teams = route.params.teams.data.listTeams; //retrieve the teams from the route
-    for (const obj of teams) {
-        console.log(obj.id);
-        console.log(obj.name)
-        console.log(obj.description)
-        console.log(obj.is_archived)
-    }
+    // for (const obj of teams) {
+    //     console.log(obj.id);
+    //     console.log(obj.name)
+    //     console.log(obj.description)
+    //     console.log(obj.is_archived)
+    // }
 
     const onBackPressed = () => { //if the 'Have an account? Sign in' button is clicked
         navigation.goBack(); //navigate back to the previous screen
-    }
-
-    const onViewTeamMembersPressed = () => { //if the 'Have an account? Sign in' button is clicked
-        navigation.navigate(ViewTeamMembers); //navigate back to the previous screen
     }
 
     return (
@@ -71,13 +61,17 @@ const ViewTeamsScreen = () => {
             }}/>
 
         <FlatList 
-            data={ChatRooms}
-            renderItem = {({item}) => <ChatListItem chatRoom={item}/>}
+            //data={ChatRooms}
+            data={teams}
+            renderItem = {({item}) => <TeamListItem team={item}/>}
             keyExtractor = {(item) => item.id}
         />
-
-        <NewMessageButton/> 
-
+        
+        <CustomButton //Back Button
+            text="Go Back"
+            onPress={onBackPressed}
+            type="TERTIARY"
+                />
         </View>
         
     )
@@ -93,12 +87,7 @@ const ViewTeamsScreen = () => {
     //         renderItem={({item}) => <CustomButton text={item.name+"\n   "+item.description} type="TEAMS" onPress={onViewTeamMembersPressed} />}
     //       />
 
-    //     <CustomButton //Sign in Button
-    //         text="Go Back"
-    //         onPress={onBackPressed}
-    //         type="TERTIARY"
-    //             />
-    //     </View>
+
     //   );
 
 
