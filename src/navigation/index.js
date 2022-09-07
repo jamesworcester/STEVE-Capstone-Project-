@@ -18,7 +18,13 @@ import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
-import ChatRoomScreen from '../screens/ChatChannel/ChatRoomScreen';
+import SurveyScreen from '../screens/SurveyScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
+
+import SurveyTest from '../screens/SurveyTest'
+import CreateSurveyScreen from '../screens/CreateSurveyScreen';
+import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
+import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
 import NewMessage from '../screens/NewMessage';
 import {
   Octicons,
@@ -37,21 +43,19 @@ const Navigation = () => {
         <NavigationContainer>
             <Stack.Navigator >
              <Stack.Group screenOptions={{headerShown: false}}>
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="SignIn" component={SignInScreen} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-             </Stack.Group>   
-             <Stack.Group screenOptions={{headerShown: false}}>
-             
-                <Stack.Screen name="Dashboard" component={Dashboard} />
-                <Stack.Screen
-                    name="Chatroom"
-                    component={ChatRoomScreen}
-                    />
-                <Stack.Screen name="NewMessage" component={NewMessage} /> 
-                   
+                <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
+                <Stack.Screen name="SurveyTest" component={SurveyTest} />
+                <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
+                <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
+                <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
+                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
+                <Stack.Screen name="NewMessage" component={NewMessage} />  
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { white } from 'react-native-paper/lib/typescript/styles/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +32,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'grey'
   },
+  input: {
+    borderWidth: 1,
+    borderColor: '#777',
+    padding: 8,
+    margin: 10,
+    width: 200,
+    backgroundColor: 'white',
+  },
+  containerSu: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  inputQuestion: {
+    borderWidth: 1,
+    borderColor: '#777',
+    padding: 8,
+    margin: 10,
+    width: 300,
+    backgroundColor: 'white',
+  }, 
+
+
 });
 
 export default styles;

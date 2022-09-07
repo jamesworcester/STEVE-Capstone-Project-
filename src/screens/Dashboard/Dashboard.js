@@ -13,11 +13,19 @@ import Profile from '../Profile/Profile';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+import CreateSurveyScreen from '../CreateSurveyScreen';
+
+
+
+
 
 const Tab = createMaterialBottomTabNavigator();
 
 const Dashboard = () => {
+
     return (
+        
+        
     <Tab.Navigator shifting={true} 
         barStyle={{ backgroundColor: '#0096FF' }} 
         activeColor="white" 
@@ -28,12 +36,13 @@ const Dashboard = () => {
             <MaterialCommunityIcons name="home-outline" color={color} size={26}/>
         ),
     }}/>
-      <Tab.Screen name="Survey" component={Survey}        // Survey Screen
+      <Tab.Screen name="Survey" component={CreateSurveyScreen}        // Survey Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="file-document-multiple" color={color} size={26}/>
         ),
     }}/>
+    
       <Tab.Screen name="Chatchannel" component={Chatchannel}      // Channel Screen
       options={{
         tabBarIcon: ({ color }) => (

@@ -8,7 +8,6 @@ const style = StyleSheet.create({
   userName : {
       marginTop : 10,
       fontSize : 25,
-      fontFamily : 'Cochin'
   },
    userLocation : {
        flexDirection : "row",
