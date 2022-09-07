@@ -36,7 +36,10 @@ const ViewTeamsScreen = () => {
     //const teams = route.params.teams; 
     const teams = route.params.teams.data.listTeams; //retrieve the teams from the route
     for (const obj of teams) {
-        console.log(obj.name);
+        console.log(obj.id);
+        console.log(obj.name)
+        console.log(obj.description)
+        console.log(obj.is_archived)
     }
 
 
