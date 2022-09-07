@@ -55,6 +55,19 @@ export const createTeam = /* GraphQL */ `
     }
   }
 `;
+export const createTeamAdmin = /* GraphQL */ `
+  mutation CreateTeamAdmin($input: CreateTeamInput!) {
+    createTeamAdmin(input: $input) {
+      id
+      team_manager
+      name
+      photo_filename
+      photo_data
+      description
+      is_archived
+    }
+  }
+`;
 export const createTeam_Survey = /* GraphQL */ `
   mutation CreateTeam_Survey($input: CreateTeam_SurveyInput!) {
     createTeam_Survey(input: $input) {

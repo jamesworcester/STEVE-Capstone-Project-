@@ -75,7 +75,7 @@ const UpdateUserScreen = () => {
                 //value={current_user.data.getUser.email}
                 defaultValue={current_user.data.getUser.email}
                 rules={{
-                    //required: 'Email is required', //sets the TextInput as required
+                    required: 'Email is required', //sets the TextInput as required
                     pattern: //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
                     {
                         value: EMAIL_REGEX,
@@ -91,7 +91,7 @@ const UpdateUserScreen = () => {
                 defaultValue={current_user.data.getUser.phone}
                 //value={current_user.data.getUser.phone}
                 rules={{
-                    //required: 'Phone Number is required', //sets the TextInput as required
+                    required: 'Phone Number is required', //sets the TextInput as required
 
                 }}
                 />
@@ -103,7 +103,7 @@ const UpdateUserScreen = () => {
                 defaultValue={current_user.data.getUser.first_name}
                 //value={current_user.data.getUser.first_name}
                 rules={{
-                    //required: 'First Name is required', //sets the TextInput as required
+                    required: 'First Name is required', //sets the TextInput as required
                 }}
                 />
 
@@ -114,7 +114,7 @@ const UpdateUserScreen = () => {
                 defaultValue={current_user.data.getUser.last_name}
                 //value={current_user.data.getUser.last_name}
                 rules={{
-                    //required: 'Last Name is required', //sets the TextInput as required
+                    required: 'Last Name is required', //sets the TextInput as required
                 }}
                 />
 
@@ -125,7 +125,7 @@ const UpdateUserScreen = () => {
                 defaultValue={current_user.data.getUser.gender}
                 //value={current_user.data.getUser.gender}
                 rules={{
-                    //required: 'Gender is required', //sets the TextInput as required
+                    required: 'Gender is required', //sets the TextInput as required
                 }}
                 />
 

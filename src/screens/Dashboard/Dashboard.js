@@ -14,6 +14,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { NavigationContainer } from '@react-navigation/native';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import CreateSurveyScreen from '../CreateSurveyScreen';
+import AdminToolsScreen from '../AdminToolsScreen';
 
 
 
@@ -30,6 +31,12 @@ const Dashboard = () => {
         barStyle={{ backgroundColor: '#051C60' }} 
         activeColor="white" 
         >
+        <Tab.Screen name="Admin" component={AdminToolsScreen}        
+            options={{
+            tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="shield-crown-outline" color={color} size={26}/>
+        ),
+    }}/>
         <Tab.Screen name="Home" component={FirstScreen}        
             options={{
             tabBarIcon: ({ color }) => (
