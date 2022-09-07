@@ -31,6 +31,7 @@ import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import CreateTeamScreen from '../screens/CreateTeamScreen';
 import ViewTeamsScreen from '../screens/ViewTeamsScreen';
+import ViewTeamMembersScreen from '../screens/ViewTeamMembersScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -65,6 +66,7 @@ const Navigation = () => {
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="ViewTeams" component={ViewTeamsScreen} />
+                <Stack.Screen name="ViewTeamMembers" component={ViewTeamMembersScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
     container_TERTIARY: {
     },
 
+    container_TEAMS: {
+        borderColor: '#3B71F3',
+        borderWidth: 2,
+        alignItems: 'flex-start',
+    },
+
     text: {
         fontWeight: 'bold',
         color: 'white',
@@ -64,6 +70,10 @@ const styles = StyleSheet.create({
     text_TERTIARY: {
         color: 'gray',
     },
+
+    text_TEAMS: {
+        color: '#3B71F3',
+    }
 
 });
 

@@ -6,7 +6,7 @@ Edited by: James Worcester on 04/09/2022 (Sprint 8)
 //SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
 //react-native imports
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions, FlatList, ImageBackground} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
 //@react-native/native import
 import { useNavigation } from '@react-navigation/native';
 //react-hook-form import for easy form validation https://react-hook-form.com/
@@ -23,20 +23,10 @@ import Logo from '../../../assets/images/planit_nri_v_navy.png';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
-import { Header } from "@rneui/themed";
-import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons'; 
-import chatRoomData from "../../../assets/data/Chats";
-import ChatMessage from "../../components/ChatMessage";
-import InputBox from "../../components/InputBox";
-import ChatRooms from '../../../assets/data/ChatRooms';
-import NewMessageButton from '../../components/NewMessageButton';
-import ChatListItem from '../../components/ChatListItem/Index';
-
-const bg = {uri: "https://raw.githubusercontent.com/Savinvadim1312/WhatsappClone/main/assets/images/BG.png"}
-
+import { FlatList } from 'react-native-gesture-handler';
 
 //define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
-const ViewTeamsScreen = () => {
+const ViewTeamMembersScreen = () => {
 
     const route = useRoute(); //route passed parameters from the previous screen (SignUp)
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
@@ -62,49 +52,52 @@ const ViewTeamsScreen = () => {
     }
 
     return (
-        
-        <View >
-            <Header 
-            backgroundColor='#051C60'
-            leftComponent={{ color: '#fff' }}
-            centerComponent={{text:'TEAMS', style: {color: '#E6E6FA', fontSize : 16}, 
-            }}/>
-
-        <FlatList 
-            data={ChatRooms}
-            renderItem = {({item}) => <ChatListItem chatRoom={item}/>}
-            keyExtractor = {(item) => item.id}
-        />
-
-        <NewMessageButton/> 
-
+        <View style={styles.container}>
+          <FlatList
+            data={teams}
+            //renderItem={({item}) => <Text style={styles.item}>{item.id}</Text>}
+            renderItem={({item}) => <CustomButton text={item.name+"\nHello"} type="TEAMS" onPress={onBackPressed} />}
+          />
         </View>
-        
-    )
-
-    // return (
-    //     <View style={{ height: height, padding: 20, }}>
-    //         <Text style={styles.title}>
-    //             Teams
-    //             </Text>
-    //       <FlatList
-    //         data={teams}
-    //         //renderItem={({item}) => <Text style={styles.item}>{item.id}</Text>}
-    //         renderItem={({item}) => <CustomButton text={item.name+"\n   "+item.description} type="TEAMS" onPress={onViewTeamMembersPressed} />}
-    //       />
-
-    //     <CustomButton //Sign in Button
-    //         text="Go Back"
-    //         onPress={onBackPressed}
-    //         type="TERTIARY"
-    //             />
-    //     </View>
-    //   );
+      );
+    
 
 
 
 
-      
+    return (
+        <ScrollView>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
+                <Text style={styles.title}>
+                    Teams
+                </Text>
+
+                <CustomInput //Custom TextInput
+                    name="name"
+                    control={control}
+                    placeholder="Team Name"
+                    rules={{
+                        required: 'Team Name is required', //sets the TextInput as required
+                    }}
+                />
+
+                <CustomInput //Custom TextInput
+                    name="description"
+                    control={control}
+                    placeholder="Description"
+                    rules={{
+                        required: 'Description is required', //sets the TextInput as required
+                    }}
+                />
+
+                <CustomButton //Sign in Button
+                    text="Go back"
+                    onPress={onBackPressed}
+                    type="TERTIARY"
+                />
+            </View>
+        </ScrollView>
+    );
 };
 
 //create a constant called styles that creates a CSS StyleSheet with CSS styling
@@ -118,7 +111,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#051C60',
         margin: 10,
-        alignSelf: 'center',
     },
     text: {
         color: 'gray',
@@ -131,4 +123,4 @@ const styles = StyleSheet.create({
 })
 
 //export the SignUpScreen lambda function
-export default ViewTeamsScreen
+export default ViewTeamMembersScreen
