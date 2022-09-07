@@ -11,7 +11,7 @@ const NewMessage = () =>{
     return(
         <View>
             <Header 
-            backgroundColor='purple' centerComponent={{text:'New message', 
+            backgroundColor='#0096FF' centerComponent={{text:'New message', 
             style: {color: '#E6E6FA',fontSize:16}}}
             leftComponent={<AntDesign name="close" size={24} color="white" 
             onPress={() => {navigation.navigate('Chatchannel')}}/> }
