@@ -16,6 +16,7 @@ const ChatRoomScreen =() => {
     const navigation = useNavigation();
     return (
         <View>
+            <ImageBackground  style={{width:'100%',height:'100%'}} source={bg} >
             <Header 
             backgroundColor='#0096FF'
             leftComponent={<AntDesign name="back" color="white" size={24} 
@@ -32,16 +33,22 @@ const ChatRoomScreen =() => {
                 <Entypo name="dots-three-vertical" size={24} color="white" />
               </View>}
             />
+        
 
-        <ImageBackground  source={bg} >
+        
           <FlatList 
             data={chatRoomData.messages}  
              renderItem={({item}) => <ChatMessage message={item}/> } //to display content from message dummy data
             // inverted
           />
-        </ImageBackground>
-          <InputBox/>
 
+          <InputBox />
+
+        </ImageBackground>
+
+        
+          
+        
         </View>
     )
 };
