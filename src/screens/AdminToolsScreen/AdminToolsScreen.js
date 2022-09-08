@@ -49,8 +49,9 @@ const AdminToolsScreen = () => {
             }
         }
         fetchTeams();
-
     }
+
+    
 
     //return the user defined components from CustomInput and CustomButton
     return (

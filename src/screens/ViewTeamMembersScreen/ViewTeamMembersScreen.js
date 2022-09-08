@@ -46,8 +46,14 @@ const ViewTeamsScreen = () => {
     //     console.log(obj.is_archived)
     // }
 
+    const teamName = route.params.name;
+
     const onBackPressed = () => { //if the 'Have an account? Sign in' button is clicked
         navigation.goBack(); //navigate back to the previous screen
+    }
+
+    const onViewUsersPressed = () => {
+        navigation.navigate
     }
 
     return (
@@ -65,6 +71,12 @@ const ViewTeamsScreen = () => {
             renderItem = {({item}) => <TeamListItem team={item}/>}
             keyExtractor = {(item) => item.id}
         />
+
+        <CustomButton //
+                text="Assign User to Team"
+                onPress={onViewUsersPressed}
+                type="SECONDARY"
+                />
         
         <CustomButton //Back Button
             text="Go Back"
