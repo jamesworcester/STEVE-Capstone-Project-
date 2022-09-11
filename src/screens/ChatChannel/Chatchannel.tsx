@@ -5,7 +5,7 @@ import { Header } from "@rneui/themed";
 import { FlatList } from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
 import ChatRooms from '../../../assets/data/ChatRooms';
-import NewMessageButton from '../../components/NewMessageButton';
+import CreateNewChannel from '../../components/CreateNewChannel';
 import ChatListItem from '../../components/ChatListItem/Index';
 
 function Chatchannel() {
@@ -24,7 +24,7 @@ function Chatchannel() {
             keyExtractor = {(item) => item.id}
         />
 
-        <NewMessageButton/> 
+        <CreateNewChannel/> 
 
         </View>
         
