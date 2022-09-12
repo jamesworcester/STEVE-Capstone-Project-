@@ -7,9 +7,10 @@ import { FontAwesome5,AntDesign } from '@expo/vector-icons';
 import { TextInput } from "react-native-gesture-handler";
 import { Divider } from "react-native-paper";
 import { Feather } from '@expo/vector-icons';
-const NewMessage = () =>{
-    const navigation = useNavigation();
 
+const NewChannel = () =>{
+    const navigation = useNavigation();
+    const [ChannelName,setChannelName] = useState(''); 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return(
@@ -28,11 +29,12 @@ const NewMessage = () =>{
                 ? <FontAwesome5 name="hashtag" size={18} color="black" 
                     style = {style.icon} /> 
                 : <Feather name="lock" size={18} color="black" 
-                
                     style = {style.icon}/>
                 }   
                 <TextInput style = {style.NewNameInput}
                     placeholder = {'e.g. plan-budget'}
+                    value = {ChannelName}
+                    onChangeText = {setChannelName}
                 />
             </View>
             <Divider style = {{margin :15}} />
@@ -58,15 +60,18 @@ const NewMessage = () =>{
                 value={isEnabled} />
             </View>
             <View style = {style.CreateButton}>
-                <Button 
-                onPress={() => {console.log('Created')}}
-                title="CREATE"
-                color="#0096FF"
-                
+                {!ChannelName 
+                ? <Button title="CREATE" color="#D3D3D3" 
+                onPress={() => {alert('U have not typed the name of new channel')}}/>
+                : <Button 
+                    onPress={() => {navigation.navigate('AddMemberScreen')}}
+                    title="CREATE"
+                    color="#0096FF"    
                 />
+                }
             </View>
 
         </View>
     )
 }
-export default NewMessage
+export default NewChannel
