@@ -51,7 +51,6 @@ const Navigation = () => {
         <NavigationContainer>
             <Stack.Navigator  >
              <Stack.Group screenOptions={{headerShown: false}} > 
-                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="SignIn" component={SignInScreen} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
@@ -67,6 +66,7 @@ const Navigation = () => {
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="ViewTeams" component={ViewTeamsScreen} />
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="ViewTeamMembers" component={ViewTeamMembersScreen} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="NewChannel" component={NewChannel} /> 
