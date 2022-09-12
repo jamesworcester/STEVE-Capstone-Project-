@@ -25,7 +25,6 @@ import * as queries from '../../graphql/queries';
 import { Header } from "@rneui/themed";
 import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons'; 
 import InputBox from "../../components/InputBox";
-import NewMessageButton from '../../components/NewMessageButton';
 import TeamListItem from '../../components/TeamListItem/Index';
 
 //define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account

@@ -26,7 +26,6 @@ import SurveyTest from '../screens/SurveyTest'
 import CreateSurveyScreen from '../screens/CreateSurveyScreen';
 import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
 import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
-import NewMessage from '../screens/NewMessage';
 import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import CreateTeamScreen from '../screens/CreateTeamScreen';
@@ -64,7 +63,6 @@ const Navigation = () => {
                 <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
                 <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
-                <Stack.Screen name="NewMessage" component={NewMessage} />  
                 <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
