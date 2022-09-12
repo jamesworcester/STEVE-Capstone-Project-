@@ -1,34 +1,59 @@
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
-    mainContainer : {
-        flexDirection : "row",
-        marginTop : 10,
+    FirstContainer : {
+        flexDirection : 'row',
+        
+        display : "flex",
+        justifyContent : "space-between",
+        alignItems : 'flex-end',
     },
-    forText : {
-        marginLeft : 10,
+    ForNameText : {
+        left : '3%',
+        top : 50,
         alignItems: 'center',
-    },
-    searchChannelInput : {
-        marginLeft : 10,
-        fontSize : 16,
-        flex : 1,
-        marginHorizontal : 10,
-    },
-    subContainer  :{
-        padding : 10,
-        marginVertical : 10,
-        marginBottom :420,
-    },
-    writeMessage : {
-        padding : 10,
-        marginLeft : 15,
-        flexDirection : "row",
-    },
-    writeMessage2 : {
         fontSize : 20,
-        marginHorizontal :20,
+        position : 'absolute',
+    },
+    NewNameInput : {
+        fontSize : 18,
+        flex : 1,
+        marginHorizontal : 20,
+    },
+    icon : {
+        left : 22,
+        marginTop : 50,
+        marginRight : 30,
+    },
+    ForDescText : {
+        fontSize : 20,
+        left : '3%',
+        
+    },
+    DescriptionInput : {
+        fontSize : 18,
+        left : '3%',
+        marginVertical : 15,
+    },
+    ForSettingText : {
+        fontSize : 18,
+        left : '3%',
+    },
+    ForMakePrivateText  : {
+        fontSize : 18,
+        left : '3%',
+        marginVertical : 15,
+    },
+    SecondContainer : {
+        flexDirection : 'row',
+    },
+    ForExplainText : {
+        marginHorizontal : 6,
+    },
 
+    CreateButton : {
+        marginVertical : 70,
+       
     }
 })
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { View, KeyboardAvoidingView, Platform} from "react-native";
 import styles from "./styles";
-import { StyleSheet } from "react-native";
+
 import {MaterialCommunityIcons, MaterialIcons,
     FontAwesome5,
     Entypo
@@ -27,10 +27,15 @@ const InputBox = () => {
         }
     }
     return(
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            keyboardVerticalOffset = {60}
+            style = {{width: '100%'}}
+        >
         <View style={styles.container}>
-            <View style = {styles.mainContainer}>
-                <FontAwesome5 name="laugh-beam" size={24} color="grey"/>
-                <TextInput style = {styles.textInput}
+        <View style = {styles.mainContainer}>
+            <FontAwesome5 name="laugh-beam" size={24} color="grey"/>
+            <TextInput style = {styles.textInput}
                     placeholder = {'Type a message'}
                     multiline
                     value={message}
@@ -52,6 +57,7 @@ const InputBox = () => {
             </View>
             </TouchableOpacity>
         </View>
+    </KeyboardAvoidingView>    
     )
 }
 

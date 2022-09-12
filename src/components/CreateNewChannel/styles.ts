@@ -5,12 +5,12 @@ const styles = StyleSheet.create({
         backgroundColor : '#0096FF',
         width : 50,
         height : 50,
-        bottom : 50,
-        left : 330,
+        bottom : '6%',
+        right : 5,
         justifyContent : 'center',
         alignItems : 'center',
         borderRadius : 20,
-        position : 'absolute'
+        position : 'absolute',
     }
 })
 

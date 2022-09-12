@@ -49,8 +49,9 @@ const Stack = createStackNavigator();
 const Navigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator >
-             <Stack.Group screenOptions={{headerShown: false}}>
+            <Stack.Navigator  >
+             <Stack.Group screenOptions={{headerShown: false}} > 
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="SignIn" component={SignInScreen} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
@@ -61,7 +62,6 @@ const Navigation = () => {
                 <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
                 <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
                 <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
-                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
                 <Stack.Screen name="NewMessage" component={NewMessage} />  
                 <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
