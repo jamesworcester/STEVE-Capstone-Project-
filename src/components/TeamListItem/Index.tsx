@@ -25,10 +25,15 @@ const TeamListItem = (props: TeamListItemProps) => {
             const teamMembers2 = teamMembers1.data.listTeam_Memberships;
             const teamMembers3 = [];
             try {
-                console.log("hello")
+                //console.log("hello")
                 for (let i = 0; i < teamMembers2.length; i++) {
+                    //console.log(teamMembers2[i].user_id);
                     const user = await API.graphql(graphqlOperation(queries.getUser, {id: teamMembers2[i].user_id}));
-                    teamMembers3[i].user = user.data.getUser;
+                    //console.log(user);
+                    //teamMembers3[i].user = user.data.getUser;
+                    //console.log(user.data.getUser);
+                    teamMembers3.push(user.data.getUser);
+                    //console.log(teamMembers3[i].user);
                 }
                 //console.log(teamMembers3)
             }
@@ -36,20 +41,24 @@ const TeamListItem = (props: TeamListItemProps) => {
                 console.log(e);
             }
 
+            //console.log("BEGIN");
+            //console.log(teamMembers3);
+
 
             navigation.navigate('ViewTeamMembers',
             {id: team.id,
             name: team.name,
             description: team.description,
             is_archived: team.is_archived,
-            teamMembers: teamMembers2
+            //teamMembers: teamMembers3
+            //teamMembers: [1, 2],
+            teamMembers: teamMembers3
+            //testarray: [1, 2]
             })
         }
         fetchTeamMembers();
 
 }
-        
-
 
 return(
     <TouchableWithoutFeedback onPress={onClick}>
@@ -57,7 +66,7 @@ return(
         <View style={styles.lefContainer}>
             <Image source={{/*uri: user.imageUri*/}} style={styles.avatar}/>
             <View style={styles.midContainer}>
-                <Text >{team.name}</Text>
+                <Text>{team.name}</Text>
                 <Text>{team.description}</Text>
             </View>
         </View>

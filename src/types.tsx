@@ -22,6 +22,7 @@ export type Team = {
     name: String;
     description: String;
     is_archived: Number;
+    //teamMembers: [TeamMember];
 }
 
 export type TeamMember = {

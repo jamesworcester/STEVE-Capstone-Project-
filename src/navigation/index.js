@@ -33,6 +33,7 @@ import CreateTeamScreen from '../screens/CreateTeamScreen';
 import ViewTeamsScreen from '../screens/ViewTeamsScreen';
 import ViewTeamMembersScreen from '../screens/ViewTeamMembersScreen';
 import Profile from '../screens/Profile';
+import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
 
 import {
   Octicons,
@@ -70,6 +71,7 @@ const Navigation = () => {
                 <Stack.Screen name="ViewTeams" component={ViewTeamsScreen} />
                 <Stack.Screen name="ViewTeamMembers" component={ViewTeamMembersScreen} />
                 <Stack.Screen name="Profile" component={Profile} />
+                <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
