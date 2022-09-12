@@ -1,6 +1,6 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 31/07/2022
+Created by: James Worcester on 31/07/2022 (Sprint 6)
 */
 //Basic HomeScreen, TO BE REPLACED BY A GOOD HOMESCREEN
 import React, { Component } from 'react'
@@ -14,6 +14,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { NavigationContainer } from '@react-navigation/native';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import CreateSurveyScreen from '../CreateSurveyScreen';
+import AdminToolsScreen from '../AdminToolsScreen';
 
 
 
@@ -27,9 +28,15 @@ const Dashboard = () => {
         
         
     <Tab.Navigator shifting={true} 
-        barStyle={{ backgroundColor: '#0096FF' }} 
+        barStyle={{ backgroundColor: '#051C60' }} 
         activeColor="white" 
         >
+        <Tab.Screen name="Admin" component={AdminToolsScreen}        
+            options={{
+            tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="shield-crown-outline" color={color} size={26}/>
+        ),
+    }}/>
         <Tab.Screen name="Home" component={FirstScreen}        
             options={{
             tabBarIcon: ({ color }) => (

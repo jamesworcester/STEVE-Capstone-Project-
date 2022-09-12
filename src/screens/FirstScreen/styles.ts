@@ -14,6 +14,16 @@ const styles  = StyleSheet.create({
         justifyContent : 'center',
         alignItems : 'center',
         color : '#E6E6FA',
+    },
+
+    mainTextBlack : {
+        fontSize : 25,
+        fontStyle : 'italic',
+        marginTop : 100,
+        marginLeft: 80,
+        justifyContent : 'center',
+        alignItems : 'center',
+        color : '#000000',
     }
 })
 
