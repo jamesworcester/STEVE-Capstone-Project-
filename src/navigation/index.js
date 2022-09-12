@@ -25,7 +25,8 @@ import SurveyTest from '../screens/SurveyTest'
 import CreateSurveyScreen from '../screens/CreateSurveyScreen';
 import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
 import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
-import NewMessage from '../screens/NewMessage';
+import NewChannel from '../screens/NewChannel';
+import AddMemberScreen from '../screens/AddMemberScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -54,8 +55,9 @@ const Navigation = () => {
                 <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
                 <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
                 <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
-                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
-                <Stack.Screen name="NewMessage" component={NewMessage} />  
+                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />  
+                <Stack.Screen name="NewChannel" component={NewChannel} /> 
+                <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

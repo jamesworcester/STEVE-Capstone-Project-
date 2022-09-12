@@ -12,7 +12,7 @@ const CreateNewChannel = () => {
     return (
         <View style = {styles.container}>
             <TouchableOpacity onPress={() => {
-                navigation.navigate('NewMessage');
+                navigation.navigate('NewChannel');
             }}>
             <FontAwesome name="plus" size={24} color="white" />
             </TouchableOpacity>
