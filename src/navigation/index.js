@@ -26,7 +26,6 @@ import SurveyTest from '../screens/SurveyTest'
 import CreateSurveyScreen from '../screens/CreateSurveyScreen';
 import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
 import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
-import NewMessage from '../screens/NewMessage';
 import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import CreateTeamScreen from '../screens/CreateTeamScreen';
@@ -34,7 +33,7 @@ import ViewTeamsScreen from '../screens/ViewTeamsScreen';
 import ViewTeamMembersScreen from '../screens/ViewTeamMembersScreen';
 import Profile from '../screens/Profile';
 import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
-
+import AddMemberScreen from '../screens/AddMemberScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -50,8 +49,8 @@ const Stack = createStackNavigator();
 const Navigation = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator >
-             <Stack.Group screenOptions={{headerShown: false}}>
+            <Stack.Navigator  >
+             <Stack.Group screenOptions={{headerShown: false}} > 
                 <Stack.Screen name="SignIn" component={SignInScreen} />
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
@@ -62,16 +61,16 @@ const Navigation = () => {
                 <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
                 <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
                 <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
-                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
-                <Stack.Screen name="NewMessage" component={NewMessage} />  
                 <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="ViewTeams" component={ViewTeamsScreen} />
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
                 <Stack.Screen name="ViewTeamMembers" component={ViewTeamMembersScreen} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
+                <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

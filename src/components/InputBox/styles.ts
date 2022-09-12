@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container : {
         flexDirection : "row",
-        marginTop : 25
+        marginTop : 5,
+        alignItems: 'flex-end',
 
     },
     mainContainer : {
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
         borderRadius : 25,
         flex:1,
         marginRight : 10,
-        alignItems : 'center'
+        alignItems : 'flex-end',
     },
     buttonContainer : {
         backgroundColor : '#0096FF',
