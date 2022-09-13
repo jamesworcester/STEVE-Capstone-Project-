@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form';
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomButton from '../../components/CustomButton';
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
@@ -85,7 +85,7 @@ const SignUpScreen = () => {
                     Create an account
                 </Text>
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="email"
                     control={control}
                     placeholder="Email"
@@ -99,7 +99,7 @@ const SignUpScreen = () => {
                     }}
                 />
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="password"
                     control={control}
                     secureTextEntry={true}
@@ -116,7 +116,7 @@ const SignUpScreen = () => {
                     }}
                 />
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="password-repeat"
                     control={control}
                     secureTextEntry={true}      
@@ -128,15 +128,15 @@ const SignUpScreen = () => {
 
                 />
 
-                <CustomButton //Register Button
+                <PersonalisedButton //Register Button
                     text="Register"
                     onPress={handleSubmit(onRegisterPressed)}
                 />
 
-                <CustomButton //Sign in Button
+                <PersonalisedButton //Sign in Button
                     text="Have an account? Sign in"
                     onPress={onSignInPressed}
-                    type="TERTIARY"
+                    type="THIRD"
                 />
             </View>
         </ScrollView>

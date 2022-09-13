@@ -15,7 +15,7 @@ import { useRoute } from '@react-navigation/native';
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomButton from '../../components/CustomButton';
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
@@ -83,10 +83,10 @@ const ViewTeamsScreen = () => {
                 type="SECONDARY"
                 /> */}
         
-        <CustomButton //Back Button
+        <PersonalisedButton //Back Button
             text="Go Back"
             onPress={onBackPressed}
-            type="TERTIARY"
+            type="THIRD"
                 />
         </View>
         

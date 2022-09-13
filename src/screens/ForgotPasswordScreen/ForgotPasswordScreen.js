@@ -14,7 +14,7 @@ import {useForm} from 'react-hook-form';
 import {Auth} from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput'; //CustomInput component import
-import CustomButton from '../../components/CustomButton'; //CustomButton component import
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
@@ -59,7 +59,7 @@ const ForgotPasswordScreen = () => {
                     Enter your Planit email address below
                 </Text>
 
-                <CustomInput //Email TextInput
+                <PersonalisedButton //Email TextInput
                     name="username"
                     control={control}
                     placeholder="Email"
@@ -68,15 +68,15 @@ const ForgotPasswordScreen = () => {
                     }}
                 />
 
-                <CustomButton //Send Button
+                <PersonalisedButton //Send Button
                     text="Send"
                     onPress={handleSubmit(onSendPressed)}
                 />
 
-                <CustomButton //Back to Sign in Button
+                <PersonalisedButton //Back to Sign in Button
                     text="Back to Sign in"
                     onPress={onSignInPressed}
-                    type="TERTIARY"
+                    type="THIRD"
                 />
             </View>
         </ScrollView>

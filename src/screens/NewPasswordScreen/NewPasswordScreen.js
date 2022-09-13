@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form';
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomButton from '../../components/CustomButton';
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
@@ -68,7 +68,7 @@ const NewPasswordScreen = () => {
                     A password reset code has been emailed to you. Please enter it below along with your new password
                 </Text>
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="code"
                     control={control}
                     placeholder="Code"
@@ -77,7 +77,7 @@ const NewPasswordScreen = () => {
                     }}
                 />
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="password"
                     control={control}
                     placeholder="New Password"
@@ -95,7 +95,7 @@ const NewPasswordScreen = () => {
                     
                 />
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="password-repeat"
                     control={control}
                     secureTextEntry={true}      
@@ -107,15 +107,15 @@ const NewPasswordScreen = () => {
 
                 />
 
-                <CustomButton //Submit Button
+                <PersonalisedButton //Submit Button
                     text="Submit"
                     onPress={handleSubmit(onSubmitPressed)}
                 />
 
-                <CustomButton //Back to Sign in Button
+                <PersonalisedButton //Back to Sign in Button
                     text="Back to Sign in"
                     onPress={onSignInPressed}
-                    type="TERTIARY"
+                    type="THIRD"
                 />    
             </View>
         </ScrollView>

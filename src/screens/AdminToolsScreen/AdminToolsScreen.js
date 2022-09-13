@@ -14,7 +14,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { API, Auth, AWSPinpointProvider, graphqlOperation } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomButton from '../../components/CustomButton';
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
@@ -62,15 +62,15 @@ const AdminToolsScreen = () => {
                     Administration
                 </Text>
 
-                <CustomButton //Sign In Button
+                <PersonalisedButton //Sign In Button
                 text={"Create Team"}
                 onPress={handleSubmit(onCreateTeamPressed)}
                 />
 
-                <CustomButton //Resend Code Button
+                <PersonalisedButton //Resend Code Button
                 text="View Teams"
                 onPress={onViewTeamsPressed}
-                type="SECONDARY"
+                type="SECOND"
                 />
 
             </View>

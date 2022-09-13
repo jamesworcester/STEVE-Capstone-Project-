@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form';
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomButton from '../../components/CustomButton';
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
@@ -62,7 +62,7 @@ const CreateTeamScreen = () => {
                     Create a Team
                 </Text>
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="name"
                     control={control}
                     placeholder="Team Name"
@@ -71,7 +71,7 @@ const CreateTeamScreen = () => {
                     }}
                 />
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name="description"
                     control={control}
                     placeholder="Description"
@@ -80,15 +80,15 @@ const CreateTeamScreen = () => {
                     }}
                 />
 
-                <CustomButton //Register Button
+                <PersonalisedButton //Register Button
                     text="Create Team"
                     onPress={handleSubmit(onCreateTeamPressed)}
                 />
 
-                <CustomButton //Sign in Button
+                <PersonalisedButton //Sign in Button
                     text="Go back"
                     onPress={onBackPressed}
-                    type="TERTIARY"
+                    type="THIRD"
                 />
             </View>
         </ScrollView>

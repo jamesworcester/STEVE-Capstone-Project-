@@ -16,7 +16,7 @@ import {useForm} from 'react-hook-form';
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput'; //CustomInput component import
-import CustomButton from '../../components/CustomButton'; //CustomButton component import
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
@@ -77,7 +77,7 @@ const ConfirmEmailScreen = () => {
                     Confirm your email
                 </Text>
 
-                <CustomInput //Custom TextInput
+                <PersonalisedButton //Custom TextInput
                     name='code'
                     control={control}
                     placeholder="Enter your confirmation code"
@@ -86,21 +86,21 @@ const ConfirmEmailScreen = () => {
                     }}
                 />
 
-                <CustomButton //Confirm Button
+                <PersonalisedButton //Confirm Button
                     text="Confirm"
                     onPress={handleSubmit(onConfirmPressed)}
                 />
 
-                <CustomButton //Resend Code Button
+                <PersonalisedButton //Resend Code Button
                     text="Resend Code"
                     onPress={onResendPressed}
-                    type="SECONDARY"
+                    type="SECOND"
                 />
 
-                <CustomButton //Back to Sign in Button
+                <PersonalisedButton //Back to Sign in Button
                     text="Back to Sign in"
                     onPress={onSignInPressed}
-                    type="TERTIARY"
+                    type="THIRD"
                 />
             </View>
         </ScrollView>

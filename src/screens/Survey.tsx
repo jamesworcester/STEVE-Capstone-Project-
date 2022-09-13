@@ -5,7 +5,7 @@ import { Header } from "@rneui/themed";
 import styles from "../components/ChatListItem/style";
 
 import { useNavigation } from '@react-navigation/native';
-import CustomButton from '../components/CustomButton';
+import CustomButton from '../components/PersonalisedButton';
 
 import {useRoute} from '@react-navigation/native'
 
@@ -35,10 +35,10 @@ function Survey(route) {
             backgroundColor='purple'
             centerComponent={{text:'SURVEYS', style: {color: 'white'}}}/>
             
-            <CustomButton //Navigate Survey
+            <PersonalisedButton //Navigate Survey
                 text="Create a Survey"
                 onPress={onSurveyPressed}
-                type="TERTIARY"
+                type="THIRD"
                 />
 
             <Text style={{

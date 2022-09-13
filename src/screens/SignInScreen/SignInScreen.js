@@ -15,7 +15,7 @@ import {useForm, Controller} from 'react-hook-form';
 import { API, Auth, AWSPinpointProvider, graphqlOperation } from 'aws-amplify';
 //user defined component imports
 import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomButton from '../../components/CustomButton';
+import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
@@ -113,22 +113,22 @@ const SignInScreen = () => {
             }}   
         />
             
-                <CustomButton //Sign In Button
-                text={loading ? "Loading..." : "Sign In"}
+                <PersonalisedButton //Sign In Button
+                text={"Sign In"}
                 onPress={handleSubmit(onSignInPressed)}
                 style = {styles.signInButton}
                 />
 
-                <CustomButton //Forgot Password Button
+                <PersonalisedButton //Forgot Password Button
                 text="Forgot password?"
                 onPress={onForgotPasswordPressed}
-                type="TERTIARY"
+                type="THIRD"
                 />
 
-                <CustomButton //Sign Up Button
+                <PersonalisedButton //Sign Up Button
                 text="Don't have an account? Sign up"
                 onPress={onSignUpPressed}
-                type="TERTIARY"
+                type="THIRD"
                 />
               
             </View>

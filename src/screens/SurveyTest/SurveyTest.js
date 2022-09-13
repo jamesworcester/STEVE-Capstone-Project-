@@ -6,7 +6,7 @@ import { Header } from "@rneui/themed";
 import styles from "../../components/ChatListItem/style";
 
 import { useNavigation } from '@react-navigation/native';
-import CustomButton from '../../components/CustomButton';
+import PersonalisedButton from '../../components/PersonalisedButton';
 
 import {useRoute} from '@react-navigation/native'
 
