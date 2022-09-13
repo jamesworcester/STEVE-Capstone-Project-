@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form';
 //AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
-import CustomInput from '../../components/CustomInput/CustomInput'; //CustomInput component import
+import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
@@ -77,7 +77,7 @@ const ConfirmEmailScreen = () => {
                     Confirm your email
                 </Text>
 
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                     name='code'
                     control={control}
                     placeholder="Enter your confirmation code"

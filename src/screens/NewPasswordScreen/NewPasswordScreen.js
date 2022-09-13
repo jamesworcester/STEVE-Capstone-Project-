@@ -14,7 +14,7 @@ import {useForm} from 'react-hook-form';
 //AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
-import CustomInput from '../../components/CustomInput/CustomInput';
+import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
@@ -68,7 +68,7 @@ const NewPasswordScreen = () => {
                     A password reset code has been emailed to you. Please enter it below along with your new password
                 </Text>
 
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                     name="code"
                     control={control}
                     placeholder="Code"
@@ -77,7 +77,7 @@ const NewPasswordScreen = () => {
                     }}
                 />
 
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                     name="password"
                     control={control}
                     placeholder="New Password"
@@ -95,7 +95,7 @@ const NewPasswordScreen = () => {
                     
                 />
 
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                     name="password-repeat"
                     control={control}
                     secureTextEntry={true}      

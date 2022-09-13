@@ -14,7 +14,7 @@ import {useForm, Controller} from 'react-hook-form';
 //AWS Amplify import
 import { API, Auth, AWSPinpointProvider, graphqlOperation } from 'aws-amplify';
 //user defined component imports
-import CustomInput from '../../components/CustomInput/CustomInput';
+import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
@@ -89,14 +89,14 @@ const SignInScreen = () => {
                     Sign In
                 </Text>
 
-                <CustomInput //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="email"
                 placeholder="Email"
                 control={control}
                 rules={{required: 'Email is required'}}
                 />
                 
-                <CustomInput //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="password"
                 placeholder="Password"
                 control={control}

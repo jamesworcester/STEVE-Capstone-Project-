@@ -1,7 +1,6 @@
-import React from "react";
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import { Team } from "../../types";
-import styles from "../TeamListItem/style";
+import styles from "./style";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
  import { API, graphqlOperation } from 'aws-amplify';

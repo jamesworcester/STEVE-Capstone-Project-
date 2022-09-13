@@ -14,7 +14,7 @@ import {useForm} from 'react-hook-form';
 //AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
-import CustomInput from '../../components/CustomInput/CustomInput';
+import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
@@ -85,7 +85,7 @@ const SignUpScreen = () => {
                     Create an account
                 </Text>
 
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                     name="email"
                     control={control}
                     placeholder="Email"
@@ -99,7 +99,7 @@ const SignUpScreen = () => {
                     }}
                 />
 
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                     name="password"
                     control={control}
                     secureTextEntry={true}
@@ -116,7 +116,7 @@ const SignUpScreen = () => {
                     }}
                 />
 
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                     name="password-repeat"
                     control={control}
                     secureTextEntry={true}      

@@ -18,6 +18,7 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
+import PersonalisedInput from '../../components/PersonalisedInput';
 //user defined API import
 
 //define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
@@ -51,35 +52,35 @@ const CreateSurveyScreen = () => {
                 </Text>
 
                 <Text style={styles.text_bold}>Question 1:</Text>
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="question1"
                 placeholder= {'Question 1'}
                 control={control}
                 />
 
                 <Text style={styles.text_bold}>Question 2:</Text>
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="question2"
                 placeholder={'Question 2'}
                 control={control}
                 />
 
                 <Text style={styles.text_bold}>Question 3:</Text>
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="question3"
                 placeholder={'Question 3'}
                 control={control}
                 />
 
                 <Text style={styles.text_bold}>Question 4:</Text>
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="question4"
                 placeholder={'Question 4'}
                 control={control}
                 />
 
                 <Text style={styles.text_bold}>Question 5:</Text>
-                <PersonalisedButton //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="question5"
                 placeholder={'Question 5'}
                 control={control}

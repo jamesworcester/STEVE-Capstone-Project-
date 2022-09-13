@@ -14,7 +14,7 @@ import {useForm} from 'react-hook-form';
 //AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
-import CustomInput from '../../components/CustomInput/CustomInput';
+import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
@@ -69,7 +69,7 @@ const UpdateUserScreen = () => {
                 </Text>
 
                 <Text style={styles.text}>Email:</Text>
-                <CustomInput //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="email"
                 control={control}
                 //value={current_user.data.getUser.email}
@@ -85,7 +85,7 @@ const UpdateUserScreen = () => {
                 />
 
                 <Text style={styles.text}>Phone Number:</Text>
-                <CustomInput //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="phone"
                 control={control}
                 defaultValue={current_user.data.getUser.phone}
@@ -97,7 +97,7 @@ const UpdateUserScreen = () => {
                 />
 
                 <Text style={styles.text}>First Name:</Text>
-                <CustomInput //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="first_name"
                 control={control}
                 defaultValue={current_user.data.getUser.first_name}
@@ -108,7 +108,7 @@ const UpdateUserScreen = () => {
                 />
 
                 <Text style={styles.text}>Last Name:</Text>
-                <CustomInput //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="last_name"
                 control={control}
                 defaultValue={current_user.data.getUser.last_name}
@@ -119,7 +119,7 @@ const UpdateUserScreen = () => {
                 />
 
                 <Text style={styles.text}>Gender:</Text>
-                <CustomInput //Custom TextInput
+                <PersonalisedInput //Custom TextInput
                 name="gender"
                 control={control}
                 defaultValue={current_user.data.getUser.gender}
