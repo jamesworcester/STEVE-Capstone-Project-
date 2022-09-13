@@ -567,6 +567,15 @@ export const listTeam_Memberships = /* GraphQL */ `
     }
   }
 `;
+export const listTeam_MembershipsWhere = /* GraphQL */ `
+  query ListTeam_MembershipsWhere($team_id: String) {
+    listTeam_MembershipsWhere(team_id: $team_id) {
+      id
+      user_id
+      team_id
+    }
+  }
+`;
 export const listClients = /* GraphQL */ `
   query ListClients {
     listClients {
@@ -650,7 +659,7 @@ export const listUsers = /* GraphQL */ `
   }
 `;
 export const listUsersInTeam = /* GraphQL */ `
-  query ListUsersInTeam($team_id: ID!) {
+  query ListUsersInTeam($team_id: String!) {
     listUsersInTeam(team_id: $team_id) {
       id
       address_id

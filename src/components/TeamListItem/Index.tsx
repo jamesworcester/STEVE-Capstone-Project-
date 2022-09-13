@@ -18,14 +18,19 @@ const TeamListItem = (props: TeamListItemProps) => {
     //const user = chatRoom.users[1];
     const onClick = async () => {
         async function fetchTeamMembers() {
-            const teamMembers1 = await API.graphql(graphqlOperation(queries.listTeam_Memberships, {filter: {team_id: {eq: team.id}}}));
+            //console.log(team.id)
+            const teamMembers1 = await API.graphql(graphqlOperation(queries.listTeam_MembershipsWhere, {team_id: team.id}));
+            //console.log(teamMembers1)
             //const teamMembersTest = await API.graphql(graphqlOperation(queries.listUsers));
             //console.log(teamMembers1);
             //for each team member, get the user
-            const teamMembers2 = teamMembers1.data.listTeam_Memberships;
+            //console.log(teamMembers1)
+            const teamMembers2 = teamMembers1.data.listTeam_MembershipsWhere;
+            //console.log(teamMembers2)
             const teamMembers3 = [];
             try {
                 //console.log("hello")
+                if(teamMembers2 !== undefined) {
                 for (let i = 0; i < teamMembers2.length; i++) {
                     //console.log(teamMembers2[i].user_id);
                     const user = await API.graphql(graphqlOperation(queries.getUser, {id: teamMembers2[i].user_id}));
@@ -35,7 +40,8 @@ const TeamListItem = (props: TeamListItemProps) => {
                     teamMembers3.push(user.data.getUser);
                     //console.log(teamMembers3[i].user);
                 }
-                //console.log(teamMembers3)
+            }
+                
             }
             catch(e){
                 console.log(e);

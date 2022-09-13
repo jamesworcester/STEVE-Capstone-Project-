@@ -47,19 +47,19 @@ const ViewTeamsScreen = () => {
     const team_name = route.params.name;
     const team_id = route.params.id;
     const teamMembers = route.params.teamMembers;
-    console.log(teamMembers);
+    //console.log(teamMembers);
     
     //console.log(testarray);
     //console.log();
     //const teamMembers = route.params.teamMembers;
 
-    //console.log("LOL")
+    console.log("LOL")
 
     const onBackPressed = () => { //if the 'Have an account? Sign in' button is clicked
         navigation.goBack(); //navigate back to the previous screen
     }
 
-    //console.log(teamMembers);
+    console.log(teamMembers);
 
     return (
         
