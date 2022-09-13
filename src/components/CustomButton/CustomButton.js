@@ -6,7 +6,7 @@ Edited by: James Worcester on 04/09/2022 (Sprint 8)
 //CustomButton component class. Used to create custom button components that call custom functions on press with a variety of custom CSS styling
 //react-native imports
 import React from 'react';
-import { View, Text, StyleSheet, Pressable} from 'react-native';
+import { Text, StyleSheet, Pressable} from 'react-native';
 
 //define a constant lambda function called CustomButton that can have various parameters passed to it for customisable functionality and CSS styling
 const CustomButton = ({ onPress, text, type = "PRIMARY", bgColor, fgColor}) => {
