@@ -27,7 +27,6 @@ import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import chatRoomData from "../../../assets/data/Chats";
 import ChatMessage from "../../components/ChatMessage";
 import InputBox from "../../components/InputBox";
-import NewMessageButton from '../../components/NewMessageButton';
 import TeamListItem from '../../components/TeamListItem/Index';
 //define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
 const AssignTeamMemberScreen = () => {
