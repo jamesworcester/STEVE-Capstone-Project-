@@ -14,7 +14,7 @@ import { useRoute } from '@react-navigation/native';
 //AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
-import CustomInput from '../../components/CustomInput/CustomInput';
+import CustomInput from '../../components/PersonalisedInput/CustomInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';

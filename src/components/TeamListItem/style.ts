@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
   },
-  lefContainer: {
+  leftContainer: {
     flexDirection: 'row',
   },
   midContainer: {
