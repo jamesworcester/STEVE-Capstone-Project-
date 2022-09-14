@@ -2,10 +2,11 @@
 Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
+Refactored by James Worcester on 14/09/2022 (Sprint 9)
 */
 //SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
 //react-native imports
-import React, {useState} from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
 //@react-native/native import
 import { useNavigation } from '@react-navigation/native';
@@ -25,11 +26,9 @@ import * as queries from '../../graphql/queries';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regex (regular expression) constant to check if the email is in the correct format. WILL NEED TO BE CHANGED/UPDATED
 
-//define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
 const SignUpScreen = () => {
-
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
-    const pwd = watch('password'); //watch the password being entered in the 'password' CustomInput
+    const pwd = watch('password'); //watch the password being entered in the 'password' PersonalisedInput
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const {height} = useWindowDimensions(); //sets the height of the window
 
@@ -91,9 +90,9 @@ const SignUpScreen = () => {
                     placeholder="Email"
                     rules={{
                         required: 'Email is required', //sets the TextInput as required
-                        pattern: //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
+                        pattern: 
                         {
-                            value: EMAIL_REGEX,
+                            value: EMAIL_REGEX, //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
                             message: 'Email is invalid'
                         }
                     }}
@@ -107,11 +106,11 @@ const SignUpScreen = () => {
                     rules={{
                         required: 'Password is required',
                         minLength: {value: 8,
-                        message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
+                        message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 8 characters long, else there will be a handled error
                     },
                         maxLength: {
                         value: 30,
-                        message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
+                        message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 30 characters long, else there will be a handled error
                     }
                     }}
                 />
@@ -171,5 +170,4 @@ const styles = StyleSheet.create({
 
 })
 
-//export the SignUpScreen lambda function
 export default SignUpScreen

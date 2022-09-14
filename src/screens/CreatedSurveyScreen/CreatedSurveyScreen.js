@@ -1,11 +1,12 @@
 /*
 Programmer: James Worcester
 Edited by: James Worcester on 04/09/2022
+Refactored by James Worcester on 14/09/2022 (Sprint 9)
 */
-//SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
+//Screen to view a created survey
 //react-native imports
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
 //@react-native/native import
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
@@ -14,22 +15,18 @@ import {useForm} from 'react-hook-form';
 //AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
-import CustomInput from '../../components/CustomInput/CustomInput';
+import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
-//user defined logo import
-import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
-//define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
 const CreatedSurveyScreen = () => {
     const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const route = useRoute(); //route passed parameters from the previous screen (SignUp)
+    const route = useRoute(); //route passed parameters from the previous screen
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
     const {height} = useWindowDimensions(); //sets the height of the window
 
     const NavigateSurvey = () => { // Opens Survey Completion Screen
         navigation.navigate('CompletingSurveyScreen');
     }
-
 
     return (
         <ScrollView>
@@ -52,7 +49,7 @@ const CreatedSurveyScreen = () => {
                 <Text style={styles.text_bold}>Question 5:</Text>
                 <Text style={styles.text}>{route.params.data.question5}</Text>
 
-                <PersonalisedButton //Register Button
+                <PersonalisedButton
                     text="Navigate to Survey"
                     onPress={NavigateSurvey}
                 />
@@ -92,5 +89,4 @@ const styles = StyleSheet.create({
 
 })
 
-//export the SignUpScreen lambda function
 export default CreatedSurveyScreen

@@ -1,8 +1,3 @@
-/*
-Programmer: James Worcester
-Created by: James Worcester on 31/07/2022 (Sprint 6)
-*/
-//Basic HomeScreen, TO BE REPLACED BY A GOOD HOMESCREEN
 import React, { Component } from 'react'
 
 import 'react-native-gesture-handler';

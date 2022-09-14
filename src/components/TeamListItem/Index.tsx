@@ -1,14 +1,15 @@
 /*
 Programmer: James Worcester
-Created by: James Worcester on 31/07/2022 (Sprint 6)
 Refactored by: James Worcester on 13/09/2022 (Sprint 9)
 */
+import React from "react";
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 //import Team type from types.ts
 import { Team } from "../../types";
 import styles from "./style";
 //import navigation
 import { useNavigation } from "@react-navigation/native";
+import moment from "moment";
 //import graphQL API mutations and queries
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
@@ -26,7 +27,7 @@ const TeamListItem = (props: TeamListItemProps) => {
         async function fetchTeamMembers() {
             //fetch Team Memberships from database filtered by team_id
             const teamMembers1 = await API.graphql(graphqlOperation(queries.listTeam_MembershipsWhere, {team_id: team.id}));
-            //store array data from above query in variable
+            //store array data from above query in more specific variable
             const teamMembers2 = teamMembers1.data.listTeam_MembershipsWhere;
             //define empty array to store team member data
             const teamMembers3 = [];

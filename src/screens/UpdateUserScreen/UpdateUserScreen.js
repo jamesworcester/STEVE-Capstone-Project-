@@ -1,11 +1,12 @@
 /*
 Programmer: James Worcester
 Created by: James Worcester on 04/09/2022 (Sprint 8)
+Refactored by James Worcester on 14/09/2022 (Sprint 9)
 */
-//SignInScreen users are navigated to after signing in for the first time. Allows users to enter their user details into the database
+//Screen users are directed to after first sign in to update their details
 //react-native imports
 import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert, useWindowDimensions} from 'react-native';
 //@react-native/native import
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
@@ -16,8 +17,6 @@ import { Auth } from 'aws-amplify';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
-//user defined logo import
-import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
@@ -27,9 +26,9 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 
 const UpdateUserScreen = () => {
     const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const route = useRoute(); //route passed parameters from the previous screen (SignUp)
+    const route = useRoute(); //route passed parameters from the previous screen (SignIn)
 
-    current_user = route.params.current_user //get the current user info from the previous screen and store the data in a variable called current_info
+    current_user = route.params.current_user //get the current user info from the previous screen and store the data in a variable called current_user
 
     const {register, control, handleSubmit, watch, setValue} = useForm();
     console.log(current_user.data.getUser.email)
@@ -51,14 +50,14 @@ const UpdateUserScreen = () => {
             }
             catch(e)
             {
-                Alert.alert('Oops', e.message);
+                Alert.alert('Error', e.message);
             }
         }
         updateUser() //call the updateUser function
     }
 
-    const onBackPressed = () => { //if the 'Have an account? Sign in' button is clicked
-        navigation.goBack(); //navigate back to the previous screen
+    const onBackPressed = () => {
+        navigation.goBack();
     }
 
     return (
@@ -72,13 +71,12 @@ const UpdateUserScreen = () => {
                 <PersonalisedInput //Custom TextInput
                 name="email"
                 control={control}
-                //value={current_user.data.getUser.email}
                 defaultValue={current_user.data.getUser.email}
                 rules={{
                     required: 'Email is required', //sets the TextInput as required
-                    pattern: //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
+                    pattern: 
                     {
-                        value: EMAIL_REGEX,
+                        value: EMAIL_REGEX, //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
                         message: 'Email is invalid'
                     }
                 }}
@@ -89,10 +87,8 @@ const UpdateUserScreen = () => {
                 name="phone"
                 control={control}
                 defaultValue={current_user.data.getUser.phone}
-                //value={current_user.data.getUser.phone}
                 rules={{
                     required: 'Phone Number is required', //sets the TextInput as required
-
                 }}
                 />
 
@@ -101,7 +97,6 @@ const UpdateUserScreen = () => {
                 name="first_name"
                 control={control}
                 defaultValue={current_user.data.getUser.first_name}
-                //value={current_user.data.getUser.first_name}
                 rules={{
                     required: 'First Name is required', //sets the TextInput as required
                 }}
@@ -112,7 +107,6 @@ const UpdateUserScreen = () => {
                 name="last_name"
                 control={control}
                 defaultValue={current_user.data.getUser.last_name}
-                //value={current_user.data.getUser.last_name}
                 rules={{
                     required: 'Last Name is required', //sets the TextInput as required
                 }}
@@ -123,7 +117,6 @@ const UpdateUserScreen = () => {
                 name="gender"
                 control={control}
                 defaultValue={current_user.data.getUser.gender}
-                //value={current_user.data.getUser.gender}
                 rules={{
                     required: 'Gender is required', //sets the TextInput as required
                 }}
@@ -168,5 +161,4 @@ const styles = StyleSheet.create({
 
 })
 
-//export the SignUpScreen lambda function
 export default UpdateUserScreen

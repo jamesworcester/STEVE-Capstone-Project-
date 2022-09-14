@@ -1,6 +1,7 @@
 /*
 Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
+Refactored by James Worcester on 14/09/2022 (Sprint 9)
 */
 //ForgotPasswordScreen users are navigated to from the SignInScreen if they click on 'Forgot password?'
 //react-native imports
@@ -18,7 +19,7 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
-//define a constant lambda function called ForgotPasswordScreen that creates a CustomInput and two CustomButtons and allows the user to enter their email address to send a code to reset their password
+//define a constant lambda function called ForgotPasswordScreen that creates a PersonalisedInput and two PersonalisedButtons and allows the user to enter their email address to send a code to reset their password
 const ForgotPasswordScreen = () => {
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const {control, handleSubmit} = useForm(); //use form from react-hook-form
@@ -37,11 +38,10 @@ const ForgotPasswordScreen = () => {
         }
     }
 
-    const onSignInPressed = () => { //navigate back to the SignIn page if 'Back to Sign in' is pressed
+    const onSignInPressed = () => {
         navigation.navigate('SignIn');
     }
 
-    //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
@@ -119,5 +119,4 @@ const styles = StyleSheet.create({
 
 })
 
-//export the ForgotPasswordScreen lambda function
 export default ForgotPasswordScreen

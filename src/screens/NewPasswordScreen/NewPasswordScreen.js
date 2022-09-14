@@ -1,6 +1,7 @@
 /*
 Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
+Refactored by James Worcester on 14/09/2022 (Sprint 9)
 */
 //NewPasswordScreen users are navigated to from the ForgotPasswordScreen after they have entered their password reset code and it has been validated by AWS Amplify
 //react-native imports
@@ -19,19 +20,19 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
-//define a constant lambda function called NewPasswordScreen that creates two CustomInputs and two CustomButtons and allows the user to enter the forgotPassword password reset code that was
+//define a constant lambda function called NewPasswordScreen that creates two PersonalisedInputs and two PersonalisedButtons and allows the user to enter the forgotPassword password reset code that was
 //emailed to them along with their new password
 const NewPasswordScreen = () => {
 
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
-    const pwd = watch('password'); //watch the password being entered in the 'password' CustomInput
+    const pwd = watch('password'); //watch the password being entered in the 'password' PersonalisedInput
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const route = useRoute(); //route passed parameters from the previous screen (forgotPasswordScreen)
     const {height} = useWindowDimensions(); //sets the height of the window
 
     const username = route.params.username; //set the username to be the same as the email that was passed from the forgotPassword screen
 
-    const onSubmitPressed = async (data) => { //asynchronous lambda function that collects data from the code and password CustomInputs
+    const onSubmitPressed = async (data) => { //asynchronous lambda function that collects data from the code and password PersonalisedInputs
         try{
             await Auth.forgotPasswordSubmit( //uses AWS Amplify forgotPasswordSubmit to submit a change to the iAM user's password
                 username, 
@@ -50,7 +51,7 @@ const NewPasswordScreen = () => {
         navigation.navigate('SignIn');
     }
 
-    //return the user defined components from CustomInput and CustomButton
+    //return the user defined components from PersonalisedInput and PersonalisedButton
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
@@ -85,11 +86,11 @@ const NewPasswordScreen = () => {
                     rules={{
                         required: 'Password is required',
                         minLength: {value: 8,
-                        message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 12 characters long, else there will be a handled error
+                        message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 8 characters long, else there will be a handled error
                     },
                         maxLength: {
                         value: 30,
-                        message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 40 characters long, else there will be a handled error
+                        message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 30 characters long, else there will be a handled error
                     }
                     }}
                     
@@ -156,5 +157,5 @@ const styles = StyleSheet.create({
     }
 
 })
-//export the NewPasswordScreen lambda function
+
 export default NewPasswordScreen

@@ -2,9 +2,9 @@
 Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
+Refactored by James Worcester on 14/09/2022 (Sprint 9)
 */
-//SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
-//react-native imports
+//Screen to create a new Team
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
 //@react-native/native import
@@ -16,33 +16,26 @@ import { Auth } from 'aws-amplify';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
-//user defined logo import
-import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
 
-//define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
 const CreateTeamScreen = () => {
 
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
-    const pwd = watch('password'); //watch the password being entered in the 'password' CustomInput
     const navigation = useNavigation(); //use navigation from @react-navigation/native
     const {height} = useWindowDimensions(); //sets the height of the window
 
-    const onCreateTeamPressed = async (data) => { //asynchronous lambda function that attempts to create an account using the entered email, password and repeat password
+    const onCreateTeamPressed = async (data) => { 
         const {name, description} = data;
-            // below: very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to cognito and duplicating their userSub and email to the SQL database. Current workflow requires
-            // Cognito signup then duplication with Cognito's auto-genereated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
-            // Cognito but not in the database, which is a critical error
                     try {
-                        const teamDetails = { //stores userDetails for duplicateUser() function
+                        const teamDetails = { //stores teamDetails
                             name: name,
                             description: description,
                         }
                         const team = await API.graphql(graphqlOperation(mutations.createTeamAdmin, {input: teamDetails})); //create a team in the database
-                        navigation.goBack() //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
+                        navigation.goBack(); //go back to the previous screen
                     }
                     catch(e)
                     {
@@ -51,8 +44,8 @@ const CreateTeamScreen = () => {
                     }
                 }
 
-    const onBackPressed = () => { //if the 'Have an account? Sign in' button is clicked
-        navigation.goBack(); //navigate back to the previous screen
+    const onBackPressed = () => {
+        navigation.goBack();
     }
 
     return (
@@ -117,5 +110,4 @@ const styles = StyleSheet.create({
 
 })
 
-//export the SignUpScreen lambda function
 export default CreateTeamScreen

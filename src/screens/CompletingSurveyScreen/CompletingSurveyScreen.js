@@ -1,8 +1,9 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 04/09/2022
+Edited by: James Worcester on 04/09/2022 (Sprint 8)
+Refactored by: James Worcester on 13/09/2022 (Sprint 9)
 */
-//SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
+//Screen for users to complete a survey
 //react-native imports
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
@@ -16,15 +17,10 @@ import { Auth } from 'aws-amplify';
 //user defined component imports
 import PersonalisedButton from '../../components/PersonalisedButton';
 import PersonalisedInput from '../../components/PersonalisedInput';
-//user defined logo import
-import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
-//user defined API import
-
-//define a constant lambda function called SignUpScreen that creates three CustomInputs and two CustomButtons and allows the user to sign up for an account or navigate to sign into an account
 const CompletingSurveyScreen = () => {
     const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const route = useRoute(); //route passed parameters from the previous screen (SignUp)
+    const route = useRoute(); //route passed parameters from the previous screen
     const {control, handleSubmit, watch, reset} = useForm(); //use form from react-hook-form
     const {height} = useWindowDimensions(); //sets the height of the window
 
@@ -36,11 +32,9 @@ const CompletingSurveyScreen = () => {
             }
             catch(e)
             {
-                Alert.alert('Oops', e.message);
+                Alert.alert('Error', e.message);
             }
     }
-
-
 
     return (
         <ScrollView>
@@ -125,5 +119,4 @@ const styles = StyleSheet.create({
 
 })
 
-//export the SignUpScreen lambda function
 export default CompletingSurveyScreen

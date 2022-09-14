@@ -1,13 +1,21 @@
+/*
+Programmer: James Worcester
+Refactored by: James Worcester on 13/09/2022 (Sprint 9)
+*/
 import React from "react";
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
+//import TeamMember type from types.ts
 import { TeamMember } from "../../types";
 import styles from "../UserListItem/style";
-import moment from "moment";
+//import navigation
 import { useNavigation } from "@react-navigation/native";
+import moment from "moment";
+//import graphQL API mutations and queries
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
 
+//export TeamMembersListItemProps as type TeamMember
 export type TeamMembersListItemProps = {
     teamMember: TeamMember;
 }
@@ -15,26 +23,17 @@ export type TeamMembersListItemProps = {
 const TeamMembersListItem = (props: TeamMembersListItemProps) => {
     const {teamMember} = props;
     const navigation = useNavigation();
-    //const user = chatRoom.users[1];
     const onClick = async () => {
         async function fetchTeamMembers() {
+            //fetch user data from database filtered
             const users = await API.graphql(graphqlOperation(queries.listUsers));
+            //store array data from above query in more specific variable
             const users2 = users.data.listUsers.items;
-
-            //const teamMembers1 = await API.graphql(graphqlOperation(queries.listTeam_Memberships, {filter: {team_id: {eq: team.id}}}));
-            //const teamMembersTest = await API.graphql(graphqlOperation(queries.listUsers));
-            //console.log(teamMembers1);
-            //for each team member, get the user
-            //const teamMembers2 = teamMembers1.data.listTeam_Memberships;
-            //const teamMembers3 = [];
             try {
-                //console.log("hello")
-                //console.log(teamMembers3)
             }
             catch(e){
                 console.log(e);
             }
-
 
             navigation.navigate('ViewTeamMembers',
             {id: users2.id,
@@ -42,13 +41,9 @@ const TeamMembersListItem = (props: TeamMembersListItemProps) => {
             last_name: users2.last_name,
             email: users2.email,
             phone: users2.phone,
-            //description: team.description,
-            //is_archived: team.is_archived,
-            //teamMembers: teamMembers2
             })
         }
         fetchTeamMembers();
-
 }
 
 return(

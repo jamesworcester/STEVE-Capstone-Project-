@@ -2,6 +2,7 @@
 Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
+Refactored by James Worcester on 14/09/2022 (Sprint 9)
 */
 //ConfirmEmailScreen a user is navigated to from the SignUpScreen after they successfully create an account in the app so that they can confirm their email using a code that is emailed to them
 //react-native imports
@@ -20,19 +21,17 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
-//define a constant lambda function called ConfirmEmailScreen that creates a CustomInput and three CustomButtons and checks if the user has entered the correct code, while allowing them to resend
+//define a constant lambda function called ConfirmEmailScreen that creates a PersonalisedInput and three PersonalisedButtons and checks if the user has entered the correct code, while allowing them to resend
 //the code and navigate back to the SignIn screen
 const ConfirmEmailScreen = () => {
     const route = useRoute(); //route passed parameters from the previous screen (SignUp)
     const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
     const {height} = useWindowDimensions(); //sets the height of the window
-    
     const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const [code, setCode] = useState(''); //use state
 
     const username = route.params.email; //set the username to be the same as the email that was passed from the SignUp screen
     
-    const onConfirmPressed = async (data) => { //asynchronous lambda function that collects data from the code CustomInput
+    const onConfirmPressed = async (data) => { //asynchronous lambda function that collects data from the code PersonlisedInput
         try{
                 await Auth.confirmSignUp( //uses AWS Amplify Auth to confirm signing up
                     username, 
@@ -59,11 +58,10 @@ const ConfirmEmailScreen = () => {
         }
     }
 
-    const onSignInPressed = () => { //if 'Back to Sign in' is clicked
+    const onSignInPressed = () => {
         navigation.navigate('SignIn');
     }
 
-    //return the user defined components from CustomInput and CustomButton
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
@@ -136,5 +134,4 @@ const styles = StyleSheet.create({
 
 })
 
-//export the ConfirmEmailScreen lambda function
 export default ConfirmEmailScreen
