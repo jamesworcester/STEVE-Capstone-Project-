@@ -35,7 +35,7 @@ const SignUpScreen = () => {
     const onRegisterPressed = async (data) => { //asynchronous lambda function that attempts to create an account using the entered email, password and repeat password
         const {email, password} = data;
             // below: very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to cognito and duplicating their userSub and email to the SQL database. Current workflow requires
-            // Cognito signup then duplication with Cognito's auto-genereated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
+            // Cognito signup then duplication with Cognito's auto-generated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
             // Cognito but not in the database, which is a critical error
             async function testDBConnection() { 
                 try
