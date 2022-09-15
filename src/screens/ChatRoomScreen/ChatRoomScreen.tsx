@@ -32,12 +32,14 @@ const ChatRoomScreen =() => {
     const route = useRoute();
     const navigation = useNavigation();
 
+    const channel_id = route.params.id;
+
 
     useEffect(() => {
       const listPostsByChannel = async () => {
         try
         {
-          const postData = await API.graphql(graphqlOperation(queries.listPostsByChannelWithName, {channel_id: route.params.id}));
+          const postData = await API.graphql(graphqlOperation(queries.listPostsByChannelWithName, {channel_id: channel_id}));
           // console.log("TEST")
           // console.log(postData)
           // console.log(postData.data.listPostsByChannelWithName)
@@ -80,7 +82,7 @@ const ChatRoomScreen =() => {
             // inverted
           />
 
-          <InputBox /> 
+          <InputBox channel_id={channel_id} /> 
          
         </ImageBackground>
 
