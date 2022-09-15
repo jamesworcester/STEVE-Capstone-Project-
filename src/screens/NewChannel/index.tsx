@@ -2,14 +2,44 @@ import { Header } from "@rneui/base";
 import React, { useState } from "react";
 import { View, Text, Switch, Button} from "react-native";
 import style from "./styles";
-import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5,AntDesign } from '@expo/vector-icons';
 import { TextInput } from "react-native-gesture-handler";
 import { Divider } from "react-native-paper";
 import { Feather } from '@expo/vector-icons';
+import { StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
+//@react-native/native import
+import { useNavigation } from '@react-navigation/native';
+//react-hook-form import for easy form validation https://react-hook-form.com/
+import {useForm} from 'react-hook-form';
+//AWS Amplify import
+import { Auth } from 'aws-amplify';
+//user defined component imports
+import PersonalisedInput from '../../components/PersonalisedInput';
+import PersonalisedButton from '../../components/PersonalisedButton';
+//user defined API import
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
+import * as queries from '../../graphql/queries';
 
 const NewChannel = () =>{
-    const navigation = useNavigation();
+    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
+    const pwd = watch('password'); //watch the password being entered in the 'password' PersonalisedInput
+    const navigation = useNavigation(); //use navigation from @react-navigation/native
+    const {height} = useWindowDimensions(); //sets the height of the window
+
+    const onSubmit = async (data) => {
+        const {name, description} = data
+        try 
+        {
+            const newChannel = await API.graphql(graphqlOperation(mutations.createChannel_NameDescription, {input: {channel_text: name, description: description}}));
+            navigation.navigate('AddMemberScreen')
+        }
+        catch(e)
+        {
+            Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+        }
+    }
+
     const [ChannelName,setChannelName] = useState(''); 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -31,19 +61,42 @@ const NewChannel = () =>{
                 : <Feather name="lock" size={18} color="black" 
                     style = {style.icon}/>
                 }   
-                <TextInput style = {style.NewNameInput}
+                {/* <TextInput style = {style.NewNameInput}
                     placeholder = {'e.g. plan-budget'}
                     value = {ChannelName}
                     onChangeText = {setChannelName}
+                /> */}
+
+                <PersonalisedInput //Custom TextInput
+                    name="name"
+                    control={control}  
+                    placeholder="Channel Name"
+                    rules={{
+                        required: 'Channel Name is required', //sets the Repeat Password as required
+                      }}
                 />
+            
             </View>
+
+
+
+
             <Divider style = {{margin :15}} />
 
             <Text style = {style.ForDescText}>Description (optional) </Text>
 
-            <TextInput style = {style.DescriptionInput}
+            {/* <TextInput style = {style.DescriptionInput}
                     placeholder = {'What is this channel about'}
-            />
+            /> */}
+
+            <PersonalisedInput //Custom TextInput
+                    name="description"
+                    control={control}  
+                    placeholder="Description"
+                    rules={{
+                        required: 'Description is required', //sets the Repeat Password as required
+                      }}
+                />
 
             <Divider style = {{margin :15}} />
           
@@ -59,7 +112,13 @@ const NewChannel = () =>{
                 onValueChange={toggleSwitch}
                 value={isEnabled} />
             </View>
-            <View style = {style.CreateButton}>
+            <View>
+            <PersonalisedButton //Register Button
+                    text="Register"
+                    onPress={handleSubmit(onSubmit)}
+                />
+            </View>
+            {/* <View style = {style.CreateButton}>
                 {!ChannelName 
                 ? <Button title="CREATE" color="#D3D3D3" 
                 onPress={() => {alert('U have not typed the name of new channel')}}/>
@@ -69,7 +128,7 @@ const NewChannel = () =>{
                     color="#0096FF"    
                 />
                 }
-            </View>
+            </View> */}
 
         </View>
     )

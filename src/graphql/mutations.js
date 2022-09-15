@@ -412,6 +412,18 @@ export const createChannel = /* GraphQL */ `
     }
   }
 `;
+export const createChannel_NameDescription = /* GraphQL */ `
+  mutation CreateChannel_NameDescription($input: CreateChannelInput!) {
+    createChannel_NameDescription(input: $input) {
+      id
+      channel_type
+      channel_text
+      description
+      picture_filename
+      picture_data
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost($input: CreatePostInput!) {
     createPost(input: $input) {
