@@ -15,15 +15,15 @@ const NewChannel = () =>{
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return(
         <View>
-            <Header 
+            <Header //main header
             backgroundColor='#0096FF' centerComponent={{text:'New Channel', 
             style: {color: '#E6E6FA',fontSize:18}}}
             leftComponent={<AntDesign name="close" size={24} color="white" 
-            onPress={() => {navigation.navigate('Chatchannel')}}/> }
+            onPress={() => {navigation.navigate('Chatchannel')}}/> } //navigate back to chatchannel
             />
 
             <Text style = {style.ForNameText}>Name </Text>
-
+            
             <View style = {style.FirstContainer}>   
                 {!isEnabled 
                 ? <FontAwesome5 name="hashtag" size={18} color="black" 
@@ -64,7 +64,7 @@ const NewChannel = () =>{
                 ? <Button title="CREATE" color="#D3D3D3" 
                 onPress={() => {alert('U have not typed the name of new channel')}}/>
                 : <Button 
-                    onPress={() => {navigation.navigate('AddMemberScreen')}}
+                    onPress={() => {navigation.navigate('AddMemberScreen')}} //navigate to Addmember screen after user click on create button
                     title="CREATE"
                     color="#0096FF"    
                 />

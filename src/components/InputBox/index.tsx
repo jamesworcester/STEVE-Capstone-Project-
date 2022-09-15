@@ -10,24 +10,16 @@ import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 
 const InputBox = () => {
 
-    const [message, setMessage] = useState('');
-    const onMicrophonePress = () => {
-        console.warn('on Microphone')
-    }
+    const [message, setMessage] = useState(''); 
+    
     const onSendPress = () => {
         console.warn(`Sending : ${message}`)
         //send the message to the backend 
         setMessage('');
     }
-    const onPress = () => {
-        if(!message) {
-            onMicrophonePress();
-        } else {
-            onSendPress();
-        }
-    }
+
     return(
-        <KeyboardAvoidingView
+        <KeyboardAvoidingView //this is the way to make the keyboard display properly when user typing
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             keyboardVerticalOffset = {60}
             style = {{width: '100%'}}
@@ -35,11 +27,11 @@ const InputBox = () => {
         <View style={styles.container}>
         <View style = {styles.mainContainer}>
             <FontAwesome5 name="laugh-beam" size={24} color="grey"/>
-            <TextInput style = {styles.textInput}
+            <TextInput style = {styles.textInput} // field to type mssage in
                     placeholder = {'Type a message'}
                     multiline
-                    value={message}
-                    onChangeText = {setMessage}
+                    value={message} 
+                    onChangeText = {setMessage} //when user already typed a message in, will change the state to setMessage 
                 />
                 <Entypo name="attachment" size={24} color="grey"
                     style = {styles.icon}
@@ -48,12 +40,9 @@ const InputBox = () => {
                      style = {styles.icon}/>} 
 
             </View>
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onSendPress}>
             <View style = {styles.buttonContainer}>
-                {!message 
-                ? <MaterialCommunityIcons name="microphone" size={24} color="white"/>
-                : <MaterialIcons name="send" size={20} color="white"/>
-                }
+                 <MaterialIcons name="send" size={20} color="white"/>
             </View>
             </TouchableOpacity>
         </View>
