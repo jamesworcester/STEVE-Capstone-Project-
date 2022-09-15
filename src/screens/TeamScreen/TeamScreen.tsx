@@ -6,10 +6,7 @@ import React from 'react'
 import { Header } from "@rneui/themed";
 import { FlatList } from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
-
-import ChatRooms from '../../../assets/data/ChatRooms';
-import CreateNewChannel from '../../components/CreateNewChannel'; //import the blue plus button 
-import TeamListItem from '../../components/ChatListItem/Index'; //import chatlistitem component so we can display it on a flatlist
+//import TeamListItem from '../../components/TeamListItem/Index'; //import chatlistitem component so we can display it on a flatlist
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
 //@react-native/native import
 import { useNavigation } from '@react-navigation/native';
@@ -26,9 +23,11 @@ import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
 import {useEffect, useState} from "react";
 
+import TeamListItem from '../../components/TeamListItem/Index';
 
-export default function Team() {
-     const [team, setTeam] = useState([]);
+
+export default function TeamScreen() {
+    const [team, setTeam] = useState([]);
 
     useEffect(() => {
         const getTeams = async () => {
@@ -44,25 +43,23 @@ export default function Team() {
         getTeams();
     }, []);
 
-     return (
-        
-         <View >
-             <Header // Header of the screen 
-             backgroundColor='#051C60'
-             leftComponent={{ color: '#fff' }}
-             centerComponent={{text:'TEAMS', style: {color: '#E6E6FA', fontSize : 16}, 
-             }}/>
+    return (
+        <View >
+            <Header // Header of the screen 
+            backgroundColor='#051C60'
+            leftComponent={{ color: '#fff' }}
+            centerComponent={{text:'TEAMS', style: {color: '#E6E6FA', fontSize : 16}, 
+            }}/>
 
-         <FlatList 
-             data={team}
-             //renderItem = {({item}) => <TeamListItem team={item}/>} //display all the Chatlistitem components (its also understanded as a channel)here
-             renderItem = {({item}) => <TeamListItem team={item}/>}
-             keyExtractor = {(item) => item.id} // this is id for every single channel 
-         />
+        <FlatList 
+            data={team}
+            renderItem = {({item}) => <TeamListItem team={item}/>} //display all the Chatlistitem components (its also understanded as a channel)here
+            keyExtractor = {(item) => item.id} // this is id for every single channel 
+        />
 
-         </View>
+        </View>
         
-     )
+    )
 }
 
-export default Team
+export default TeamScreen

@@ -34,7 +34,7 @@ import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
 import AddMemberScreen from '../screens/AddMemberScreen';
 import NewChannel from '../screens/NewChannel';
 import UserSearchScreen from '../screens/UserSearchScreen';
-import Team from '../screens/Team';
+import TeamScreen from '../screens/TeamScreen/TeamScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -72,7 +72,7 @@ const Navigation = () => {
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
                 <Stack.Screen name="NewChannel" component={NewChannel} />
                 <Stack.Screen name="UserSearch" component={UserSearchScreen} />
-                <Stack.Screen name="Team" component={Team} />
+                <Stack.Screen name="Team" component={TeamScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

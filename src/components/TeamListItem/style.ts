@@ -11,15 +11,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
   },
-  leftContainer: {
+  lefContainer: {
     flexDirection: 'row',
   },
   midContainer: {
     justifyContent: 'space-around'
   },
   avatar: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 50,
     marginRight: 15,
   },
