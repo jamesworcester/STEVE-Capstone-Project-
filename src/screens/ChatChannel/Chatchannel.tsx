@@ -29,8 +29,6 @@ export default function Chatchannel() {
             try {
                 
                 const channelData = await API.graphql(graphqlOperation(queries.listChannels));
-                //console.log(channelData);
-                //console.log(channelData.data.listChannels);
                 setChannel(channelData.data.listChannels);
             }
             catch(e)
