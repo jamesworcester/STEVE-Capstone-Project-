@@ -1,7 +1,7 @@
 export type User = {
     id: String;
-    name: String;
-    imageUri: String;
+    first_name: String;
+    last_name: String;
 }
 
 export type Message = {

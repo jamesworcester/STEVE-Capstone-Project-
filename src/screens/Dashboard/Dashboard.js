@@ -15,6 +15,8 @@ import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunit
 import CreateSurveyScreen from '../CreateSurveyScreen';
 import AdminToolsScreen from '../AdminToolsScreen';
 import UserSearchScreen from '../UserSearchScreen';
+import UserScreen from '../UserScreen/UserScreen';
+//import UserScreen from '../UserScreen';
 
 
 
@@ -57,7 +59,7 @@ const Dashboard = () => {
         ),
     }}/>
     
-    <Tab.Screen name="Directory" component={UserSearchScreen}      // Channel Screen
+    <Tab.Screen name="Directory" component={UserScreen}      // Channel Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="wechat" color={color} size={26}/>
