@@ -66,7 +66,7 @@ const Navigation = () => {
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="ViewTeams" component={ViewTeamsScreen} />
-                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} />
+                <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} /> 
                 <Stack.Screen name="ViewTeamMembers" component={ViewTeamMembersScreen} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="NewChannel" component={NewChannel} /> 
