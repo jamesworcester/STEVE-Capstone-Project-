@@ -11,6 +11,14 @@ export type Message = {
     user: User;
 }
 
+export type Post = {
+    id: String;
+    channel_id: String;
+    user_id: String;
+    content: String;
+    created_date_time: String;
+}
+
 export type ChatRoom = {
     id: String;
     users: [User];

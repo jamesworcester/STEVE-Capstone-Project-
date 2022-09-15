@@ -4,19 +4,68 @@ import { Header } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons'; 
 import chatRoomData from "../../../assets/data/Chats"; //import chat data from dummy data
-import { useNavigation } from "@react-navigation/native";
 import ChatMessage from "../../components/ChatMessage";
 import InputBox from "../../components/InputBox"; 
+import 'react-native-gesture-handler';
+//@react-native/native import
+import { useNavigation } from '@react-navigation/native';
+//react-hook-form import for easy form validation https://react-hook-form.com/
+import {useForm} from 'react-hook-form';
+//AWS Amplify import
+import { Auth } from 'aws-amplify';
+//user defined component imports
+import PersonalisedInput from '../../components/PersonalisedInput';
+import PersonalisedButton from '../../components/PersonalisedButton';
+//user defined API import
+import { API, graphqlOperation } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
+import * as queries from '../../graphql/queries';
+import {useEffect, useState} from "react";
+
 
 const bg = {uri: "https://raw.githubusercontent.com/Savinvadim1312/WhatsappClone/main/assets/images/BG.png"}
 
 const ChatRoomScreen =() => {
-  
+    const [post, setPost] = useState([]);
+    const [myId, setId] = useState(null);
+
     const route = useRoute();
     const navigation = useNavigation();
+
+
+    useEffect(() => {
+      const listPostsByChannel = async () => {
+        try
+        {
+          const postData = await API.graphql(graphqlOperation(queries.listPostsByChannelWithName, {channel_id: route.params.id}));
+          // console.log("TEST")
+          // console.log(postData)
+          // console.log(postData.data.listPostsByChannelWithName)
+          setPost(postData.data.listPostsByChannelWithName);
+        }
+        catch(e)
+        {
+          console.log(e);
+        }
+      }
+      listPostsByChannel();
+  }, []);
+
+  useEffect(() => {
+    const getId = async () => {
+      const user = await Auth.currentAuthenticatedUser();
+      const { username } = user; //get the id (username in this case) of the current user
+      setId(username);
+    }
+    getId();
+  }, [])
+
+  
+
+
     return (
         <View>
-            <ImageBackground  style={{width:'100%',height:'100%'}} source={bg} >
+            <ImageBackground style={{width:'100%',height:'100%'}} source={bg} >
             <Header 
             backgroundColor='#0096FF'
             leftComponent={<AntDesign name="back" color="white" size={24} 
@@ -25,11 +74,9 @@ const ChatRoomScreen =() => {
             //display the name of user u are chatting with on the center of header
             />
         
-
-        
           <FlatList 
-            data={chatRoomData.messages}  //get the message data from dummy data
-             renderItem={({item}) => <ChatMessage message={item}/> } //to display content from message dummy data
+            data={post}  //get the message data from dummy data
+             renderItem={({item}) => <ChatMessage post={item} myId={myId}/> } //to display content from message dummy data
             // inverted
           />
 

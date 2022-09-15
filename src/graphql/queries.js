@@ -872,6 +872,21 @@ export const listPostsByChannel = /* GraphQL */ `
     }
   }
 `;
+export const listPostsByChannelWithName = /* GraphQL */ `
+  query ListPostsByChannelWithName($channel_id: String!) {
+    listPostsByChannelWithName(channel_id: $channel_id) {
+      id
+      channel_id
+      user_id
+      content
+      created_date_time
+      edited_date_time
+      archived_date_time
+      first_name
+      last_name
+    }
+  }
+`;
 export const listComments = /* GraphQL */ `
   query ListComments {
     listComments {

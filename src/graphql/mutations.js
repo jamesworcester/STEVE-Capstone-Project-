@@ -437,6 +437,19 @@ export const createPost = /* GraphQL */ `
     }
   }
 `;
+export const createPostContent = /* GraphQL */ `
+  mutation CreatePostContent($input: CreatePostInput!) {
+    createPostContent(input: $input) {
+      id
+      channel_id
+      user_id
+      content
+      created_date_time
+      edited_date_time
+      archived_date_time
+    }
+  }
+`;
 export const createComment = /* GraphQL */ `
   mutation CreateComment($input: CreateCommentInput!) {
     createComment(input: $input) {
