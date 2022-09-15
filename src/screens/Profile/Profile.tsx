@@ -1,3 +1,6 @@
+/*
+Programmer: Hung
+*/
 import React from 'react'
 import { View, Text } from 'react-native'
 import { Header, Avatar } from "@rneui/themed";

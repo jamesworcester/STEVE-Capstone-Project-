@@ -1,3 +1,7 @@
+/*
+Programmer: Hung
+Edited by: James Worcester on 15/09/2022 (Sprint 9)
+*/
 import { Header } from "@rneui/base";
 import React, { useState } from "react";
 import { View, Text, Switch, Button} from "react-native";

@@ -1,5 +1,5 @@
 /*
-Programmer: James Worcester
+Programmer: James Worcester (code taken from Hung's other ListItem components)
 Refactored by: James Worcester on 13/09/2022 (Sprint 9)
 */
 import React from "react";

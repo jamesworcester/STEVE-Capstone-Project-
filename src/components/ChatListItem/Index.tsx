@@ -1,3 +1,7 @@
+/*
+Programmer: Hung
+Edited by: James Worcester on 15/09/2022 (Sprint 9)
+*/
 import React, {useEffect, useState} from 'react';
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import { ChatRoom } from "../../types"; //import global types of Chatroom

@@ -7,7 +7,7 @@ import React, {useState, useEffect} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, View, Text, TextInput
 } from 'react-native';
 
-const App = () => {
+const UserSearchScreen = () => {
 const [filteredData, setFilterData] = useState([]);
 const [masterData, setMasterData] = useState([]);
 const [search, setSearch] = useState('');

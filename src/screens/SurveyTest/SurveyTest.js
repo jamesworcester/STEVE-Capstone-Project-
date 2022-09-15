@@ -1,4 +1,7 @@
 
+/*
+Programmer: Alex McCoy
+*/
 import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
 import { Header } from "@rneui/themed";

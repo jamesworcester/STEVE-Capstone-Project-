@@ -1,3 +1,7 @@
+/*
+Programmer: Hung
+Edited by: James Worcester on 15/09/2022 (Sprint 9)
+*/
 import React from "react";
 import { Text,View, FlatList, ImageBackground} from "react-native";
 import { Header } from "@rneui/themed";

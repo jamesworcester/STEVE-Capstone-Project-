@@ -2,6 +2,7 @@
 Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
+Edited by: James Worcester on 15/09/2022 (Sprint 9)
 */
 //Navigation class that uses @react-navigation/native library for navigation between different screens of the app https://reactnavigation.org/docs/getting-started/
 //react-native imports
@@ -34,6 +35,7 @@ import Profile from '../screens/Profile';
 import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
 import AddMemberScreen from '../screens/AddMemberScreen';
 import NewChannel from '../screens/NewChannel';
+import UserSearchScreen from '../screens/UserSearchScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -72,6 +74,7 @@ const Navigation = () => {
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
                 <Stack.Screen name="NewChannel" component={NewChannel} />
+                <Stack.Screen name="UserSearch" component={UserSearchScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
