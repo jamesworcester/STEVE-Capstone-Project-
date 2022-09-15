@@ -30,18 +30,7 @@ const AdminToolsScreen = () => {
     }
 
     const onViewTeamsPressed =  () => {
-        async function fetchTeams() {
-            try
-            {
-                const teams = await API.graphql(graphqlOperation(queries.listTeams)); //list teams from database
-                navigation.navigate('ViewTeams', {teams: teams}); //navigate to ViewTeams screen and pass the teams data
-            }
-            catch(e)
-            {
-                Alert.alert('Error', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
-            }
-        }
-        fetchTeams();
+                navigation.navigate('Team'); //navigate to ViewTeams screen and pass the teams data
     }
 
     return (

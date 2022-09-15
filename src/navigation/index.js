@@ -29,13 +29,12 @@ import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
 import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import CreateTeamScreen from '../screens/CreateTeamScreen';
-import ViewTeamsScreen from '../screens/ViewTeamsScreen';
-import ViewTeamMembersScreen from '../screens/ViewTeamMembersScreen';
 import Profile from '../screens/Profile';
 import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
 import AddMemberScreen from '../screens/AddMemberScreen';
 import NewChannel from '../screens/NewChannel';
 import UserSearchScreen from '../screens/UserSearchScreen';
+import Team from '../screens/Team';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -67,14 +66,13 @@ const Navigation = () => {
                 <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
-                <Stack.Screen name="ViewTeams" component={ViewTeamsScreen} />
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} /> 
-                <Stack.Screen name="ViewTeamMembers" component={ViewTeamMembersScreen} />
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
                 <Stack.Screen name="NewChannel" component={NewChannel} />
                 <Stack.Screen name="UserSearch" component={UserSearchScreen} />
+                <Stack.Screen name="Team" component={Team} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

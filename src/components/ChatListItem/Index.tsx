@@ -13,6 +13,8 @@ import { Channel } from "../../types";
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
+//user defined logo import
+import placeholder_chatchannel from '../../../assets/images/placeholder_chatchannel.png';
 
 export type ChatListItemProps = {
     channel: Channel;
@@ -30,11 +32,12 @@ const ChatListItem = (props: ChatListItemProps) => {
         })
     }
 
+    //<Image source={{/*uri: user.imageUri*/}} style={styles.avatar}/>
 return(
 <TouchableWithoutFeedback onPress={onClick}>
 <View style={styles.container}>
     <View style={styles.lefContainer}>
-        <Image source={{/*uri: user.imageUri*/}} style={styles.avatar}/>
+        <Image source={placeholder_chatchannel} style={styles.avatar} />
         <View style={styles.midContainer}>
             <Text>{channel.channel_text}</Text>
             <Text>{channel.description}</Text>
