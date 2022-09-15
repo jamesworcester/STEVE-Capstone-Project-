@@ -32,7 +32,7 @@ const NewChannel = () =>{
         try 
         {
             const newChannel = await API.graphql(graphqlOperation(mutations.createChannel_NameDescription, {input: {channel_text: name, description: description}}));
-            navigation.navigate('AddMemberScreen')
+            navigation.navigate('Chatchannel')
         }
         catch(e)
         {

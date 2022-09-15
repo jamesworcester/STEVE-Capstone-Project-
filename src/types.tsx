@@ -17,6 +17,12 @@ export type ChatRoom = {
     lastMessage: Message;
 }
 
+export type Channel = {
+    id: String;
+    channel_text: String;
+    description: String;
+}
+
 export type Team = {
     id: String;
     name: String;
