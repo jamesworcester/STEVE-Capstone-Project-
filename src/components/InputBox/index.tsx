@@ -31,8 +31,9 @@ import * as queries from '../../graphql/queries';
 
 
 const InputBox = (props) => {
-
-    const { channel_id } = props;
+    //console.log(props)
+    const channel_id = props.channel_id;
+    //console.log(channel_id)
 
     const [post, setPost] = useState('');
     const [myId, setId] = useState(null);
@@ -46,18 +47,8 @@ const InputBox = (props) => {
         getId();
       }, [])
 
+    
 
-    const createNewPost = async () => {
-        try 
-        {
-           // console.log(channel_id)
-            await API.graphql(graphqlOperation(mutations.createPostContent, {input: {channel_id: channel_id, user_id: myId, content: post}}));
-        }
-        catch(e)
-        {
-            console.log(e);
-        }
-    }
 
     // const onSendPress = async () => {
     //     try {
@@ -76,7 +67,8 @@ const InputBox = (props) => {
             //don't do anything
         } else {
             //send the message
-            createNewPost();
+            //createNewPost();
+            props.test(post);
             setPost('')
     }
     }

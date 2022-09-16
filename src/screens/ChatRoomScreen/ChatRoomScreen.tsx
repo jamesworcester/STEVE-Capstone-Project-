@@ -45,9 +45,10 @@ const ChatRoomScreen =() => {
         {
           const postData = await API.graphql(graphqlOperation(queries.listPostsByChannelWithName, {channel_id: channel_id}));
           // console.log("TEST")
-          // console.log(postData)
+          console.log(postData)
           // console.log(postData.data.listPostsByChannelWithName)
           setPost(postData.data.listPostsByChannelWithName);
+          //console.log(post)
         }
         catch(e)
         {
@@ -57,6 +58,31 @@ const ChatRoomScreen =() => {
       listPostsByChannel();
   }, []);
 
+    const updatePost = () => {
+      
+      setPost([...post, {id: post.length, user_id: myId, content: "test"}]);
+      //console.log("test")
+    }
+
+    const createNewPost = async (content) => {
+      try 
+      {
+         // console.log(channel_id)
+          //props.test();
+          //console.log(props.test());
+          const postObject = await API.graphql(graphqlOperation(mutations.createPostContent, {input: {channel_id: channel_id, user_id: myId, content: content}}));
+          //console.log(postObject);
+          //const postObject2 = postObject.data.createPostContent.user_id;
+          //const postObject3 = await API.graphql(graphqlOperation(queries.getUser, {id: postObject2}));
+          setPost([...post, {channel_id: channel_id, user_id: myId, content: content}]);
+          
+      }
+      catch(e)
+      {
+          console.log(e);
+      }
+  }
+
   useEffect(() => {
     const getId = async () => {
       const user = await Auth.currentAuthenticatedUser();
@@ -65,9 +91,6 @@ const ChatRoomScreen =() => {
     }
     getId();
   }, [])
-
-  
-
 
     return (
         <View>
@@ -86,7 +109,7 @@ const ChatRoomScreen =() => {
             // inverted
           />
 
-          <InputBox channel_id={channel_id} /> 
+          <InputBox channel_id={channel_id} test={createNewPost} /> 
          
         </ImageBackground>
 

@@ -37,7 +37,8 @@ const ChatMessage = (props: ChatMessageProps) => {
                     marginRight: isMyMessage() ? 0 : 50 ,//else display margin right 50
                 }
             ]}>
-            {/*!isMyMessage() &&*/ <Text style={styles.name}>{post.first_name+" "+post.last_name}</Text>} 
+            {!isMyMessage() && <Text style={styles.name}>{post.first_name+" "+post.last_name}</Text>}
+            {isMyMessage() && <Text style={styles.name}>You</Text>}
             <Text style={styles.message}>{post.content}</Text>
             <Text style={styles.time}>{moment.utc(post.created_date_time).fromNow()}</Text>
             </View>
