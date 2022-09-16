@@ -25,8 +25,9 @@ const TeamListItem = (props: TeamListItemProps) => {
     const navigation = useNavigation();
     //const user = chatRoom.users[1]; // initialise user by getting info from dummy data
     const onClick = () => {
-        navigation.navigate('Dashboard', 
-        {id: team.id, //navigate to channel screen and show name of user u are chatting with
+        console.log(team.name);
+        navigation.navigate('TeamMembers', 
+        {team_id: team.id, //navigate to channel screen and show name of user u are chatting with
         name: team.name,
         })
     }

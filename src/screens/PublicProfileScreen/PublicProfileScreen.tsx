@@ -16,7 +16,7 @@ import 'react-native-gesture-handler';
 //import TeamListItem from '../../components/TeamListItem/Index'; //import chatlistitem component so we can display it on a flatlist
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
 //@react-native/native import
-import { useNavigation } from '@react-navigation/native';
+import { TabRouter, useNavigation } from '@react-navigation/native';
 //react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm} from 'react-hook-form';
 //AWS Amplify import
@@ -29,21 +29,23 @@ import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
 import {useEffect, useState} from "react";
+import { useRoute } from '@react-navigation/native';
 
-import TeamListItem from '../../components/TeamListItem/Index';
+import UserListItem from '../../components/UserListItem/Index';
 
-export default function Profile() {
+export default function PublicProfileScreen() {
 
     const navigation = useNavigation();
+    const route = useRoute(); //route passed parameters from the previous screen (SignUp)
+    const id = route.params.id;
         const [userDetails, setUserDetails] = useState([]);
     
         useEffect(() => {
             const getUser = async () => {
                 try {
-                    let user = await Auth.currentAuthenticatedUser();
-                    const { username } = user; //get the id (username in this case) of the current user
-
-                    const userData = await API.graphql(graphqlOperation(queries.getUser, {id: username}));
+                    console.log(route.params.id)
+                    const userData = await API.graphql(graphqlOperation(queries.getUser, {id: id}));
+                    //console.log(userData)
                     setUserDetails(userData.data.getUser);
                 }
                 catch(e)
@@ -87,4 +89,4 @@ export default function Profile() {
     )
 }
 
-export default Profile
+export default PublicProfileScreen

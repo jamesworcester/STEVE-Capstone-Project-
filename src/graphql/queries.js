@@ -683,6 +683,31 @@ export const listUsersInTeam = /* GraphQL */ `
     }
   }
 `;
+export const listUsersNOTInTeam = /* GraphQL */ `
+  query ListUsersNOTInTeam($team_id: String!) {
+    listUsersNOTInTeam(team_id: $team_id) {
+      id
+      address_id
+      user_role_id
+      user_department_id
+      email
+      phone
+      password
+      first_name
+      last_name
+      photo_filename
+      photo_data
+      birthday
+      gender
+      is_archived
+      description
+      speciality
+      working_from
+      points
+      first_login
+    }
+  }
+`;
 export const listUsers_Demo = /* GraphQL */ `
   query ListUsers_Demo {
     listUsers_Demo {

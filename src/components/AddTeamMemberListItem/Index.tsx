@@ -3,7 +3,7 @@ Programmer: James Worcester
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
 */
 import React, {useEffect, useState} from 'react';
-import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
+import { View, Text, Image, TouchableWithoutFeedback, StyleSheet, Button, Alert } from "react-native";
 import { User } from "../../types"; //import global types of Chatroom
 import styles from "./style"; 
 import moment from "moment";
@@ -15,21 +15,42 @@ import * as queries from '../../graphql/queries';
 //user defined logo import
 import placeholder_user from '../../../assets/images/placeholder_user.png';
 
-export type UserListItemProps = {
+export type AddTeamMemberListItemProps = {
     user: User;
+    teamId: String,
 }
 
-const UserListItem = (props: UserListItemProps) => {
+const AddTeamMemberListItem = (props: AddTeamMemberListItemProps) => {
 
-    const {user} = props; //define props chatRoom as an object
+    const {user, teamId, teamName} = props; //define props chatRoom as an object
     const navigation = useNavigation();
     //const user = chatRoom.users[1]; // initialise user by getting info from dummy data
     const onClick = () => {
-        console.log("USERID: "+user.id)
-        navigation.navigate('PublicProfile', 
-        {   
-            id: user.id, //navigate to channel screen and show name of user u are chatting with
-        })
+        //console.log("USERID: "+user.id)
+        Alert.alert(
+            "Are you sure?",
+            "Do you want to add "+user.first_name+" "+user.last_name+" to "+teamName+"?",
+            [
+              {
+                text: "No",
+                //onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "Yes", onPress: async () => {
+                //console.log(teamId)
+                //console.log(user.id)
+                    const teamMembershipDetals = {
+                        team_id: teamId,
+                        user_id: user.id,
+                    }
+
+                    await API.graphql(graphqlOperation(mutations.createTeam_Membership, {input: teamMembershipDetals})); //add user to team
+                    //navigation.navigate('Team', {id: teamId});
+                    navigation.goBack();
+              }
+            }
+            ]
+          );
     }
 
     //<Image source={{/*uri: user.imageUri*/}} style={styles.avatar}/>
@@ -51,5 +72,5 @@ return(
 )
 };
 
-export default UserListItem
+export default AddTeamMemberListItem
 

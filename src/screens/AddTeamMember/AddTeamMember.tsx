@@ -1,6 +1,6 @@
 /*
 Programmer: James Worcester
-Created by: James Worcester on 15/09/2022 (Sprint 9)
+Created by: James Worcester on 16/09/2022 (Sprint 9)
 */
 import React from 'react'
 import { Header } from "@rneui/themed";
@@ -22,40 +22,46 @@ import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
 import {useEffect, useState} from "react";
+import { useRoute } from '@react-navigation/native';
 
-import TeamListItem from '../../components/TeamListItem/Index';
+import AddTeamMemberListItem from '../../components/AddTeamMemberListItem/Index';
 
 
-export default function TeamScreen() {
-    const [team, setTeam] = useState([]);
+export default function AddTeamMember() {
+    const navigation = useNavigation(); //use navigation from @react-navigation/native
+    const route = useRoute(); //route passed parameters from the previous screen (SignUp)
+    const [user, setUser] = useState([]);
+
+    const team_id = route.params.team_id;
+    const team_name = route.params.name;
+    console.log(team_name);
 
     useEffect(() => {
-        const getTeams = async () => {
+        const getUsers = async () => {
             try {
-                const teamData = await API.graphql(graphqlOperation(queries.listTeams));
-                setTeam(teamData.data.listTeams);
+                const userData = await API.graphql(graphqlOperation(queries.listUsersNOTInTeam, {team_id: route.params.team_id}));
+                console.log(userData)
+                setUser(userData.data.listUsersNOTInTeam);
             }
             catch(e)
             {
-                Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+                console.log(e);
             }
         }
-        getTeams();
+        getUsers();
     }, []);
-
-
 
     return (
         <View >
             <Header // Header of the screen 
             backgroundColor='#051C60'
             leftComponent={{ color: '#fff' }}
-            centerComponent={{text:'TEAMS', style: {color: '#E6E6FA', fontSize : 16}, 
+            centerComponent={{text:'Add User to Team', style: {color: '#E6E6FA', fontSize : 16}, 
             }}/>
 
         <FlatList 
-            data={team}
-            renderItem = {({item}) => <TeamListItem team={item}/>} //display all the Chatlistitem components (its also understanded as a channel)here
+            data={user}
+            renderItem = {({item}) => <AddTeamMemberListItem user={item} teamId={team_id} teamName={team_name} />} //display all the Chatlistitem components (its also understanded as a channel)here
             keyExtractor = {(item) => item.id} // this is id for every single channel 
         />
 
@@ -64,4 +70,4 @@ export default function TeamScreen() {
     )
 }
 
-export default TeamScreen
+export default AddTeamMember
