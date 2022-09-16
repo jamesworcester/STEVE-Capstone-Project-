@@ -39,9 +39,9 @@ export default function AddTeamMember() {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const userData = await API.graphql(graphqlOperation(queries.listUsersNOTInTeam, {team_id: route.params.team_id}));
-                console.log(userData)
-                setUser(userData.data.listUsersNOTInTeam);
+                const userData = await API.graphql(graphqlOperation(queries.listUsers));
+                //console.log(userData)
+                setUser(userData.data.listUsers);
             }
             catch(e)
             {

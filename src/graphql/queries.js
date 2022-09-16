@@ -568,8 +568,8 @@ export const listTeam_Memberships = /* GraphQL */ `
   }
 `;
 export const listTeam_MembershipsWhere = /* GraphQL */ `
-  query ListTeam_MembershipsWhere($team_id: String) {
-    listTeam_MembershipsWhere(team_id: $team_id) {
+  query ListTeam_MembershipsWhere($team_id: String, $user_id: String) {
+    listTeam_MembershipsWhere(team_id: $team_id, user_id: $user_id) {
       id
       user_id
       team_id
