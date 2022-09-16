@@ -99,6 +99,7 @@ type Mutation {
   createAssigned_Survey(input: CreateAssigned_SurveyInput!): Assigned_Survey
   createAssigned_TaskAchievement(input: CreateAssigned_TaskAchievementInput!): Assigned_TaskAchievement
   createChannel(input: CreateChannelInput!): Channel
+  createChannel_NameDescription(input: CreateChannelInput!): Channel
   createClient(input: CreateClientInput!): Client
   createComment(input: CreateCommentInput!): Comment
   createCountry(input: CreateCountryInput!): Country
@@ -107,6 +108,7 @@ type Mutation {
   createModerator(input: CreateModeratorInput!): Moderator
   createNotification(input: CreateNotificationInput!): Notification
   createPost(input: CreatePostInput!): Post
+  createPostContent(input: CreatePostInput!): Post
   createPostcode(input: CreatePostcodeInput!): Postcode
   createProject(input: CreateProjectInput!): Project
   createProject_Metric(input: CreateProject_MetricInput!): Project_Metric
@@ -122,6 +124,7 @@ type Mutation {
   createTaskAchievement(input: CreateTaskAchievementInput!): TaskAchievement
   createTaskAchievement_Reward(input: CreateTaskAchievement_RewardInput!): TaskAchievement_Reward
   createTeam(input: CreateTeamInput!): Team
+  createTeamAdmin(input: CreateTeamInput!): Team
   createTeam_Membership(input: CreateTeam_MembershipInput!): Team_Membership
   createTeam_Project(input: CreateTeam_ProjectInput!): Team_Project
   createTeam_Survey(input: CreateTeam_SurveyInput!): Team_Survey
@@ -215,9 +218,21 @@ type Post {
   archived_date_time: AWSTimestamp
   channel_id: String
   content: String
-  created_date_time: AWSTimestamp
+  created_date_time: String
   edited_date_time: AWSTimestamp
   id: ID
+  user_id: String
+}
+
+type PostWithName {
+  archived_date_time: AWSTimestamp
+  channel_id: String
+  content: String
+  created_date_time: String
+  edited_date_time: AWSTimestamp
+  first_name: String
+  id: ID
+  last_name: String
   user_id: String
 }
 
@@ -290,6 +305,7 @@ type Query {
   listPostcodes: [Postcode]
   listPosts: [Post]
   listPostsByChannel(channel_id: String!): [Post]
+  listPostsByChannelWithName(channel_id: String!): [PostWithName]
   listProject_Metrics: [Project_Metric]
   listProjects: [Project]
   listProjectsAndMetrics(id: ID!): Project
@@ -305,6 +321,7 @@ type Query {
   listTaskAchievement_Rewards: [TaskAchievement_Reward]
   listTaskAchievements: [TaskAchievement]
   listTeam_Memberships: [Team_Membership]
+  listTeam_MembershipsWhere(team_id: String, user_id: String): [Team_Membership]
   listTeam_Projects: [Team_Project]
   listTeam_Surveys: [Team_Survey]
   listTeams: [Team]
@@ -313,6 +330,8 @@ type Query {
   listUser_Roles: [User_Role]
   listUser_Settings: [User_Setting]
   listUsers: [User]
+  listUsersInTeam(team_id: String!): [User]
+  listUsersNOTInTeam(team_id: String!): [User]
   listUsers_Demo: [User_Demo]
   testProjectMetric: [Project]
   testQuery(id: ID!): typeTest
@@ -409,7 +428,7 @@ type Team {
   description: String
   id: ID!
   is_archived: Int
-  name: String!
+  name: String
   photo_data: String
   photo_filename: String
   team_manager: String
@@ -593,17 +612,17 @@ input CreateNotificationInput {
 
 input CreatePostInput {
   archived_date_time: AWSTimestamp
-  channel_id: String!
+  channel_id: String
   content: String
-  created_date_time: AWSTimestamp!
+  created_date_time: String
   edited_date_time: AWSTimestamp
-  user_id: String!
+  user_id: String
 }
 
 input CreatePostInput_channel_id_user_id_content_created_date_time {
-  channel_id: String!
+  channel_id: String
   content: String
-  user_id: String!
+  user_id: String
 }
 
 input CreatePostcodeInput {
@@ -701,7 +720,7 @@ input CreateTaskAchievement_RewardInput {
 input CreateTeamInput {
   description: String
   is_archived: Int
-  name: String!
+  name: String
   photo_data: String
   photo_filename: String
   team_manager: String
