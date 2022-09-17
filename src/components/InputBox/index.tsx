@@ -31,9 +31,7 @@ import * as queries from '../../graphql/queries';
 
 
 const InputBox = (props) => {
-    //console.log(props)
     const channel_id = props.channel_id;
-    //console.log(channel_id)
 
     const [post, setPost] = useState('');
     const [myId, setId] = useState(null);
@@ -47,29 +45,15 @@ const InputBox = (props) => {
         getId();
       }, [])
 
-    
-
-
-    // const onSendPress = async () => {
-    //     try {
-
-    //     }
-    // }
-    
-    // const onSendPress = () => {
-    //     console.warn(`Sending : ${message}`)
-    //     //send the message to the backend 
-    //     setMessage('');
-    // }
-
     const onPress = () => {
         if (!post) {
             //don't do anything
         } else {
             //send the message
             //createNewPost();
-            props.test(post);
-            setPost('')
+            props.createNewPostFunction(post); //call the createNewPostFunction in ChatRoomScreen.tsx that has been passed through by props.createNewPostFunction() with post as the parameter to capture the value from the post
+                                               //TextInput value defined below. Function with post parameter looks like this: props.createNewPostFunction(post)
+            setPost('') //set the post TextInput value to empty string after sending the message by updating the state of post
     }
     }
 

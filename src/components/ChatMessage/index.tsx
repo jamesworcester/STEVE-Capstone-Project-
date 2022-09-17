@@ -38,24 +38,11 @@ const ChatMessage = (props: ChatMessageProps) => {
                 }
             ]}>
             {!isMyMessage() && <Text style={styles.name}>{post.first_name+" "+post.last_name}</Text>}
-            {isMyMessage() && <Text style={styles.name}>You</Text>}
+            {/* {isMyMessage() && <Text style={styles.name}>You</Text>} */}
             <Text style={styles.message}>{post.content}</Text>
             <Text style={styles.time}>{moment.utc(post.created_date_time).fromNow()}</Text>
             </View>
-        </View>
-    //     <View style={styles.container}>
-    //     <View style={[styles.messageBox,
-    //         {backgroundColor: '#DCF8C5', //if it is mymessage, display in light green ,otherwise display white
-    //         marginLeft: 50 , //if it is mymessage display margin left50
-    //         marginRight: 50 ,//else display margin right 50
-    //         }
-    //     ]}>
-    //     {<Text style={styles.name}>{post.user_id}</Text>} 
-    //     <Text style={styles.message}>{post.content}</Text>
-    //     {/* <Text style={styles.time}>{moment(message.createdAt).fromNow()}</Text> */}
-    //     </View>
-    // </View>
-        
+        </View>      
     )
 }
 

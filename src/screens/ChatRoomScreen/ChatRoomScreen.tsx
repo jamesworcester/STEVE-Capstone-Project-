@@ -3,7 +3,7 @@ Programmer: Hung
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
 */
 import React from "react";
-import { Text,View, FlatList, ImageBackground} from "react-native";
+import { Text,View, FlatList, ImageBackground, Alert} from "react-native";
 import { Header } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons'; 
@@ -44,42 +44,25 @@ const ChatRoomScreen =() => {
         try
         {
           const postData = await API.graphql(graphqlOperation(queries.listPostsByChannelWithName, {channel_id: channel_id}));
-          // console.log("TEST")
-          console.log(postData)
-          // console.log(postData.data.listPostsByChannelWithName)
-          setPost(postData.data.listPostsByChannelWithName);
-          //console.log(post)
+          setPost(postData.data.listPostsByChannelWithName); //update the state of post through the setPost function, causing an async render
         }
         catch(e)
         {
-          console.log(e);
+            Alert.alert('Error', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
         }
       }
       listPostsByChannel();
   }, []);
 
-    const updatePost = () => {
-      
-      setPost([...post, {id: post.length, user_id: myId, content: "test"}]);
-      //console.log("test")
-    }
-
     const createNewPost = async (content) => {
       try 
       {
-         // console.log(channel_id)
-          //props.test();
-          //console.log(props.test());
           const postObject = await API.graphql(graphqlOperation(mutations.createPostContent, {input: {channel_id: channel_id, user_id: myId, content: content}}));
-          //console.log(postObject);
-          //const postObject2 = postObject.data.createPostContent.user_id;
-          //const postObject3 = await API.graphql(graphqlOperation(queries.getUser, {id: postObject2}));
-          setPost([...post, {channel_id: channel_id, user_id: myId, content: content}]);
-          
+          setPost([...post, {channel_id: channel_id, user_id: myId, content: content}]); //add a new post to the post array's state through the setPost function, causing an async render
       }
       catch(e)
       {
-          console.log(e);
+          Alert.alert('Error', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
       }
   }
 
@@ -109,7 +92,7 @@ const ChatRoomScreen =() => {
             // inverted
           />
 
-          <InputBox channel_id={channel_id} test={createNewPost} /> 
+          <InputBox channel_id={channel_id} createNewPostFunction={createNewPost} /> 
          
         </ImageBackground>
 
