@@ -146,6 +146,7 @@ export const getQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;
@@ -541,6 +542,7 @@ export const listQuestions = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;

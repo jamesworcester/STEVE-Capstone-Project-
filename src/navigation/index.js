@@ -40,6 +40,7 @@ import TeamMembersScreen from '../screens/TeamMembers/TeamMembers';
 import PublicProfileScreen from '../screens/PublicProfileScreen';
 import AddTeamMember from '../screens/AddTeamMember';
 import TestScreen from '../screens/TestScreen';
+import ReviewSurveyScreen from '../screens/ReviewSurveyScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -83,6 +84,7 @@ const Navigation = () => {
                 <Stack.Screen name="PublicProfile" component={PublicProfileScreen} />
                 <Stack.Screen name="AddTeamMember" component={AddTeamMember} />
                 <Stack.Screen name="TestScreen" component={TestScreen} />
+                <Stack.Screen name="ReviewSurvey" component={ReviewSurveyScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

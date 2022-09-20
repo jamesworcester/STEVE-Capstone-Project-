@@ -122,6 +122,7 @@ export const createQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;
@@ -571,6 +572,7 @@ export const updateQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;
@@ -995,6 +997,7 @@ export const deleteQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;

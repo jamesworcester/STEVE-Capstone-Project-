@@ -37,7 +37,7 @@ import * as queries from '../../graphql/queries';
   ];
 
 
-const CreateSurveyScreen = () => {
+const ReviewSurveyScreen = () => {
     //const [value, setValue] = useState(null)
 
 
@@ -122,36 +122,11 @@ const CreateSurveyScreen = () => {
                 console.log(q4Details);
                 console.log(q5Details);
 
-                const createdQuestion1 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q1selectedType, question_number: 1, question_text: data.question1}}));
-                console.log(createdQuestion1);
-                const question1_id = createdQuestion1.data.createQuestion.id;
-
-                const createdQuestion2 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q2selectedType, question_number: 2, question_text: data.question2}}));
-                console.log(createdQuestion2);
-                const question2_id = createdQuestion2.data.createQuestion.id;
-
-                const createdQuestion3 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q3selectedType, question_number: 3, question_text: data.question3}}));
-                console.log(createdQuestion3);
-                const question3_id = createdQuestion3.data.createQuestion.id;
-
-                const createdQuestion4 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q4selectedType, question_number: 4, question_text: data.question4}}));
-                console.log(createdQuestion4);
-                const question4_id = createdQuestion4.data.createQuestion.id;
-
-                const createdQuestion5 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q5selectedType, question_number: 5, question_text: data.question5}}));
-                console.log(createdQuestion5);
-                const question5_id = createdQuestion5.data.createQuestion.id;
-
-                const createdSurvey = await API.graphql(graphqlOperation(mutations.createSurvey, {input: {created_by: username, text: data.surveyName}}));
-                console.log(createdSurvey);
-                const survey_id = createdSurvey.data.createSurvey.id;
-                
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question1_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question2_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question3_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question4_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question5_id}})));
-
+                console.log(await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q1selectedType, question_number: 1, question_text: data.question1}})));
+                console.log(await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q2selectedType, question_number: 2, question_text: data.question2}})));
+                console.log(await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q3selectedType, question_number: 3, question_text: data.question3}})));
+                console.log(await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q4selectedType, question_number: 4, question_text: data.question4}})));
+                console.log(await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q5selectedType, question_number: 5, question_text: data.question5}})));
                 } 
             // }
             // catch(e)
@@ -435,4 +410,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default CreateSurveyScreen
+export default ReviewSurveyScreen
