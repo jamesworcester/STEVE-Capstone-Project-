@@ -33,6 +33,10 @@ const AdminToolsScreen = () => {
                 navigation.navigate('Team'); //navigate to ViewTeams screen and pass the teams data
     }
 
+    const onTestScreenPressed = () => {
+                navigation.navigate('TestScreen');
+    }
+
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
@@ -49,6 +53,12 @@ const AdminToolsScreen = () => {
                 <PersonalisedButton
                 text="View Teams"
                 onPress={onViewTeamsPressed}
+                type="SECOND"
+                />
+
+                <PersonalisedButton
+                text="Test Screen"
+                onPress={onTestScreenPressed}
                 type="SECOND"
                 />
 
