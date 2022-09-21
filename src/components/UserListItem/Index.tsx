@@ -39,7 +39,7 @@ return(
     <View style={styles.lefContainer}>
         <Image source={placeholder_user} style={styles.avatar} />
         <View style={styles.midContainer}>
-            <Text>{user.first_name+" "+user.last_name}</Text>
+            <Text style={{fontWeight: 'bold'}}>{user.first_name+" "+user.last_name}</Text>
             <Text>{user.email}</Text>
         </View>
     </View>

@@ -39,7 +39,7 @@ return(
     <View style={styles.lefContainer}>
         <Image source={placeholder_chatchannel} style={styles.avatar} />
         <View style={styles.midContainer}>
-            <Text>{channel.channel_text}</Text>
+            <Text style={{fontWeight: 'bold'}}>{channel.channel_text}</Text>
             <Text>{channel.description}</Text>
         </View>
     </View>

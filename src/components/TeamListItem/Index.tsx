@@ -39,7 +39,7 @@ return(
     <View style={styles.lefContainer}>
         <Image source={placeholder_team} style={styles.avatar} />
         <View style={styles.midContainer}>
-            <Text>{team.name}</Text>
+            <Text style={{fontWeight: 'bold'}}>{team.name}</Text>
             <Text>{team.description}</Text>
         </View>
     </View>
