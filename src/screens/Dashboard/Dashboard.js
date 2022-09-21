@@ -16,6 +16,7 @@ import CreateSurveyScreen from '../CreateSurveyScreen';
 import AdminToolsScreen from '../AdminToolsScreen';
 import UserSearchScreen from '../UserSearchScreen';
 import UserScreen from '../UserScreen/UserScreen';
+import SurveyHomeScreen from '../SurveyHomeScreen';
 //import UserScreen from '../UserScreen';
 
 
@@ -45,7 +46,7 @@ const Dashboard = () => {
             <MaterialCommunityIcons name="home-outline" color={color} size={26}/>
         ),
     }}/>
-      <Tab.Screen name="Survey" component={CreateSurveyScreen}        // Survey Screen
+      <Tab.Screen name="Survey" component={SurveyHomeScreen}        // Survey Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="file-document-multiple" color={color} size={26}/>

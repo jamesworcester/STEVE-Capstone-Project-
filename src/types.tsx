@@ -5,6 +5,13 @@ export type User = {
     email: String;
 }
 
+export type Survey = {
+    id: String;
+    created_by: String;
+    text: String;
+    created_date_time: String;
+}
+
 export type Message = {
     id: String;
     content : String;

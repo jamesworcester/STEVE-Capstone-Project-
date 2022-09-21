@@ -88,6 +88,7 @@ export const createAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
     }
   }
 `;
@@ -538,6 +539,7 @@ export const updateAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
     }
   }
 `;
@@ -963,6 +965,7 @@ export const deleteAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
     }
   }
 `;

@@ -1,7 +1,7 @@
 /*
 Programmer: James Worcester
 Edited by: James Worcester on 04/09/2022
-Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Refactored by James Worcester on 21/09/2022 (Sprint 10)
 */
 //Screen to create a Survey
 //react-native imports
@@ -31,9 +31,9 @@ import * as queries from '../../graphql/queries';
 //   };
 
   const data = [
-    { label: 'Scale (1 - 10)', value: '1' },
+    { label: 'Scale (Agree/Disagree)', value: '1' },
     { label: 'Short answer', value: '2' },
-    { label: 'Multiple choice', value: '3' },
+    //{ label: 'Multiple choice', value: '3' },
   ];
 
 
@@ -125,33 +125,46 @@ const CreateSurveyScreen = () => {
                 const createdQuestion1 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q1selectedType, question_number: 1, question_text: data.question1}}));
                 console.log(createdQuestion1);
                 const question1_id = createdQuestion1.data.createQuestion.id;
+                const question1_type = createdQuestion1.data.createQuestion.question_type;
+                const question1_text = createdQuestion1.data.createQuestion.question_text;
 
                 const createdQuestion2 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q2selectedType, question_number: 2, question_text: data.question2}}));
                 console.log(createdQuestion2);
                 const question2_id = createdQuestion2.data.createQuestion.id;
+                const question2_type = createdQuestion2.data.createQuestion.question_type;
+                const question2_text = createdQuestion2.data.createQuestion.question_text;
 
                 const createdQuestion3 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q3selectedType, question_number: 3, question_text: data.question3}}));
                 console.log(createdQuestion3);
                 const question3_id = createdQuestion3.data.createQuestion.id;
+                const question3_type = createdQuestion3.data.createQuestion.question_type;
+                const question3_text = createdQuestion3.data.createQuestion.question_text;
 
                 const createdQuestion4 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q4selectedType, question_number: 4, question_text: data.question4}}));
                 console.log(createdQuestion4);
                 const question4_id = createdQuestion4.data.createQuestion.id;
+                const question4_type = createdQuestion4.data.createQuestion.question_type;
+                const question4_text = createdQuestion4.data.createQuestion.question_text;
 
                 const createdQuestion5 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q5selectedType, question_number: 5, question_text: data.question5}}));
                 console.log(createdQuestion5);
                 const question5_id = createdQuestion5.data.createQuestion.id;
+                const question5_type = createdQuestion5.data.createQuestion.question_type;
+                const question5_text = createdQuestion5.data.createQuestion.question_text;
 
-                const createdSurvey = await API.graphql(graphqlOperation(mutations.createSurvey, {input: {created_by: username, text: data.surveyName}}));
+                const createdSurvey = await API.graphql(graphqlOperation(mutations.createSurvey, {input: {created_by: username, text: data.name}}));
                 console.log(createdSurvey);
                 const survey_id = createdSurvey.data.createSurvey.id;
+                const survey_text = createdSurvey.data.createSurvey.text;
                 
                 console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question1_id}})));
                 console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question2_id}})));
                 console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question3_id}})));
                 console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question4_id}})));
                 console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question5_id}})));
-
+                
+                //navigation.navigate('ReviewSurvey', {createdSurvey: createdSurvey, createdQuestion1: createdQuestion1, createdQuestion2: createdQuestion2, createdQuestion3: createdQuestion3, createdQuestion4: createdQuestion4, createdQuestion5: createdQuestion5});
+                navigation.navigate('ReviewSurvey', {survey_id: survey_id, survey_text: survey_text, question1_type: question1_type, question1_text: question1_text, question2_type: question2_type, question2_text: question2_text, question3_type: question3_type, question3_text: question3_text, question4_type: question4_type, question4_text: question4_text, question5_type: question5_type, question5_text: question5_text});
                 } 
             // }
             // catch(e)
@@ -411,7 +424,7 @@ const styles = StyleSheet.create({
       dropdown: {
         margin: 0,
         height: 50,
-        width: '50%',
+        width: '70%',
         borderBottomColor: 'gray',
         //borderBottomWidth: 0.5,
       },

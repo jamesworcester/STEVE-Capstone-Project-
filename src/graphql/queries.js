@@ -112,6 +112,7 @@ export const getAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
     }
   }
 `;
@@ -434,6 +435,19 @@ export const getComment = /* GraphQL */ `
     }
   }
 `;
+export const listJoinSurveyANDAssigned_Survey = /* GraphQL */ `
+  query ListJoinSurveyANDAssigned_Survey($id: ID!) {
+    listJoinSurveyANDAssigned_Survey(id: $id) {
+      id
+      created_by
+      text
+      is_archived
+      created_date_time
+      archived_date_time
+      assigned_team
+    }
+  }
+`;
 export const listMetrics = /* GraphQL */ `
   query ListMetrics {
     listMetrics {
@@ -508,6 +522,22 @@ export const listAssigned_Surveys = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
+    }
+  }
+`;
+export const listAssigned_SurveysWithDistinctsurvey_id = /* GraphQL */ `
+  query ListAssigned_SurveysWithDistinctsurvey_id {
+    listAssigned_SurveysWithDistinctsurvey_id {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      end_assignment
+      frequency_of_survey_days
+      answered_date_time
+      assigned_team
     }
   }
 `;
@@ -546,6 +576,21 @@ export const listQuestions = /* GraphQL */ `
     }
   }
 `;
+export const listJoinQuestionANDSurvey_Questions = /* GraphQL */ `
+  query ListJoinQuestionANDSurvey_Questions($survey_id: String) {
+    listJoinQuestionANDSurvey_Questions(survey_id: $survey_id) {
+      id
+      created_by
+      question_type
+      question_text
+      is_archived
+      created_date_time
+      archived_date_time
+      question_number
+      survey_id
+    }
+  }
+`;
 export const listQuestion_Answers = /* GraphQL */ `
   query ListQuestion_Answers {
     listQuestion_Answers {
@@ -572,6 +617,15 @@ export const listTeam_Memberships = /* GraphQL */ `
 export const listTeam_MembershipsWhere = /* GraphQL */ `
   query ListTeam_MembershipsWhere($team_id: String, $user_id: String) {
     listTeam_MembershipsWhere(team_id: $team_id, user_id: $user_id) {
+      id
+      user_id
+      team_id
+    }
+  }
+`;
+export const listTeam_MembershipsWhereTeamID = /* GraphQL */ `
+  query ListTeam_MembershipsWhereTeamID($team_id: String) {
+    listTeam_MembershipsWhereTeamID(team_id: $team_id) {
       id
       user_id
       team_id
