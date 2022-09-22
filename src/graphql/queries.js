@@ -605,6 +605,25 @@ export const listJoinQuestionANDSurvey_Questions = /* GraphQL */ `
     }
   }
 `;
+export const listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN = /* GraphQL */ `
+  query ListJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN(
+    $survey_id: String
+  ) {
+    listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN(
+      survey_id: $survey_id
+    ) {
+      id
+      created_by
+      question_type
+      question_text
+      is_archived
+      created_date_time
+      archived_date_time
+      question_number
+      survey_id
+    }
+  }
+`;
 export const listQuestion_Answers = /* GraphQL */ `
   query ListQuestion_Answers {
     listQuestion_Answers {

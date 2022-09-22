@@ -43,23 +43,21 @@ const AnswerSurveyScreen = () => {
     const {control, register, handleSubmit, formState: {errors}} = useForm(); //use form from react-hook-form
     const [surveyDetails, setSurveyDetails] = useState([]);
     const [questionDetails, setQuestionDetails] = useState([]);
+    const [question1_id, setQuestion1_id] = useState();
     const [question1_text, setQuestion1_text] = useState();
     const [question1_type, setQuestion1_type] = useState();
+    const [question2_id, setQuestion2_id] = useState();
     const [question2_text, setQuestion2_text] = useState();
     const [question2_type, setQuestion2_type] = useState();
+    const [question3_id, setQuestion3_id] = useState();
     const [question3_text, setQuestion3_text] = useState();
     const [question3_type, setQuestion3_type] = useState();
+    const [question4_id, setQuestion4_id] = useState();
     const [question4_text, setQuestion4_text] = useState();
     const [question4_type, setQuestion4_type] = useState();
+    const [question5_id, setQuestion5_id] = useState();
     const [question5_text, setQuestion5_text] = useState();
     const [question5_type, setQuestion5_type] = useState();
-
-    const [question1_type1_answer, setQuestion1_type1_answer] = useState();
-    const [question2_type1_answer, setQuestion2_type1_answer] = useState();
-    const [question3_type1_answer, setQuestion3_type1_answer] = useState();
-    const [question4_type1_answer, setQuestion4_type1_answer] = useState();
-    const [question5_type1_answer, setQuestion5_type1_answer] = useState();
-
 
     useEffect(() => {
         const getSurvey = async () => {
@@ -69,22 +67,33 @@ const AnswerSurveyScreen = () => {
                 const surveyData = await API.graphql(graphqlOperation(queries.getSurvey, {id: route.params.survey_id}));
                 //console.log(surveyData)
 
-                const questionData = await API.graphql(graphqlOperation(queries.listJoinQuestionANDSurvey_Questions, {survey_id: route.params.survey_id}));
+                const questionData = await API.graphql(graphqlOperation(queries.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN, {survey_id: route.params.survey_id}));
                 console.log(questionData)
 
                 setSurveyDetails(surveyData.data.getSurvey);
-                setQuestionDetails(questionData.data.listJoinQuestionANDSurvey_Questions);
+                setQuestionDetails(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN);
 
-                setQuestion1_text(questionData.data.listJoinQuestionANDSurvey_Questions[0].question_text);
-                setQuestion1_type(questionData.data.listJoinQuestionANDSurvey_Questions[0].question_type);
-                setQuestion2_text(questionData.data.listJoinQuestionANDSurvey_Questions[1].question_text);
-                setQuestion2_type(questionData.data.listJoinQuestionANDSurvey_Questions[1].question_type);
-                setQuestion3_text(questionData.data.listJoinQuestionANDSurvey_Questions[2].question_text);
-                setQuestion3_type(questionData.data.listJoinQuestionANDSurvey_Questions[2].question_type);
-                setQuestion4_text(questionData.data.listJoinQuestionANDSurvey_Questions[3].question_text);
-                setQuestion4_type(questionData.data.listJoinQuestionANDSurvey_Questions[3].question_type);
-                setQuestion5_text(questionData.data.listJoinQuestionANDSurvey_Questions[4].question_text);
-                setQuestion5_type(questionData.data.listJoinQuestionANDSurvey_Questions[4].question_type);
+                setQuestion1_id(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[0].id);
+                setQuestion1_text(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[0].question_text);
+                setQuestion1_type(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[0].question_type);
+
+                setQuestion2_id(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[1].id);
+                setQuestion2_text(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[1].question_text);
+                setQuestion2_type(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[1].question_type);
+
+                setQuestion3_id(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[2].id);
+                setQuestion3_text(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[2].question_text);
+                setQuestion3_type(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[2].question_type);
+
+                setQuestion4_id(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[3].id);
+                setQuestion4_text(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[3].question_text);
+                setQuestion4_type(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[3].question_type);
+
+                setQuestion5_id(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[4].id);
+                setQuestion5_text(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[4].question_text);
+                setQuestion5_type(questionData.data.listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN[4].question_type);
+
+
             }
             catch(e)
             {
@@ -96,11 +105,82 @@ const AnswerSurveyScreen = () => {
 
 
     const onSubmitPressed = async (data) => { //if the 'Don't have an account? Sign up' button is clicked
-        console.log("SEPARATOR")
-        console.log(question1_type1_answer)
-        console.log(data);
 
-        navigation.navigate('FirstScreen');
+        
+
+        console.log(question1_id);
+        console.log(question2_id);
+        console.log(question3_id);
+        console.log(question4_id);
+        console.log(question5_id);
+
+        //console.log("SEPARATOR")
+        //console.log(question1_type1_answer)
+        //console.log(data);
+        console.log("BEFORE")
+        const user = await Auth.currentAuthenticatedUser();
+        const { username } = user; //get the id (username in this case) of the current user
+        console.log(username);
+        console.log(data);
+        console.log("AFTER")
+        console.log(typeof question1_text)
+        console.log(question1_type)
+
+        //id <= auto generated
+        //question id we have per question
+        //assigned_survey_id <= route.params.assigned_survey_id
+        //user_id = username
+
+        if(question1_type == "1")
+        {
+            
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerNumber, {input: {question_id: question1_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_number: data.question1_answer}})));
+            
+        }
+        else if(question1_type == "2")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question1_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question1_answer}})));
+        }
+
+        if(question2_type == "1")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerNumber, {input: {question_id: question2_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_number: data.question2_answer}})));
+        }
+        else if(question2_type == "2")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question2_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question2_answer}})));
+        }
+
+        if(question3_type == "1")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerNumber, {input: {question_id: question3_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_number: data.question3_answer}})));
+        }
+        else if(question3_type == "2")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question3_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question3_answer}})));
+        }
+
+        if(question4_type == "1")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerNumber, {input: {question_id: question4_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_number: data.question4_answer}})));
+        }
+        else if(question4_type == "2")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question4_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question4_answer}})));
+        }
+
+        if(question5_type == "1")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerNumber, {input: {question_id: question5_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_number: data.question5_answer}})));
+        }
+        else if(question5_type == "2")
+        {
+            console.log(await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question5_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question5_answer}})));
+        }
+
+        console.log(await API.graphql(graphqlOperation(mutations.updateAssignedSurveyANSWER, {input: {id: route.params.assigned_survey_id}})));
+
+        navigation.navigate('AdminTools');
     }
 
     return (
@@ -118,17 +198,14 @@ const AnswerSurveyScreen = () => {
 
                 {question1_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
-                //register={register}
-                name="question1_type1_number"
-                //defaultValue={4}
-                
+                name="question1_answer"
+                defaultValue={3}
                 //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
                 <View style={[styles.inputstyle, {borderColor: error ? 'red' : '#e8e8e8'}]}>
                 <Slider
                 //disabled={false}
-                
                 style={{width: '80%', height: 40}}
                 alignSelf="center"
                 value={value}
@@ -151,7 +228,7 @@ const AnswerSurveyScreen = () => {
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
 
                 {question1_type == 2 && <PersonalisedInput //Custom TextInput
-                name="question1_type2_text"
+                name="question1_answer"
                 placeholder="Answer"
                 control={control}
                 rules={{required: 'Question required'}}
@@ -163,7 +240,8 @@ const AnswerSurveyScreen = () => {
                 {question2_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
                 //register={register}
-                name="question2_type1_number"
+                name="question2_answer"
+                defaultValue={3}
                 //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
@@ -172,13 +250,13 @@ const AnswerSurveyScreen = () => {
                 //disabled={false}
                 style={{width: '80%', height: 40}}
                 alignSelf="center"
-                value={3}
+                value={value}
                 minimumValue={1}
                 maximumValue={5}
                 minimumTrackTintColor="#000000"
                 maximumTrackTintColor="#000000"
                 step={1}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => onChange(value)}
                 thumbTintColor="#3362d0"
                 />
                 </View>
@@ -193,7 +271,7 @@ const AnswerSurveyScreen = () => {
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
 
                 {question2_type == 2 && <PersonalisedInput //Custom TextInput
-                name="question2_type2_text"
+                name="question2_answer"
                 placeholder="Answer"
                 control={control}
                 rules={{required: 'Question required'}}
@@ -205,7 +283,8 @@ const AnswerSurveyScreen = () => {
                 {question3_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
                 //register={register}
-                name="question3_type1_number"
+                name="question3_answer"
+                defaultValue={3}
                 //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
@@ -214,13 +293,13 @@ const AnswerSurveyScreen = () => {
                 //disabled={false}
                 style={{width: '80%', height: 40}}
                 alignSelf="center"
-                value={3}
+                value={value}
                 minimumValue={1}
                 maximumValue={5}
                 minimumTrackTintColor="#000000"
                 maximumTrackTintColor="#000000"
                 step={1}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => onChange(value)}
                 thumbTintColor="#3362d0"
                 />
                 </View>
@@ -235,7 +314,7 @@ const AnswerSurveyScreen = () => {
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
 
                 {question3_type == 2 && <PersonalisedInput //Custom TextInput
-                name="question3_type2_text"
+                name="question3_answer"
                 placeholder="Answer"
                 control={control}
                 rules={{required: 'Question required'}}
@@ -247,7 +326,8 @@ const AnswerSurveyScreen = () => {
                 {question4_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
                 //register={register}
-                name="question4_type1_number"
+                name="question4_answer"
+                defaultValue={3}
                 //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
@@ -256,13 +336,13 @@ const AnswerSurveyScreen = () => {
                 //disabled={false}
                 style={{width: '80%', height: 40}}
                 alignSelf="center"
-                value={3}
+                value={value}
                 minimumValue={1}
                 maximumValue={5}
                 minimumTrackTintColor="#000000"
                 maximumTrackTintColor="#000000"
                 step={1}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => onChange(value)}
                 thumbTintColor="#3362d0"
                 />
                 </View>
@@ -276,7 +356,7 @@ const AnswerSurveyScreen = () => {
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
 
                 {question4_type == 2 && <PersonalisedInput //Custom TextInput
-                name="question4_type2_text"
+                name="question4_answer"
                 placeholder="Answer"
                 control={control}
                 rules={{required: 'Question required'}}
@@ -288,7 +368,8 @@ const AnswerSurveyScreen = () => {
                 {question5_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
                 //register={register}
-                name="question5_type1_number"
+                name="question5_answer"
+                defaultValue={3}
                 //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
@@ -297,13 +378,13 @@ const AnswerSurveyScreen = () => {
                 //disabled={false}
                 style={{width: '80%', height: 40}}
                 alignSelf="center"
-                value={3}
+                value={value}
                 minimumValue={1}
                 maximumValue={5}
                 minimumTrackTintColor="#000000"
                 maximumTrackTintColor="#000000"
                 step={1}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => onChange(value)}
                 thumbTintColor="#3362d0"
                 />
                 </View>
@@ -318,7 +399,7 @@ const AnswerSurveyScreen = () => {
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
 
                 {question5_type == 2 && <PersonalisedInput //Custom TextInput
-                name="question5_type2_text"
+                name="question5_answer"
                 placeholder="Answer"
                 control={control}
                 rules={{required: 'Question required'}}
