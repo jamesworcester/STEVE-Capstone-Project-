@@ -40,7 +40,7 @@ const AnswerSurveyScreen = () => {
     const navigation = useNavigation();
     //const {height} = useWindowDimensions(); //sets the height of the window
     const route = useRoute(); //route passed parameters from the previous screen (SignUp)
-    const {control, handleSubmit, formState: {errors}} = useForm(); //use form from react-hook-form
+    const {control, register, handleSubmit, formState: {errors}} = useForm(); //use form from react-hook-form
     const [surveyDetails, setSurveyDetails] = useState([]);
     const [questionDetails, setQuestionDetails] = useState([]);
     const [question1_text, setQuestion1_text] = useState();
@@ -53,6 +53,13 @@ const AnswerSurveyScreen = () => {
     const [question4_type, setQuestion4_type] = useState();
     const [question5_text, setQuestion5_text] = useState();
     const [question5_type, setQuestion5_type] = useState();
+
+    const [question1_type1_answer, setQuestion1_type1_answer] = useState();
+    const [question2_type1_answer, setQuestion2_type1_answer] = useState();
+    const [question3_type1_answer, setQuestion3_type1_answer] = useState();
+    const [question4_type1_answer, setQuestion4_type1_answer] = useState();
+    const [question5_type1_answer, setQuestion5_type1_answer] = useState();
+
 
     useEffect(() => {
         const getSurvey = async () => {
@@ -88,51 +95,10 @@ const AnswerSurveyScreen = () => {
     }, []);
 
 
-    const onSubmitPressed = () => { //if the 'Don't have an account? Sign up' button is clicked
-        if(question1_type = 1)
-        {
-            const question1_answer = question1_type1_number.value
-        }
-        else if(question1_type = 2)
-        {
-
-        }
-
-        if(question2_type = 1)
-        {
-
-        }
-        else if(question2_type = 2)
-        {
-
-        }
-
-        if(question3_type = 1)
-        {
-
-        }
-        else if(question3_type = 2)
-        {
-
-        }
-        
-        if(question4_type = 1)
-        {
-
-        }
-        else if(question4_type = 2)
-        {
-
-        }  
-
-        if(question5_type = 1)
-        {
-
-        }
-        else if(question5_type = 2)
-        {
-
-        }
+    const onSubmitPressed = async (data) => { //if the 'Don't have an account? Sign up' button is clicked
+        console.log("SEPARATOR")
+        console.log(question1_type1_answer)
+        console.log(data);
 
         navigation.navigate('FirstScreen');
     }
@@ -152,22 +118,26 @@ const AnswerSurveyScreen = () => {
 
                 {question1_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
+                //register={register}
                 name="question1_type1_number"
-                rules={{required: 'Question required'}}
+                //defaultValue={4}
+                
+                //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
                 <View style={[styles.inputstyle, {borderColor: error ? 'red' : '#e8e8e8'}]}>
                 <Slider
                 //disabled={false}
+                
                 style={{width: '80%', height: 40}}
                 alignSelf="center"
-                value={3}
+                value={value}
                 minimumValue={1}
                 maximumValue={5}
                 minimumTrackTintColor="#000000"
                 maximumTrackTintColor="#000000"
                 step={1}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => onChange(value)}
                 thumbTintColor="#3362d0"
                 />
                 </View>
@@ -192,8 +162,9 @@ const AnswerSurveyScreen = () => {
 
                 {question2_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
+                //register={register}
                 name="question2_type1_number"
-                rules={{required: 'Question required'}}
+                //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
                 <View style={[styles.inputstyle, {borderColor: error ? 'red' : '#e8e8e8'}]}>
@@ -233,8 +204,9 @@ const AnswerSurveyScreen = () => {
 
                 {question3_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
+                //register={register}
                 name="question3_type1_number"
-                rules={{required: 'Question required'}}
+                //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
                 <View style={[styles.inputstyle, {borderColor: error ? 'red' : '#e8e8e8'}]}>
@@ -274,8 +246,9 @@ const AnswerSurveyScreen = () => {
 
                 {question4_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
+                //register={register}
                 name="question4_type1_number"
-                rules={{required: 'Question required'}}
+                //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
                 <View style={[styles.inputstyle, {borderColor: error ? 'red' : '#e8e8e8'}]}>
@@ -314,8 +287,9 @@ const AnswerSurveyScreen = () => {
 
                 {question5_type == 1 && <Controller //Controller using passed parameter values
                 control={control}
+                //register={register}
                 name="question5_type1_number"
-                rules={{required: 'Question required'}}
+                //rules={{required: 'Question required'}}
                 render={({field: {value, onChange, onBlur}, fieldState: {error}}) => ( //lambda render function
                 <>
                 <View style={[styles.inputstyle, {borderColor: error ? 'red' : '#e8e8e8'}]}>

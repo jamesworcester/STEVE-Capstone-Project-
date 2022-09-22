@@ -27,7 +27,7 @@ const FirstScreenListItem = (props: AssignedSurveyListItemProps) => {
     
     //const user = chatRoom.users[1]; // initialise user by getting info from dummy data
     const onClick = () => {
-        console.group(id);
+        //console.log(id);
 
         navigation.navigate('AnswerSurvey', {assigned_survey_id: survey.id, survey_id: survey.survey_id})
     }
