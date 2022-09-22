@@ -33,6 +33,9 @@ const AdminToolsScreen = () => {
     const onCreateTeamPressed =  () => { //asynchronous lambda function that checks if there is a request that is still loading, then attempts to sign in
         navigation.navigate('CreateTeam');
     }
+    const onGraphVisualizationPressed =  () => { 
+        navigation.navigate('VisualizationScreen');
+    }
 
     const onViewTeamsPressed =  () => { //asynchronous lambda function that checks if there is a request that is still loading, then attempts to sign in
         async function fetchTeams() {
@@ -69,6 +72,12 @@ const AdminToolsScreen = () => {
                 <CustomButton //Resend Code Button
                 text="View Teams"
                 onPress={onViewTeamsPressed}
+                type="SECONDARY"
+                />
+
+<               CustomButton 
+                text="Data Visualization"
+                onPress={onGraphVisualizationPressed}
                 type="SECONDARY"
                 />
 
