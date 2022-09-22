@@ -45,6 +45,8 @@ import AssignSurveyToTeamScreen from '../screens/AssignSurveyToTeamScreen/Assign
 import SurveyHomeScreen from '../screens/SurveyHomeScreen';
 import ViewAssignedSurveysScreen from '../screens/ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
 import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
+import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
+import FirstScreen from '../screens/FirstScreen/FirstScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -93,6 +95,8 @@ const Navigation = () => {
                 <Stack.Screen name="SurveyHome" component={SurveyHomeScreen} />
                 <Stack.Screen name="ViewAssignedSurveys" component={ViewAssignedSurveysScreen} />
                 <Stack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} />
+                <Stack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
+                <Stack.Screen name="FirstScreen" component={FirstScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

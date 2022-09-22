@@ -526,6 +526,20 @@ export const listAssigned_Surveys = /* GraphQL */ `
     }
   }
 `;
+export const listAssigned_SurveysFORUser = /* GraphQL */ `
+  query ListAssigned_SurveysFORUser($assigned_to: String) {
+    listAssigned_SurveysFORUser(assigned_to: $assigned_to) {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      answered_date_time
+      assigned_team
+      text
+    }
+  }
+`;
 export const listAssigned_SurveysWithDistinctsurvey_id = /* GraphQL */ `
   query ListAssigned_SurveysWithDistinctsurvey_id {
     listAssigned_SurveysWithDistinctsurvey_id {
