@@ -2,17 +2,23 @@
 Programmer: James Worcester
 Created by: James Worcester on 04/09/2022 (Sprint 8)
 Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Screen users are directed to after first sign in to update their details
-//react-native imports
-import React, {useEffect, useState} from 'react';
+
+/*
+Name: UpdateUserScreen
+*/
+
+/*
+Purpose: 
+1. To update a user's details in the database after they log in for the first time
+*/
+
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, useWindowDimensions} from 'react-native';
-//@react-native/native import
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm} from 'react-hook-form';
-//AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
@@ -20,40 +26,37 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined API import
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regex (regular expression) constant to check if the email is in the correct format. WILL NEED TO BE CHANGED/UPDATED
 
 const UpdateUserScreen = () => {
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const route = useRoute(); //route passed parameters from the previous screen (SignIn)
+    const navigation = useNavigation();
+    const route = useRoute();
 
-    current_user = route.params.current_user //get the current user info from the previous screen and store the data in a variable called current_user
+    current_user = route.params.current_user
 
-    const {register, control, handleSubmit, watch, setValue} = useForm();
-    console.log(current_user.data.getUser.email)
-    const {height} = useWindowDimensions(); //sets the height of the window
+    const { control, handleSubmit } = useForm();
+    const {height} = useWindowDimensions(); 
 
-    const onUpdatePressed = async (data) => { //asynchronous lambda function to update a user's details in the database
+    const onUpdatePressed = async (data) => { 
             let user = await Auth.currentAuthenticatedUser();
-            const { username } = user; //get the id (username in this case) of the current user
-            const {email, phone, first_name, last_name, gender } = data; //get the data from the form
+            const { username } = user; //get the id (Cognito username) of the current user
+            const {email, phone, first_name, last_name, gender } = data;
             async function updateUser() { 
             try 
             {
                 const userDetails = {
-                    id: username, email: email, phone: phone, first_name: first_name, last_name: last_name, gender: gender //create a userDetails object with the data from the form
+                    id: username, email: email, phone: phone, first_name: first_name, last_name: last_name, gender: gender
                 }
-
                 await API.graphql(graphqlOperation(mutations.updateUserScreen, {input: userDetails})); //update the user's details in the database
                 navigation.navigate('Dashboard');
             }
             catch(e)
             {
-                Alert.alert('Error', e.message);
+                Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
             }
         }
-        updateUser() //call the updateUser function
+        updateUser()
     }
 
     const onBackPressed = () => {
@@ -68,66 +71,66 @@ const UpdateUserScreen = () => {
                 </Text>
 
                 <Text style={styles.text}>Email:</Text>
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                 name="email"
                 control={control}
                 defaultValue={current_user.data.getUser.email}
                 rules={{
-                    required: 'Email is required', //sets the TextInput as required
+                    required: 'Email is required',
                     pattern: 
                     {
-                        value: EMAIL_REGEX, //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
+                        value: EMAIL_REGEX,
                         message: 'Email is invalid'
                     }
                 }}
                 />
 
                 <Text style={styles.text}>Phone Number:</Text>
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                 name="phone"
                 control={control}
                 defaultValue={current_user.data.getUser.phone}
                 rules={{
-                    required: 'Phone Number is required', //sets the TextInput as required
+                    required: 'Phone Number is required',
                 }}
                 />
 
                 <Text style={styles.text}>First Name:</Text>
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                 name="first_name"
                 control={control}
                 defaultValue={current_user.data.getUser.first_name}
                 rules={{
-                    required: 'First Name is required', //sets the TextInput as required
+                    required: 'First Name is required',
                 }}
                 />
 
                 <Text style={styles.text}>Last Name:</Text>
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                 name="last_name"
                 control={control}
                 defaultValue={current_user.data.getUser.last_name}
                 rules={{
-                    required: 'Last Name is required', //sets the TextInput as required
+                    required: 'Last Name is required',
                 }}
                 />
 
                 <Text style={styles.text}>Gender:</Text>
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                 name="gender"
                 control={control}
                 defaultValue={current_user.data.getUser.gender}
                 rules={{
-                    required: 'Gender is required', //sets the TextInput as required
+                    required: 'Gender is required',
                 }}
                 />
 
-                <PersonalisedButton //Register Button
+                <PersonalisedButton
                     text="Update"
                     onPress={handleSubmit(onUpdatePressed)}
                 />
 
-                <PersonalisedButton //Sign in Button
+                <PersonalisedButton
                     text="Go Back"
                     onPress={onBackPressed}
                     type="THIRD"
@@ -137,10 +140,8 @@ const UpdateUserScreen = () => {
     );
 };
 
-//create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     root: {
-        //alignItems: 'center',
         padding: 20,
     },
     title: {

@@ -10,7 +10,7 @@ Name: ChatMessage
 
 /*
 Purpose: 
-1. Component to display a message in a FlatList from the Chatroom Screen
+1. Component to display a chat message in a FlatList from the Chatroom Screen
 */
 
 import { Post } from "../../types";

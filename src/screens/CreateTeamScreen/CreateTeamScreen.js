@@ -1,47 +1,50 @@
 /*
 Programmer: James Worcester
-Created by: James Worcester on 31/07/2022 (Sprint 6)
-Edited by: James Worcester on 04/09/2022 (Sprint 8)
+Created by: James Worcester on 04/09/2022 (Sprint 8)
 Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
+
+/*
+Name: CreateTeamScreen
+*/
+
+/*
+Purpose: 
+1. Screen to create a team
+*/
+
 //Screen to create a new Team
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-native/native import
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, Alert, useWindowDimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm} from 'react-hook-form';
-//AWS Amplify import
-import { Auth } from 'aws-amplify';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
-//user defined API import
+//user defined API imports
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
-
 
 const CreateTeamScreen = () => {
 
-    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const {height} = useWindowDimensions(); //sets the height of the window
+    const {control, handleSubmit, watch} = useForm();
+    const navigation = useNavigation(); 
+    const {height} = useWindowDimensions();
 
     const onCreateTeamPressed = async (data) => { 
         const {name, description} = data;
                     try {
-                        const teamDetails = { //stores teamDetails
+                        const teamDetails = {
                             name: name,
                             description: description,
                         }
-                        const team = await API.graphql(graphqlOperation(mutations.createTeamAdmin, {input: teamDetails})); //create a team in the database
+                        const team = await API.graphql(graphqlOperation(mutations.createTeamAdmin, {input: teamDetails})); //create a team in the Team table in the database
                         navigation.goBack(); //go back to the previous screen
                     }
                     catch(e)
                     {
-                        console.log(e)
-                        Alert.alert('Error', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+                        Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
                     }
                 }
 
@@ -56,30 +59,30 @@ const CreateTeamScreen = () => {
                     Create a Team
                 </Text>
 
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                     name="name"
                     control={control}
                     placeholder="Team Name"
                     rules={{
-                        required: 'Team Name is required', //sets the TextInput as required
+                        required: 'Team Name is required', 
                     }}
                 />
 
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                     name="description"
                     control={control}
                     placeholder="Description"
                     rules={{
-                        required: 'Description is required', //sets the TextInput as required
+                        required: 'Description is required',
                     }}
                 />
 
-                <PersonalisedButton //Register Button
+                <PersonalisedButton
                     text="Create Team"
                     onPress={handleSubmit(onCreateTeamPressed)}
                 />
 
-                <PersonalisedButton //Sign in Button
+                <PersonalisedButton
                     text="Go back"
                     onPress={onBackPressed}
                     type="THIRD"
@@ -89,7 +92,6 @@ const CreateTeamScreen = () => {
     );
 };
 
-//create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',

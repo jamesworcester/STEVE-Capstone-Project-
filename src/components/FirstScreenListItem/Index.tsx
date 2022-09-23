@@ -10,7 +10,7 @@ Name: FirstScreenListItem
 
 /*
 Purpose: 
-1. Component to display a survey currently assigned to the logged in user in a FlatList from the FirstScreen
+1. Component to display a survey currently assigned to the logged in user in a FlatList from FirstScreen
 2. When the user clicks on the survey, the are navigated to the AnswerSurveyScreen for that survey
 */
 

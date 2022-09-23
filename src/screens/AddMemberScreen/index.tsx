@@ -1,6 +1,20 @@
 /*
 Programmer: Hung
 */
+
+/*
+NOT IMPLEMENTED IN FINAL BUILD
+*/
+
+/*
+Name: AddMemberScreen
+*/
+
+/*
+Purpose: 
+1. Screen to add/subscribe a new member to a chat channel
+*/
+
 import React from "react";
 import { View,Text,Button } from "react-native";
 import style from "./styles";

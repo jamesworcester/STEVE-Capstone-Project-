@@ -1,43 +1,42 @@
 /*
 Programmer: James Worcester
 Created by: James Worcester on 16/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
+
+/*
+Name: UserScreen
+*/
+
+/*
+Purpose: 
+1. Screen to display the User Directory
+2. Each user is clickable and navigates to the PublicProfile Screen for that user
+*/
+
 import React from 'react'
 import { Header } from "@rneui/themed";
 import { FlatList } from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
-//import TeamListItem from '../../components/TeamListItem/Index'; //import chatlistitem component so we can display it on a flatlist
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-native/native import
-import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-import {useForm} from 'react-hook-form';
-//AWS Amplify import
-import { Auth } from 'aws-amplify';
-//user defined component imports
-import PersonalisedInput from '../../components/PersonalisedInput';
-import PersonalisedButton from '../../components/PersonalisedButton';
+import { View } from 'react-native';
+import {useEffect, useState} from "react";
 //user defined API import
 import { API, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
-import {useEffect, useState} from "react";
-
+//import ListItem
 import UserListItem from '../../components/UserListItem/Index';
-
 
 export default function UserScreen() {
     const [user, setUser] = useState([]);
-
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const userData = await API.graphql(graphqlOperation(queries.listUsers));
-                setUser(userData.data.listUsers);
+                const userData = await API.graphql(graphqlOperation(queries.listUsers)); //get all users in the database and store in the userData array
+                setUser(userData.data.listUsers); //set the user state userData.data.listUsers
             }
             catch(e)
             {
-                console.log(e);
+                Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
             }
         }
         getUsers();
@@ -45,18 +44,17 @@ export default function UserScreen() {
 
     return (
         <View >
-            <Header // Header of the screen 
+            <Header
             backgroundColor='#051C60'
             leftComponent={{ color: '#fff' }}
             centerComponent={{text:'Users', style: {color: '#E6E6FA', fontSize : 16}, 
             }}/>
 
-        <FlatList 
-            data={user}
-            renderItem = {({item}) => <UserListItem user={item}/>} //display all the Chatlistitem components (its also understanded as a channel)here
-            keyExtractor = {(item) => item.id} // this is id for every single channel 
-        />
-
+            <FlatList 
+                data={user}
+                renderItem = {({item}) => <UserListItem user={item}/>}
+                keyExtractor = {(item) => item.id}
+            />
         </View>
         
     )

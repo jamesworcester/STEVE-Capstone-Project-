@@ -10,45 +10,25 @@ Name: CreateSurveyScreen
 
 /*
 Purpose: 
-1.
-
-
-
-
-
-
-1. Component to display a team in a FlatList from the AssignSurveyToTeamScreen
-2. When the user clicks on the team, they are prompted to confirm that they want to assign the survey to that team
-3. If yes, the survey is assigned to all team members
+1. Screen to create a survey with various questions and input types
+2. Once the user clicks the 'Create Survey' button, each question is created individually in the Question table in the database, and a new survey is created in the Survey table with references to each question through the Survey_Question associative table
+3. The user is then redirected to the ReviewSurveyScreen to review the survey before it is assigned
 */
 
-
-//Screen to create a Survey
-//react-native imports
 import React, {useState} from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-native/native import
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm, Controller} from 'react-hook-form';
-//AWS Amplify import
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
-import { Picker } from '@react-native-picker/picker';
+//import dropdown component
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import PersonalisedDropdown from '../../components/PersonalisedDropdown';
+//import API & mutations
 import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
-
-// const defaultValues = {
-//     title: "",
-//     content: "",
-//     language: "java",
-//   };
 
   const data = [
     { label: 'Scale (Agree/Disagree)', value: '1' },
@@ -56,141 +36,94 @@ import * as queries from '../../graphql/queries';
     //{ label: 'Multiple choice', value: '3' },
   ];
 
-
 const CreateSurveyScreen = () => {
-    //const [value, setValue] = useState(null)
 
+    const navigation = useNavigation();
+    const route = useRoute();
+    const {control, handleSubmit} = useForm();
+    const {height} = useWindowDimensions();
 
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const route = useRoute(); //route passed parameters from the previous screen
-    const {control, handleSubmit, errors, getValues, setValue, watch, reset} = useForm(); //use form from react-hook-form
-    const {height} = useWindowDimensions(); //sets the height of the window
-
-    //const watchShowLanguage = watch("language", false);
-
+    //state variables to keep track of selected question type from each dropdown component
     const [q1selectedType, q1setSelectedType] = useState(null);
     const [q2selectedType, q2setSelectedType] = useState(null);
     const [q3selectedType, q3setSelectedType] = useState(null);
     const [q4selectedType, q4setSelectedType] = useState(null);
     const [q5selectedType, q5setSelectedType] = useState(null);
 
-    //const onSubmit = data => alert(JSON.stringify(data));
-
     const onCreatePressed = async (data) => {
-        //console.log(data);
-            // try 
-            // {
+
+                //if any question type is not selected, alert the user
                 if(q1selectedType == null || q2selectedType == null || q3selectedType == null || q4selectedType == null || q5selectedType == null)
                 {
                     Alert.alert("Please select a question type for each question");
                 }
+                //if any question is not filled in, alert the user
                 else if(data.question1 == null || data.question2 == null || data.question3 == null || data.question4 == null || data.question5 == null)
                 {
                     Alert.alert("Please enter a question for each question");
                 }
-                // else if(((q1selectedType == 1 || q1selectedType == 3) && !Number.isInteger(parseInt(data.question1))))
-                // {
-
-                // }
-                else if(data.question1 < 1 || data.question1 > 10 || data.question2 < 1 || data.question2 > 10 || data.question3 < 1 || data.question3 > 10 || data.question4 < 1 || data.question4 > 10 || data.question5 < 1 || data.question5 > 10)
-                {
-                    Alert.alert("Please enter a number between 1 and 10 for scale question");
-                }
                 else
                 {
-                const user = await Auth.currentAuthenticatedUser();
-                const { username } = user; //get the id (username in this case) of the current user
-                console.log(username);
+                    const user = await Auth.currentAuthenticatedUser();
+                    const { username } = user; //get the id (Cognito username) of the current user
+                    try
+                    {
+                        //create question1 in the Question table in the database
+                        const createdQuestion1 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q1selectedType, question_number: 1, question_text: data.question1}}));
+                        //store question1's id, type and text in variables
+                        const question1_id = createdQuestion1.data.createQuestion.id;
+                        const question1_type = createdQuestion1.data.createQuestion.question_type;
+                        const question1_text = createdQuestion1.data.createQuestion.question_text;
+                        
+                        //create question2 in the Question table in the database
+                        const createdQuestion2 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q2selectedType, question_number: 2, question_text: data.question2}}));
+                        //store question2's id, type and text in variables
+                        const question2_id = createdQuestion2.data.createQuestion.id;
+                        const question2_type = createdQuestion2.data.createQuestion.question_type;
+                        const question2_text = createdQuestion2.data.createQuestion.question_text;
 
-                let q1 = {question_type: q1selectedType, question_text: data.question1}
-                console.log(q1);
+                        //create question3 in the Question table in the database
+                        const createdQuestion3 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q3selectedType, question_number: 3, question_text: data.question3}}));
+                        //store question3's id, type and text in variables
+                        const question3_id = createdQuestion3.data.createQuestion.id;
+                        const question3_type = createdQuestion3.data.createQuestion.question_type;
+                        const question3_text = createdQuestion3.data.createQuestion.question_text;
 
+                        //create question4 in the Question table in the database
+                        const createdQuestion4 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q4selectedType, question_number: 4, question_text: data.question4}}));
+                        //store question4's id, type and text in variables
+                        const question4_id = createdQuestion4.data.createQuestion.id;
+                        const question4_type = createdQuestion4.data.createQuestion.question_type;
+                        const question4_text = createdQuestion4.data.createQuestion.question_text;
 
-                const q1Details = {
-                    id: username,
-                    question_type: q1selectedType,
-                    question_text: data.question1
-                }
+                        //create question5 in the Question table in the database
+                        const createdQuestion5 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q5selectedType, question_number: 5, question_text: data.question5}}));
+                        //store question5's id, type and text in variables
+                        const question5_id = createdQuestion5.data.createQuestion.id;
+                        const question5_type = createdQuestion5.data.createQuestion.question_type;
+                        const question5_text = createdQuestion5.data.createQuestion.question_text;
 
-                const q2Details = {
-                    id: username,
-                    question_type: q1selectedType,
-                    question_text: data.question2
-                }
+                        //create a new survey in the Survey table in the database
+                        const createdSurvey = await API.graphql(graphqlOperation(mutations.createSurvey, {input: {created_by: username, text: data.name}}));
+                        //store the survey's id and text in variables
+                        const survey_id = createdSurvey.data.createSurvey.id;
+                        const survey_text = createdSurvey.data.createSurvey.text;
 
-                const q3Details = {
-                    id: username,
-                    question_type: q1selectedType,
-                    question_text: data.question3
-                }
-
-                const q4Details = {
-                    id: username,
-                    question_type: q1selectedType,
-                    question_text: data.question4
-                }
-
-                const q5Details = {
-                    id: username,
-                    question_type: q1selectedType,
-                    question_text: data.question5
-                }
-
-                console.log(q1Details);
-                console.log(q2Details);
-                console.log(q3Details);
-                console.log(q4Details);
-                console.log(q5Details);
-
-                const createdQuestion1 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q1selectedType, question_number: 1, question_text: data.question1}}));
-                console.log(createdQuestion1);
-                const question1_id = createdQuestion1.data.createQuestion.id;
-                const question1_type = createdQuestion1.data.createQuestion.question_type;
-                const question1_text = createdQuestion1.data.createQuestion.question_text;
-
-                const createdQuestion2 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q2selectedType, question_number: 2, question_text: data.question2}}));
-                console.log(createdQuestion2);
-                const question2_id = createdQuestion2.data.createQuestion.id;
-                const question2_type = createdQuestion2.data.createQuestion.question_type;
-                const question2_text = createdQuestion2.data.createQuestion.question_text;
-
-                const createdQuestion3 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q3selectedType, question_number: 3, question_text: data.question3}}));
-                console.log(createdQuestion3);
-                const question3_id = createdQuestion3.data.createQuestion.id;
-                const question3_type = createdQuestion3.data.createQuestion.question_type;
-                const question3_text = createdQuestion3.data.createQuestion.question_text;
-
-                const createdQuestion4 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q4selectedType, question_number: 4, question_text: data.question4}}));
-                console.log(createdQuestion4);
-                const question4_id = createdQuestion4.data.createQuestion.id;
-                const question4_type = createdQuestion4.data.createQuestion.question_type;
-                const question4_text = createdQuestion4.data.createQuestion.question_text;
-
-                const createdQuestion5 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q5selectedType, question_number: 5, question_text: data.question5}}));
-                console.log(createdQuestion5);
-                const question5_id = createdQuestion5.data.createQuestion.id;
-                const question5_type = createdQuestion5.data.createQuestion.question_type;
-                const question5_text = createdQuestion5.data.createQuestion.question_text;
-
-                const createdSurvey = await API.graphql(graphqlOperation(mutations.createSurvey, {input: {created_by: username, text: data.name}}));
-                console.log(createdSurvey);
-                const survey_id = createdSurvey.data.createSurvey.id;
-                const survey_text = createdSurvey.data.createSurvey.text;
-                
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question1_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question2_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question3_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question4_id}})));
-                console.log(await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question5_id}})));
-                
-                //navigation.navigate('ReviewSurvey', {createdSurvey: createdSurvey, createdQuestion1: createdQuestion1, createdQuestion2: createdQuestion2, createdQuestion3: createdQuestion3, createdQuestion4: createdQuestion4, createdQuestion5: createdQuestion5});
-                navigation.navigate('ReviewSurvey', {survey_id: survey_id, survey_text: survey_text, question1_type: question1_type, question1_text: question1_text, question2_type: question2_type, question2_text: question2_text, question3_type: question3_type, question3_text: question3_text, question4_type: question4_type, question4_text: question4_text, question5_type: question5_type, question5_text: question5_text});
+                        //create new Survey_Questions in the Survey_Question associative table to link the survey to the questions
+                        await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question1_id}}));
+                        await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question2_id}}));
+                        await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question3_id}}));
+                        await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question4_id}}));
+                        await API.graphql(graphqlOperation(mutations.createSurvey_Question, {input: {survey_id: survey_id, question_id: question5_id}}));
+                        
+                        //navigate to the ReviewSurveyScreen and pass the survey id and text, and each question's type and text through the route
+                        navigation.navigate('ReviewSurvey', {survey_id: survey_id, survey_text: survey_text, question1_type: question1_type, question1_text: question1_text, question2_type: question2_type, question2_text: question2_text, question3_type: question3_type, question3_text: question3_text, question4_type: question4_type, question4_text: question4_text, question5_type: question5_type, question5_text: question5_text});
+                    }
+                    catch
+                    {
+                        Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+                    }
                 } 
-            // }
-            // catch(e)
-            // {
-            //     Alert.alert('Error', e.message);
-            // }
     }
 
     return (
@@ -401,7 +334,6 @@ const CreateSurveyScreen = () => {
                         </View>
                     )}
                 />
-
 
                 <PersonalisedButton //Register Button
                     text="Create Survey"

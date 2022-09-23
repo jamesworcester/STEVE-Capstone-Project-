@@ -23,7 +23,7 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 const AdminToolsScreen = () => {
 
     const navigation = useNavigation();
-    const {height} = useWindowDimensions(); //sets the height of the window
+    const {height} = useWindowDimensions();
     const {control, handleSubmit, formState: {errors}} = useForm(); //useForm from react-hook-form
 
     const onCreateTeamPressed =  () => {

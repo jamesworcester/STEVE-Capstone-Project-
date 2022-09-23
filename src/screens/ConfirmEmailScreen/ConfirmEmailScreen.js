@@ -30,7 +30,7 @@ import Logo from '../../../assets/images/planit_nri_v_navy.png';
 const ConfirmEmailScreen = () => {
     const route = useRoute();
     const {control, handleSubmit} = useForm();
-    const {height} = useWindowDimensions(); //sets the height of the window
+    const {height} = useWindowDimensions();
     const navigation = useNavigation();
 
     const username = route.params.email;
