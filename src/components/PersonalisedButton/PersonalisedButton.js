@@ -3,22 +3,30 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Refactored by: James Worcester on 13/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//PersonalisedButton component class. Used to create personalised button components that call functions when pressed. Use custom CSS.
-//react-native imports
+
+/*
+Name: PersonalisedButton
+*/
+
+/*
+Purpose: 
+1. Component to create personalised button with customisable styling and functionality
+*/
+
 import React from 'react';
 import { Text, StyleSheet, Pressable} from 'react-native';
 
-//define a constant lambda function called PersonalisedButton that can have various parameters passed to it for customisable functionality and CSS styling
 const PersonalisedButton = ({ onPress, text, type = "MAIN"}) => {
     return (
         <Pressable //when pressed
-            onPress={onPress} //carry out the passed 'onPress' parameter command
-            style={[ //style the button
+            onPress={onPress}
+            style={[
                 styles.buttonstyle,
                 styles[`buttonstyle_${type}`], //style the button by passed 'type' parameter
             ]}>
-            <Text style={[ //style the button's text and create the button with the passed 'text' parameter
+            <Text style={[
                 styles.text,
                 styles[`text_${type}`], //style the button's text by passed 'type' parameter
                 ]}>
@@ -28,7 +36,6 @@ const PersonalisedButton = ({ onPress, text, type = "MAIN"}) => {
     )
 };
 
-//define a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     buttonstyle: {
         
@@ -76,5 +83,4 @@ const styles = StyleSheet.create({
 
 });
 
-//export the PersonalisedButton component
 export default PersonalisedButton;

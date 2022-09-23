@@ -3,12 +3,19 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Navigation class that uses @react-navigation/native library for navigation between different screens of the app https://reactnavigation.org/docs/getting-started/
-//react-native imports
+
+/*
+Name: Navigation
+*/
+
+/*
+Purpose: 
+1. Component to create navigation stack for the app using @react-navigation/native library https://reactnavigation.org/docs/getting-started/
+*/
+
 import React from 'react';
-import { View, Text } from 'react-native';
-//@react-navigation/native imports
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 //importing all other JavaScript screens for navigation to handle
@@ -48,15 +55,8 @@ import SurveyHomeScreen from '../screens/SurveyHomeScreen';
 import ViewAssignedSurveysScreen from '../screens/ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
 import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
 import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
-import {
-  Octicons,
-  MaterialCommunityIcons,
-  MaterialIcons,
-  FontAwesome5,
-} from '@expo/vector-icons';
 
-//create the navigation stack
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); //create the navigation stack
 
 //define a constant lambda function called Navigation to handle the navigation stack, and add all screens to the Stack.
 //NOTE: IF YOU ADD A NEW SCREEN, MAKE SURE TO ADD IT BELOW WITH ITS OWN UNIQUE NAME
@@ -105,5 +105,4 @@ const Navigation = () => {
     )
 };
 
-//export the Navigation function
 export default Navigation;

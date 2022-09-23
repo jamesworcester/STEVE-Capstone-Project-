@@ -3,16 +3,23 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Refactored by: James Worcester on 13/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//PersonalisedInput component class. Used to create custom TextInput components with a variety of CSS styling
-//react-native imports
+
+/*
+Name: PersonalisedInput
+*/
+
+/*
+Purpose: 
+1. Component to create a personalised TextInput with customisable styling and functionality
+*/
+
 import React from "react";
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {Controller} from 'react-hook-form';
 
-//define a constant lambda function called PersonalisedInput that can have a various parameters passed to it for customisable functionality and styling
-const PersonalisedInput = ({control, name, rules = {}, placeholder, defaultValue, value, secureTextEntry}) => {
+const PersonalisedInput = ({control, name, rules = {}, placeholder, defaultValue, secureTextEntry}) => {
     return (
             <Controller //Controller using passed parameter values
                 control={control}
@@ -40,7 +47,6 @@ const PersonalisedInput = ({control, name, rules = {}, placeholder, defaultValue
     )
 };
 
-//define a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     inputstyle: {
         backgroundColor: 'white',
@@ -55,5 +61,4 @@ const styles = StyleSheet.create({
     },
 });
 
-//export the CustomInput component
 export default PersonalisedInput;
