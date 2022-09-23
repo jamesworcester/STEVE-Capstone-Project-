@@ -28,6 +28,9 @@ const AdminToolsScreen = () => {
     const onCreateTeamPressed =  () => {
         navigation.navigate('CreateTeam');
     }
+    const onGraphVisualizationPressed =  () => { 
+        navigation.navigate('VisualizationScreen');
+    }
 
     const onViewTeamsPressed =  () => {
                 navigation.navigate('Team'); //navigate to ViewTeams screen and pass the teams data
@@ -60,6 +63,12 @@ const AdminToolsScreen = () => {
                 text="Test Screen"
                 onPress={onTestScreenPressed}
                 type="SECOND"
+                />
+
+<               CustomButton 
+                text="Data Visualization"
+                onPress={onGraphVisualizationPressed}
+                type="SECONDARY"
                 />
 
             </View>

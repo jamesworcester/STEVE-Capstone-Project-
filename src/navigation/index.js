@@ -22,6 +22,8 @@ import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
 import SurveyScreen from '../screens/SurveyScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
+import FirstScreen from '../screens/FirstScreen/FirstScreen';
+import VisualizationScreen from '../screens/VisualizationScreen/VisualizationScreen';
 import SurveyTest from '../screens/SurveyTest'
 import CreateSurveyScreen from '../screens/CreateSurveyScreen';
 import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
@@ -93,6 +95,10 @@ const Navigation = () => {
                 <Stack.Screen name="SurveyHome" component={SurveyHomeScreen} />
                 <Stack.Screen name="ViewAssignedSurveys" component={ViewAssignedSurveysScreen} />
                 <Stack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} />
+                <Stack.Screen name="VisualizationScreen" component={VisualizationScreen} /> 
+                <Stack.Screen name="FirstScreen" component={FirstScreen} /> 
+
+                
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
