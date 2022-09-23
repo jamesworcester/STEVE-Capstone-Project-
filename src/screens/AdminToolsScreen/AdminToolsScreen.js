@@ -65,10 +65,10 @@ const AdminToolsScreen = () => {
                 type="SECOND"
                 />
 
-<               CustomButton 
+                <PersonalisedButton
                 text="Data Visualization"
                 onPress={onGraphVisualizationPressed}
-                type="SECONDARY"
+                type="SECOND"
                 />
 
             </View>
