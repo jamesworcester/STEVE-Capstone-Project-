@@ -16,7 +16,6 @@ Purpose:
 import React from 'react'
 import 'react-native-gesture-handler';
 import FirstScreen from '../FirstScreen/FirstScreen';
-import Survey from '../Survey/Survey';
 import Chatchannel from '../ChatChannel/Chatchannel';
 import Profile from '../Profile/Profile';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
