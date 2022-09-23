@@ -43,7 +43,7 @@ export default function ViewAssignedSurveysScreen() {
                 console.log(uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_id.length);
                 for(let i = 0; i < uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_id.length; i++)
                 {
-                    console.log(uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_id[i].survey_id);
+                    //console.log(uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_id[i].survey_id);
                     surveyData[i] = await API.graphql(graphqlOperation(queries.getSurvey, {id: uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_id[i].survey_id}));
                     //console.log("TEST");
                     //console.log(surveyData[i]);
@@ -77,7 +77,7 @@ export default function ViewAssignedSurveysScreen() {
 
         <FlatList 
             data={survey}
-            renderItem = {({item}) => <AssignedSurveyListItem survey={item}/>} //display all the Chatlistitem components (its also understanded as a channel)here
+            renderItem = {({item}) => <AssignedSurveyListItem survey={item} />} //display all the Chatlistitem components (its also understanded as a channel)here
             keyExtractor = {(item) => item.id} // this is id for every single channel 
         />
 

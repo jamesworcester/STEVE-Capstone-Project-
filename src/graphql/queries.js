@@ -526,6 +526,20 @@ export const listAssigned_Surveys = /* GraphQL */ `
     }
   }
 `;
+export const listAssigned_SurveysFORUser = /* GraphQL */ `
+  query ListAssigned_SurveysFORUser($assigned_to: String) {
+    listAssigned_SurveysFORUser(assigned_to: $assigned_to) {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      answered_date_time
+      assigned_team
+      text
+    }
+  }
+`;
 export const listAssigned_SurveysWithDistinctsurvey_id = /* GraphQL */ `
   query ListAssigned_SurveysWithDistinctsurvey_id {
     listAssigned_SurveysWithDistinctsurvey_id {
@@ -579,6 +593,25 @@ export const listQuestions = /* GraphQL */ `
 export const listJoinQuestionANDSurvey_Questions = /* GraphQL */ `
   query ListJoinQuestionANDSurvey_Questions($survey_id: String) {
     listJoinQuestionANDSurvey_Questions(survey_id: $survey_id) {
+      id
+      created_by
+      question_type
+      question_text
+      is_archived
+      created_date_time
+      archived_date_time
+      question_number
+      survey_id
+    }
+  }
+`;
+export const listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN = /* GraphQL */ `
+  query ListJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN(
+    $survey_id: String
+  ) {
+    listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN(
+      survey_id: $survey_id
+    ) {
       id
       created_by
       question_type

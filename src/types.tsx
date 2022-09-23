@@ -10,6 +10,7 @@ export type Survey = {
     created_by: String;
     text: String;
     created_date_time: String;
+    survey_id: String;
 }
 
 export type Message = {

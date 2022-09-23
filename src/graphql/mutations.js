@@ -141,6 +141,34 @@ export const createQuestion_Answer = /* GraphQL */ `
     }
   }
 `;
+export const createQuestion_AnswerNumber = /* GraphQL */ `
+  mutation CreateQuestion_AnswerNumber($input: CreateQuestion_AnswerInput!) {
+    createQuestion_AnswerNumber(input: $input) {
+      id
+      question_id
+      assigned_survey_id
+      user_id
+      is_anonymous
+      answer_number
+      answer_string
+      answered_date_time
+    }
+  }
+`;
+export const createQuestion_AnswerString = /* GraphQL */ `
+  mutation CreateQuestion_AnswerString($input: CreateQuestion_AnswerInput!) {
+    createQuestion_AnswerString(input: $input) {
+      id
+      question_id
+      assigned_survey_id
+      user_id
+      is_anonymous
+      answer_number
+      answer_string
+      answered_date_time
+    }
+  }
+`;
 export const createTeam_Membership = /* GraphQL */ `
   mutation CreateTeam_Membership($input: CreateTeam_MembershipInput!) {
     createTeam_Membership(input: $input) {
@@ -531,6 +559,21 @@ export const updateTeam_Survey = /* GraphQL */ `
 export const updateAssigned_Survey = /* GraphQL */ `
   mutation UpdateAssigned_Survey($input: UpdateAssigned_SurveyInput!) {
     updateAssigned_Survey(input: $input) {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      end_assignment
+      frequency_of_survey_days
+      answered_date_time
+      assigned_team
+    }
+  }
+`;
+export const updateAssignedSurveyANSWER = /* GraphQL */ `
+  mutation UpdateAssignedSurveyANSWER($input: UpdateAssigned_SurveyInput!) {
+    updateAssignedSurveyANSWER(input: $input) {
       id
       survey_id
       assigned_to

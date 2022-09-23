@@ -27,7 +27,21 @@ const styles  = StyleSheet.create({
         justifyContent : 'center',
         alignItems : 'center',
         color : '#000000',
-    }
+    },
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
+        marginBottom: 10,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#051C60',
+        margin: 10,
+        marginBottom: 10
+    },
+    
 })
 
 export default styles
