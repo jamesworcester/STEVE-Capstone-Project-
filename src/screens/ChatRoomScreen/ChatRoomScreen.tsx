@@ -15,7 +15,7 @@ Purpose:
 */
 
 import React from "react";
-import { View, FlatList, ImageBackground, Alert} from "react-native";
+import { View, FlatList, ImageBackground, Alert, Text} from "react-native";
 import { Header } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons'; 
@@ -61,12 +61,16 @@ const ChatRoomScreen =() => {
     const createNewPost = async (content) => {
       try 
       {
+          var content = content.replace(/'/g, "''"); //replace all single quotes with double single quotes to prevent SQL injection
+          content = content.replace(/\n/g, " "); //replace all new lines with \n to prevent SQL injection
+          console.log(content)
           await API.graphql(graphqlOperation(mutations.createPostContent, {input: {channel_id: channel_id, user_id: myId, content: content}}));
           setPost([...post, {channel_id: channel_id, user_id: myId, content: content}]); //add a new post to the post array's state through the setPost function, causing an async render
       }
       catch(e)
       {
-        Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+        //Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+        console.log(e);
       }
   }
 
