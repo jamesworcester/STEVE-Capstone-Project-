@@ -40,11 +40,13 @@ const SurveyHomeScreen = () => {
                 <PersonalisedButton
                 text={"Create Survey"}
                 onPress={onCreateSurveyPressed}
+
                 />
 
                 <PersonalisedButton
-                text={"View Assigned Surveys"}
+                text={"View All Surveys"}
                 onPress={onViewAssignedSurveysPressed}
+                type="SECOND"
                 />
             </View>
         </ScrollView>

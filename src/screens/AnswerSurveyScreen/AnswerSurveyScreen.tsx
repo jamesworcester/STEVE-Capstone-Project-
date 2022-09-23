@@ -121,6 +121,7 @@ const AnswerSurveyScreen = () => {
             else if(question1_type == "2") //if question1 is a Short Answer text question
             {
                 //create new Question_Answer for question1
+                data.question1_answer = data.question1_answer.replace(/'/g, "''"); //replace all single quotes with double single quotes to prevent SQL injection
                 await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question1_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question1_answer}}));
             }
 
@@ -132,6 +133,7 @@ const AnswerSurveyScreen = () => {
             else if(question2_type == "2") //if question2 is a Short Answer text question
             {
                 //create new Question_Answer for question2
+                data.question2_answer = data.question2_answer.replace(/'/g, "''"); //replace all single quotes with double single quotes to prevent SQL injection
                 await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question2_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question2_answer}}));
             }
 
@@ -143,6 +145,7 @@ const AnswerSurveyScreen = () => {
             else if(question3_type == "2") //if question3 is a Short Answer text question
             {
                 //create new Question_Answer for question3
+                data.question3_answer = data.question3_answer.replace(/'/g, "''"); //replace all single quotes with double single quotes to prevent SQL injection
                 await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question3_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question3_answer}}));
             }
 
@@ -154,6 +157,7 @@ const AnswerSurveyScreen = () => {
             else if(question4_type == "2") //if question4 is a Short Answer text question
             {
                 //create new Question_Answer for question4
+                data.question4_answer = data.question4_answer.replace(/'/g, "''"); //replace all single quotes with double single quotes to prevent SQL injection
                 await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question4_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question4_answer}}));
             }
 
@@ -165,6 +169,7 @@ const AnswerSurveyScreen = () => {
             else if(question5_type == "2") //if question5 is a Short Answer text question
             {
                 //create new Question_Answer for question5
+                data.question5_answer = data.question5_answer.replace(/'/g, "''"); //replace all single quotes with double single quotes to prevent SQL injection
                 await API.graphql(graphqlOperation(mutations.createQuestion_AnswerString, {input: {question_id: question5_id, assigned_survey_id: route.params.assigned_survey_id, user_id: username, answer_string: data.question5_answer}}));
             }
 

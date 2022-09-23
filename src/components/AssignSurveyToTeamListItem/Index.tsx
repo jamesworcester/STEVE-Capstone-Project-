@@ -58,7 +58,7 @@ const AssignSurveyToTeamListItem = (props: AssignSurveyToTeamTeamListItemProps) 
                         for(let i = 0; i < assigned_team_members.data.listTeam_MembershipsWhereTeamID.length; i++) //for each team member in the array
                         {
                             //assign the survey to the team member
-                            API.graphql(graphqlOperation(mutations.createAssigned_Survey, {input: {survey_id: survey_id, assigned_to: assigned_team_members.data.listTeam_MembershipsWhereTeamID[i].user_id, assigned_by: username, assigned_team: team.name}}));
+                            API.graphql(graphqlOperation(mutations.createAssigned_Survey, {input: {survey_id: survey_id, assigned_to: assigned_team_members.data.listTeam_MembershipsWhereTeamID[i].user_id, assigned_by: username, assigned_team: team.name.replace(/'/g, "''")}}));
                         }
                         navigation.navigate('AdminTools');
                     }

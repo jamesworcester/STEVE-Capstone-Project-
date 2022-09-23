@@ -61,10 +61,8 @@ const ChatRoomScreen =() => {
     const createNewPost = async (content) => {
       try 
       {
-          var content = content.replace(/'/g, "''"); //replace all single quotes with double single quotes to prevent SQL injection
-          content = content.replace(/\n/g, " "); //replace all new lines with \n to prevent SQL injection
-          console.log(content)
-          await API.graphql(graphqlOperation(mutations.createPostContent, {input: {channel_id: channel_id, user_id: myId, content: content}}));
+          var contentSQL = content.replace(/'/g, "''").replace(/\n/g, " "); //replace all single quotes with double single quotes to prevent SQL injection & replace all new lines with a space to handle illegal CTRL-CHAR (Code 10) character
+          await API.graphql(graphqlOperation(mutations.createPostContent, {'input: {channel_id: channel_id, user_id: myId, content: contentSQL}}));
           setPost([...post, {channel_id: channel_id, user_id: myId, content: content}]); //add a new post to the post array's state through the setPost function, causing an async render
       }
       catch(e)

@@ -28,6 +28,7 @@ const ViewAssignedSurveyDetailsScreen = () => {
     const route = useRoute();
 
     const [surveyDetails, setSurveyDetails] = useState([]); //state to store the survey details
+    const [questionDetails, setQuestionDetails] = useState([]); //state to store the question details
     //states to store question1 text and type
     const [question1_text, setQuestion1_text] = useState();
     const [question1_type, setQuestion1_type] = useState();

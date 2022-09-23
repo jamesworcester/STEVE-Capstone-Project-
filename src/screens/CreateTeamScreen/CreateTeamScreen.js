@@ -36,8 +36,8 @@ const CreateTeamScreen = () => {
         const {name, description} = data;
                     try {
                         const teamDetails = {
-                            name: name,
-                            description: description,
+                            name: name.replace(/'/g, "''"), //replace all single quotes with double single quotes to prevent SQL injection,
+                            description: description.replace(/'/g, "''"),
                         }
                         const team = await API.graphql(graphqlOperation(mutations.createTeamAdmin, {input: teamDetails})); //create a team in the Team table in the database
                         navigation.goBack(); //go back to the previous screen

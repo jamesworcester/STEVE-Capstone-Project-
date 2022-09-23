@@ -27,8 +27,6 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 import { API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regex (regular expression) constant to check if the email is in the correct format. WILL NEED TO BE CHANGED/UPDATED
-
 const UpdateUserScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
@@ -41,12 +39,12 @@ const UpdateUserScreen = () => {
     const onUpdatePressed = async (data) => { 
             let user = await Auth.currentAuthenticatedUser();
             const { username } = user; //get the id (Cognito username) of the current user
-            const {email, phone, first_name, last_name, gender } = data;
+            const { phone, first_name, last_name, gender } = data;
             async function updateUser() { 
             try 
             {
                 const userDetails = {
-                    id: username, email: email, phone: phone, first_name: first_name, last_name: last_name, gender: gender
+                    id: username, phone: phone.replace(/'/g, "''"), first_name: first_name.replace(/'/g, "''"), last_name: last_name.replace(/'/g, "''"), gender: gender.replace(/'/g, "''")
                 }
                 await API.graphql(graphqlOperation(mutations.updateUserScreen, {input: userDetails})); //update the user's details in the database
                 navigation.navigate('Dashboard');
@@ -69,21 +67,6 @@ const UpdateUserScreen = () => {
                 <Text style={styles.title}>
                     Update User
                 </Text>
-
-                <Text style={styles.text}>Email:</Text>
-                <PersonalisedInput
-                name="email"
-                control={control}
-                defaultValue={current_user.data.getUser.email}
-                rules={{
-                    required: 'Email is required',
-                    pattern: 
-                    {
-                        value: EMAIL_REGEX,
-                        message: 'Email is invalid'
-                    }
-                }}
-                />
 
                 <Text style={styles.text}>Phone Number:</Text>
                 <PersonalisedInput

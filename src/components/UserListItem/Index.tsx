@@ -30,7 +30,6 @@ const UserListItem = (props: UserListItemProps) => {
     const {user} = props;
     const navigation = useNavigation();
     const onClick = () => {
-        console.log("USERID: "+user.id)
         navigation.navigate('PublicProfile', 
         {   
             id: user.id,

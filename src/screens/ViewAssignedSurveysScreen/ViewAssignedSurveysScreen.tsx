@@ -54,7 +54,7 @@ export default function ViewAssignedSurveysScreen() {
             <Header
                 backgroundColor='#051C60'
                 leftComponent={{ color: '#fff' }}
-                centerComponent={{text:'Assigned Surveys', style: {color: '#E6E6FA', fontSize : 16}, 
+                centerComponent={{text:'All Surveys', style: {color: '#E6E6FA', fontSize : 16}, 
             }}/>
 
             <FlatList 

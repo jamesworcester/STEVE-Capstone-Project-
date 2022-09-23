@@ -29,16 +29,13 @@ const AdminToolsScreen = () => {
     const onCreateTeamPressed =  () => {
         navigation.navigate('CreateTeam');
     }
-    const onGraphVisualizationPressed =  () => { 
-        navigation.navigate('VisualizationScreen');
-    }
 
     const onViewTeamsPressed =  () => {
         navigation.navigate('Team'); 
     }
 
-    const onTestScreenPressed = () => {
-        navigation.navigate('TestScreen');
+    const onGraphVisualizationPressed =  () => { 
+        navigation.navigate('VisualizationScreen');
     }
 
     return (
@@ -57,12 +54,6 @@ const AdminToolsScreen = () => {
                 <PersonalisedButton
                 text="View Teams"
                 onPress={onViewTeamsPressed}
-                type="SECOND"
-                />
-
-                <PersonalisedButton
-                text="Test Screen"
-                onPress={onTestScreenPressed}
                 type="SECOND"
                 />
 

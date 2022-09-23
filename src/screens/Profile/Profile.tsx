@@ -34,6 +34,9 @@ export default function Profile() {
 
     const navigation = useNavigation();
         const [userDetails, setUserDetails] = useState([]);
+        const [userFirstName, setUserFirstName] = useState("");
+        const [userLastName, setUserLastName] = useState("");
+        const [userEmail, setUserEmail] = useState("");
     
         useEffect(() => {
             const getUser = async () => {
@@ -43,6 +46,9 @@ export default function Profile() {
 
                     const userData = await API.graphql(graphqlOperation(queries.getUser, {id: username}));
                     setUserDetails(userData.data.getUser);
+                    setUserFirstName(userData.data.getUser.first_name);
+                    setUserLastName(userData.data.getUser.last_name);
+                    setUserEmail(userData.data.getUser.email);
                 }
                 catch(e)
                 {
@@ -64,14 +70,14 @@ export default function Profile() {
                 <Avatar source={placeholder_user} size ={'xlarge'}
                 rounded
                 />
-                <Text style = {style.userName}>{userDetails.first_name+" "+userDetails.last_name}</Text>
+                <Text style = {style.userName}>{userFirstName+" "+userLastName}</Text>
             </View>
             <Divider style = {{marginTop : 30, marginBottom:20}} 
             subHeader = {'ABOUT ME'} subHeaderStyle = {{marginLeft:10}}/>
             <TextInput 
                 style = {style.textDescription}
                 multiline
-                value={userDetails.email}
+                value={userEmail}
             />
         </View>
     )

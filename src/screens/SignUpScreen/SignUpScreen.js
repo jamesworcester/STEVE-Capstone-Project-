@@ -49,13 +49,13 @@ const SignUpScreen = () => {
                     const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions)) //test the database connection by attempting to query the database
                     try {
                         const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
-                            username: email,
-                            password,
+                            username: email.replace(/'/g, "''"), //replace all single quotes with double single quotes to prevent SQL injection
+                            password: password.replace(/'/g, "''") //replace all single quotes with double single quotes to prevent SQL injection
                         });
 
                         const userDetails = {
                             id: userSub,
-                            email: email,
+                            email: email.replace(/'/g, "''"), //replace all single quotes with double single quotes to prevent SQL injection
                             first_login: 1
                         }
                         const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); //duplicates the logged in user's userSub and email to the User table of the database

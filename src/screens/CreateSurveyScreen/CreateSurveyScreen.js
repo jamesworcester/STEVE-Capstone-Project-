@@ -69,42 +69,42 @@ const CreateSurveyScreen = () => {
                     try
                     {
                         //create question1 in the Question table in the database
-                        const createdQuestion1 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q1selectedType, question_number: 1, question_text: data.question1}}));
+                        const createdQuestion1 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q1selectedType, question_number: 1, question_text: data.question1.replace(/'/g, "''")}}));
                         //store question1's id, type and text in variables
                         const question1_id = createdQuestion1.data.createQuestion.id;
                         const question1_type = createdQuestion1.data.createQuestion.question_type;
                         const question1_text = createdQuestion1.data.createQuestion.question_text;
                         
                         //create question2 in the Question table in the database
-                        const createdQuestion2 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q2selectedType, question_number: 2, question_text: data.question2}}));
+                        const createdQuestion2 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q2selectedType, question_number: 2, question_text: data.question2.replace(/'/g, "''")}}));
                         //store question2's id, type and text in variables
                         const question2_id = createdQuestion2.data.createQuestion.id;
                         const question2_type = createdQuestion2.data.createQuestion.question_type;
                         const question2_text = createdQuestion2.data.createQuestion.question_text;
 
                         //create question3 in the Question table in the database
-                        const createdQuestion3 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q3selectedType, question_number: 3, question_text: data.question3}}));
+                        const createdQuestion3 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q3selectedType, question_number: 3, question_text: data.question3.replace(/'/g, "''")}}));
                         //store question3's id, type and text in variables
                         const question3_id = createdQuestion3.data.createQuestion.id;
                         const question3_type = createdQuestion3.data.createQuestion.question_type;
                         const question3_text = createdQuestion3.data.createQuestion.question_text;
 
                         //create question4 in the Question table in the database
-                        const createdQuestion4 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q4selectedType, question_number: 4, question_text: data.question4}}));
+                        const createdQuestion4 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q4selectedType, question_number: 4, question_text: data.question4.replace(/'/g, "''")}}));
                         //store question4's id, type and text in variables
                         const question4_id = createdQuestion4.data.createQuestion.id;
                         const question4_type = createdQuestion4.data.createQuestion.question_type;
                         const question4_text = createdQuestion4.data.createQuestion.question_text;
 
                         //create question5 in the Question table in the database
-                        const createdQuestion5 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q5selectedType, question_number: 5, question_text: data.question5}}));
+                        const createdQuestion5 = await API.graphql(graphqlOperation(mutations.createQuestion, {input: {created_by: username, question_type: q5selectedType, question_number: 5, question_text: data.question5.replace(/'/g, "''")}}));
                         //store question5's id, type and text in variables
                         const question5_id = createdQuestion5.data.createQuestion.id;
                         const question5_type = createdQuestion5.data.createQuestion.question_type;
                         const question5_text = createdQuestion5.data.createQuestion.question_text;
 
                         //create a new survey in the Survey table in the database
-                        const createdSurvey = await API.graphql(graphqlOperation(mutations.createSurvey, {input: {created_by: username, text: data.name}}));
+                        const createdSurvey = await API.graphql(graphqlOperation(mutations.createSurvey, {input: {created_by: username, text: data.name.replace(/'/g, "''")}}));
                         //store the survey's id and text in variables
                         const survey_id = createdSurvey.data.createSurvey.id;
                         const survey_text = createdSurvey.data.createSurvey.text;
@@ -119,8 +119,8 @@ const CreateSurveyScreen = () => {
                         //navigate to the ReviewSurveyScreen and pass the survey id and text, and each question's type and text through the route
                         navigation.navigate('ReviewSurvey', {survey_id: survey_id, survey_text: survey_text, question1_type: question1_type, question1_text: question1_text, question2_type: question2_type, question2_text: question2_text, question3_type: question3_type, question3_text: question3_text, question4_type: question4_type, question4_text: question4_text, question5_type: question5_type, question5_text: question5_text});
                     }
-                    catch
-                    {
+                    catch(e)
+                    {   console.log(e)
                         Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
                     }
                 } 

@@ -41,7 +41,7 @@ const NewChannel = () =>{
         const {name, description} = data
         try 
         {
-            const newChannel = await API.graphql(graphqlOperation(mutations.createChannel_NameDescription, {input: {channel_text: name, description: description}})); //create a new channel in the Channel table in the database
+            const newChannel = await API.graphql(graphqlOperation(mutations.createChannel_NameDescription, {input: {channel_text: name.replace(/'/g, "''"), description: description.replace(/'/g, "''")}})); //create a new channel in the Channel table in the database
             navigation.navigate('Chatchannel')
         }
         catch(e)
