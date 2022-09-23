@@ -37,43 +37,49 @@ const AddTeamMemberListItem = (props: AddTeamMemberListItemProps) => {
     const navigation = useNavigation();
 
     const onClick = async () => {
-            const testingMembership = await API.graphql(graphqlOperation(queries.listTeam_MembershipsWhere, {team_id: teamId, user_id: user.id}))
-            if(testingMembership.data.listTeam_MembershipsWhere.length == 0) //if the user is not already a member of the team
+            try
             {
-                Alert.alert(
-                    "Are you sure?",
-                    "Do you want to add "+user.first_name+" "+user.last_name+" to "+teamName+"?",
-                    [
-                    {
-                        text: "No",
-                        style: "cancel"
-                    },
-                    { text: "Yes", onPress: async () => {
-                            const teamMembershipDetals = {
-                                team_id: teamId,
-                                user_id: user.id,
-                            }
-    
-                            await API.graphql(graphqlOperation(mutations.createTeam_Membership, {input: teamMembershipDetals})); //add user to team by creating new record in Team_Membership table
-                            navigation.goBack();
-                    }
-                    }
-                    ]
-                );
+                const testingMembership = await API.graphql(graphqlOperation(queries.listTeam_MembershipsWhere, {team_id: teamId, user_id: user.id}))
+                if(testingMembership.data.listTeam_MembershipsWhere.length == 0) //if the user is not already a member of the team
+                {
+                    Alert.alert(
+                        "Are you sure?",
+                        "Do you want to add "+user.first_name+" "+user.last_name+" to "+teamName+"?",
+                        [
+                        {
+                            text: "No",
+                            style: "cancel"
+                        },
+                        { text: "Yes", onPress: async () => {
+                                const teamMembershipDetals = {
+                                    team_id: teamId,
+                                    user_id: user.id,
+                                }
+                                await API.graphql(graphqlOperation(mutations.createTeam_Membership, {input: teamMembershipDetals})); //add user to team by creating new record in Team_Membership table
+                                navigation.goBack();
+                        }
+                        }
+                        ]
+                    );
+                }
+                else
+                {
+                    Alert.alert(
+                        "Error",
+                        "User is already in the team",
+                        [
+                        {
+                            text: "OK",
+                            style: "cancel"
+                        }
+                        ]
+                    );
+                }
             }
-            else
-            {
-                Alert.alert(
-                    "Error",
-                    "User is already in the team",
-                    [
-                    {
-                        text: "OK",
-                        style: "cancel"
-                    }
-                    ]
-                );
-            }
+            catch(e)
+            {  
+                Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+            }    
     }
 
 return(

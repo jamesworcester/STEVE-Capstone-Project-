@@ -13,7 +13,6 @@ Purpose:
 1. Component to create personalised dropdown with customisable styling and functionality
 */
 
-
 import React, {useState} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Controller} from 'react-hook-form';

@@ -2,28 +2,29 @@
 Programmer: James Worcester
 Created by: James Worcester on 06/09/2022 (Sprint 9)
 Refactored by: James Worcester on 13/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Screen to display tools for administrators
+
+/*
+Name: AdminToolsScreen
+*/
+
+/*
+Purpose: 
+1. Screen to display admin tools for administrators
+*/
+
 import React from 'react';
-import { View, Text , StyleSheet, useWindowDimensions, ScrollView, Alert} from 'react-native';
-//@react-navigation/native import
+import { View, Text , StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm} from 'react-hook-form';
-//AWS Amplify import
-import { API, Auth, graphqlOperation } from 'aws-amplify';
-//user defined component imports
 import PersonalisedButton from '../../components/PersonalisedButton';
-//user defined API import
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
-import { useRoute } from '@react-navigation/native';
 
 const AdminToolsScreen = () => {
 
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
+    const navigation = useNavigation();
     const {height} = useWindowDimensions(); //sets the height of the window
-    const {control, handleSubmit, formState: {errors}} = useForm(); //use form from react-hook-form
+    const {control, handleSubmit, formState: {errors}} = useForm(); //useForm from react-hook-form
 
     const onCreateTeamPressed =  () => {
         navigation.navigate('CreateTeam');
@@ -33,11 +34,11 @@ const AdminToolsScreen = () => {
     }
 
     const onViewTeamsPressed =  () => {
-                navigation.navigate('Team'); //navigate to ViewTeams screen and pass the teams data
+        navigation.navigate('Team'); 
     }
 
     const onTestScreenPressed = () => {
-                navigation.navigate('TestScreen');
+        navigation.navigate('TestScreen');
     }
 
     return (

@@ -2,35 +2,31 @@
 Programmer: James Worcester
 Created by: James Worcester on 07/09/2022 (Sprint 9)
 Refactored by: James Worcester on 13/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Screen to assign a team member to a team
-//react-native imports
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions, FlatList, ImageBackground} from 'react-native';
-//@react-native/native import
+
+/*
+Name: AssignTeamMemberScreen
+*/
+
+/*
+Purpose: 
+1. Screen to display a Flatlist of all teams in the database that can be clicked on to Navigate to the team's TeamMembers screen
+*/
+
+import React from 'react';
+import { View, StyleSheet, FlatList} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-import {useForm} from 'react-hook-form';
 import { useRoute } from '@react-navigation/native';
-//AWS Amplify import
-import { Auth } from 'aws-amplify';
-//user defined component imports
-import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
-//user defined API import
-import { API, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
 import { Header } from "@rneui/themed";
-import { AntDesign, Ionicons, MaterialIcons, Entypo } from '@expo/vector-icons'; 
+//import ListItem
 import TeamListItem from '../../components/TeamListItem/Index';
 
 const AssignTeamMemberScreen = () => {
 
-    const route = useRoute(); //route passed parameters from the previous screen
-    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const {height} = useWindowDimensions(); //sets the height of the window
+    const route = useRoute();
+    const navigation = useNavigation();
 
     const teams = route.params.teams.data.listTeams; //retrieve the teams from the route
 
@@ -39,7 +35,6 @@ const AssignTeamMemberScreen = () => {
     }
 
     return (
-        
         <View >
             <Header 
             backgroundColor='#051C60'

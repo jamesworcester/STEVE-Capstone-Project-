@@ -16,7 +16,7 @@ Purpose:
 */
 
 import React, {useEffect, useState} from 'react';
-import {View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,} from "react-native";
+import {View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Alert,} from "react-native";
 import styles from "./styles";
 import { MaterialIcons, FontAwesome5, Entypo } from "@expo/vector-icons"
 import 'react-native-gesture-handler';
@@ -29,12 +29,19 @@ const InputBox = (props) => {
     const [myId, setId] = useState(null);
 
     useEffect(() => {
-        const getId = async () => {
-          const user = await Auth.currentAuthenticatedUser();
-          const { username } = user; //get the id (Cognito username) of the current user
-          setId(username);
+        try
+        {
+            const getId = async () => {
+            const user = await Auth.currentAuthenticatedUser();
+            const { username } = user; //get the id (Cognito username) of the current user
+            setId(username);
+            }
+            getId();
         }
-        getId();
+        catch(e)
+        {
+            Alert.alert('Error', e.message);
+        }
       }, [])
 
     const onPress = () => {

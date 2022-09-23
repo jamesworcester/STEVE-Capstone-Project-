@@ -3,17 +3,23 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//ConfirmEmailScreen a user is navigated to from the SignUpScreen after they successfully create an account in the app so that they can confirm their email using a code that is emailed to them
-//react-native imports
-import React, {useState} from 'react';
+
+/*
+Name: ConfirmEmailScreen
+*/
+
+/*
+Purpose: 
+1. Screen for a user to be navigated to after signing up to confirm their email address
+*/
+
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-navigation/native imports
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm} from 'react-hook-form';
-//AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
@@ -21,31 +27,29 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
-//define a constant lambda function called ConfirmEmailScreen that creates a PersonalisedInput and three PersonalisedButtons and checks if the user has entered the correct code, while allowing them to resend
-//the code and navigate back to the SignIn screen
 const ConfirmEmailScreen = () => {
-    const route = useRoute(); //route passed parameters from the previous screen (SignUp)
-    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
+    const route = useRoute();
+    const {control, handleSubmit} = useForm();
     const {height} = useWindowDimensions(); //sets the height of the window
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
+    const navigation = useNavigation();
 
-    const username = route.params.email; //set the username to be the same as the email that was passed from the SignUp screen
+    const username = route.params.email;
     
-    const onConfirmPressed = async (data) => { //asynchronous lambda function that collects data from the code PersonlisedInput
+    const onConfirmPressed = async (data) => {
         try{
                 await Auth.confirmSignUp( //uses AWS Amplify Auth to confirm signing up
                     username, 
                     data.code,
                 )
-                navigation.navigate('SignIn') //navigates to the SignIn screen
+                navigation.navigate('SignIn')
         }
         catch(e)
         {
-            Alert.alert('Error', e.message); //if there is an error, print the error
+            Alert.alert('Error', e.message);
         }
     }
 
-    const onResendPressed = async () => { //asynchronous lambda function to resend a new code to the user's email address
+    const onResendPressed = async () => {
         try{
             await Auth.resendSignUp( //uses AWS Amplify Auth to resend the code to the user's email address
                 username, 

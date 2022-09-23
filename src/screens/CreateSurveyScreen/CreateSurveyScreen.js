@@ -1,8 +1,28 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 04/09/2022
-Refactored by James Worcester on 21/09/2022 (Sprint 10)
+Created by James Worcester on 21/09/2022 (Sprint 10)
+Edited by James Worcester on 23/09/2022 (Sprint 10)
 */
+
+/*
+Name: CreateSurveyScreen
+*/
+
+/*
+Purpose: 
+1.
+
+
+
+
+
+
+1. Component to display a team in a FlatList from the AssignSurveyToTeamScreen
+2. When the user clicks on the team, they are prompted to confirm that they want to assign the survey to that team
+3. If yes, the survey is assigned to all team members
+*/
+
+
 //Screen to create a Survey
 //react-native imports
 import React, {useState} from 'react';

@@ -47,14 +47,30 @@ const AssignSurveyToTeamListItem = (props: AssignSurveyToTeamTeamListItemProps) 
             { text: "Yes", onPress: async () => {
                 const user = await Auth.currentAuthenticatedUser();
                 const { username } = user; //get the id (Cognito username) from the current authenticated user
-                //const teamData = await API.graphql(graphqlOperation(queries.listTeams));
-                const assigned_team_members = await API.graphql(graphqlOperation(queries.listTeam_MembershipsWhereTeamID, {team_id: team.id})); //fetch and store all team members in an array
-                for(let i = 0; i < assigned_team_members.data.listTeam_MembershipsWhereTeamID.length; i++) //for each team member in the array
+
+                try
                 {
-                    //assign the survey to the team member
-                    API.graphql(graphqlOperation(mutations.createAssigned_Survey, {input: {survey_id: survey_id, assigned_to: assigned_team_members.data.listTeam_MembershipsWhereTeamID[i].user_id, assigned_by: username, assigned_team: team.name}}));
+                    const teamData = await API.graphql(graphqlOperation(queries.listTeams));
+                    const assigned_team_members = await API.graphql(graphqlOperation(queries.listTeam_MembershipsWhereTeamID, {team_id: team.id})); //fetch and store all team members in an array
+
+                    try
+                    {
+                        for(let i = 0; i < assigned_team_members.data.listTeam_MembershipsWhereTeamID.length; i++) //for each team member in the array
+                        {
+                            //assign the survey to the team member
+                            API.graphql(graphqlOperation(mutations.createAssigned_Survey, {input: {survey_id: survey_id, assigned_to: assigned_team_members.data.listTeam_MembershipsWhereTeamID[i].user_id, assigned_by: username, assigned_team: team.name}}));
+                        }
+                        navigation.navigate('AdminTools');
+                    }
+                    catch(e)
+                    {
+                        Alert.alert('Error', e.message);
+                    }
                 }
-                navigation.navigate('AdminTools');
+                catch(e)
+                {
+                    Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+                }
             }
             }
             ]
