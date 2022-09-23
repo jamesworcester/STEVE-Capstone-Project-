@@ -48,7 +48,6 @@ import SurveyHomeScreen from '../screens/SurveyHomeScreen';
 import ViewAssignedSurveysScreen from '../screens/ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
 import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
 import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
-import FirstScreen from '../screens/FirstScreen/FirstScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
