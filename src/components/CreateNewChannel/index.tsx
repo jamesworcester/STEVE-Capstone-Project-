@@ -1,3 +1,6 @@
+/*
+Programmer: Hung
+*/
 import React from "react";
 import { FontAwesome } from '@expo/vector-icons';
 import { View } from "react-native";

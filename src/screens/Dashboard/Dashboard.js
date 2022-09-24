@@ -1,3 +1,7 @@
+/*
+Programmer: Hung
+Edited by: James Worcester on 15/09/2022 (Sprint 9)
+*/
 import React, { Component } from 'react'
 
 import 'react-native-gesture-handler';
@@ -10,6 +14,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import CreateSurveyScreen from '../CreateSurveyScreen';
 import AdminToolsScreen from '../AdminToolsScreen';
+import UserSearchScreen from '../UserSearchScreen';
+import UserScreen from '../UserScreen/UserScreen';
+import SurveyHomeScreen from '../SurveyHomeScreen';
+import VisualizationScreen from '../VisualizationScreen';
+//import UserScreen from '../UserScreen';
 
 
 
@@ -38,7 +47,7 @@ const Dashboard = () => {
             <MaterialCommunityIcons name="home-outline" color={color} size={26}/>
         ),
     }}/>
-      <Tab.Screen name="Survey" component={CreateSurveyScreen}        // Survey Screen
+      <Tab.Screen name="Survey" component={SurveyHomeScreen}        // Survey Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="file-document-multiple" color={color} size={26}/>
@@ -51,6 +60,14 @@ const Dashboard = () => {
             <MaterialCommunityIcons name="wechat" color={color} size={26}/>
         ),
     }}/>
+    
+    <Tab.Screen name="Directory" component={UserScreen}      // Channel Screen
+      options={{
+        tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="wechat" color={color} size={26}/>
+        ),
+    }}/>
+
       <Tab.Screen name="Profile" component={Profile}            // Profile Screen
       options={{
         tabBarIcon: ({ color }) => (

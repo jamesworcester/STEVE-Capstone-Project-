@@ -112,6 +112,7 @@ export const getAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
     }
   }
 `;
@@ -146,6 +147,7 @@ export const getQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;
@@ -433,6 +435,19 @@ export const getComment = /* GraphQL */ `
     }
   }
 `;
+export const listJoinSurveyANDAssigned_Survey = /* GraphQL */ `
+  query ListJoinSurveyANDAssigned_Survey($id: ID!) {
+    listJoinSurveyANDAssigned_Survey(id: $id) {
+      id
+      created_by
+      text
+      is_archived
+      created_date_time
+      archived_date_time
+      assigned_team
+    }
+  }
+`;
 export const listMetrics = /* GraphQL */ `
   query ListMetrics {
     listMetrics {
@@ -507,6 +522,36 @@ export const listAssigned_Surveys = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
+    }
+  }
+`;
+export const listAssigned_SurveysFORUser = /* GraphQL */ `
+  query ListAssigned_SurveysFORUser($assigned_to: String) {
+    listAssigned_SurveysFORUser(assigned_to: $assigned_to) {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      answered_date_time
+      assigned_team
+      text
+    }
+  }
+`;
+export const listAssigned_SurveysWithDistinctsurvey_id = /* GraphQL */ `
+  query ListAssigned_SurveysWithDistinctsurvey_id {
+    listAssigned_SurveysWithDistinctsurvey_id {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      end_assignment
+      frequency_of_survey_days
+      answered_date_time
+      assigned_team
     }
   }
 `;
@@ -541,6 +586,41 @@ export const listQuestions = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
+    }
+  }
+`;
+export const listJoinQuestionANDSurvey_Questions = /* GraphQL */ `
+  query ListJoinQuestionANDSurvey_Questions($survey_id: String) {
+    listJoinQuestionANDSurvey_Questions(survey_id: $survey_id) {
+      id
+      created_by
+      question_type
+      question_text
+      is_archived
+      created_date_time
+      archived_date_time
+      question_number
+      survey_id
+    }
+  }
+`;
+export const listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN = /* GraphQL */ `
+  query ListJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN(
+    $survey_id: String
+  ) {
+    listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN(
+      survey_id: $survey_id
+    ) {
+      id
+      created_by
+      question_type
+      question_text
+      is_archived
+      created_date_time
+      archived_date_time
+      question_number
+      survey_id
     }
   }
 `;
@@ -568,8 +648,17 @@ export const listTeam_Memberships = /* GraphQL */ `
   }
 `;
 export const listTeam_MembershipsWhere = /* GraphQL */ `
-  query ListTeam_MembershipsWhere($team_id: String) {
-    listTeam_MembershipsWhere(team_id: $team_id) {
+  query ListTeam_MembershipsWhere($team_id: String, $user_id: String) {
+    listTeam_MembershipsWhere(team_id: $team_id, user_id: $user_id) {
+      id
+      user_id
+      team_id
+    }
+  }
+`;
+export const listTeam_MembershipsWhereTeamID = /* GraphQL */ `
+  query ListTeam_MembershipsWhereTeamID($team_id: String) {
+    listTeam_MembershipsWhereTeamID(team_id: $team_id) {
       id
       user_id
       team_id
@@ -661,6 +750,31 @@ export const listUsers = /* GraphQL */ `
 export const listUsersInTeam = /* GraphQL */ `
   query ListUsersInTeam($team_id: String!) {
     listUsersInTeam(team_id: $team_id) {
+      id
+      address_id
+      user_role_id
+      user_department_id
+      email
+      phone
+      password
+      first_name
+      last_name
+      photo_filename
+      photo_data
+      birthday
+      gender
+      is_archived
+      description
+      speciality
+      working_from
+      points
+      first_login
+    }
+  }
+`;
+export const listUsersNOTInTeam = /* GraphQL */ `
+  query ListUsersNOTInTeam($team_id: String!) {
+    listUsersNOTInTeam(team_id: $team_id) {
       id
       address_id
       user_role_id
@@ -869,6 +983,21 @@ export const listPostsByChannel = /* GraphQL */ `
       created_date_time
       edited_date_time
       archived_date_time
+    }
+  }
+`;
+export const listPostsByChannelWithName = /* GraphQL */ `
+  query ListPostsByChannelWithName($channel_id: String!) {
+    listPostsByChannelWithName(channel_id: $channel_id) {
+      id
+      channel_id
+      user_id
+      content
+      created_date_time
+      edited_date_time
+      archived_date_time
+      first_name
+      last_name
     }
   }
 `;

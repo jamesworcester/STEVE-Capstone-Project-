@@ -1,3 +1,6 @@
+/*
+Programmer: Alex McCoy
+*/
 import Survey from "../Survey";
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, {Component} from 'react'

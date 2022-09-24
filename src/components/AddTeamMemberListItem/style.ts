@@ -1,3 +1,6 @@
+/*
+Programmer: Hung
+*/
 import { StyleSheet } from 'react-native';
 import { white } from 'react-native-paper/lib/typescript/styles/colors';
 
@@ -15,8 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   avatar: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 50,
     marginRight: 15,
   },

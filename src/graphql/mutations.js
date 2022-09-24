@@ -88,6 +88,7 @@ export const createAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
     }
   }
 `;
@@ -122,12 +123,41 @@ export const createQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;
 export const createQuestion_Answer = /* GraphQL */ `
   mutation CreateQuestion_Answer($input: CreateQuestion_AnswerInput!) {
     createQuestion_Answer(input: $input) {
+      id
+      question_id
+      assigned_survey_id
+      user_id
+      is_anonymous
+      answer_number
+      answer_string
+      answered_date_time
+    }
+  }
+`;
+export const createQuestion_AnswerNumber = /* GraphQL */ `
+  mutation CreateQuestion_AnswerNumber($input: CreateQuestion_AnswerInput!) {
+    createQuestion_AnswerNumber(input: $input) {
+      id
+      question_id
+      assigned_survey_id
+      user_id
+      is_anonymous
+      answer_number
+      answer_string
+      answered_date_time
+    }
+  }
+`;
+export const createQuestion_AnswerString = /* GraphQL */ `
+  mutation CreateQuestion_AnswerString($input: CreateQuestion_AnswerInput!) {
+    createQuestion_AnswerString(input: $input) {
       id
       question_id
       assigned_survey_id
@@ -412,9 +442,34 @@ export const createChannel = /* GraphQL */ `
     }
   }
 `;
+export const createChannel_NameDescription = /* GraphQL */ `
+  mutation CreateChannel_NameDescription($input: CreateChannelInput!) {
+    createChannel_NameDescription(input: $input) {
+      id
+      channel_type
+      channel_text
+      description
+      picture_filename
+      picture_data
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost($input: CreatePostInput!) {
     createPost(input: $input) {
+      id
+      channel_id
+      user_id
+      content
+      created_date_time
+      edited_date_time
+      archived_date_time
+    }
+  }
+`;
+export const createPostContent = /* GraphQL */ `
+  mutation CreatePostContent($input: CreatePostInput!) {
+    createPostContent(input: $input) {
       id
       channel_id
       user_id
@@ -512,6 +567,22 @@ export const updateAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
+    }
+  }
+`;
+export const updateAssignedSurveyANSWER = /* GraphQL */ `
+  mutation UpdateAssignedSurveyANSWER($input: UpdateAssigned_SurveyInput!) {
+    updateAssignedSurveyANSWER(input: $input) {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      end_assignment
+      frequency_of_survey_days
+      answered_date_time
+      assigned_team
     }
   }
 `;
@@ -546,6 +617,7 @@ export const updateQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;
@@ -936,6 +1008,7 @@ export const deleteAssigned_Survey = /* GraphQL */ `
       end_assignment
       frequency_of_survey_days
       answered_date_time
+      assigned_team
     }
   }
 `;
@@ -970,6 +1043,7 @@ export const deleteQuestion = /* GraphQL */ `
       is_archived
       created_date_time
       archived_date_time
+      question_number
     }
   }
 `;

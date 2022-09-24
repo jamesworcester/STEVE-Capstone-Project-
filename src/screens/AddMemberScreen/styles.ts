@@ -1,3 +1,6 @@
+/*
+Programmer: Hung
+*/
 import { container } from "aws-amplify";
 import { StyleSheet } from "react-native";
 
