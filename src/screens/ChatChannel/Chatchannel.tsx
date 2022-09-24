@@ -15,7 +15,7 @@ Purpose:
 
 import React from 'react'
 import { Header } from "@rneui/themed";
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
 import CreateNewChannel from '../../components/CreateNewChannel'; //import the blue plus button 
 import ChatListItem from '../../components/ChatListItem/Index'; //import chatlistitem component so we can display it on a flatlist
@@ -43,7 +43,7 @@ export default function Chatchannel() {
     }, []);
 
     return (
-        <View >
+        <View>
             <Header
                 backgroundColor='#051C60'
                 leftComponent={{ color: '#fff' }}

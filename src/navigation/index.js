@@ -50,6 +50,7 @@ import SurveyHomeScreen from '../screens/SurveyHomeScreen';
 import ViewAssignedSurveysScreen from '../screens/ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
 import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
 import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
+import Chatchannel from '../screens/ChatChannel';
 
 const Stack = createStackNavigator(); //create the navigation stack
 
@@ -89,6 +90,7 @@ const Navigation = () => {
                 <Stack.Screen name="VisualizationScreen" component={VisualizationScreen} /> 
                 <Stack.Screen name="FirstScreen" component={FirstScreen} /> 
                 <Stack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
+                <Stack.Screen name="Chatchannel" component={Chatchannel} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

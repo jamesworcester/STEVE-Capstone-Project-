@@ -38,6 +38,10 @@ const AdminToolsScreen = () => {
         navigation.navigate('VisualizationScreen');
     }
 
+    const onChatChannelsPressed =  () => { 
+        navigation.navigate('Chatchannel');
+    }
+
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
@@ -60,6 +64,12 @@ const AdminToolsScreen = () => {
                 <PersonalisedButton
                 text="Data Visualization"
                 onPress={onGraphVisualizationPressed}
+                type="SECOND"
+                />
+
+                <PersonalisedButton
+                text="Chat Channels"
+                onPress={onChatChannelsPressed}
                 type="SECOND"
                 />
 
