@@ -10,7 +10,7 @@ import Survey from '../Survey/Survey';
 import Chatchannel from '../ChatChannel/Chatchannel';
 import Profile from '../Profile/Profile';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import CreateSurveyScreen from '../CreateSurveyScreen';
 import AdminToolsScreen from '../AdminToolsScreen';
@@ -18,12 +18,44 @@ import UserSearchScreen from '../UserSearchScreen';
 import UserScreen from '../UserScreen/UserScreen';
 import SurveyHomeScreen from '../SurveyHomeScreen';
 import VisualizationScreen from '../VisualizationScreen';
-//import UserScreen from '../UserScreen';
+import CreateTeamScreen from '../CreateTeamScreen';
+import TeamScreen from '../TeamScreen/TeamScreen';
+import ViewAssignedSurveysScreen from '../ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
+import NewChannel from '../NewChannel';
 
+const AdminStack = createNativeStackNavigator();// Create a stack navigator for Admin TAB
+function AdminToolsScreenStack() {
+    return (
+      <AdminStack.Navigator screenOptions={{headerShown: false}}>
+        <AdminStack.Screen name="AdminToolsScreen" component={AdminToolsScreen} />
+        <AdminStack.Screen name="CreateTeam" component={CreateTeamScreen} />
+        <AdminStack.Screen name="Team" component={TeamScreen} />
+        <AdminStack.Screen name="VisualizationScreen" component={VisualizationScreen} />
+      </AdminStack.Navigator>
+    );
+  }
 
+const SurveyStack = createNativeStackNavigator();// Create a stack navigator for Survey TAB
+  function SurveyHomeScreenStack() {
+      return (
+        <SurveyStack.Navigator screenOptions={{headerShown: false}}>
+          <SurveyStack.Screen name="SurveyHome" component={SurveyHomeScreen} />
+          <SurveyStack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
+          <SurveyStack.Screen name="ViewAssignedSurveys" component={ViewAssignedSurveysScreen} />
+        </SurveyStack.Navigator>
+      );
+    }  
 
-
-
+const ChatStack = createNativeStackNavigator(); // Create a stack navigator for Chat TAB
+    function ChatchannelStack() {
+        return (
+        <ChatStack.Navigator screenOptions={{headerShown: false}}>
+          <ChatStack.Screen name="Chatchannel" component={Chatchannel} />
+          <ChatStack.Screen name="NewChannel" component={NewChannel} />
+        </ChatStack.Navigator>
+        )
+    }  
+ 
 const Tab = createMaterialBottomTabNavigator();
 
 const Dashboard = () => {
@@ -35,7 +67,7 @@ const Dashboard = () => {
         barStyle={{ backgroundColor: '#051C60' }} 
         activeColor="white" 
         >
-        <Tab.Screen name="Admin" component={AdminToolsScreen}        
+        <Tab.Screen name="Admin" component={AdminToolsScreenStack}        
             options={{
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="shield-crown-outline" color={color} size={26}/>
@@ -47,14 +79,14 @@ const Dashboard = () => {
             <MaterialCommunityIcons name="home-outline" color={color} size={26}/>
         ),
     }}/>
-      <Tab.Screen name="Survey" component={SurveyHomeScreen}        // Survey Screen
+      <Tab.Screen name="Survey" component={SurveyHomeScreenStack}        // Survey Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="file-document-multiple" color={color} size={26}/>
         ),
     }}/>
     
-      <Tab.Screen name="Chatchannel" component={Chatchannel}      // Channel Screen
+      <Tab.Screen name="Chat" component={ChatchannelStack}      // Channel Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="wechat" color={color} size={26}/>

@@ -23,20 +23,15 @@ import Dashboard from '../screens/Dashboard';
 import SurveyScreen from '../screens/SurveyScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import FirstScreen from '../screens/FirstScreen/FirstScreen';
-import VisualizationScreen from '../screens/VisualizationScreen/VisualizationScreen';
 import SurveyTest from '../screens/SurveyTest'
-import CreateSurveyScreen from '../screens/CreateSurveyScreen';
 import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
 import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
-import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import CreateTeamScreen from '../screens/CreateTeamScreen';
 import Profile from '../screens/Profile';
 import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
 import AddMemberScreen from '../screens/AddMemberScreen';
-import NewChannel from '../screens/NewChannel';
 import UserSearchScreen from '../screens/UserSearchScreen';
-import TeamScreen from '../screens/TeamScreen/TeamScreen';
 import UserScreen from '../screens/UserScreen/UserScreen';
 import TeamMembersScreen from '../screens/TeamMembers/TeamMembers';
 import PublicProfileScreen from '../screens/PublicProfileScreen';
@@ -44,8 +39,6 @@ import AddTeamMember from '../screens/AddTeamMember';
 import TestScreen from '../screens/TestScreen';
 import ReviewSurveyScreen from '../screens/ReviewSurveyScreen';
 import AssignSurveyToTeamScreen from '../screens/AssignSurveyToTeamScreen/AssignSurveyToTeamScreen';
-import SurveyHomeScreen from '../screens/SurveyHomeScreen';
-import ViewAssignedSurveysScreen from '../screens/ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
 import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
 import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
 import {
@@ -72,20 +65,16 @@ const Navigation = () => {
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
                 <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
                 <Stack.Screen name="SurveyTest" component={SurveyTest} />
-                <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
                 <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
                 <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
-                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
-                <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
+                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />         
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} /> 
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
-                <Stack.Screen name="NewChannel" component={NewChannel} />
                 <Stack.Screen name="UserSearch" component={UserSearchScreen} />
-                <Stack.Screen name="Team" component={TeamScreen} />
                 <Stack.Screen name="User" component={UserScreen} />
                 <Stack.Screen name="TeamMembers" component={TeamMembersScreen} />
                 <Stack.Screen name="PublicProfile" component={PublicProfileScreen} />
@@ -93,10 +82,7 @@ const Navigation = () => {
                 <Stack.Screen name="TestScreen" component={TestScreen} />
                 <Stack.Screen name="ReviewSurvey" component={ReviewSurveyScreen} />
                 <Stack.Screen name="AssignSurveyToTeam" component={AssignSurveyToTeamScreen} />
-                <Stack.Screen name="SurveyHome" component={SurveyHomeScreen} />
-                <Stack.Screen name="ViewAssignedSurveys" component={ViewAssignedSurveysScreen} />
-                <Stack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} />
-                <Stack.Screen name="VisualizationScreen" component={VisualizationScreen} /> 
+                <Stack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} /> 
                 <Stack.Screen name="FirstScreen" component={FirstScreen} /> 
                 <Stack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
              </Stack.Group>
