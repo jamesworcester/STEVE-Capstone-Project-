@@ -60,8 +60,8 @@ export default function AddTeamMember() {
 
         <FlatList 
             data={user}
-            renderItem = {({item}) => <AddTeamMemberListItem user={item} teamId={team_id} teamName={team_name} />} //display all the Chatlistitem components (its also understanded as a channel)here
-            keyExtractor = {(item) => item.id} // this is id for every single channel 
+            renderItem = {({item}) => <AddTeamMemberListItem user={item} teamId={team_id} teamName={team_name} />}
+            keyExtractor = {(item) => item.id}
         />
 
         </View>
