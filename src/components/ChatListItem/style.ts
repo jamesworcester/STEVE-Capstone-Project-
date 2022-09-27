@@ -2,7 +2,6 @@
 Programmer: Hung
 */
 import { StyleSheet } from 'react-native';
-import { white } from 'react-native-paper/lib/typescript/styles/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,8 +55,6 @@ const styles = StyleSheet.create({
     width: 300,
     backgroundColor: 'white',
   }, 
-
-
 });
 
 export default styles;

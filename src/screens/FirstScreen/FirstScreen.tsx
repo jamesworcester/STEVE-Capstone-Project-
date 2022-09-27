@@ -1,29 +1,29 @@
 /*
 Programmer: James Worcester
 Created by: James Worcester on 15/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
+
+/*
+Name: FirstScreen
+*/
+
+/*
+Purpose: 
+1. Home Screen to display a list of surveys that have been assigned to the logged in user, and allow them to answer them
+*/
+
 import React from 'react'
 import { Header } from "@rneui/themed";
 import { FlatList } from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
-//import TeamListItem from '../../components/TeamListItem/Index'; //import chatlistitem component so we can display it on a flatlist
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-native/native import
-import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-//AWS Amplify import
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { Auth } from 'aws-amplify';
-//user defined component imports
-import PersonalisedInput from '../../components/PersonalisedInput';
-import PersonalisedButton from '../../components/PersonalisedButton';
+import {useEffect, useState} from "react";
 //user defined API import
 import { API, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
-import {useEffect, useState} from "react";
-import AssignedSurveyListItem from '../../components/AssignedSurveyListItem/Index';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-import {useForm, Controller} from 'react-hook-form';
+//import ListItem
 import FirstScreenListItem from '../../components/FirstScreenListItem/Index';
 
 export default function FirstScreen() {
@@ -31,47 +31,36 @@ export default function FirstScreen() {
 
     useEffect(() => {
         const getSurveys = async () => {
-            try {
-                {
-                console.log("test");
+            try {    
                 const user = await Auth.currentAuthenticatedUser();
-                const { username } = user; //get the id (username in this case) of the current user
-                console.log(username);
-                const assignedSurveys = await API.graphql(graphqlOperation(queries.listAssigned_SurveysFORUser, {assigned_to: username}))
-                console.log(assignedSurveys)
-                const assignedSurveyData = assignedSurveys.data.listAssigned_SurveysFORUser;
-                console.log(assignedSurveyData);
-                setSurvey(assignedSurveyData);
-                }
+                const { username } = user; //get the id (Cognito username) of the current user
+                const assignedSurveys = await API.graphql(graphqlOperation(queries.listAssigned_SurveysFORUser, {assigned_to: username})) //get all surveys assigned to the current user and store in the assignedSurveys array
+                const assignedSurveyData = assignedSurveys.data.listAssigned_SurveysFORUser; //slim down the assigned_Surveys array to just the data
+                setSurvey(assignedSurveyData); //set survey state to the assignedSurveyData
             }
             catch(e)
             {
-                console.log(e);
-                //Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
+                Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
             }
         }
         getSurveys();   
     }, []);
 
-
-
     return (
         <View >
-            <Header // Header of the screen 
+            <Header
             backgroundColor='#051C60'
             leftComponent={{ color: '#fff' }}
             centerComponent={{text:'Home', style: {color: '#E6E6FA', fontSize : 16}, 
             }}/>
             <Text style={styles.title}>Assigned Surveys</Text>
 
-        <FlatList 
-            data={survey}
-            renderItem = {({item}) => <FirstScreenListItem survey={item}/>} //display all the Chatlistitem components (its also understanded as a channel)here
-            keyExtractor = {(item) => item.id} // this is id for every single channel 
-        />
-
+            <FlatList 
+                data={survey}
+                renderItem = {({item}) => <FirstScreenListItem survey={item}/>} //display all the Chatlistitem components (its also understanded as a channel)here
+                keyExtractor = {(item) => item.id} // this is id for every single channel 
+            />
         </View>
-        
     )
 }
 

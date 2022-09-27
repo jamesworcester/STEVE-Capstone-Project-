@@ -1,55 +1,38 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 04/09/2022
-Refactored by James Worcester on 21/09/2022 (Sprint 10)
+Created by James Worcester on 21/09/2022 (Sprint 10)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Screen to create a Survey
-//react-native imports
-import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions, TextInput} from 'react-native';
-//@react-native/native import
-import { TabRouter, useNavigation } from '@react-navigation/native';
+
+/*
+Name: ReviewSurveyScreen
+*/
+
+/*
+Purpose: 
+1. Screen to review a survey that has just been created
+2. Allows the user to assign the survey to a team
+*/
+
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, TextInput} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-import {useForm, Controller} from 'react-hook-form';
-//AWS Amplify import
-//user defined component imports
-import PersonalisedInput from '../../components/PersonalisedInput';
+import {useForm} from 'react-hook-form';
 import PersonalisedButton from '../../components/PersonalisedButton';
-import { Picker } from '@react-native-picker/picker';
-import { Dropdown } from 'react-native-element-dropdown';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import PersonalisedDropdown from '../../components/PersonalisedDropdown';
-import { API, graphqlOperation, Auth } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
+//import slider
 import Slider from '@react-native-community/slider';
 
-// const defaultValues = {
-//     title: "",
-//     content: "",
-//     language: "java",
-//   };
-
-//   const data = [
-//     { label: 'Scale (1 - 10)', value: '1' },
-//     { label: 'Short answer', value: '2' },
-//     //{ label: 'Multiple choice', value: '3' },
-//   ];
 const ReviewSurveyScreen = () => {
     const navigation = useNavigation();
-    //const {height} = useWindowDimensions(); //sets the height of the window
-    const route = useRoute(); //route passed parameters from the previous screen (SignUp)
-    const {control, handleSubmit, formState: {errors}} = useForm(); //use form from react-hook-form
-
-
+    const route = useRoute();
 
     const types = [
         route.params.question1_type,
-         route.params.question2_type,
-          route.params.question3_type,
-           route.params.question4_type,
-            route.params.question5_type
+        route.params.question2_type,
+        route.params.question3_type,
+        route.params.question4_type,
+        route.params.question5_type
         ];
 
     for(let i = 0; i < types.length; i++)
@@ -68,17 +51,6 @@ const ReviewSurveyScreen = () => {
         }
     }
 
-    if (route.params.question1_type == 1)
-    {
-        console.log("hello");
-    }
-
-
-
-
-
-
-
     const onAssignPressed = () => { 
         navigation.navigate('AssignSurveyToTeam', {survey_id: route.params.survey_id});
     }
@@ -89,13 +61,11 @@ const ReviewSurveyScreen = () => {
                 <Text style={styles.title}>
                     Review Survey
                 </Text>
-
                 <Text style={styles.text_bold}>Survey Name:</Text>
                 <Text>{route.params.survey_text}</Text>
 
                 <Text style={styles.text_bold}>Question 1:</Text>
                 <Text>{route.params.question1_text}</Text>
-
                 {route.params.question1_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -109,11 +79,9 @@ const ReviewSurveyScreen = () => {
                 onValueChange={(value) => console.log(value)}
                 thumbTintColor="#3362d0"
                 />}
-
                 {/* {route.params.question1_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-
-                {route.params.question1_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {route.params.question1_type == 2 && <TextInput
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
@@ -122,7 +90,6 @@ const ReviewSurveyScreen = () => {
 
                 <Text style={styles.text_bold}>Question 2:</Text>
                 <Text>{route.params.question2_text}</Text>
-
                 {route.params.question2_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -136,11 +103,9 @@ const ReviewSurveyScreen = () => {
                 onValueChange={(value) => console.log(value)}
                 thumbTintColor="#3362d0"
                 />}
-
                 {/* {route.params.question2_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-
-                {route.params.question2_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {route.params.question2_type == 2 && <TextInput
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
@@ -149,7 +114,6 @@ const ReviewSurveyScreen = () => {
                 
                 <Text style={styles.text_bold}>Question 3:</Text>
                 <Text>{route.params.question3_text}</Text>
-
                 {route.params.question3_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -163,11 +127,9 @@ const ReviewSurveyScreen = () => {
                 onValueChange={(value) => console.log(value)}
                 thumbTintColor="#3362d0"
                 />}
-
                 {/* {route.params.question3_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-
-                {route.params.question3_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {route.params.question3_type == 2 && <TextInput
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
@@ -190,11 +152,9 @@ const ReviewSurveyScreen = () => {
                 onValueChange={(value) => console.log(value)}
                 thumbTintColor="#3362d0"
                 />}
-
                 {/* {route.params.question4_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-
-                {route.params.question4_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {route.params.question4_type == 2 && <TextInput
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
@@ -203,7 +163,6 @@ const ReviewSurveyScreen = () => {
                 
                 <Text style={styles.text_bold}>Question 5:</Text>
                 <Text>{route.params.question5_text}</Text>
-
                 {route.params.question5_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -217,11 +176,9 @@ const ReviewSurveyScreen = () => {
                 onValueChange={(value) => console.log(value)}
                 thumbTintColor="#3362d0"
                 />}
-
                 {/* {route.params.question5_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-
-                {route.params.question5_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {route.params.question5_type == 2 && <TextInput
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
@@ -232,7 +189,6 @@ const ReviewSurveyScreen = () => {
                     text="Assign Survey"
                     onPress={onAssignPressed}
                 />
-
             </View>
         </ScrollView>
     );
@@ -258,8 +214,6 @@ const styles = StyleSheet.create({
         padding: 8,
         flexDirection:'row',
         alignItems:'center'
-        
-        
       },
       paragraph1: {
         margin: 24,
@@ -270,12 +224,10 @@ const styles = StyleSheet.create({
 
     root: {
         padding: 20,
-        
     },
     title: {
         justifyContent: 'center',
         alignItems: 'center',
-        
         fontSize: 24,
         fontWeight: 'bold',
         color: '#051C60',
@@ -283,7 +235,6 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     text: {
-        //color: 'gray',
         marginVertical: 10,
         alignSelf: 'flex-start'
     },
@@ -300,7 +251,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: '50%',
         borderBottomColor: 'gray',
-        //borderBottomWidth: 0.5,
       },
       icon: {
         marginRight: 5,

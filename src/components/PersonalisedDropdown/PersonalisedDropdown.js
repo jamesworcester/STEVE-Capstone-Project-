@@ -1,23 +1,21 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 04/09/2022
-Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Created by James Worcester on 19/09/2022 (Sprint 10)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Screen to create a Survey
-//react-native imports
+
+/*
+Name: PersonalisedDropdown
+*/
+
+/*
+Purpose: 
+1. Component to create personalised dropdown with customisable styling and functionality
+*/
+
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-native/native import
-import { useNavigation } from '@react-navigation/native';
-import { useRoute } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-import {useForm, Controller} from 'react-hook-form';
-//AWS Amplify import
-import { Auth } from 'aws-amplify';
-//user defined component imports
-import PersonalisedInput from '../PersonalisedInput';
-import PersonalisedButton from '../PersonalisedButton';
-import { Picker } from '@react-native-picker/picker';
+import { View, StyleSheet } from 'react-native';
+import { Controller} from 'react-hook-form';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -27,12 +25,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
     { label: 'Multiple choice', value: '3' },
   ];
 
-const PersonalisedDropdown = (control, name, rules = {}, placeholder, defaultValue, value, secureTextEntry) => {
+const PersonalisedDropdown = (control, name, placeholder) => {
 
     const [selectedType, setSelectedType] = useState(null);
 
     return (
       <Controller
+          name={name}
           control={control}
           render={({ selectedType }) => (
               <View>
@@ -59,20 +58,16 @@ const PersonalisedDropdown = (control, name, rules = {}, placeholder, defaultVal
                 />   
               </View>
             )}
-          name={name}
-          //defaultValue={defaultValues.language}
       />
     );
 };
 
-//create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
       dropdown: {
         margin: 16,
         height: 50,
         width: 200,
         borderBottomColor: 'gray',
-        //borderBottomWidth: 0.5,
       },
       icon: {
         marginRight: 5,

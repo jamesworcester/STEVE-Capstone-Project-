@@ -1,6 +1,17 @@
 /*
 Programmer: Hung
 */
+
+/*
+Name: CreateNewChannel
+*/
+
+/*
+Purpose: 
+1. Component to create a new chat channel
+*/
+
+
 import React from "react";
 import { FontAwesome } from '@expo/vector-icons';
 import { View } from "react-native";

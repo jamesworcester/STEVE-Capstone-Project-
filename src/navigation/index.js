@@ -3,12 +3,19 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Navigation class that uses @react-navigation/native library for navigation between different screens of the app https://reactnavigation.org/docs/getting-started/
-//react-native imports
+
+/*
+Name: Navigation
+*/
+
+/*
+Purpose: 
+1. Component to create navigation stack for the app using @react-navigation/native library https://reactnavigation.org/docs/getting-started/
+*/
+
 import React from 'react';
-import { View, Text } from 'react-native';
-//@react-navigation/native imports
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 //importing all other JavaScript screens for navigation to handle
@@ -20,12 +27,11 @@ import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
-import SurveyScreen from '../screens/SurveyScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import FirstScreen from '../screens/FirstScreen/FirstScreen';
-import SurveyTest from '../screens/SurveyTest'
-import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
-import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
+import VisualizationScreen from '../screens/VisualizationScreen/VisualizationScreen';
+import CreateSurveyScreen from '../screens/CreateSurveyScreen';
+import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import CreateTeamScreen from '../screens/CreateTeamScreen';
 import Profile from '../screens/Profile';
@@ -36,20 +42,13 @@ import UserScreen from '../screens/UserScreen/UserScreen';
 import TeamMembersScreen from '../screens/TeamMembers/TeamMembers';
 import PublicProfileScreen from '../screens/PublicProfileScreen';
 import AddTeamMember from '../screens/AddTeamMember';
-import TestScreen from '../screens/TestScreen';
 import ReviewSurveyScreen from '../screens/ReviewSurveyScreen';
 import AssignSurveyToTeamScreen from '../screens/AssignSurveyToTeamScreen/AssignSurveyToTeamScreen';
 import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
 import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
-import {
-  Octicons,
-  MaterialCommunityIcons,
-  MaterialIcons,
-  FontAwesome5,
-} from '@expo/vector-icons';
+import Chatchannel from '../screens/ChatChannel';
 
-//create the navigation stack
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); //create the navigation stack
 
 //define a constant lambda function called Navigation to handle the navigation stack, and add all screens to the Stack.
 //NOTE: IF YOU ADD A NEW SCREEN, MAKE SURE TO ADD IT BELOW WITH ITS OWN UNIQUE NAME
@@ -63,11 +62,9 @@ const Navigation = () => {
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-                <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
-                <Stack.Screen name="SurveyTest" component={SurveyTest} />
-                <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
-                <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
-                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />         
+                <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
+                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
+                <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} /> 
@@ -79,17 +76,16 @@ const Navigation = () => {
                 <Stack.Screen name="TeamMembers" component={TeamMembersScreen} />
                 <Stack.Screen name="PublicProfile" component={PublicProfileScreen} />
                 <Stack.Screen name="AddTeamMember" component={AddTeamMember} />
-                <Stack.Screen name="TestScreen" component={TestScreen} />
                 <Stack.Screen name="ReviewSurvey" component={ReviewSurveyScreen} />
                 <Stack.Screen name="AssignSurveyToTeam" component={AssignSurveyToTeamScreen} />
                 <Stack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} /> 
                 <Stack.Screen name="FirstScreen" component={FirstScreen} /> 
                 <Stack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
+                <Stack.Screen name="Chatchannel" component={Chatchannel} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
     )
 };
 
-//export the Navigation function
 export default Navigation;

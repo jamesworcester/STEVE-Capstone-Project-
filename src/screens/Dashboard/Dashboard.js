@@ -1,20 +1,27 @@
 /*
 Programmer: Hung
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-import React, { Component } from 'react'
 
+/*
+Name: Dashboard
+*/
+
+/*
+Purpose: 
+1. Component used to create a dashboard for the user to navigate through the app
+*/
+
+import React from 'react'
 import 'react-native-gesture-handler';
 import FirstScreen from '../FirstScreen/FirstScreen';
-import Survey from '../Survey/Survey';
 import Chatchannel from '../ChatChannel/Chatchannel';
 import Profile from '../Profile/Profile';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
-import CreateSurveyScreen from '../CreateSurveyScreen';
 import AdminToolsScreen from '../AdminToolsScreen';
-import UserSearchScreen from '../UserSearchScreen';
 import UserScreen from '../UserScreen/UserScreen';
 import SurveyHomeScreen from '../SurveyHomeScreen';
 import VisualizationScreen from '../VisualizationScreen';
@@ -59,21 +66,18 @@ const ChatStack = createNativeStackNavigator(); // Create a stack navigator for 
 const Tab = createMaterialBottomTabNavigator();
 
 const Dashboard = () => {
-
     return (
-        
-        
     <Tab.Navigator shifting={true} 
         barStyle={{ backgroundColor: '#051C60' }} 
         activeColor="white" 
         >
-        <Tab.Screen name="Admin" component={AdminToolsScreenStack}        
+        <Tab.Screen name="Admin" component={AdminToolsScreen}       //Admin Tools Screen
             options={{
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="shield-crown-outline" color={color} size={26}/>
         ),
     }}/>
-        <Tab.Screen name="Home" component={FirstScreen}        
+        <Tab.Screen name="Home" component={FirstScreen}             //Home Screen
             options={{
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home-outline" color={color} size={26}/>
@@ -93,7 +97,7 @@ const Dashboard = () => {
         ),
     }}/>
     
-    <Tab.Screen name="Directory" component={UserScreen}      // Channel Screen
+    <Tab.Screen name="Directory" component={UserScreen}      // User Directory Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="wechat" color={color} size={26}/>

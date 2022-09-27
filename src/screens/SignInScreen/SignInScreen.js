@@ -3,15 +3,21 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
+
+/*
+Name: SignInScreen
 */
-//SignInScreen users are navigated to from App.js as well as being able to return to from many different screens. Allows users to sign in or navigate to Sign Up or reset their password
-//react-native imports
-import React, {useState} from 'react';
+
+/*
+Purpose: 
+1. Screen to allow the user to sign in, navigate to sign up or reset their password
+*/
+
+import React from 'react';
 import { View, Text , Image , StyleSheet, useWindowDimensions, ScrollView, Alert} from 'react-native';
-//@react-navigation/native import
 import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-import {useForm, Controller} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
 import PersonalisedButton from '../../components/PersonalisedButton';
@@ -19,32 +25,29 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 //user defined API import
 import { API, Auth, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
 
-//define a constant lambda function called SignInScreen that creates a logo, two PersonalisedInputs and three PersonalisedButtons and allows the user to sign in or navigate to sign up or reset their password
 const SignInScreen = () => {
-
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const {height} = useWindowDimensions(); //sets the height of the window
-    const {control, handleSubmit, formState: {errors}} = useForm(); //use form from react-hook-form
+    const navigation = useNavigation();
+    const {height} = useWindowDimensions(); 
+    const {control, handleSubmit, formState: {errors}} = useForm(); 
 
     const onSignInPressed = async (data) => {
         try{
             await Auth.signIn(data.email, data.password); //uses AWS Amplify to attempt to sign in using the entered email and password
-            async function authenticate() { //async function to authenticate the current user
-                let user = await Auth.currentAuthenticatedUser(); //authenticate using Amazon Auth and store the details about the user in the user variable
-                const { username } = user; //retrieve and store the user's id (username in this case) in the username variable
+            async function authenticate() { 
+                let user = await Auth.currentAuthenticatedUser(); 
+                const { username } = user; //retrieve and store the user's id (Cognito username) in the username variable
                 try
                 {
-                    const current_user = await API.graphql(graphqlOperation(queries.getUser, {id: username})) //use the API to retrieve the user's details from the database
+                    const current_user = await API.graphql(graphqlOperation(queries.getUser, {id: username})) //use the API to retrieve the user's details from the User table in the database
                     if(current_user.data.getUser.first_login != 0) //if the user has not logged in before
                     {
                         navigation.navigate('UpdateUser', {current_user: current_user}) //navigate to the UpdateUser screen
                     }
                     else //if the user has logged in before
                     {
-                        navigation.navigate('Dashboard'); //navigate to the AdminDash screen
+                        navigation.navigate('Dashboard');
                     }
                 }
                 catch(e)
@@ -52,78 +55,74 @@ const SignInScreen = () => {
                     Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
                 }
             }
-            authenticate()  //call the authenticate function
+            authenticate()
         }
         catch(e)
         {
-            Alert.alert('Login Failed', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+            Alert.alert('Login Failed', e.message);
         }
         
     }
-
-    const onForgotPasswordPressed = () => { //if the 'Forgot password?' button is clicked
+    const onForgotPasswordPressed = () => {
         navigation.navigate('ForgotPassword');
     }
 
-    const onSignUpPressed = () => { //if the 'Don't have an account? Sign up' button is clicked
+    const onSignUpPressed = () => {
         navigation.navigate('SignUp');
     }
 
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
-                <Image //Logo image
-                source={Logo}
-                style={[styles.logo, {height: height * 0.3}]}
-                resizeMode="contain"
+                <Image 
+                    source={Logo}
+                    style={[styles.logo, {height: height * 0.3}]}
+                    resizeMode="contain"
                 />
 
                 <Text style={styles.title}>
                     Sign In
                 </Text>
-
-                <PersonalisedInput //Custom TextInput
-                name="email"
-                placeholder="Email"
-                control={control}
-                rules={{required: 'Email is required'}}
+                <PersonalisedInput
+                    name="email"
+                    placeholder="Email"
+                    control={control}
+                    rules={{required: 'Email is required'}}
                 />
-                
-                <PersonalisedInput //Custom TextInput
-                name="password"
-                placeholder="Password"
-                control={control}
-                secureTextEntry={true}
-                rules={{
-                    required: 'Password is required',
-                    minLength: {value: 8,
-                    message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 8 characters long, else there will be a handled error
-                },
-                    maxLength: {
-                    value: 30,
-                    message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 30 characters long, else there will be a handled error
-                }
-            }}   
-        />
+                <PersonalisedInput
+                    name="password"
+                    placeholder="Password"
+                    control={control}
+                    secureTextEntry={true}
+                    rules={{
+                        required: 'Password is required',
+                        minLength: {value: 8,
+                        message: 'Password must be at least 8 characters long', 
+                    },
+                        maxLength: {
+                        value: 30,
+                        message: "Password must be less than 30 characters long" 
+                    }
+                    }}   
+                />
             
                 <PersonalisedButton //Sign In Button
-                text={"Sign In"}
-                onPress={handleSubmit(onSignInPressed)}
-                style = {styles.signInButton}
+                    text={"Sign In"}
+                    onPress={handleSubmit(onSignInPressed)}
+                    style = {styles.signInButton}
                 />
 
                 <PersonalisedButton //Forgot Password Button
-                text="Forgot password?"
-                onPress={onForgotPasswordPressed}
-                type="THIRD"
+                    text="Forgot password?"
+                    onPress={onForgotPasswordPressed}
+                    type="THIRD"
                 />
 
                 <PersonalisedButton //Sign Up Button
-                text="Don't have an account? Sign up"
-                onPress={onSignUpPressed}
-                type="THIRD"
+                    text="Don't have an account? Sign up"
+                    onPress={onSignUpPressed}
+                    type="THIRD"
                 />
-              
             </View>
         </ScrollView>
     );

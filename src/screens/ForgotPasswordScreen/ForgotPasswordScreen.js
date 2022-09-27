@@ -2,16 +2,23 @@
 Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//ForgotPasswordScreen users are navigated to from the SignInScreen if they click on 'Forgot password?'
-//react-native imports
-import React, {useState} from 'react';
+
+/*
+Name: ForgotPasswordScreen
+*/
+
+/*
+Purpose: 
+1. Screen users are navigated to from the SignInScreen if they click on the 'Forgot Password' button
+2. Allows users to enter their email address to send a code to reset their password
+*/
+
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-navigation/native import
 import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm} from 'react-hook-form';
-//AWS Amplify import
 import {Auth} from 'aws-amplify';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
@@ -19,22 +26,21 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 //user defined logo import
 import Logo from '../../../assets/images/planit_nri_v_navy.png';
 
-//define a constant lambda function called ForgotPasswordScreen that creates a PersonalisedInput and two PersonalisedButtons and allows the user to enter their email address to send a code to reset their password
 const ForgotPasswordScreen = () => {
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const {control, handleSubmit} = useForm(); //use form from react-hook-form
-    const {height} = useWindowDimensions(); //sets the height of the window
+    const navigation = useNavigation();
+    const {control, handleSubmit} = useForm();
+    const {height} = useWindowDimensions();
 
-    const onSendPressed = async (data) => { //asynchronous lambda function that collects data (the email address) from the email CustomInptu
+    const onSendPressed = async (data) => {
         const username = data.username;
         try{
             const user = await Auth.forgotPassword(data.username); //uses AWS Amplify to send a forgotPassword password reset request
             console.log(user);
-            navigation.navigate('NewPassword', {username}); //if the reset request is successful, navigate the user to the NewPasswordScreen and pass their email (username) as a parameter
+            navigation.navigate('NewPassword', {username});
         }
         catch(e)
         {
-            Alert.alert('Password Reset Failed', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+            Alert.alert('Password Reset Failed', e.message);
         }
     }
 

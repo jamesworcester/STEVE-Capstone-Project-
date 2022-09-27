@@ -1,19 +1,24 @@
 /*
 Programmer: Hung
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-import React, {useEffect, useState} from 'react';
+
+/*
+Name: ChatListItem
+*/
+
+/*
+Purpose: 
+1. Component to display a chat channel in a FlatList from the Chatchannel Screen
+2. When the user clicks on the chat channel, they are navigated to the Chatroom Screen for that channel
+*/
+
+import React from 'react';
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
-import { ChatRoom } from "../../types"; //import global types of Chatroom
 import styles from "./style"; 
-import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 import { Channel } from "../../types";
-//import graphQL API mutations and queries
-import { API, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
-//user defined logo import
 import placeholder_chatchannel from '../../../assets/images/placeholder_chatchannel.png';
 
 export type ChatListItemProps = {
@@ -21,18 +26,16 @@ export type ChatListItemProps = {
 }
 
 const ChatListItem = (props: ChatListItemProps) => {
-
-    const {channel} = props; //define props chatRoom as an object
+    const {channel} = props;
     const navigation = useNavigation();
-    //const user = chatRoom.users[1]; // initialise user by getting info from dummy data
+
     const onClick = () => {
         navigation.navigate('Chatroom', 
-        {id: channel.id, //navigate to channel screen and show name of user u are chatting with
+        {id: channel.id,
         name: channel.channel_text,
         })
     }
 
-    //<Image source={{/*uri: user.imageUri*/}} style={styles.avatar}/>
 return(
 <TouchableWithoutFeedback onPress={onClick}>
 <View style={styles.container}>
@@ -44,7 +47,6 @@ return(
         </View>
     </View>
     <Text style = {styles.time}>
-        {/*moment(chatRoom.lastMessage.createdAt).format('DD/MM/YYYY'*)*/}
     </Text>
 </View>
 </TouchableWithoutFeedback>

@@ -1,18 +1,24 @@
 /*
 Programmer: James Worcester
-Edited by: James Worcester on 15/09/2022 (Sprint 9)
+Created by: James Worcester on 22/09/2022 (Sprint 10)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-import React, {useEffect, useState} from 'react';
-import { View, Text, Image, TouchableWithoutFeedback, Alert } from "react-native";
+
+/*
+Name: FirstScreenListItem
+*/
+
+/*
+Purpose: 
+1. Component to display a survey currently assigned to the logged in user in a FlatList from FirstScreen
+2. When the user clicks on the survey, the are navigated to the AnswerSurveyScreen for that survey
+*/
+
+import React from 'react';
+import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import { Survey } from "../../types"; //import global types of Chatroom
 import styles from "./style"; 
-import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-//import graphQL API mutations and queries
-import { API, Auth, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
-//user defined logo import
 import placeholder_survey from '../../../assets/images/placeholder_survey.png';
 
 
@@ -21,18 +27,13 @@ export type AssignedSurveyListItemProps = {
 }
 
 const FirstScreenListItem = (props: AssignedSurveyListItemProps) => {
-    //console.log("hello");
     const navigation = useNavigation();
-    const {survey} = props; //define props chatRoom as an object
+    const {survey} = props;
     
-    //const user = chatRoom.users[1]; // initialise user by getting info from dummy data
     const onClick = () => {
-        //console.log(id);
-
         navigation.navigate('AnswerSurvey', {assigned_survey_id: survey.id, survey_id: survey.survey_id})
     }
 
-    //<Image source={{/*uri: user.imageUri*/}} style={styles.avatar}/>
 return(
 <TouchableWithoutFeedback onPress={onClick}>
 <View style={styles.container}>
@@ -45,7 +46,6 @@ return(
         </View>
     </View>
     <Text style = {styles.time}>
-        {/*moment(chatRoom.lastMessage.createdAt).format('DD/MM/YYYY'*)*/}
     </Text>
 </View>
 </TouchableWithoutFeedback>
