@@ -28,6 +28,7 @@ import VisualizationScreen from '../VisualizationScreen';
 import CreateTeamScreen from '../CreateTeamScreen';
 import TeamScreen from '../TeamScreen/TeamScreen';
 import ViewAssignedSurveysScreen from '../ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
+import CreateSurveyScreen from '../CreateSurveyScreen/CreateSurveyScreen';
 import NewChannel from '../NewChannel';
 
 const AdminStack = createNativeStackNavigator();// Create a stack navigator for Admin TAB
@@ -71,7 +72,7 @@ const Dashboard = () => {
         barStyle={{ backgroundColor: '#051C60' }} 
         activeColor="white" 
         >
-        <Tab.Screen name="Admin" component={AdminToolsScreen}       //Admin Tools Screen
+        <Tab.Screen name="Admin" component={AdminToolsScreenStack}       //Admin Tools Screen
             options={{
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="shield-crown-outline" color={color} size={26}/>
