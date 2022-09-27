@@ -38,8 +38,8 @@ const AdminToolsScreen = () => {
         navigation.navigate('VisualizationScreen');
     }
 
-    const onChatChannelsPressed =  () => { 
-        navigation.navigate('Chatchannel');
+    const onViewSurveysWithResultsPressed =  () => { 
+        navigation.navigate('ViewSurveysWithResults');
     }
 
     return (
@@ -68,10 +68,11 @@ const AdminToolsScreen = () => {
                 />
 
                 <PersonalisedButton
-                text="Chat Channels"
-                onPress={onChatChannelsPressed}
+                text="View Survey Results"
+                onPress={onViewSurveysWithResultsPressed}
                 type="SECOND"
                 />
+
 
             </View>
         </ScrollView>

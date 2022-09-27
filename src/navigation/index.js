@@ -47,6 +47,8 @@ import AssignSurveyToTeamScreen from '../screens/AssignSurveyToTeamScreen/Assign
 import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
 import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
 import Chatchannel from '../screens/ChatChannel';
+import ViewSurveysWithResultsScreen from '../screens/ViewSurveysWithResultsScreen/ViewSurveysWithResultsScreen';
+import ViewSurveyResultsScreen from '../screens/ViewSurveyResultsScreen';
 
 const Stack = createStackNavigator(); //create the navigation stack
 
@@ -82,6 +84,8 @@ const Navigation = () => {
                 <Stack.Screen name="FirstScreen" component={FirstScreen} /> 
                 <Stack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
                 <Stack.Screen name="Chatchannel" component={Chatchannel} />
+                <Stack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
+                <Stack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
