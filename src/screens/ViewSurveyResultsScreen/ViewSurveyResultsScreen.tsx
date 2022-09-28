@@ -22,6 +22,7 @@ import { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 //slider import
 import Slider from '@react-native-community/slider';
+import VisualizationComponent from '../../components/VisualizationComponent';
 
 const ViewSurveyResultsScreen = () => {
     const navigation = useNavigation();
@@ -177,7 +178,7 @@ const ViewSurveyResultsScreen = () => {
 
                 <Text style={styles.text_bold}>Question 1:</Text>
                 <Text>{question1_text}</Text>
-                {question1_type == 1 && <Slider
+                {/* {question1_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
                 alignSelf="center"
@@ -189,25 +190,22 @@ const ViewSurveyResultsScreen = () => {
                 step={1}
                 onValueChange={(value) => value}
                 thumbTintColor="#3362d0"
-                />}
+                />} */}
                 {/* {route.params.question1_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
 
-                {question1_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {/* {question1_type == 2 && <TextInput //TextInput using passed render function parameters 
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
                     selectTextOnFocus={false}
-                />}
-
-<Text>TEST</Text>
-{question1_type == 1 && <Text>{question1_answers_int}</Text>}
-{question1_type == 2 && <Text style={{backgroundColor: 'white'}}>{question1_names.join('\n\n')}</Text>}
-<Text>TEST</Text>
+                />} */}
+                {question1_type == 1 && <VisualizationComponent inputData={question1_answers_int}/>}
+                {question1_type == 2 && <Text>{question1_names.join('\n\n')}</Text>}
 
                 <Text style={styles.text_bold}>Question 2:</Text>
                 <Text>{question2_text}</Text>
-                {question2_type == 1 && <Slider
+                {/* {question2_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
                 value={3}
@@ -219,24 +217,22 @@ const ViewSurveyResultsScreen = () => {
                 step={1}
                 onValueChange={(value) => value}
                 thumbTintColor="#3362d0"
-                />}
+                />} */}
                 {/* {route.params.question2_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-                {question2_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {/* {question2_type == 2 && <TextInput //TextInput using passed render function parameters 
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
                     selectTextOnFocus={false}
-                />}
+                />} */}
 
-<Text>TEST</Text>
-{question2_type == 1 && <Text>{question2_answers_int}</Text>}
-{question2_type == 2 && <Text>{question2_names.join('\n\n')}</Text>}
-<Text>TEST</Text>
+                {question2_type == 1 && <VisualizationComponent inputData={question2_answers_int}/>}
+                {question2_type == 2 && <Text>{question2_names.join('\n\n')}</Text>}
                 
                 <Text style={styles.text_bold}>Question 3:</Text>
                 <Text>{question3_text}</Text>
-                {question3_type == 1 && <Slider
+                {/* {question3_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
                 value={3}
@@ -248,24 +244,22 @@ const ViewSurveyResultsScreen = () => {
                 step={1}
                 onValueChange={(value) => value}
                 thumbTintColor="#3362d0"
-                />}
+                />} */}
                 {/* {route.params.question3_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-                {question3_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {/* {question3_type == 2 && <TextInput //TextInput using passed render function parameters 
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
                     selectTextOnFocus={false}
-                />}
+                />} */}
 
-<Text>TEST</Text>
-{question3_type == 1 && <Text>{question3_answers_int}</Text>}
-{question3_type == 2 && <Text>{question3_names.join('\n\n')}</Text>}
-<Text>TEST</Text>
+                {question3_type == 1 && <VisualizationComponent inputData={question3_answers_int}/>}
+                {question3_type == 2 && <Text>{question3_names.join('\n\n')}</Text>}
 
                 <Text style={styles.text_bold}>Question 4:</Text>
                 <Text>{question4_text}</Text>
-                {question4_type == 1 && <Slider
+                {/* {question4_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
                 value={3}
@@ -277,24 +271,22 @@ const ViewSurveyResultsScreen = () => {
                 step={1}
                 onValueChange={(value) => value}
                 thumbTintColor="#3362d0"
-                />}
+                />} */}
                 {/* {route.params.question4_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-                {question4_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {/* {question4_type == 2 && <TextInput //TextInput using passed render function parameters 
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
                     selectTextOnFocus={false}
-                />}
+                />} */}
 
-<Text>TEST</Text>
-{question4_type == 1 && <Text>{question4_answers_int}</Text>}
-{question4_type == 2 && <Text>{question4_names.join('\n\n')}</Text>}
-<Text>TEST</Text>
+                {question4_type == 1 && <VisualizationComponent inputData={question4_answers_int}/>}
+                {question4_type == 2 && <Text>{question4_names.join('\n\n')}</Text>}
                 
                 <Text style={styles.text_bold}>Question 5:</Text>
                 <Text>{question5_text}</Text>
-                {question5_type == 1 && <Slider
+                {/* {question5_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
                 value={3}
@@ -306,21 +298,18 @@ const ViewSurveyResultsScreen = () => {
                 step={1}
                 onValueChange={(value) => value}
                 thumbTintColor="#3362d0"
-                />}
+                />} */}
                 {/* {route.params.question5_type == 1 && <View><Text style={{flexDirection: "row",
                 justifyContent: "flex-end",}}>Strongly Disagree</Text><Text>Strongly Agree</Text></View>} */}
-                {question5_type == 2 && <TextInput //TextInput using passed render function parameters 
+                {/* {question5_type == 2 && <TextInput //TextInput using passed render function parameters 
                     placeholder="Answer"
                     style={styles.inputstyle}
                     editable={false}
                     selectTextOnFocus={false}
-                />}
+                />} */}
 
-<Text>TEST</Text>
-{question5_type == 1 && <Text>{question5_answers_int}</Text>}
-{question5_type == 2 && <Text>{question5_names.join('\n\n')}</Text>}
-<Text>TEST</Text>
-
+                {question5_type == 1 && <VisualizationComponent inputData={question5_answers_int}/>}
+                {question5_type == 2 && <Text>{question5_names.join('\n\n')}</Text>}
             </View>
         </ScrollView>
     );

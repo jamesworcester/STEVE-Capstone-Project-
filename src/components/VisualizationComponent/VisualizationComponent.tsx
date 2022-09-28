@@ -27,23 +27,54 @@ const colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
 //   { question: 'Q4', answer: 2, fill: 'pink'}
 // ];
 
-const data = [
-  { question: 'Q1', answer: 1 , fill: 'orange'},
-  { question: 'Q2', answer: 2 , fill: 'gold'},
-  { question: 'Q3', answer: 1, fill: 'purple' },
-  { question: 'Q4', answer: 2, fill: 'pink'}
-];
-
 var radio_props = [
   {label: 'Bar', value: 0 },
   {label: 'Line', value: 1 },
-  {label: 'Pie', value: 2 }
+  // {label: 'Pie', value: 2 }
  ];
 
 var questionSet = 1
 
-const VisualizationScreen = () => {
+const VisualizationComponent = ({inputData}) => {
 
+  var numAnswers1 = 0;
+  var numAnswers2 = 0;
+  var numAnswers3 = 0;
+  var numAnswers4 = 0;
+  var numAnswers5 = 0;
+
+  for(let i = 0; i < inputData.length; i++)
+  {
+    if(inputData[i] == 1)
+    {
+      numAnswers1++;
+    }
+    else if(inputData[i] == 2)
+    {
+      numAnswers2++;
+    }
+    else if(inputData[i] == 3)
+    {
+      numAnswers3++;
+    }
+    else if(inputData[i] == 4)
+    {
+      numAnswers4++;
+    }
+    else if(inputData[i] == 5)
+    {
+      numAnswers5++;
+    }
+  }
+
+  const data = [
+    { question: 'S Disagree', answer: numAnswers1 , fill: 'red'},
+    { question: 'Disagree', answer: numAnswers2 , fill: 'yellow'},
+    { question: 'Neutral', answer: numAnswers3, fill: 'orange' },
+    { question: 'Agree', answer: numAnswers4, fill: 'blue'},
+    { question: 'S Agree', answer: numAnswers5, fill: 'green'}
+  ];
+  
 
   const [chartData, setData] = useState(data)
   const [chart, setChart] = useState(0)
@@ -86,11 +117,11 @@ const VisualizationScreen = () => {
   var MyChart = <VictoryBar data={chartData} 
                             x="question" 
                             y="answer" 
-                            animate={{
-                              onLoad: {duration: 1000},
-                              duration: 1000, 
-                              easing: "bounce"
-                            }}
+                            // animate={{
+                            //   onLoad: {duration: 1000},
+                            //   duration: 1000, 
+                            //   easing: "bounce"
+                            // }}
                             style={{
                               data: {
                                 fill: ({ datum }) => datum.fill || 'black'                             
@@ -102,11 +133,11 @@ const VisualizationScreen = () => {
     MyChart =  <VictoryLine data={chartData} 
                             x="question" 
                             y="answer"  
-                            animate={{
-                              onLoad: {duration: 2500},
-                              duration: 1000, 
-                              easing: "sin"
-                            }}
+                            // animate={{
+                            //   onLoad: {duration: 2500},
+                            //   duration: 1000, 
+                            //   easing: "sin"
+                            // }}
                             style={{
                               data: {
                                 stroke: 'red',
@@ -120,9 +151,9 @@ const VisualizationScreen = () => {
                             MyChart = <VictoryPie data={chartData} 
                                                     x="question" 
                                                     y="answer"
-                                                    animate={{
-                                                      duration: 500, 
-                                                    }}
+                                                    // animate={{
+                                                    //   duration: 500, 
+                                                    // }}
                                                     style={{
                                                       data: {
                                                         fillOpacity: 0.9, stroke: "blue", strokeWidth: 3
@@ -154,7 +185,7 @@ const VisualizationScreen = () => {
           {MyChart}
         </VictoryChart>
         
-        <Button onPress={addData} title="Add Example"/>
+        {/* <Button onPress={addData} title="Add Example"/> */}
         <Button onPress={reset} title="Reset"/>
       </View>
   );
@@ -173,4 +204,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default VisualizationScreen;
+export default VisualizationComponent;
