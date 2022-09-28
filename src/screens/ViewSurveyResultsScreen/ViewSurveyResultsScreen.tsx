@@ -177,7 +177,7 @@ const ViewSurveyResultsScreen = () => {
                 <Text>{surveyDetails.text}</Text>
 
                 <Text style={styles.text_bold}>Question 1:</Text>
-                <Text>{question1_text}</Text>
+                <Text style={styles.text_bold}>{question1_text}</Text>
                 {/* {question1_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -204,7 +204,7 @@ const ViewSurveyResultsScreen = () => {
                 {question1_type == 2 && <Text>{question1_names.join('\n\n')}</Text>}
 
                 <Text style={styles.text_bold}>Question 2:</Text>
-                <Text>{question2_text}</Text>
+                <Text style={styles.text_bold}>{question2_text}</Text>
                 {/* {question2_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -231,7 +231,7 @@ const ViewSurveyResultsScreen = () => {
                 {question2_type == 2 && <Text>{question2_names.join('\n\n')}</Text>}
                 
                 <Text style={styles.text_bold}>Question 3:</Text>
-                <Text>{question3_text}</Text>
+                <Text style={styles.text_bold}>{question3_text}</Text>
                 {/* {question3_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -258,7 +258,7 @@ const ViewSurveyResultsScreen = () => {
                 {question3_type == 2 && <Text>{question3_names.join('\n\n')}</Text>}
 
                 <Text style={styles.text_bold}>Question 4:</Text>
-                <Text>{question4_text}</Text>
+                <Text style={styles.text_bold}>{question4_text}</Text>
                 {/* {question4_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
@@ -285,7 +285,7 @@ const ViewSurveyResultsScreen = () => {
                 {question4_type == 2 && <Text>{question4_names.join('\n\n')}</Text>}
                 
                 <Text style={styles.text_bold}>Question 5:</Text>
-                <Text>{question5_text}</Text>
+                <Text style={styles.text_bold}>{question5_text}</Text>
                 {/* {question5_type == 1 && <Slider
                 disabled={true}
                 style={{width: '80%', height: 40}}
