@@ -26,7 +26,7 @@ import AssignedSurveyListItem from '../../components/AssignedSurveyListItem/Inde
 import {useForm, Controller} from 'react-hook-form';
 import FirstScreenListItem from '../../components/FirstScreenListItem/Index';
 
-export default function FirstScreen() {
+function FirstScreen() {
     const [survey, setSurvey] = useState([]);
 
     useEffect(() => {

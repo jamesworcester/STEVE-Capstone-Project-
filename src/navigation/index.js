@@ -32,15 +32,6 @@ import Profile from '../screens/Profile';
 import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
 import AddMemberScreen from '../screens/AddMemberScreen';
 import UserSearchScreen from '../screens/UserSearchScreen';
-import UserScreen from '../screens/UserScreen/UserScreen';
-import TeamMembersScreen from '../screens/TeamMembers/TeamMembers';
-import PublicProfileScreen from '../screens/PublicProfileScreen';
-import AddTeamMember from '../screens/AddTeamMember';
-import TestScreen from '../screens/TestScreen';
-import ReviewSurveyScreen from '../screens/ReviewSurveyScreen';
-import AssignSurveyToTeamScreen from '../screens/AssignSurveyToTeamScreen/AssignSurveyToTeamScreen';
-import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
-import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
 import {
   Octicons,
   MaterialCommunityIcons,
@@ -62,29 +53,18 @@ const Navigation = () => {
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-                <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+                <Stack.Screen name="NewPassword" component={NewPasswordScreen} /> 
                 <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
                 <Stack.Screen name="SurveyTest" component={SurveyTest} />
                 <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
                 <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />         
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
-                <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} /> 
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
-                <Stack.Screen name="UserSearch" component={UserSearchScreen} />
-                <Stack.Screen name="User" component={UserScreen} />
-                <Stack.Screen name="TeamMembers" component={TeamMembersScreen} />
-                <Stack.Screen name="PublicProfile" component={PublicProfileScreen} />
-                <Stack.Screen name="AddTeamMember" component={AddTeamMember} />
-                <Stack.Screen name="TestScreen" component={TestScreen} />
-                <Stack.Screen name="ReviewSurvey" component={ReviewSurveyScreen} />
-                <Stack.Screen name="AssignSurveyToTeam" component={AssignSurveyToTeamScreen} />
-                <Stack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} /> 
-                <Stack.Screen name="FirstScreen" component={FirstScreen} /> 
-                <Stack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
+                <Stack.Screen name="UserSearch" component={UserSearchScreen} /> 
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
