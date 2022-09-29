@@ -3,16 +3,22 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Refactored by James Worcester on 14/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//SignUpScreen users are navigated to after clicking on a 'SignUp' button that allows users to create a AWS iAM account in the project's user pool
-//react-native imports
+
+/*
+Name: SignUpScreen
+*/
+
+/*
+Purpose: 
+1. Screen to allow the user to create an account or navigate to the SignInScreen
+*/
+
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Alert, Image, useWindowDimensions} from 'react-native';
-//@react-native/native import
 import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
 import {useForm} from 'react-hook-form';
-//AWS Amplify import
 import { Auth } from 'aws-amplify';
 //user defined component imports
 import PersonalisedInput from '../../components/PersonalisedInput';
@@ -27,37 +33,37 @@ import * as queries from '../../graphql/queries';
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; //regex (regular expression) constant to check if the email is in the correct format. WILL NEED TO BE CHANGED/UPDATED
 
 const SignUpScreen = () => {
-    const {control, handleSubmit, watch} = useForm(); //use form from react-hook-form
+    const {control, handleSubmit, watch} = useForm(); 
     const pwd = watch('password'); //watch the password being entered in the 'password' PersonalisedInput
-    const navigation = useNavigation(); //use navigation from @react-navigation/native
-    const {height} = useWindowDimensions(); //sets the height of the window
+    const navigation = useNavigation();
+    const {height} = useWindowDimensions(); 
 
-    const onRegisterPressed = async (data) => { //asynchronous lambda function that attempts to create an account using the entered email, password and repeat password
+    const onRegisterPressed = async (data) => {
         const {email, password} = data;
-            // below: very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to cognito and duplicating their userSub and email to the SQL database. Current workflow requires
-            // Cognito signup then duplication with Cognito's auto-generated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing a user's account to be created in
-            // Cognito but not in the database, which is a critical error
+            // BELOW: very poor quality workaround function to test if the Amazon Aurora database compute ability has spun up and is available before adding a user to the Cognito user pooland duplicating their userSub and email to the SQL database.
+            // Current workflow requires Cognito signup then duplication with Cognito's auto-generated userSub id, which could also easily lead to the user pool and database being out of sync if the duplicateUser() function below fails, causing
+            // a user's account to be created in Cognito but not in the database, which is a critical error that would stop the user from being able to log in.
             async function testDBConnection() { 
                 try
                 {
                     const testDB = await API.graphql(graphqlOperation(queries.listSubscriptions)) //test the database connection by attempting to query the database
                     try {
                         const { userSub } = await Auth.signUp({ //uses AWS Amplify to attempt to sign in using the entered email address and passwords
-                            username: email,
-                            password,
+                            username: email.replace(/'/g, "''"), //replace all single quotes with double single quotes to prevent SQL injection
+                            password: password.replace(/'/g, "''") //replace all single quotes with double single quotes to prevent SQL injection
                         });
 
-                        const userDetails = { //stores userDetails for duplicateUser() function
+                        const userDetails = {
                             id: userSub,
-                            email: email,
+                            email: email.replace(/'/g, "''"), //replace all single quotes with double single quotes to prevent SQL injection
                             first_login: 1
                         }
-                        const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); //duplicates the userSub and email to the database
-                        navigation.navigate('ConfirmEmail', {email}) //navigate to the ConfirmEmailScreen and pass the entered email address as a parameter
+                        const duplicateUserIdEmail = await API.graphql(graphqlOperation(mutations.createUserDuplicateIdEmail, {input: userDetails})); //duplicates the logged in user's userSub and email to the User table of the database
+                        navigation.navigate('ConfirmEmail', {email})
                     }
                     catch(e)
                     {
-                        Alert.alert('Error', e.message); //if an error occurs, catch it and throw up an alert with the contents of the error
+                        Alert.alert('Error', e.message)
                     }
                 }
                 catch(e)
@@ -65,17 +71,17 @@ const SignUpScreen = () => {
                     Alert.alert('Spinning up the Database', 'Please wait a minute before trying again')
                 }
             }
-        testDBConnection() //call function
+        testDBConnection()
     }
 
-    const onSignInPressed = () => { //if the 'Have an account? Sign in' button is clicked
+    const onSignInPressed = () => {
         navigation.navigate('SignIn');
     }
 
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
-                <Image //Logo image
+                <Image
                     source={Logo}
                     style={[styles.logo, {height: height * 0.3}]}
                     resizeMode="contain"
@@ -84,21 +90,21 @@ const SignUpScreen = () => {
                     Create an account
                 </Text>
 
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                     name="email"
                     control={control}
                     placeholder="Email"
                     rules={{
-                        required: 'Email is required', //sets the TextInput as required
+                        required: 'Email is required',
                         pattern: 
                         {
-                            value: EMAIL_REGEX, //The entered text must match the EMAIL_REGEX regex (regular expression) defined above or else it is invalid
+                            value: EMAIL_REGEX,
                             message: 'Email is invalid'
                         }
                     }}
                 />
 
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                     name="password"
                     control={control}
                     secureTextEntry={true}
@@ -106,33 +112,33 @@ const SignUpScreen = () => {
                     rules={{
                         required: 'Password is required',
                         minLength: {value: 8,
-                        message: 'Password must be at least 8 characters long', //sets the minimum password length on the client side to be 8 characters long, else there will be a handled error
+                        message: 'Password must be at least 8 characters long',
                     },
                         maxLength: {
                         value: 30,
-                        message: "Password must be less than 30 characters long" //sets the maximum password length on the client side to be 30 characters long, else there will be a handled error
+                        message: "Password must be less than 30 characters long" 
                     }
                     }}
                 />
 
-                <PersonalisedInput //Custom TextInput
+                <PersonalisedInput
                     name="password-repeat"
                     control={control}
                     secureTextEntry={true}      
                     placeholder="Repeat Password"
                     rules={{
-                        required: 'Repeat Password is required', //sets the Repeat Password as required
-                        validate: value => value === pwd || 'Passwords do not match', //validates if password-repeat matches password
+                        required: 'Repeat Password is required',
+                        validate: value => value === pwd || 'Passwords do not match',
                       }}
 
                 />
 
-                <PersonalisedButton //Register Button
+                <PersonalisedButton 
                     text="Register"
                     onPress={handleSubmit(onRegisterPressed)}
                 />
 
-                <PersonalisedButton //Sign in Button
+                <PersonalisedButton
                     text="Have an account? Sign in"
                     onPress={onSignInPressed}
                     type="THIRD"
@@ -142,7 +148,6 @@ const SignUpScreen = () => {
     );
 };
 
-//create a constant called styles that creates a CSS StyleSheet with CSS styling
 const styles = StyleSheet.create({
     logo: {
         width: '70%',

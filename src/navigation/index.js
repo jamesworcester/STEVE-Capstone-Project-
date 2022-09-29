@@ -3,12 +3,19 @@ Programmer: James Worcester
 Created by: James Worcester on 31/07/2022 (Sprint 6)
 Edited by: James Worcester on 04/09/2022 (Sprint 8)
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
-//Navigation class that uses @react-navigation/native library for navigation between different screens of the app https://reactnavigation.org/docs/getting-started/
-//react-native imports
+
+/*
+Name: Navigation
+*/
+
+/*
+Purpose: 
+1. Component to create navigation stack for the app using @react-navigation/native library https://reactnavigation.org/docs/getting-started/
+*/
+
 import React from 'react';
-import { View, Text } from 'react-native';
-//@react-navigation/native imports
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 //importing all other JavaScript screens for navigation to handle
@@ -20,12 +27,11 @@ import ConfirmEmailScreen from '../screens/ConfirmEmailScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import Dashboard from '../screens/Dashboard';
-import SurveyScreen from '../screens/SurveyScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import FirstScreen from '../screens/FirstScreen/FirstScreen';
-import SurveyTest from '../screens/SurveyTest'
-import CreatedSurveyScreen from '../screens/CreatedSurveyScreen';
-import CompletingSurveyScreen from '../screens/CompletingSurveyScreen';
+import VisualizationScreen from '../screens/VisualizationScreen/VisualizationScreen';
+import CreateSurveyScreen from '../screens/CreateSurveyScreen';
+import AdminToolsScreen from '../screens/AdminToolsScreen';
 import UpdateUserScreen from '../screens/UpdateUserScreen';
 import CreateTeamScreen from '../screens/CreateTeamScreen';
 import Profile from '../screens/Profile';
@@ -38,9 +44,10 @@ import {
   MaterialIcons,
   FontAwesome5,
 } from '@expo/vector-icons';
+import ViewSurveysWithResultsScreen from '../screens/ViewSurveysWithResultsScreen/ViewSurveysWithResultsScreen';
+import ViewSurveyResultsScreen from '../screens/ViewSurveyResultsScreen';
 
-//create the navigation stack
-const Stack = createStackNavigator();
+const Stack = createStackNavigator(); //create the navigation stack
 
 //define a constant lambda function called Navigation to handle the navigation stack, and add all screens to the Stack.
 //NOTE: IF YOU ADD A NEW SCREEN, MAKE SURE TO ADD IT BELOW WITH ITS OWN UNIQUE NAME
@@ -65,11 +72,12 @@ const Navigation = () => {
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
                 <Stack.Screen name="UserSearch" component={UserSearchScreen} /> 
+                <Stack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
+                <Stack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
     )
 };
 
-//export the Navigation function
 export default Navigation;

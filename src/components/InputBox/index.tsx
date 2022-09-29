@@ -1,34 +1,26 @@
 /*
 Programmer: Hung
 Edited by: James Worcester on 15/09/2022 (Sprint 9)
+Edited by: James Worcester on 23/09/2022 (Sprint 10)
 */
+
+/*
+Name: InputBox
+*/
+
+/*
+Purpose: 
+1. Component to display the input box at the bottom of the Chatroom Screen
+2. Allows the user to type a message and send/create it to the chat channel
+3. Uses that props.createNewPostFunction(post) parameter (passed from the Chatroom Screen) to create a new post, then updates the frontend FlatList of posts to render the new post
+*/
+
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform,} from "react-native";
+import {View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Alert,} from "react-native";
 import styles from "./styles";
-
-import {MaterialCommunityIcons, MaterialIcons,
-    FontAwesome5,
-    Entypo
-} from "@expo/vector-icons"
-import { Header } from "@rneui/themed";
-import { useRoute } from "@react-navigation/native";
-import chatRoomData from "../../../assets/data/Chats"; //import chat data from dummy data
-import ChatMessage from "../../components/ChatMessage";
+import { MaterialIcons, FontAwesome5, Entypo } from "@expo/vector-icons"
 import 'react-native-gesture-handler';
-//@react-native/native import
-import { useNavigation } from '@react-navigation/native';
-//react-hook-form import for easy form validation https://react-hook-form.com/
-import {useForm} from 'react-hook-form';
-//AWS Amplify import
 import { Auth } from 'aws-amplify';
-//user defined component imports
-import PersonalisedInput from '../../components/PersonalisedInput';
-import PersonalisedButton from '../../components/PersonalisedButton';
-//user defined API import
-import { API, graphqlOperation } from 'aws-amplify';
-import * as mutations from '../../graphql/mutations';
-import * as queries from '../../graphql/queries';
-
 
 const InputBox = (props) => {
     const channel_id = props.channel_id;
@@ -37,22 +29,28 @@ const InputBox = (props) => {
     const [myId, setId] = useState(null);
 
     useEffect(() => {
-        const getId = async () => {
-          const user = await Auth.currentAuthenticatedUser();
-          const { username } = user; //get the id (username in this case) of the current user
-          setId(username);
+        try
+        {
+            const getId = async () => {
+            const user = await Auth.currentAuthenticatedUser();
+            const { username } = user; //get the id (Cognito username) of the current user
+            setId(username);
+            }
+            getId();
         }
-        getId();
+        catch(e)
+        {
+            Alert.alert('Error', e.message);
+        }
       }, [])
 
     const onPress = () => {
         if (!post) {
             //don't do anything
         } else {
-            //send the message
-            //createNewPost();
-            props.createNewPostFunction(post); //call the createNewPostFunction in ChatRoomScreen.tsx that has been passed through by props.createNewPostFunction() with post as the parameter to capture the value from the post
-                                               //TextInput value defined below. Function with post parameter looks like this: props.createNewPostFunction(post)
+            //call the createNewPostFunction in ChatRoomScreen.tsx that has been passed through by props.createNewPostFunction() with post as the parameter to capture the value from the post's
+            //TextInput value defined below. Function with post parameter looks like this: props.createNewPostFunction(post)
+            props.createNewPostFunction(post); 
             setPost('') //set the post TextInput value to empty string after sending the message by updating the state of post
     }
     }

@@ -1,17 +1,16 @@
 /*
 Programmer: James Worcester
-Created by: James Worcester on 20/09/2022 (Sprint 10)
-Edited by: James Worcester on 23/09/2022 (Sprint 10)
+Created by: James Worcester on 27/09/2022 (Sprint 10)
 */
 
 /*
-Name: AssignedSurveyListItem
+Name: SurveysWithResultsListItem
 */
 
 /*
 Purpose: 
-1. Component to display an assigned survey in a FlatList from the ViewAssignedSurveysScreen
-2. When the user clicks on the assigned survey, they are navigated to the ViewAssignedSurveyDetailsScreen for that survey
+1. Component to display a survey that has been answered at least once in a FlatList from the ViewSurveysWithResultsScreen
+2. When the user clicks on the survey, they are navigated to the ViewSurveyResultsScreen for that survey
 */
 
 import React from 'react';
@@ -21,16 +20,16 @@ import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
 import placeholder_survey from '../../../assets/images/placeholder_survey.png';
 
-export type AssignedSurveyListItemProps = {
+export type SurveysWithResultsListItemProps = {
     survey: Survey;
 }
 
-const AssignedSurveyListItem = (props: AssignedSurveyListItemProps) => {
+const SurveysWithResultsListItem = (props: SurveysWithResultsListItemProps) => {
     const navigation = useNavigation();
     const {survey} = props;
     
     const onClick = () => {
-        navigation.navigate('ViewAssignedSurveyDetails', {survey_id: survey.id})
+        navigation.navigate('ViewSurveyResults', {survey_id: survey.id})
     }
 
 return(
@@ -49,5 +48,5 @@ return(
 )
 };
 
-export default AssignedSurveyListItem
+export default SurveysWithResultsListItem
 

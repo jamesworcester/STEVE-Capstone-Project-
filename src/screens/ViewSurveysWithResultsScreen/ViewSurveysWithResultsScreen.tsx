@@ -1,16 +1,15 @@
 /*
 Programmer: James Worcester
-Created by James Worcester on 21/09/2022 (Sprint 10)
-Edited by: James Worcester on 23/09/2022 (Sprint 10)
+Created by James Worcester on 27/09/2022 (Sprint 10)
 */
 
 /*
-Name: ViewAssignedSurveysScreen
+Name: ViewSurveysWithResultsScreen
 */
 
 /*
 Purpose: 
-1. Screen to view all surveys that have been created
+1. Screen to view a Flatlist of all surveys that have been answered at least once
 */
 
 import React from 'react'
@@ -23,21 +22,22 @@ import {useEffect, useState} from "react";
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
 //import ListItem
-import AssignedSurveyListItem from '../../components/AssignedSurveyListItem/Index';
+import SurveysWithResultsListItem from '../../components/SurveysWithResultsListItem/Index';
 
-export default function ViewAssignedSurveysScreen() {
+export default function ViewSurveysWithResultsScreen() {
     const [survey, setSurvey] = useState([]);
     useEffect(() => {
         const getSurveys = async () => {
             try {
-                const uniqueSurveys = await API.graphql(graphqlOperation(queries.listAssigned_SurveysWithDistinctsurvey_id)) //get all surveys from AssignedSurveys with a distinct survey_id and store in the uniqueSurveys array
+                const uniqueSurveys = await API.graphql(graphqlOperation(queries.listAssigned_SurveysWithDistinctsurvey_idAnswered)) //get all surveys from AssignedSurveys with a distinct survey_id and store in the uniqueSurveys array
                 const surveyData = [];
                 const surveyDataStripped = [];
 
-                for(let i = 0; i < uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_id.length; i++) //for each survey in the uniqueSurveys array
+                for(let i = 0; i < uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_idAnswered.length; i++) //for each survey in the uniqueSurveys array
                 {
-                    surveyData[i] = await API.graphql(graphqlOperation(queries.getSurvey, {id: uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_id[i].survey_id})); //get the survey data for that survey and store it in the surveyData array
+                    surveyData[i] = await API.graphql(graphqlOperation(queries.getSurvey, {id: uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_idAnswered[i].survey_id})); //get the survey data for that survey and store it in the surveyData array
                     surveyDataStripped[i] = surveyData[i].data.getSurvey; //strip down the data to make it easier to use
+                    console.log(surveyDataStripped[i].id);
                 }
                 setSurvey(surveyDataStripped);
             }
@@ -59,11 +59,11 @@ export default function ViewAssignedSurveysScreen() {
 
             <FlatList 
                 data={survey}
-                renderItem = {({item}) => <AssignedSurveyListItem survey={item} />}
+                renderItem = {({item}) => <SurveysWithResultsListItem survey={item} />}
                 keyExtractor = {(item) => item.id}
             />
         </View>
     )
 }
 
-export default ViewAssignedSurveysScreen
+export default ViewSurveysWithResultsScreen

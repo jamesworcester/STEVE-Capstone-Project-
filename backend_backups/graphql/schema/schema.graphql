@@ -16,19 +16,31 @@ type Address {
 }
 
 type Assigned_Survey {
-  answered_date_time: AWSTimestamp
-  assigned_by: String!
-  assigned_date_time: AWSTimestamp!
-  assigned_to: String!
-  end_assignment: AWSTimestamp
+  answered_date_time: String
+  assigned_by: String
+  assigned_date_time: String
+  assigned_team: String
+  assigned_to: String
+  end_assignment: String
   frequency_of_survey_days: Int
-  id: ID!
-  survey_id: String!
+  id: ID
+  survey_id: String
+}
+
+type Assigned_SurveyFORUser {
+  answered_date_time: String
+  assigned_by: String
+  assigned_date_time: String
+  assigned_team: String
+  assigned_to: String
+  id: ID
+  survey_id: String
+  text: String
 }
 
 type Assigned_TaskAchievement {
-  assigned_date_time: AWSTimestamp!
-  end_on: AWSTimestamp
+  assigned_date_time: String!
+  end_on: String
   id: ID!
   is_completed: Int
   taskachievement_id: String!
@@ -58,10 +70,10 @@ type Client {
 }
 
 type Comment {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   content: String
-  created_date_time: AWSTimestamp
-  edited_date_time: AWSTimestamp
+  created_date_time: String
+  edited_date_time: String
   id: ID!
   post_id: String!
   user_id: String!
@@ -76,6 +88,28 @@ type Department {
   description: String
   id: ID!
   name: String!
+}
+
+type JoinQuestionANDSurvey_Question {
+  archived_date_time: String
+  created_by: String
+  created_date_time: String
+  id: ID
+  is_archived: Int
+  question_number: Int
+  question_text: String
+  question_type: String
+  survey_id: String
+}
+
+type JoinSurveyANDAssigned_Survey {
+  archived_date_time: String
+  assigned_team: String
+  created_by: String
+  created_date_time: String
+  id: ID
+  is_archived: Int
+  text: String
 }
 
 type Metric {
@@ -114,6 +148,8 @@ type Mutation {
   createProject_Metric(input: CreateProject_MetricInput!): Project_Metric
   createQuestion(input: CreateQuestionInput!): Question
   createQuestion_Answer(input: CreateQuestion_AnswerInput!): Question_Answer
+  createQuestion_AnswerNumber(input: CreateQuestion_AnswerInput!): Question_Answer
+  createQuestion_AnswerString(input: CreateQuestion_AnswerInput!): Question_Answer
   createRegion(input: CreateRegionInput!): Region
   createReward(input: CreateRewardInput!): Reward
   createRole(input: CreateRoleInput!): Role
@@ -170,6 +206,7 @@ type Mutation {
   deleteUser_Role(input: DeleteUser_RoleInput!): User_Role
   deleteUser_Setting(input: DeleteUser_SettingInput!): User_Setting
   updateAddress(input: UpdateAddressInput!): Address
+  updateAssignedSurveyANSWER(input: UpdateAssigned_SurveyInput!): Assigned_Survey
   updateAssigned_Survey(input: UpdateAssigned_SurveyInput!): Assigned_Survey
   updateAssigned_TaskAchievement(input: UpdateAssigned_TaskAchievementInput!): Assigned_TaskAchievement
   updateChannel(input: UpdateChannelInput!): Channel
@@ -215,21 +252,21 @@ type Notification {
 }
 
 type Post {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   channel_id: String
   content: String
   created_date_time: String
-  edited_date_time: AWSTimestamp
+  edited_date_time: String
   id: ID
   user_id: String
 }
 
 type PostWithName {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   channel_id: String
   content: String
   created_date_time: String
-  edited_date_time: AWSTimestamp
+  edited_date_time: String
   first_name: String
   id: ID
   last_name: String
@@ -293,12 +330,18 @@ type Query {
   getUser_Setting(id: ID!): User_Setting
   listAddresses: [Address]
   listAssigned_Surveys: [Assigned_Survey]
+  listAssigned_SurveysFORUser(assigned_to: String): [Assigned_SurveyFORUser]
+  listAssigned_SurveysWithDistinctsurvey_id: [Assigned_Survey]
+  listAssigned_SurveysWithDistinctsurvey_idAnswered: [Assigned_Survey]
   listAssigned_TaskAchievements: [Assigned_TaskAchievement]
   listChannels: [Channel]
   listClients: [Client]
   listComments: [Comment]
   listCountries: [Country]
   listDepartments: [Department]
+  listJoinQuestionANDSurvey_Questions(survey_id: String): [JoinQuestionANDSurvey_Question]
+  listJoinQuestionANDSurvey_QuestionsANSWERSURVEYSCREEN(survey_id: String): [JoinQuestionANDSurvey_Question]
+  listJoinSurveyANDAssigned_Survey(id: ID!): [JoinSurveyANDAssigned_Survey]
   listMetrics: [Metric]
   listModerators: [Moderator]
   listNotifications: [Notification]
@@ -310,6 +353,7 @@ type Query {
   listProjects: [Project]
   listProjectsAndMetrics(id: ID!): Project
   listQuestion_Answers: [Question_Answer]
+  listQuestion_AnswersJOINQuestionANDUser(question_number: Int, survey_id: String): [Question_AnswerJOINQuestionANDUser]
   listQuestions: [Question]
   listRegions: [Region]
   listRewards: [Reward]
@@ -322,6 +366,7 @@ type Query {
   listTaskAchievements: [TaskAchievement]
   listTeam_Memberships: [Team_Membership]
   listTeam_MembershipsWhere(team_id: String, user_id: String): [Team_Membership]
+  listTeam_MembershipsWhereTeamID(team_id: String): [Team_Membership]
   listTeam_Projects: [Team_Project]
   listTeam_Surveys: [Team_Survey]
   listTeams: [Team]
@@ -338,24 +383,37 @@ type Query {
 }
 
 type Question {
-  archived_date_time: AWSTimestamp
-  created_by: String!
-  created_date_time: AWSTimestamp!
-  id: ID!
+  archived_date_time: String
+  created_by: String
+  created_date_time: String
+  id: ID
   is_archived: Int
+  question_number: Int
   question_text: String
-  question_type: String!
+  question_type: String
 }
 
 type Question_Answer {
   answer_number: Int
   answer_string: String
-  answered_date_time: AWSTimestamp
-  assigned_survey_id: String!
-  id: ID!
-  is_anonymous: Int!
-  question_id: String!
-  user_id: String!
+  answered_date_time: String
+  assigned_survey_id: String
+  id: ID
+  is_anonymous: Int
+  question_id: String
+  user_id: String
+}
+
+type Question_AnswerJOINQuestionANDUser {
+  answer_number: Int
+  answer_string: String
+  answered_date_time: String
+  first_name: String
+  is_anonymous: Int
+  last_name: String
+  question_number: Int
+  question_type: String
+  survey_id: String
 }
 
 type Region {
@@ -395,24 +453,24 @@ type Subscription {
 }
 
 type Survey {
-  archived_date_time: AWSTimestamp
-  created_by: String!
-  created_date_time: AWSTimestamp
-  id: ID!
+  archived_date_time: String
+  created_by: String
+  created_date_time: String
+  id: ID
   is_archived: Int
-  text: String!
+  text: String
 }
 
 type Survey_Question {
-  id: ID!
-  question_id: String!
-  survey_id: String!
+  id: ID
+  question_id: String
+  survey_id: String
 }
 
 type TaskAchievement {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   created_by: String!
-  created_date_time: AWSTimestamp!
+  created_date_time: String
   id: ID!
   is_archived: Int
   text: String!
@@ -491,7 +549,7 @@ type User_Notification {
   id: ID!
   is_dismissed: Int
   notification_id: String!
-  sent_date_time: AWSTimestamp
+  sent_date_time: String
   user_id: String!
 }
 
@@ -524,18 +582,19 @@ input CreateAddressInput {
 }
 
 input CreateAssigned_SurveyInput {
-  answered_date_time: AWSTimestamp
-  assigned_by: String!
-  assigned_date_time: AWSTimestamp!
-  assigned_to: String!
-  end_assignment: AWSTimestamp
+  answered_date_time: String
+  assigned_by: String
+  assigned_date_time: String
+  assigned_team: String
+  assigned_to: String
+  end_assignment: String
   frequency_of_survey_days: Int
-  survey_id: String!
+  survey_id: String
 }
 
 input CreateAssigned_TaskAchievementInput {
-  assigned_date_time: AWSTimestamp!
-  end_on: AWSTimestamp
+  assigned_date_time: String!
+  end_on: String
   is_completed: Int
   taskachievement_id: String!
   user_id: String!
@@ -567,10 +626,10 @@ input CreateClientInput {
 }
 
 input CreateCommentInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   content: String
-  created_date_time: AWSTimestamp
-  edited_date_time: AWSTimestamp
+  created_date_time: String
+  edited_date_time: String
   post_id: String!
   user_id: String!
 }
@@ -611,11 +670,11 @@ input CreateNotificationInput {
 }
 
 input CreatePostInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   channel_id: String
   content: String
   created_date_time: String
-  edited_date_time: AWSTimestamp
+  edited_date_time: String
   user_id: String
 }
 
@@ -642,22 +701,23 @@ input CreateProject_MetricInput {
 }
 
 input CreateQuestionInput {
-  archived_date_time: AWSTimestamp
-  created_by: String!
-  created_date_time: AWSTimestamp!
+  archived_date_time: String
+  created_by: String
+  created_date_time: String
   is_archived: Int
+  question_number: Int
   question_text: String
-  question_type: String!
+  question_type: String
 }
 
 input CreateQuestion_AnswerInput {
   answer_number: Int
   answer_string: String
-  answered_date_time: AWSTimestamp
-  assigned_survey_id: String!
-  is_anonymous: Int!
-  question_id: String!
-  user_id: String!
+  answered_date_time: String
+  assigned_survey_id: String
+  is_anonymous: Int
+  question_id: String
+  user_id: String
 }
 
 input CreateRegionInput {
@@ -692,11 +752,11 @@ input CreateSubscriptionInput {
 }
 
 input CreateSurveyInput {
-  archived_date_time: AWSTimestamp
-  created_by: String!
-  created_date_time: AWSTimestamp!
+  archived_date_time: String
+  created_by: String
+  created_date_time: String
   is_archived: Int
-  text: String!
+  text: String
 }
 
 input CreateSurvey_QuestionInput {
@@ -705,9 +765,9 @@ input CreateSurvey_QuestionInput {
 }
 
 input CreateTaskAchievementInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   created_by: String!
-  created_date_time: AWSTimestamp!
+  created_date_time: String
   is_archived: Int
   text: String!
 }
@@ -786,7 +846,7 @@ input CreateUser_DepartmentInput {
 input CreateUser_NotificationInput {
   is_dismissed: Int
   notification_id: String!
-  sent_date_time: AWSTimestamp
+  sent_date_time: String
   user_id: String!
 }
 
@@ -953,19 +1013,20 @@ input UpdateAddressInput {
 }
 
 input UpdateAssigned_SurveyInput {
-  answered_date_time: AWSTimestamp
+  answered_date_time: String
   assigned_by: String
-  assigned_date_time: AWSTimestamp
+  assigned_date_time: String
+  assigned_team: String
   assigned_to: String
-  end_assignment: AWSTimestamp
+  end_assignment: String
   frequency_of_survey_days: Int
-  id: ID!
+  id: ID
   survey_id: String
 }
 
 input UpdateAssigned_TaskAchievementInput {
-  assigned_date_time: AWSTimestamp
-  end_on: AWSTimestamp
+  assigned_date_time: String
+  end_on: String
   id: ID!
   is_completed: Int
   taskachievement_id: String
@@ -995,10 +1056,10 @@ input UpdateClientInput {
 }
 
 input UpdateCommentInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   content: String
-  created_date_time: AWSTimestamp
-  edited_date_time: AWSTimestamp
+  created_date_time: String
+  edited_date_time: String
   id: ID!
   post_id: String
   user_id: String
@@ -1039,11 +1100,11 @@ input UpdateNotificationInput {
 }
 
 input UpdatePostInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   channel_id: String
   content: String
-  created_date_time: AWSTimestamp
-  edited_date_time: AWSTimestamp
+  created_date_time: String
+  edited_date_time: String
   id: ID!
   user_id: String
 }
@@ -1068,11 +1129,12 @@ input UpdateProject_MetricInput {
 }
 
 input UpdateQuestionInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   created_by: String
-  created_date_time: AWSTimestamp
+  created_date_time: String
   id: ID!
   is_archived: Int
+  question_number: Int
   question_text: String
   question_type: String
 }
@@ -1080,7 +1142,7 @@ input UpdateQuestionInput {
 input UpdateQuestion_AnswerInput {
   answer_number: Int
   answer_string: String
-  answered_date_time: AWSTimestamp
+  answered_date_time: String
   assigned_survey_id: String
   id: ID!
   is_anonymous: Int
@@ -1125,9 +1187,9 @@ input UpdateSubscriptionInput {
 }
 
 input UpdateSurveyInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   created_by: String
-  created_date_time: AWSTimestamp
+  created_date_time: String
   id: ID!
   is_archived: Int
   text: String
@@ -1140,9 +1202,9 @@ input UpdateSurvey_QuestionInput {
 }
 
 input UpdateTaskAchievementInput {
-  archived_date_time: AWSTimestamp
+  archived_date_time: String
   created_by: String
-  created_date_time: AWSTimestamp
+  created_date_time: String
   id: ID!
   is_archived: Int
   text: String
@@ -1214,7 +1276,7 @@ input UpdateUser_NotificationInput {
   id: ID!
   is_dismissed: Int
   notification_id: String
-  sent_date_time: AWSTimestamp
+  sent_date_time: String
   user_id: String
 }
 

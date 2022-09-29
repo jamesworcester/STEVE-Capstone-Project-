@@ -555,6 +555,21 @@ export const listAssigned_SurveysWithDistinctsurvey_id = /* GraphQL */ `
     }
   }
 `;
+export const listAssigned_SurveysWithDistinctsurvey_idAnswered = /* GraphQL */ `
+  query ListAssigned_SurveysWithDistinctsurvey_idAnswered {
+    listAssigned_SurveysWithDistinctsurvey_idAnswered {
+      id
+      survey_id
+      assigned_to
+      assigned_by
+      assigned_date_time
+      end_assignment
+      frequency_of_survey_days
+      answered_date_time
+      assigned_team
+    }
+  }
+`;
 export const listSurveys = /* GraphQL */ `
   query ListSurveys {
     listSurveys {
@@ -635,6 +650,27 @@ export const listQuestion_Answers = /* GraphQL */ `
       answer_number
       answer_string
       answered_date_time
+    }
+  }
+`;
+export const listQuestion_AnswersJOINQuestionANDUser = /* GraphQL */ `
+  query ListQuestion_AnswersJOINQuestionANDUser(
+    $survey_id: String
+    $question_number: Int
+  ) {
+    listQuestion_AnswersJOINQuestionANDUser(
+      survey_id: $survey_id
+      question_number: $question_number
+    ) {
+      survey_id
+      question_type
+      question_number
+      is_anonymous
+      answer_number
+      answer_string
+      answered_date_time
+      first_name
+      last_name
     }
   }
 `;
