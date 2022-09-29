@@ -44,8 +44,6 @@ import {
   MaterialIcons,
   FontAwesome5,
 } from '@expo/vector-icons';
-import ViewSurveysWithResultsScreen from '../screens/ViewSurveysWithResultsScreen/ViewSurveysWithResultsScreen';
-import ViewSurveyResultsScreen from '../screens/ViewSurveyResultsScreen';
 
 const Stack = createStackNavigator(); //create the navigation stack
 
@@ -61,10 +59,6 @@ const Navigation = () => {
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <Stack.Screen name="NewPassword" component={NewPasswordScreen} /> 
-                <Stack.Screen name="SurveyScreen" component={SurveyScreen} />
-                <Stack.Screen name="SurveyTest" component={SurveyTest} />
-                <Stack.Screen name="CreatedSurvey" component={CreatedSurveyScreen} />
-                <Stack.Screen name="CompletingSurveyScreen" component={CompletingSurveyScreen} />
                 <Stack.Screen name="Chatroom" component={ChatRoomScreen} />         
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} /> 
@@ -72,8 +66,6 @@ const Navigation = () => {
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
                 <Stack.Screen name="UserSearch" component={UserSearchScreen} /> 
-                <Stack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
-                <Stack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

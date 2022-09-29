@@ -175,7 +175,7 @@ const AnswerSurveyScreen = () => {
 
             await API.graphql(graphqlOperation(mutations.updateAssignedSurveyANSWER, {input: {id: route.params.assigned_survey_id}})); //update the Assigned_Survey entity to show that it has been answered by logging the answered_date_time
 
-            navigation.navigate('AdminTools');
+            navigation.navigate('AdminToolsScreen');
         }
         catch(e)
         {

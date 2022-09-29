@@ -37,7 +37,8 @@ import AssignSurveyToTeamScreen from '../AssignSurveyToTeamScreen/AssignSurveyTo
 import ViewAssignedSurveyDetailsScreen from '../ViewAssignedSurveyDetails';
 import AnswerSurveyScreen from '../AnswerSurveyScreen';
 import PublicProfileScreen from '../PublicProfileScreen';
-//import TestScreen from '../TestScreen';
+import ViewSurveyResultsScreen from '../ViewSurveyResultsScreen';
+import ViewSurveysWithResultsScreen from '../ViewSurveysWithResultsScreen/ViewSurveysWithResultsScreen';
 
 const AdminStack = createNativeStackNavigator(); // CREATE a stack navigator for Admin TAB
 function AdminToolsScreenStack() {
@@ -49,8 +50,9 @@ function AdminToolsScreenStack() {
         <AdminStack.Screen name="TeamMembers" component={TeamMembersScreen} />
         <AdminStack.Screen name="AddTeamMember" component={AddTeamMember} />
         <AdminStack.Screen name="VisualizationScreen" component={VisualizationScreen} />
-        <AdminStack.Screen name="TestScreen" component={TestScreen} />
-      </AdminStack.Navigator>
+        <AdminStack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
+        <AdminStack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
+      </AdminStack.Navigator> 
     );
   }
 
