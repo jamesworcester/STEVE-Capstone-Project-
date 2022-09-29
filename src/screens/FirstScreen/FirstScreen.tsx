@@ -26,7 +26,7 @@ import * as queries from '../../graphql/queries';
 //import ListItem
 import FirstScreenListItem from '../../components/FirstScreenListItem/Index';
 
-export default function FirstScreen() {
+function FirstScreen() {
     const [survey, setSurvey] = useState([]);
 
     useEffect(() => {

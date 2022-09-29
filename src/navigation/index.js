@@ -38,17 +38,12 @@ import Profile from '../screens/Profile';
 import AssignTeamMemberScreen from '../screens/AssignTeamMemberScreen';
 import AddMemberScreen from '../screens/AddMemberScreen';
 import UserSearchScreen from '../screens/UserSearchScreen';
-import UserScreen from '../screens/UserScreen/UserScreen';
-import TeamMembersScreen from '../screens/TeamMembers/TeamMembers';
-import PublicProfileScreen from '../screens/PublicProfileScreen';
-import AddTeamMember from '../screens/AddTeamMember';
-import ReviewSurveyScreen from '../screens/ReviewSurveyScreen';
-import AssignSurveyToTeamScreen from '../screens/AssignSurveyToTeamScreen/AssignSurveyToTeamScreen';
-import ViewAssignedSurveyDetailsScreen from '../screens/ViewAssignedSurveyDetails/ViewAssignedSurveyDetailsScreen';
-import AnswerSurveyScreen from '../screens/AnswerSurveyScreen';
-import Chatchannel from '../screens/ChatChannel';
-import ViewSurveysWithResultsScreen from '../screens/ViewSurveysWithResultsScreen/ViewSurveysWithResultsScreen';
-import ViewSurveyResultsScreen from '../screens/ViewSurveyResultsScreen';
+import {
+  Octicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+  FontAwesome5,
+} from '@expo/vector-icons';
 
 const Stack = createStackNavigator(); //create the navigation stack
 
@@ -63,29 +58,14 @@ const Navigation = () => {
                 <Stack.Screen name="SignUp" component={SignUpScreen} />
                 <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
                 <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-                <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-                <Stack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
-                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />
-                <Stack.Screen name="AdminTools" component={AdminToolsScreen} />
+                <Stack.Screen name="NewPassword" component={NewPasswordScreen} /> 
+                <Stack.Screen name="Chatroom" component={ChatRoomScreen} />         
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
-                <Stack.Screen name="CreateTeam" component={CreateTeamScreen} />
                 <Stack.Screen name="Dashboard" component={Dashboard} options={{title: "Yes"}} /> 
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="AssignTeamMember" component={AssignTeamMemberScreen} />
                 <Stack.Screen name="AddMemberScreen" component={AddMemberScreen} /> 
-                <Stack.Screen name="UserSearch" component={UserSearchScreen} />
-                <Stack.Screen name="User" component={UserScreen} />
-                <Stack.Screen name="TeamMembers" component={TeamMembersScreen} />
-                <Stack.Screen name="PublicProfile" component={PublicProfileScreen} />
-                <Stack.Screen name="AddTeamMember" component={AddTeamMember} />
-                <Stack.Screen name="ReviewSurvey" component={ReviewSurveyScreen} />
-                <Stack.Screen name="AssignSurveyToTeam" component={AssignSurveyToTeamScreen} />
-                <Stack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} /> 
-                <Stack.Screen name="FirstScreen" component={FirstScreen} /> 
-                <Stack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
-                <Stack.Screen name="Chatchannel" component={Chatchannel} />
-                <Stack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
-                <Stack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
+                <Stack.Screen name="UserSearch" component={UserSearchScreen} /> 
              </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

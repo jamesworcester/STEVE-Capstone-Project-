@@ -30,31 +30,49 @@ import TeamScreen from '../TeamScreen/TeamScreen';
 import ViewAssignedSurveysScreen from '../ViewAssignedSurveysScreen/ViewAssignedSurveysScreen';
 import CreateSurveyScreen from '../CreateSurveyScreen/CreateSurveyScreen';
 import NewChannel from '../NewChannel';
+import TeamMembersScreen from '../TeamMembers/TeamMembers';
+import AddTeamMember from '../AddTeamMember';
+import ReviewSurveyScreen from '../ReviewSurveyScreen';
+import AssignSurveyToTeamScreen from '../AssignSurveyToTeamScreen/AssignSurveyToTeamScreen';
+import ViewAssignedSurveyDetailsScreen from '../ViewAssignedSurveyDetails';
+import AnswerSurveyScreen from '../AnswerSurveyScreen';
+import PublicProfileScreen from '../PublicProfileScreen';
+import ViewSurveyResultsScreen from '../ViewSurveyResultsScreen';
+import ViewSurveysWithResultsScreen from '../ViewSurveysWithResultsScreen/ViewSurveysWithResultsScreen';
 
-const AdminStack = createNativeStackNavigator();// Create a stack navigator for Admin TAB
+const AdminStack = createNativeStackNavigator(); // CREATE a stack navigator for Admin TAB
 function AdminToolsScreenStack() {
     return (
       <AdminStack.Navigator screenOptions={{headerShown: false}}>
         <AdminStack.Screen name="AdminToolsScreen" component={AdminToolsScreen} />
         <AdminStack.Screen name="CreateTeam" component={CreateTeamScreen} />
         <AdminStack.Screen name="Team" component={TeamScreen} />
+        <AdminStack.Screen name="TeamMembers" component={TeamMembersScreen} />
+        <AdminStack.Screen name="AddTeamMember" component={AddTeamMember} />
         <AdminStack.Screen name="VisualizationScreen" component={VisualizationScreen} />
-      </AdminStack.Navigator>
+        <AdminStack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
+        <AdminStack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
+      </AdminStack.Navigator> 
     );
   }
 
-const SurveyStack = createNativeStackNavigator();// Create a stack navigator for Survey TAB
+const SurveyStack = createNativeStackNavigator();// CREATE a stack navigator for Survey TAB
   function SurveyHomeScreenStack() {
       return (
         <SurveyStack.Navigator screenOptions={{headerShown: false}}>
           <SurveyStack.Screen name="SurveyHome" component={SurveyHomeScreen} />
           <SurveyStack.Screen name="CreateSurvey" component={CreateSurveyScreen} />
+          <SurveyStack.Screen name="ReviewSurvey" component={ReviewSurveyScreen} />
+          <SurveyStack.Screen name="AssignSurveyToTeam" component={AssignSurveyToTeamScreen} />
+          <SurveyStack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} />
           <SurveyStack.Screen name="ViewAssignedSurveys" component={ViewAssignedSurveysScreen} />
+          <SurveyStack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
+          <SurveyStack.Screen name='FirstScreen' component={FirstScreen}/>
         </SurveyStack.Navigator>
       );
     }  
 
-const ChatStack = createNativeStackNavigator(); // Create a stack navigator for Chat TAB
+const ChatStack = createNativeStackNavigator(); // CREATE a stack navigator for Chat TAB
     function ChatchannelStack() {
         return (
         <ChatStack.Navigator screenOptions={{headerShown: false}}>
@@ -63,7 +81,16 @@ const ChatStack = createNativeStackNavigator(); // Create a stack navigator for 
         </ChatStack.Navigator>
         )
     }  
- 
+const DirectoryStack = createNativeStackNavigator(); // CREATE a stack navigator for Directory TAB
+    function UserScreenStack() {
+      return (
+        <DirectoryStack.Navigator screenOptions={{headerShown: false}}>
+          <DirectoryStack.Screen name="User" component={UserScreen} />
+          <DirectoryStack.Screen name="PublicProfile" component={PublicProfileScreen} />
+        </DirectoryStack.Navigator>
+      )
+    }
+
 const Tab = createMaterialBottomTabNavigator();
 
 const Dashboard = () => {
@@ -98,7 +125,7 @@ const Dashboard = () => {
         ),
     }}/>
     
-    <Tab.Screen name="Directory" component={UserScreen}      // User Directory Screen
+    <Tab.Screen name="Directory" component={UserScreenStack}      // Channel Screen
       options={{
         tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="wechat" color={color} size={26}/>

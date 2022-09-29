@@ -31,7 +31,9 @@ const FirstScreenListItem = (props: AssignedSurveyListItemProps) => {
     const {survey} = props;
     
     const onClick = () => {
-        navigation.navigate('AnswerSurvey', {assigned_survey_id: survey.id, survey_id: survey.survey_id})
+        //console.log(id);
+
+        navigation.navigate('Survey', {screen:'AnswerSurvey',params: {assigned_survey_id: survey.id, survey_id: survey.survey_id}})
     }
 
 return(

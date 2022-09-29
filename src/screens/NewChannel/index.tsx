@@ -55,8 +55,8 @@ const NewChannel = () =>{
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return(
         <View>
-            <Header
-            backgroundColor='#0096FF' centerComponent={{text:'New Channel', 
+            <Header //main header
+            backgroundColor='#051C60' centerComponent={{text:'New Channel', 
             style: {color: '#E6E6FA',fontSize:18}}}
             leftComponent={<AntDesign name="close" size={24} color="white" 
             onPress={() => {navigation.navigate('Chatchannel')}}/> }
