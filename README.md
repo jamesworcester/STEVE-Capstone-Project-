@@ -1,6 +1,6 @@
 # STEVE
 ## Installation Instructions
-Note: For a complete installation guide with image-based step-by-step instructions please refer to the installation guide in the submitted User Manual. This README guide is largely based off those instructions, and will try to get you up and running as quickly as possible. Both guides assume the user is using Windows 10.
+Note: For a complete installation guide with image-based step-by-step instructions please refer to the installation guide in the submitted User Manual. This README guide is largely based off those instructions, and will try to get you up and running as quickly as possible. Both guides assume the user either wants to install the app on their Android Device, or is using Windows 10 and wants to set up the development environment with Android Studio.
 
 ## Android .apk Quick-start Guide:
 TO ADD HERE ONCE THE FINAL APK HAS BEEN MADE
