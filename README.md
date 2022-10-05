@@ -70,6 +70,7 @@ npm install
 npx expo start
 ```
 and press Enter to install the Expo CLI globally
+
 2. Once the Expo CLI has been installed and started, you should see a screen in the Command Prompt with a QR code and some instructions. Press 'a' in the Command Prompt to begin installing the Expo Go app on your emulated device
 
 3. Once Expo has installed, the JavaScript code for the STEVE app will be bundled and sent to the emulated device, and you should now see the login screeen for the app
