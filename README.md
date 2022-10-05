@@ -72,7 +72,7 @@ npx expo start
 and press Enter to install the Expo CLI globally
 2. Once the Expo CLI has been installed and started, you should see a screen in the Command Prompt with a QR code and some instructions. Press 'a' in the Command Prompt to begin installing the Expo Go app on your emulated device
 3. Once Expo has installed, the JavaScript code for the STEVE app will be bundled and sent to the emulated device, and you should now see the login screeen for the app
-4. Remember each session that when first signing into the app or creating an account, please allow 40-50 seconds between your first attempt and your second to allow the database compute functions to spin up. Once spun up, the database will only spin down again once it has been 20 minutes since the last API/SQL request.
+4.. Remember each session that when first signing into the app or creating an account, please allow 40-50 seconds between your first attempt and your second to allow the database compute functions to spin up. Once spun up, the database will only spin down again once it has been 20 minutes since the last API/SQL request.
 
 ### Step 7. Cleaning Up
 1. When you're done with the device, you may power it down the same way you would an actual android phone, and you can close the Command Prompt window
