@@ -83,7 +83,7 @@ const NewChannel = () =>{
             
             </View>
             <Divider style = {{margin :15}} />
-            <Text style = {style.ForDescText}>Description (optional) </Text>
+            <Text style = {style.ForDescText}>Description</Text>
             <PersonalisedInput //Custom TextInput
                 name="description"
                 control={control}  

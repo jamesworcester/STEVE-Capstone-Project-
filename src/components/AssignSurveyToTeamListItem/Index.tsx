@@ -60,7 +60,7 @@ const AssignSurveyToTeamListItem = (props: AssignSurveyToTeamTeamListItemProps) 
                             //assign the survey to the team member
                             API.graphql(graphqlOperation(mutations.createAssigned_Survey, {input: {survey_id: survey_id, assigned_to: assigned_team_members.data.listTeam_MembershipsWhereTeamID[i].user_id, assigned_by: username, assigned_team: team.name.replace(/'/g, "''")}}));
                         }
-                        navigation.navigate('AdminTools');
+                        navigation.navigate('SurveyHome');
                     }
                     catch(e)
                     {

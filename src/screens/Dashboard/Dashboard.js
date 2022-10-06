@@ -40,6 +40,16 @@ import PublicProfileScreen from '../PublicProfileScreen';
 import ViewSurveyResultsScreen from '../ViewSurveyResultsScreen';
 import ViewSurveysWithResultsScreen from '../ViewSurveysWithResultsScreen/ViewSurveysWithResultsScreen';
 
+const HomeStack = createNativeStackNavigator();
+function HomeScreenStack() {
+  return (
+    <HomeStack.Navigator screenOptions={{headerShown: false}}>
+      <HomeStack.Screen name='FirstScreen' component={FirstScreen}/>
+      <HomeStack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
+    </HomeStack.Navigator>
+  );
+}
+
 const AdminStack = createNativeStackNavigator(); // CREATE a stack navigator for Admin TAB
 function AdminToolsScreenStack() {
     return (
@@ -64,8 +74,6 @@ const SurveyStack = createNativeStackNavigator();// CREATE a stack navigator for
           <SurveyStack.Screen name="AssignSurveyToTeam" component={AssignSurveyToTeamScreen} />
           <SurveyStack.Screen name="ViewAssignedSurveyDetails" component={ViewAssignedSurveyDetailsScreen} />
           <SurveyStack.Screen name="ViewAssignedSurveys" component={ViewAssignedSurveysScreen} />
-          <SurveyStack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
-          <SurveyStack.Screen name='FirstScreen' component={FirstScreen}/>
           <SurveyStack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
           <SurveyStack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
         </SurveyStack.Navigator>
@@ -105,7 +113,7 @@ const Dashboard = () => {
             <MaterialCommunityIcons name="shield-crown-outline" color={color} size={26}/>
         ),
     }}/>
-        <Tab.Screen name="Home" component={FirstScreen}             //Home Screen
+        <Tab.Screen name="Home" component={HomeScreenStack}             //Home Screen
             options={{
             tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home-outline" color={color} size={26}/>
