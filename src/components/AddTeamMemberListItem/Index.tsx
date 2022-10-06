@@ -56,7 +56,7 @@ const AddTeamMemberListItem = (props: AddTeamMemberListItemProps) => {
                                     user_id: user.id,
                                 }
                                 await API.graphql(graphqlOperation(mutations.createTeam_Membership, {input: teamMembershipDetals})); //add user to team by creating new record in Team_Membership table
-                                navigation.goBack();
+                                navigation.navigate('Team');
                         }
                         }
                         ]
