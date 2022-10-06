@@ -31,7 +31,6 @@ const TeamListItem = (props: TeamListItemProps) => {
     const navigation = useNavigation();
 
     const onClick = () => {
-        console.log(team.name);
         navigation.navigate('TeamMembers', 
         {team_id: team.id,
         name: team.name,

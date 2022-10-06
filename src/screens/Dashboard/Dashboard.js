@@ -50,8 +50,6 @@ function AdminToolsScreenStack() {
         <AdminStack.Screen name="TeamMembers" component={TeamMembersScreen} />
         <AdminStack.Screen name="AddTeamMember" component={AddTeamMember} />
         <AdminStack.Screen name="VisualizationScreen" component={VisualizationScreen} />
-        <AdminStack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
-        <AdminStack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
       </AdminStack.Navigator> 
     );
   }
@@ -68,6 +66,8 @@ const SurveyStack = createNativeStackNavigator();// CREATE a stack navigator for
           <SurveyStack.Screen name="ViewAssignedSurveys" component={ViewAssignedSurveysScreen} />
           <SurveyStack.Screen name="AnswerSurvey" component={AnswerSurveyScreen} />
           <SurveyStack.Screen name='FirstScreen' component={FirstScreen}/>
+          <SurveyStack.Screen name="ViewSurveysWithResults" component={ViewSurveysWithResultsScreen} />
+          <SurveyStack.Screen name="ViewSurveyResults" component={ViewSurveyResultsScreen} />
         </SurveyStack.Navigator>
       );
     }  
