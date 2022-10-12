@@ -76,7 +76,7 @@ const ReviewSurveyScreen = () => {
                 minimumTrackTintColor="#000000"
                 maximumTrackTintColor="#000000"
                 step={1}
-                onValueChange={(value) => console.log(value)}
+                onValueChange={(value) => value}
                 thumbTintColor="#3362d0"
                 />}
                 {/* {route.params.question1_type == 1 && <View><Text style={{flexDirection: "row",

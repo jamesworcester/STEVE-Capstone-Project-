@@ -34,13 +34,11 @@ const AdminToolsScreen = () => {
         navigation.navigate('Team'); 
     }
 
-    const onGraphVisualizationPressed =  () => { 
-        navigation.navigate('VisualizationScreen');
-    }
+    // const onGraphVisualizationPressed =  () => { 
+    //     navigation.navigate('VisualizationScreen');
+    // }
 
-    const onViewSurveysWithResultsPressed =  () => { 
-        navigation.navigate('ViewSurveysWithResults');
-    }
+
 
     return (
         <ScrollView>
@@ -61,19 +59,11 @@ const AdminToolsScreen = () => {
                 type="SECOND"
                 />
 
-                <PersonalisedButton
+                {/* <PersonalisedButton
                 text="Data Visualization"
                 onPress={onGraphVisualizationPressed}
                 type="SECOND"
-                />
-
-                <PersonalisedButton
-                text="View Survey Results"
-                onPress={onViewSurveysWithResultsPressed}
-                type="SECOND"
-                />
-
-
+                /> */}
             </View>
         </ScrollView>
     );

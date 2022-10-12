@@ -85,7 +85,7 @@ const ChatRoomScreen =() => {
         <View>
             <ImageBackground style={{width:'100%',height:'100%'}} source={bg} >
             <Header 
-              backgroundColor='#0096FF'
+              backgroundColor='#051C60'
               leftComponent={<AntDesign name="back" color="white" size={24} 
               onPress={() => {navigation.navigate('Chatchannel')}}/>}
               centerComponent={{text: `${route.params.name}`, style: { color: '#fff',fontSize:20 }}}

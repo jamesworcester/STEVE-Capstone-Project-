@@ -37,7 +37,6 @@ export default function ViewSurveysWithResultsScreen() {
                 {
                     surveyData[i] = await API.graphql(graphqlOperation(queries.getSurvey, {id: uniqueSurveys.data.listAssigned_SurveysWithDistinctsurvey_idAnswered[i].survey_id})); //get the survey data for that survey and store it in the surveyData array
                     surveyDataStripped[i] = surveyData[i].data.getSurvey; //strip down the data to make it easier to use
-                    console.log(surveyDataStripped[i].id);
                 }
                 setSurvey(surveyDataStripped);
             }

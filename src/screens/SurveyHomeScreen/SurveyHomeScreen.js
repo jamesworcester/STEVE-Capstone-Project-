@@ -30,6 +30,10 @@ const SurveyHomeScreen = () => {
         navigation.navigate('ViewAssignedSurveys');
     }
 
+    const onViewSurveysWithResultsPressed =  () => { 
+        navigation.navigate('ViewSurveysWithResults');
+    }
+
     return (
         <ScrollView>
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: height, padding: 20}}>
@@ -48,6 +52,13 @@ const SurveyHomeScreen = () => {
                 onPress={onViewAssignedSurveysPressed}
                 type="SECOND"
                 />
+
+                <PersonalisedButton
+                text="View Survey Results"
+                onPress={onViewSurveysWithResultsPressed}
+                type="SECOND"
+                />
+
             </View>
         </ScrollView>
     );

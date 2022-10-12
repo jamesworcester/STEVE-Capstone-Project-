@@ -24,7 +24,7 @@ import PersonalisedButton from '../../components/PersonalisedButton';
 import {useEffect, useState} from "react";
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import UserListItem from '../../components/UserListItem/Index';
+import UserListItem2 from '../../components/UserListItem2/Index';
 //import API & queries
 import { API, graphqlOperation } from 'aws-amplify';
 import * as queries from '../../graphql/queries';
@@ -61,17 +61,16 @@ export default function TeamMembersScreen() {
             centerComponent={{text: route.params.name, style: {color: '#E6E6FA', fontSize : 16}, 
             }}/>
 
-            <FlatList 
-                data={user}
-                renderItem = {({item}) => <UserListItem user={item}/>}
-                keyExtractor = {(item) => item.id}
-            />
-
             <PersonalisedButton
                 text="Add Team Member"
                 onPress={handleSubmit(onAddTeamMemberPressed)}
             />
 
+            <FlatList 
+                data={user}
+                renderItem = {({item}) => <UserListItem2 user={item}/>}
+                keyExtractor = {(item) => item.id}
+            />
         </View>
     )
 }

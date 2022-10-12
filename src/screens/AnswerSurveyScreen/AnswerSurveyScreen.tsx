@@ -175,7 +175,7 @@ const AnswerSurveyScreen = () => {
 
             await API.graphql(graphqlOperation(mutations.updateAssignedSurveyANSWER, {input: {id: route.params.assigned_survey_id}})); //update the Assigned_Survey entity to show that it has been answered by logging the answered_date_time
 
-            navigation.navigate('AdminToolsScreen');
+            navigation.navigate('FirstScreen');
         }
         catch(e)
         {
@@ -220,6 +220,10 @@ const AnswerSurveyScreen = () => {
                 {error && ( //if there is an error
                 <Text style={{color: 'red', alignSelf: 'stretch'}}>{error.message}</Text>
                 )}
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={{alignSelf: 'center'}}>Strongly Disagree</Text>
+                <Text style={{alignSelf: 'center'}}>Strongly Agree</Text>
+                </View>
                 </>
             )}
             />}    
@@ -262,6 +266,10 @@ const AnswerSurveyScreen = () => {
                 {error && ( //if there is an error
                 <Text style={{color: 'red', alignSelf: 'stretch'}}>{error.message}</Text>
                 )}
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={{alignSelf: 'center'}}>Strongly Disagree</Text>
+                <Text style={{alignSelf: 'center'}}>Strongly Agree</Text>
+                </View>
                 </>
             )}
             />}
@@ -305,6 +313,10 @@ const AnswerSurveyScreen = () => {
                 {error && ( //if there is an error
                 <Text style={{color: 'red', alignSelf: 'stretch'}}>{error.message}</Text>
                 )}
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={{alignSelf: 'center'}}>Strongly Disagree</Text>
+                <Text style={{alignSelf: 'center'}}>Strongly Agree</Text>
+                </View>
                 </>
             )}
             />}
@@ -348,6 +360,10 @@ const AnswerSurveyScreen = () => {
                 {error && ( //if there is an error
                 <Text style={{color: 'red', alignSelf: 'stretch'}}>{error.message}</Text>
                 )}
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={{alignSelf: 'center'}}>Strongly Disagree</Text>
+                <Text style={{alignSelf: 'center'}}>Strongly Agree</Text>
+                </View>
                 </>
             )}
             />}
@@ -390,6 +406,10 @@ const AnswerSurveyScreen = () => {
                 {error && ( //if there is an error
                 <Text style={{color: 'red', alignSelf: 'stretch'}}>{error.message}</Text>
                 )}
+                <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={{alignSelf: 'center'}}>Strongly Disagree</Text>
+                <Text style={{alignSelf: 'center'}}>Strongly Agree</Text>
+                </View>
                 </>
             )}
             />}
