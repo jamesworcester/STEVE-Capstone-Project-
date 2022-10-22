@@ -3,7 +3,9 @@
 Note: For a complete installation guide with image-based step-by-step instructions please refer to the installation guide in the submitted User Manual. This README guide is largely based off those instructions, and will try to get you up and running as quickly as possible. Both guides assume the user either wants to install the app on their Android device, or is using Windows 10 and wants to set up the development environment with Android Studio.
 
 ## Android .apk Quick-start Guide:
-TO ADD HERE ONCE THE FINAL APK HAS BEEN MADE
+1. Download and transfer the supplied .apk file to your Android device
+2. Install the .apk file
+3. Open the newly installed 'STEVE' app
 
 ## Windows 10 Development Environment Quick-start Guide:
 ### Requirements:
