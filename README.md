@@ -5,9 +5,7 @@
 
 Please feel free to read the **supplied documentation** in the '**DOCUMENTATION**' folder in the main branch.
 
-![Alt text]("/DOCUMENTATION/Engineering & IT student poster (A1).PNG" "Optional title")
-
-(https://github.com/jamesworcester/STEVE/blob/main/DOCUMENTATION/Engineering%20%26%20IT%20student%20poster%20(A1).PNG)
+![Employee data](/STEVE/DOCUMENTATION/Engineering & IT student poster (A1).PNG?raw=true "Employee Data title")
 
 ## Installation Instructions
 Note: For a complete installation guide with image-based step-by-step instructions please refer to the installation guide in the submitted User Manual. This README guide is largely based off those instructions, and will try to get you up and running as quickly as possible. Both guides assume the user either wants to install the app on their Android device, or is using Windows 10 and wants to set up the development environment with Android Studio.
