@@ -3,7 +3,7 @@
 
 **STEVE** is the **iOS** & **Android** app our team of five developed for our **final-year Capstone Industry Project**, and was developed in consulation with our **Industry Client**, **Planit Testing**.
 
-Please feel free to read the **supplied documentation** in the '**DOCUMENTATION**' folder in the main branch.
+Please feel free to read the **supplied documentation** in the '**DOCUMENTATION**' folder in the main branch, and review the code at your leisure. :D
 
 ![Poster](/DOCUMENTATION/EngineeringITstudentposter.PNG?raw=true "Engineering & IT Showcase Poster")
 
