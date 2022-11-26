@@ -1,7 +1,7 @@
 # STEVE (the Staff Engagement Visualisation Exeperience)
 ## Winner of the 2022 La Trobe CS/IT 'Top Technical Project Implementation'
 
-**STEVE** is the **iOS** & **Android** app our team of five developed for our **final-year Capstone Industry Project**, and was developed in consulation with our **Industry Client**, **Planit Testing**.
+**STEVE** is the **iOS** & **Android** app our team of five developed for our **final-year Capstone Industry Project** and was developed in consulation with our **Industry Client**, **Planit Testing**.
 
 Please feel free to read the **supplied documentation** in the '**DOCUMENTATION**' folder in the main branch, and review the code at your leisure.
 
